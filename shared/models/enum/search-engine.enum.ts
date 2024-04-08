@@ -1,0 +1,39 @@
+export enum SearchEngineType {
+  NONE = "NONE",
+  URL_INFO = "URL_INFO",
+  URL_VIDEO = "URL_VIDEO",
+  URL_WATCH = "URL_WATCH",
+  IMAGE_PREVIEW_IMAGE = "PREVIEW_IMAGE",
+  IMAGE_HEADER_IMAGE = "HEADER_IMAGE",
+  TELEVISION_URL = "TELEVISION_URL",
+  TELEVISION_CHANNEL = "TELEVISION_CHANNEL",
+  PERSON_URL_INFO = "PERSON_URL_INFO",
+  PERSON_IMAGE = "PERSON_IMAGE",
+  PERSON_AUDIO = "PERSON_AUDIO",
+  // Rezepte
+  URL_SOURCE = "URL_SOURCE",
+  ONLINE_SEARCH = "ONLINE_SEARCH",
+  // Film
+  TELEVISION = "TELEVISION",
+  STREAM = "STREAM",
+  CINEMA = "CINEMA",
+}
+
+export const SEARCH_ENGINE_TYPES = [
+  SearchEngineType.NONE,
+  SearchEngineType.URL_INFO,
+  SearchEngineType.URL_VIDEO,
+  SearchEngineType.URL_WATCH,
+  SearchEngineType.IMAGE_PREVIEW_IMAGE,
+  SearchEngineType.IMAGE_HEADER_IMAGE,
+  SearchEngineType.TELEVISION_URL,
+  SearchEngineType.TELEVISION_CHANNEL,
+  SearchEngineType.PERSON_URL_INFO,
+  SearchEngineType.PERSON_IMAGE,
+  SearchEngineType.PERSON_AUDIO,
+  SearchEngineType.URL_SOURCE,
+  SearchEngineType.ONLINE_SEARCH,
+  SearchEngineType.TELEVISION,
+  SearchEngineType.STREAM,
+  SearchEngineType.CINEMA,
+];

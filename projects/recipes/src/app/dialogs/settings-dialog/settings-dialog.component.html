@@ -1,0 +1,922 @@
+<div
+  mat-dialog-content
+  [ngClass]="{ 'no-scrollbar-on-mobile': true, 'only-mobile-device': isMobileDevice }"
+>
+  <!-- Menübar: Desktop -->
+  <div
+    *ngIf="!isSmallScreen.matches"
+    cdkDrag
+    cdkDragRootElement=".cdk-overlay-pane"
+    cdkDragBoundary=".cdk-overlay-container"
+    cdkDragHandle
+    (cdkDragStarted)="onDragStarted()"
+    [cdkDragFreeDragPosition]="dragPosition"
+    [cdkDragDisabled]="lockDragging"
+  >
+    <mat-toolbar class="toolbar">
+      <button class="only-icon margin-right" mat-button (click)="toggle()">
+        <mat-icon svgIcon="menu"></mat-icon>
+      </button>
+
+      <mat-slide-toggle
+        [checked]="showRawData"
+        (change)="showRawDataChanged($event.checked)"
+        labelPosition="before"
+      >
+        {{ "SETTINGS.RAW_DATA" | translate }}
+      </mat-slide-toggle>
+
+      <span class="spacer"></span>
+
+      <button
+        mat-flat-button
+        onlyIconSmallScreen
+        [text]="'ACTION.SAVE' | translate"
+        [mat-dialog-close]="newData()"
+      >
+        <mat-icon svgIcon="check"></mat-icon>
+      </button>
+      <button class="only-icon" mat-button (click)="close()">
+        <mat-icon svgIcon="clear"></mat-icon>
+      </button>
+    </mat-toolbar>
+  </div>
+
+  <mat-sidenav-container class="sidenav-container" (backdropClick)="closeSidebar()">
+    <!-- Sidenav -->
+    <mat-sidenav
+      #sidenav
+      (keydown.escape)="closeSidebar()"
+      class="sidenav-content"
+      [mode]="isSmallScreen.matches ? 'over' : 'side'"
+      [opened]="isSmallScreen.matches ? false : true"
+    >
+      <div class="sidenav-buttons">
+        <ng-container *ngFor="let menuItem of menu">
+          <mat-divider
+            *ngIf="menuItem.name === SettingsMenu.SEPARATOR; else menuEntry"
+          ></mat-divider>
+          <ng-template #menuEntry>
+            <button
+              mat-button
+              class="sidenav-button"
+              [color]="selectedSubmenu === menuItem.key ? 'primary' : ''"
+              (click)="setActive(menuItem.key!)"
+            >
+              <mat-icon *ngIf="menuItem.icon" [svgIcon]="menuItem.icon"></mat-icon
+              >{{ menuItem.name | translate }}
+            </button>
+          </ng-template>
+        </ng-container>
+      </div>
+
+      <div [style.flexGrow]="1"></div>
+
+      <!-- Aktuelles Theme -->
+      <app-theme [style.marginBottom.px]="40"></app-theme>
+    </mat-sidenav>
+
+    <!-- Hauptinhalt -->
+    <mat-sidenav-content class="page-container">
+      <!-- Menübar: Mobile -->
+      <mat-toolbar *ngIf="isSmallScreen.matches" class="toolbar page-header">
+        <button class="only-icon" mat-button (click)="toggle()">
+          <mat-icon svgIcon="menu"></mat-icon>
+        </button>
+
+        <!-- Im Mobile-Modus erstmal nicht anzeigen -->
+        <!-- <mat-slide-toggle [(ngModel)]="showRawData">Rohdaten</mat-slide-toggle> -->
+
+        <!-- Spacer -->
+        <span class="spacer"></span>
+
+        <button
+          mat-flat-button
+          onlyIconSmallScreen
+          [text]="'ACTION.SAVE' | translate"
+          [mat-dialog-close]="newData()"
+        >
+          <mat-icon svgIcon="check"></mat-icon>
+        </button>
+        <button class="only-icon" mat-button (click)="close()">
+          <mat-icon svgIcon="clear"></mat-icon>
+        </button>
+      </mat-toolbar>
+
+      <!-- Inhalt -->
+      <form [formGroup]="formGroup" class="page-content">
+        <div class="content">
+          <!-- Hilfe -->
+          <div *ngIf="selectedSubmenu === SettingsMenuKey.KEYMAP">
+            <section>
+              <!-- Shortcuts nicht im Mobile-Modus anzeigen -->
+              <h1><mat-icon svgIcon="keymap"></mat-icon> {{ "SETTINGS.KEYMAP" | translate }}</h1>
+              <div class="subsection">
+                <p class="text">Speichern: <kbd>Strg</kbd> + <kbd>S</kbd></p>
+                <p class="text">Suchen: <kbd>Strg</kbd> + <kbd>K</kbd></p>
+                <p class="text">Fenster schließen: <kbd>Esc</kbd></p>
+                <p class="text">Seite neu laden: <kbd>F5</kbd></p>
+              </div>
+            </section>
+          </div>
+
+          <!-- Umrechnungszutaten -->
+          <!-- Nur wenn weniger als 20 Stück & In Produktion -->
+          <div
+            *ngIf="
+              selectedSubmenu === SettingsMenuKey.SPECIFIC_CONVERSIONS &&
+              !environment.production &&
+              !!(ingredientApiService.ingredientsConversion$ | async) &&
+              ((ingredientApiService.ingredientsConversion$ | async)?.length || 0) < 20
+            "
+          >
+            <section>
+              <h1>
+                <mat-icon svgIcon="ingredient-conversion"></mat-icon>
+                {{ "CONVERSION.VALUES" | translate }} ({{
+                  (ingredientApiService.ingredientsAvailable$ | async)?.length
+                }})
+              </h1>
+              <div class="subsection">
+                <pre
+                  [innerHTML]="
+                    ingredientApiService.ingredientsConversion$ | async | json | syntaxHighlight
+                  "
+                ></pre>
+              </div>
+            </section>
+          </div>
+
+          <!-- Datenbank -->
+          <div *ngIf="selectedSubmenu === SettingsMenuKey.DB">
+            <section>
+              <h1>
+                <mat-icon svgIcon="database"></mat-icon>
+                {{ "SETTINGS.DB_LOADED_DATA" | translate }}
+              </h1>
+              <div class="subsection">
+                <ul>
+                  <li>
+                    {{ "PURCHASE.S" | translate }}:
+                    {{ (purchaseApiService.purchases$ | async)?.length }}
+                  </li>
+                  <li>
+                    {{ "RECIPE.S" | translate }}: {{ (recipeApiService.recipes$ | async)?.length }}
+                  </li>
+                  <li>
+                    {{ "STORE.S" | translate }}: {{ (storeApiService.stores$ | async)?.length }}
+                  </li>
+                  <li>
+                    {{ "UTENSIL_OBJECT.S" | translate }}:
+                    {{ (utensilObjectApiService.utensilObjects$ | async)?.length }}
+                  </li>
+                  <li>
+                    {{ "AVAILABLE.INGREDIENTS" | translate }}:
+                    {{ (ingredientApiService.ingredientsAvailable$ | async)?.length }}
+                  </li>
+                  <li>
+                    {{ "CONVERSION.S" | translate }}:
+                    {{ (ingredientApiService.ingredientsConversion$ | async)?.length }}
+                  </li>
+                  <li>
+                    {{ "SHOPPING_LIST.INGREDIENTS" | translate }}:
+                    {{ (ingredientApiService.ingredientsAdditional$ | async)?.length }}
+                  </li>
+                </ul>
+              </div>
+            </section>
+
+            <section *ngIf="!environment.production">
+              <h1>
+                <mat-icon svgIcon="reload"></mat-icon>
+                Daten nachladen
+              </h1>
+              <div class="subsection">
+                <h3>Rezepte laden</h3>
+                <p class="text">Aktuell geladene Rezepte: {{ (recipes$ | async)?.length }}</p>
+                <div class="buttons">
+                  <button mat-flat-button (click)="loadRecipes(50)">50 Rezepte laden</button>
+                  <button mat-flat-button (click)="loadRecipes(100)">100 Rezepte laden</button>
+                  <button mat-flat-button (click)="loadRecipes(150)">150 Rezepte laden</button>
+                  <button mat-flat-button (click)="loadRecipes(250)">250 Rezepte laden</button>
+                  <button mat-flat-button (click)="loadAllRecipes()">Alle Rezepte laden</button>
+                </div>
+              </div>
+
+              <div class="subsection">
+                <h3>Utensilien laden</h3>
+                <p class="text">Für Einlesen der Rezepte notwendig</p>
+                <button mat-flat-button (click)="loadAllUtensilObjects()">
+                  Alle Utensilien laden
+                </button>
+              </div>
+
+              <div class="subsection">
+                <h3>Umrechnungszutaten laden</h3>
+                <p class="text">Benötigt viele Datenbank-Aufrufe</p>
+                <button mat-flat-button (click)="loadAllIngredientConversions()">
+                  Alle Umrechnungszutaten laden
+                </button>
+              </div>
+            </section>
+
+            <section>
+              <h1>
+                <mat-icon svgIcon="replace"></mat-icon>
+                {{ "SETTINGS.DB_CHANGES" | translate }}
+              </h1>
+
+              <!-- DB-Änderung -->
+              <div class="subsection">
+                <button mat-flat-button (click)="settingsApiService.performDBChange()">
+                  {{ "SETTINGS.DB_CHANGES_APPLY" | translate }}
+                </button>
+              </div>
+            </section>
+          </div>
+
+          <div *ngIf="selectedSubmenu === SettingsMenuKey.IMPORT">
+            <section>
+              <h1>
+                <mat-icon svgIcon="import"></mat-icon>
+                {{ SettingsMenu.IMPORT | translate }}
+              </h1>
+
+              <!-- Rezept -->
+              <div class="subsection">
+                <h3><mat-icon svgIcon="recipe"></mat-icon>{{ "RECIPE." | translate }}</h3>
+                <form>
+                  <input
+                    [(ngModel)]="performDBChange_recipe_input"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </form>
+                <div class="buttons">
+                  <button
+                    mat-flat-button
+                    (click)="
+                      performDBChange_recipe_output =
+                        settingsApiService.performDBChangeImportRecipe(performDBChange_recipe_input)
+                    "
+                  >
+                    <mat-icon svgIcon="import"></mat-icon>
+                    {{ "SETTINGS.IMPORT_ACTION" | translate }}
+                  </button>
+                  <button
+                    mat-flat-button
+                    (click)="
+                      performDBChange_recipe_output =
+                        settingsApiService.performDBChangeImportRecipeAndSave(
+                          performDBChange_recipe_input
+                        )
+                    "
+                  >
+                    <mat-icon svgIcon="upload"></mat-icon>
+                    {{ "SETTINGS.IMPORT_ACTION_AND_SAVE" | translate }}
+                  </button>
+                </div>
+                <pre [innerHTML]="performDBChange_recipe_output | json | syntaxHighlight"></pre>
+              </div>
+
+              <!-- Einkauf -->
+              <div class="subsection">
+                <h3><mat-icon svgIcon="shopping-cart"></mat-icon>{{ "PURCHASE." | translate }}</h3>
+                <app-dropdown [data]="ITEM_DATA" [(selectedKey)]="purchaseType"></app-dropdown>
+                <form>
+                  <input
+                    [(ngModel)]="performDBChange_purchase_input"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </form>
+                <div class="buttons">
+                  <button
+                    mat-flat-button
+                    (click)="
+                      performDBChange_purchase_output =
+                        settingsApiService.performDBChangeImportPurchase(
+                          performDBChange_purchase_input,
+                          purchaseType
+                        )
+                    "
+                  >
+                    <mat-icon svgIcon="import"></mat-icon>
+                    {{ "SETTINGS.IMPORT_ACTION" | translate }}
+                  </button>
+                  <button
+                    mat-flat-button
+                    (click)="
+                      performDBChange_purchase_output =
+                        settingsApiService.performDBChangeImportPurchaseAndSave(
+                          performDBChange_purchase_input,
+                          purchaseType
+                        )
+                    "
+                  >
+                    <mat-icon svgIcon="upload"></mat-icon>
+                    {{ "SETTINGS.IMPORT_ACTION_AND_SAVE" | translate }}
+                  </button>
+                </div>
+                <pre [innerHTML]="performDBChange_purchase_output | json | syntaxHighlight"></pre>
+              </div>
+
+              <!-- Einkäufe -->
+              <div class="subsection">
+                <h3><mat-icon svgIcon="shopping-cart"></mat-icon>{{ "PURCHASE.S" | translate }}</h3>
+                <form>
+                  <textarea
+                    [(ngModel)]="performDBChange_purchases_input"
+                    [ngModelOptions]="{ standalone: true }"
+                    rows="10"
+                  ></textarea>
+                </form>
+                <div class="buttons">
+                  <button
+                    mat-flat-button
+                    (click)="
+                      performDBChange_purchases_output =
+                        settingsApiService.performDBChangeImportPurchases(
+                          performDBChange_purchases_input,
+                          purchaseType
+                        )
+                    "
+                  >
+                    <mat-icon svgIcon="import"></mat-icon>
+                    {{ "SETTINGS.IMPORT_ACTION" | translate }}
+                  </button>
+                  <button
+                    mat-flat-button
+                    (click)="
+                      performDBChange_purchases_output =
+                        settingsApiService.performDBChangeImportPurchasesAndSave(
+                          performDBChange_purchases_input,
+                          purchaseType
+                        )
+                    "
+                  >
+                    <mat-icon svgIcon="upload"></mat-icon>
+                    {{ "SETTINGS.IMPORT_ACTION_AND_SAVE" | translate }}
+                  </button>
+                </div>
+                <pre [innerHTML]="performDBChange_purchases_output | json | syntaxHighlight"></pre>
+              </div>
+
+              <!-- IngredientConversion -->
+              <div class="subsection">
+                <h3>
+                  <mat-icon svgIcon="ingredient-conversion"></mat-icon
+                  >{{ "CONVERSION." | translate }}
+                </h3>
+                <form>
+                  <input
+                    [(ngModel)]="performDBChange_ingredientConversion_input"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                  <input
+                    [(ngModel)]="performDBChange_ingredientConversion_id_input"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </form>
+                <div class="buttons">
+                  <button
+                    mat-flat-button
+                    (click)="
+                      performDBChange_ingredientConversion_output =
+                        settingsApiService.performDBChangeImportIngredientConversion(
+                          performDBChange_ingredientConversion_input
+                        )
+                    "
+                  >
+                    <mat-icon svgIcon="import"></mat-icon>
+                    {{ "SETTINGS.IMPORT_ACTION" | translate }}
+                  </button>
+                  <button
+                    mat-flat-button
+                    (click)="
+                      performDBChange_ingredientConversion_output =
+                        settingsApiService.performDBChangeImportIngredientConversionAndSave(
+                          performDBChange_ingredientConversion_input,
+                          performDBChange_ingredientConversion_id_input
+                        )
+                    "
+                  >
+                    <mat-icon svgIcon="upload"></mat-icon>
+                    {{ "SETTINGS.IMPORT_ACTION_AND_SAVE" | translate }}
+                  </button>
+                </div>
+                <pre
+                  [innerHTML]="performDBChange_ingredientConversion_output | json | syntaxHighlight"
+                ></pre>
+              </div>
+
+              <!-- IngredientConversion -->
+              <div class="subsection">
+                <h3>
+                  <mat-icon svgIcon="ingredient-conversion"></mat-icon
+                  >{{ "CONVERSION.S" | translate }}
+                </h3>
+                <form>
+                  <textarea
+                    [(ngModel)]="performDBChange_ingredientConversions_input"
+                    [ngModelOptions]="{ standalone: true }"
+                    rows="10"
+                  ></textarea>
+                </form>
+                <div class="buttons">
+                  <button
+                    mat-flat-button
+                    (click)="
+                      performDBChange_ingredientConversions_output =
+                        settingsApiService.performDBChangeImportIngredientConversionsAndSave_FOR_INITAL_CREATE(
+                          performDBChange_ingredientConversions_input
+                        )
+                    "
+                  >
+                    <mat-icon svgIcon="upload"></mat-icon>
+                    {{ "SETTINGS.IMPORT_ACTION_AND_SAVE" | translate }}
+                  </button>
+                </div>
+                <pre
+                  [innerHTML]="
+                    performDBChange_ingredientConversions_output | json | syntaxHighlight
+                  "
+                ></pre>
+              </div>
+            </section>
+          </div>
+
+          <div *ngIf="selectedSubmenu === SettingsMenuKey.TESTING">
+            <section>
+              <h1>
+                <mat-icon svgIcon="testing"></mat-icon>
+                {{ SettingsMenu.TESTING | translate }}
+              </h1>
+
+              <div class="subsection">
+                <h3>
+                  <mat-icon svgIcon="notification"></mat-icon
+                  >{{ "SETTINGS.TEST_MESSAGE" | translate }}
+                </h3>
+                <div class="buttons">
+                  <button mat-flat-button (click)="showTestNotification()">
+                    <mat-icon svgIcon="note"></mat-icon>{{ "SETTINGS.TEST_MESSAGE" | translate }}
+                  </button>
+                  <button mat-flat-button (click)="showTestNotificationWithDuration()">
+                    <mat-icon svgIcon="timer"></mat-icon>
+                    {{ "SETTINGS.TEST_MESSAGE_WITH_DURATION" | translate }}
+                  </button>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div *ngIf="selectedSubmenu === SettingsMenuKey.REQUESTS">
+            <section>
+              <h1>
+                <mat-icon svgIcon="api"></mat-icon>
+                {{ SettingsMenu.REQUESTS | translate }}
+              </h1>
+
+              <div class="subsection">
+                <h3>
+                  <mat-icon svgIcon="url"></mat-icon>
+                  {{ "SETTINGS.REQUEST_VALUE" | translate : { value: "Youtube" } }}
+                </h3>
+                <form>
+                  <input [(ngModel)]="requestYoutubeID" [ngModelOptions]="{ standalone: true }" />
+                </form>
+                <div class="buttons">
+                  <button mat-flat-button (click)="requestYoutubeAPI(requestYoutubeID)">
+                    <mat-icon svgIcon="search"></mat-icon>
+                    {{ "SETTINGS.REQUEST_DATA" | translate }}
+                  </button>
+                </div>
+                <pre [innerHTML]="responseYoutubeAPI | json | syntaxHighlight"></pre>
+              </div>
+
+              <div class="subsection">
+                <h3>
+                  <mat-icon svgIcon="url"></mat-icon>
+                  {{ "SETTINGS.REQUEST_VALUE" | translate : { value: "URL" } }}: EatSmarter-{{
+                    "RECIPE." | translate
+                  }}
+                </h3>
+                <form>
+                  <input [(ngModel)]="requestUrl" [ngModelOptions]="{ standalone: true }" />
+                </form>
+                <div class="buttons">
+                  <button mat-flat-button (click)="requestURLWithSpecial(requestUrl)">
+                    <mat-icon svgIcon="search"></mat-icon>
+
+                    {{ "SETTINGS.REQUEST_DATA" | translate }}
+                  </button>
+
+                  <button mat-flat-button (click)="requestRecipe(requestUrl)">
+                    <mat-icon svgIcon="search"></mat-icon>
+
+                    {{ "SETTINGS.REQUEST_VALUE" | translate : { value: "RECIPE." | translate } }}
+                  </button>
+
+                  <button mat-flat-button (click)="onCopyToClipboard(responseUrlData)">
+                    <mat-icon svgIcon="copy"></mat-icon>
+
+                    {{ "CLIPBOARD.COPY." | translate }}
+                  </button>
+                </div>
+                <pre [innerHTML]="responseUrlData | json | syntaxHighlight"></pre>
+              </div>
+
+              <div class="subsection">
+                <h3>
+                  <mat-icon svgIcon="url"></mat-icon>
+                  {{ "SETTINGS.REQUEST_VALUE" | translate : { value: "URL" } }}: RapidHeaders
+                </h3>
+                <form>
+                  <input
+                    [(ngModel)]="requestUrlWithHeadersValues"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                  <input
+                    [(ngModel)]="requestUrlWithHeadersUrl"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                  <input
+                    [(ngModel)]="requestUrlWithHeadersHost"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </form>
+                <div class="buttons">
+                  <button
+                    mat-flat-button
+                    (click)="
+                      requestRapidAPI(
+                        requestUrlWithHeadersValues,
+                        requestUrlWithHeadersUrl,
+                        requestUrlWithHeadersHost
+                      )
+                    "
+                  >
+                    <mat-icon svgIcon="search"></mat-icon>
+                    {{ "SETTINGS.REQUEST_DATA" | translate }}
+                  </button>
+                </div>
+                <pre [innerHTML]="responseUrlWithHeadersData | json | syntaxHighlight"></pre>
+              </div>
+
+              <div class="subsection">
+                <h3>
+                  <mat-icon svgIcon="url"></mat-icon>
+                  {{ "SETTINGS.REQUEST_VALUE" | translate : { value: "URL" } }}: XML URLs
+                </h3>
+                <form>
+                  <input [(ngModel)]="requestXMLUrlData" [ngModelOptions]="{ standalone: true }" />
+                </form>
+                <div class="buttons">
+                  <button mat-flat-button (click)="requestXMLData(requestXMLUrlData)">
+                    <mat-icon svgIcon="search"></mat-icon>
+                    {{ "SETTINGS.REQUEST_DATA" | translate }}
+                  </button>
+                </div>
+                <pre [innerHTML]="responseXMLAsJSONUrlData | json | syntaxHighlight"></pre>
+              </div>
+            </section>
+          </div>
+
+          <div *ngIf="selectedSubmenu === SettingsMenuKey.DOWNLOAD">
+            <section>
+              <h1>
+                <mat-icon svgIcon="download"></mat-icon>
+                {{ "SETTINGS.DOWNLOAD_DATA" | translate }}
+              </h1>
+
+              <!-- Alle herunterladen -->
+              <div class="subsection">
+                <button mat-flat-button (click)="downloadAllJSON()">
+                  <mat-icon svgIcon="download"></mat-icon>
+                  {{ "SETTINGS.DOWNLOAD_ALL" | translate }}
+                </button>
+                <br />
+                <mat-checkbox
+                  #checkBox
+                  [style.marginRight.px]="20"
+                  [(ngModel)]="downloadWithZipFolder"
+                  [ngModelOptions]="{ standalone: true }"
+                >
+                  {{ "WITH_ZIP_FOLDER" | translate }}
+                </mat-checkbox>
+                <mat-checkbox
+                  [disabled]="!checkBox.checked"
+                  [(ngModel)]="downloadWithCurrentDate"
+                  [ngModelOptions]="{ standalone: true }"
+                >
+                  {{ "DATE.WITH_TODAY" | translate }}
+                </mat-checkbox>
+              </div>
+
+              <!-- Objekte -->
+              <div
+                class="subsection"
+                [ngStyle]="{
+                  display: 'flex',
+                  'flex-direction': 'column',
+                  gap: '10px',
+                  'align-items': 'start'
+                }"
+              >
+                <button mat-flat-button (click)="downloadRecipesJSON()">
+                  <mat-icon svgIcon="download"></mat-icon>
+                  <mat-icon svgIcon="recipe"></mat-icon>
+                  {{
+                    "SETTINGS.DOWNLOAD_ALL_VALUE"
+                      | translate
+                        : {
+                            value:
+                              "RECIPE."
+                              | translate
+                              | firstCharToLowercase : (localeService.locale$ | async)!
+                          }
+                  }}
+                </button>
+                <button mat-flat-button (click)="downloadPurchasesJSON()">
+                  <mat-icon svgIcon="download"></mat-icon>
+                  <mat-icon svgIcon="shopping-cart"></mat-icon>
+                  {{
+                    "SETTINGS.DOWNLOAD_ALL_VALUE"
+                      | translate
+                        : {
+                            value:
+                              "PURCHASE.S"
+                              | translate
+                              | firstCharToLowercase : (localeService.locale$ | async)!
+                          }
+                  }}
+                </button>
+                <span class="important-message">
+                  <mat-icon class="medium without-button" svgIcon="error"></mat-icon>
+                  {{ "ERROR.ALL_DATA_WILL_BE_LOADED" | translate }}
+                </span>
+                <button mat-flat-button (click)="downloadIngredientsConversionJSON()">
+                  <mat-icon svgIcon="download"></mat-icon>
+                  <mat-icon svgIcon="ingredient-conversion"></mat-icon>
+                  {{
+                    "SETTINGS.DOWNLOAD_ALL_VALUE"
+                      | translate
+                        : {
+                            value:
+                              "CONVERSION.S"
+                              | translate
+                              | firstCharToLowercase : (localeService.locale$ | async)!
+                          }
+                  }}
+                </button>
+                <button mat-flat-button (click)="downloadUtensilObjectsJSON()">
+                  <mat-icon svgIcon="download"></mat-icon>
+                  <mat-icon svgIcon="utensil"></mat-icon>
+                  {{
+                    "SETTINGS.DOWNLOAD_ALL_VALUE"
+                      | translate
+                        : {
+                            value:
+                              "UTENSIL.S."
+                              | translate
+                              | firstCharToLowercase : (localeService.locale$ | async)!
+                          }
+                  }}
+                </button>
+                <button mat-flat-button (click)="downloadStoresJSON()">
+                  <mat-icon svgIcon="download"></mat-icon>
+                  <mat-icon svgIcon="store"></mat-icon>
+                  {{
+                    "SETTINGS.DOWNLOAD_ALL_VALUE"
+                      | translate
+                        : {
+                            value:
+                              "STORE.S"
+                              | translate
+                              | firstCharToLowercase : (localeService.locale$ | async)!
+                          }
+                  }}
+                </button>
+                <button mat-flat-button (click)="downloadSearchEnginesJSON()">
+                  <mat-icon svgIcon="download"></mat-icon>
+                  <mat-icon svgIcon="search-engine"></mat-icon>
+                  {{
+                    "SETTINGS.DOWNLOAD_ALL_VALUE"
+                      | translate
+                        : {
+                            value:
+                              "SEARCHENGINE.S"
+                              | translate
+                              | firstCharToLowercase : (localeService.locale$ | async)!
+                          }
+                  }}
+                </button>
+              </div>
+
+              <!-- Einstellungen -->
+              <div class="subsection">
+                <button mat-flat-button (click)="downloadSettingsJSON()">
+                  <mat-icon svgIcon="download"></mat-icon>
+                  {{
+                    "SETTINGS.DOWNLOAD_ALL_VALUE"
+                      | translate
+                        : {
+                            value:
+                              "SETTINGS."
+                              | translate
+                              | firstCharToLowercase : (localeService.locale$ | async)!
+                          }
+                  }}
+                </button>
+              </div>
+            </section>
+          </div>
+
+          <!-- Sprache & Region -->
+          <div *ngIf="selectedSubmenu === SettingsMenuKey.LANGUAGE_AND_REGION">
+            <section>
+              <h1>
+                <mat-icon svgIcon="language"></mat-icon>
+                {{ "LANGUAGE." | translate }}
+              </h1>
+              <app-dropdown
+                [data]="LANGUAGES_SYSTEM"
+                [selectedKey]="settings.language"
+                (selectedChange)="languageChange($event)"
+              >
+              </app-dropdown>
+            </section>
+          </div>
+
+          <!-- Über -->
+          <div *ngIf="selectedSubmenu === SettingsMenuKey.ABOUT">
+            <section class="version">
+              <h1>
+                <mat-icon svgIcon="info"></mat-icon>
+                {{ "SETTINGS.VERSION_CURRENT" | translate }}
+              </h1>
+              <div class="subsection">
+                <app-version-entry [version]="versionService.currentVersion"> </app-version-entry>
+              </div>
+            </section>
+            <section class="version">
+              <h1>
+                <mat-icon svgIcon="history"></mat-icon>
+                {{ "SETTINGS.VERSION_HISTORY" | translate }}
+              </h1>
+              <div
+                class="subsection"
+                *ngFor="
+                  let v of showAllVersionsEntry
+                    ? versionService.versions
+                    : versionService.versions.slice(0, 15)
+                "
+              >
+                <app-version-entry [version]="v"> </app-version-entry>
+              </div>
+
+              <!-- Alle Einträge laden -->
+              <button
+                *ngIf="!showAllVersionsEntry"
+                mat-flat-button
+                (click)="showAllVersionsEntry = true"
+              >
+                {{ "LOAD_ALL" | translate }}
+              </button>
+            </section>
+            <section>
+              <h1>
+                <mat-icon svgIcon="copyright"></mat-icon>
+                {{ "SETTINGS.COPYRIGHT" | translate }}
+              </h1>
+              <div class="subsection">{{ versionService.getCopyrightText() }}</div>
+            </section>
+          </div>
+
+          <!-- Anwendung -->
+          <div *ngIf="selectedSubmenu === SettingsMenuKey.APPLICATION && !showRawData">
+            <!-- Inhaltsgruppen -->
+            <section>
+              <h1>
+                <mat-icon svgIcon="recipe"></mat-icon>
+                {{ "SETTINGS.APPLICATION.ACCORDIONS." | translate }}
+              </h1>
+
+              <app-mobile-desktop-toggle
+                title="SETTINGS.APPLICATION.ACCORDIONS.INITIALLY_OPEN"
+                titleReplace="MENU.RECIPES"
+                formGroupName="recipes"
+                formGroupNameOuter="allAccordionInitiallyPanelExpanded"
+                [formGroup]="formGroup"
+                [toggle]="settings.allAccordionInitiallyPanelExpanded.recipes"
+              ></app-mobile-desktop-toggle>
+
+              <app-mobile-desktop-toggle
+                title="SETTINGS.APPLICATION.ACCORDIONS.INITIALLY_OPEN"
+                titleReplace="MENU.SHOPPING_LIST"
+                formGroupName="shoppingList"
+                formGroupNameOuter="allAccordionInitiallyPanelExpanded"
+                [formGroup]="formGroup"
+                [toggle]="settings.allAccordionInitiallyPanelExpanded.shoppingList"
+              ></app-mobile-desktop-toggle>
+            </section>
+
+            <!-- Menüs -->
+            <section>
+              <h1>
+                <mat-icon svgIcon="shopping-list"></mat-icon>
+                {{ "SETTINGS.APPLICATION.TABS." | translate }}
+              </h1>
+              <div formGroupName="plannedRecipesTabGroupInitialSelectedIndex" class="subsection">
+                <h3>
+                  {{
+                    "SETTINGS.APPLICATION.TABS.INITIALLY_OPEN"
+                      | translate
+                        : { value: ("SETTINGS.APPLICATION.TABS.PLANNED_RECIPE" | translate) }
+                  }}
+                </h3>
+
+                <div class="grid">
+                  <div class="flex">
+                    <mat-icon svgIcon="mobile" class="medium without-button"></mat-icon>
+                    <p>
+                      {{ "SETTINGS.MOBILE" | translate }}
+                    </p>
+                  </div>
+
+                  <app-dropdown
+                    maxWidth="70vw"
+                    [data]="plannedRecipesDropdownData"
+                    [selectedKey]="
+                      formGroup.controls.plannedRecipesTabGroupInitialSelectedIndex.controls.mobile
+                        .value
+                    "
+                    (selectedChange)="selectedChange($event, true)"
+                  >
+                  </app-dropdown>
+
+                  <div class="flex">
+                    <mat-icon svgIcon="screen" class="medium without-button"></mat-icon>
+                    <p>
+                      {{ "SETTINGS.DESKTOP" | translate }}
+                    </p>
+                  </div>
+
+                  <app-dropdown
+                    maxWidth="70vw"
+                    [data]="plannedRecipesDropdownData"
+                    [selectedKey]="
+                      formGroup.controls.plannedRecipesTabGroupInitialSelectedIndex.controls.screen
+                        .value
+                    "
+                    (selectedChange)="selectedChange($event, false)"
+                  >
+                  </app-dropdown>
+                </div>
+              </div>
+            </section>
+
+            <!-- Dialoge -->
+            <section>
+              <h1>
+                <mat-icon svgIcon="shopping-list"></mat-icon>
+                {{ "SETTINGS.APPLICATION.DIALOGS." | translate }}
+              </h1>
+
+              <app-mobile-desktop-toggle
+                title="SETTINGS.APPLICATION.DIALOGS.EDIT_INGREDIENT_IN_LIST"
+                formGroupName="editIngredientInListWithDialog"
+                [formGroup]="formGroup"
+                [toggle]="settings.editIngredientInListWithDialog"
+              ></app-mobile-desktop-toggle>
+
+              <app-mobile-desktop-toggle
+                title="SETTINGS.APPLICATION.DIALOGS.EDIT_INGREDIENT_IN_TAGS"
+                formGroupName="editIngredientInTagsWithDialog"
+                [formGroup]="formGroup"
+                [toggle]="settings.editIngredientInTagsWithDialog"
+              ></app-mobile-desktop-toggle>
+
+              <app-mobile-desktop-toggle
+                title="SETTINGS.APPLICATION.DIALOGS.EDIT_UTENSIL_IN_TAGS"
+                formGroupName="editUtensilInTagsWithDialog"
+                [formGroup]="formGroup"
+                [toggle]="settings.editUtensilInTagsWithDialog"
+              ></app-mobile-desktop-toggle>
+            </section>
+          </div>
+
+          <section *ngIf="selectedSubmenu === SettingsMenuKey.APPLICATION && showRawData">
+            <h1>{{ "SETTINGS.DATA_CURRENT" | translate }}</h1>
+            <div class="subsection">
+              <pre>{{ formGroup.getRawValue() | json }}</pre>
+            </div>
+            <h1>{{ "SETTINGS.DATA_IN_DB" | translate }}</h1>
+            <div class="subsection">
+              <pre>{{ settings | json }}</pre>
+            </div>
+          </section>
+        </div>
+      </form>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

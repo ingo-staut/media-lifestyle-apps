@@ -1,0 +1,30 @@
+const DELIMITER = ".";
+const PREFIX = "recipes";
+const PAGE = "page";
+
+const SHOPPINGLIST = "shoppinglist";
+const LIST = "list";
+const SETTINGS = "settings";
+const SEARCH = "search";
+const PURCHASES = "purchases";
+const RECIPES = "recipes";
+
+// Alle Prefixe enden auf den Delimiter
+const PREFIX_PAGE = PREFIX + DELIMITER + PAGE + DELIMITER;
+
+const PREFIX_SETTINGS = PREFIX_PAGE + SETTINGS + DELIMITER;
+const PREFIX_SEARCH = PREFIX_PAGE + SEARCH + DELIMITER;
+const PREFIX_SHOPPINGLIST = PREFIX_PAGE + SHOPPINGLIST + DELIMITER;
+const PREFIX_SHOPPINGLIST_LIST = PREFIX_SHOPPINGLIST + LIST + DELIMITER;
+const PREFIX_PURCHASES = PREFIX_PAGE + PURCHASES + DELIMITER;
+const PREFIX_RECIPES = PREFIX_PAGE + RECIPES + DELIMITER;
+
+export const SHOPPINGLIST_TAB_INDEX = PREFIX_SHOPPINGLIST + "tabIndex";
+export const SHOPPINGLIST_RECIPES_MODE_DROPDOWN = PREFIX_SHOPPINGLIST_LIST + "recipesModeDropdown";
+export const SHOPPINGLIST_RECIPES_DROPDOWN = PREFIX_SHOPPINGLIST_LIST + "recipesInListDropdown";
+export const SETTINGS_TAB_INDEX = PREFIX_SETTINGS + "tabIndex";
+export const SETTINGS_SHOW_RAW_DATA = PREFIX_SETTINGS + "showingRawData";
+export const SEARCH_FILTER_EXPANDED = PREFIX_SEARCH + "filterExpanded";
+export const PURCHASES_TYPE = PREFIX_PURCHASES + "filterType";
+export const PURCHASES_QUICK_ROW_LAYOUT = PREFIX_PURCHASES + "quickRowLayout";
+export const PREFIX_RECIPES_PLANNED_INDEX = PREFIX_RECIPES + "plannedIndex";

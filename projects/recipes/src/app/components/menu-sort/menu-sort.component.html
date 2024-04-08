@@ -1,0 +1,60 @@
+<!-- Button: Sortierung -->
+<button
+  *ngIf="sortType | getSortItemBySortType : data as sort"
+  mat-flat-button
+  [matMenuTriggerFor]="isMobileScreen.matches ? null : sortMenu"
+  [ngClass]="{
+    sorting: true,
+    'sorting-only-icon': !showButtonText
+  }"
+  [matTooltip]="
+    sortType === SortType.SORT_CUSTOM
+      ? (sort.text | translate)
+      : ('SORT.' + (sortingDirection === SortingDirection.ASC ? 'ASC' : 'DESC') + '_VALUE'
+        | translate : { value: sort.text | translate })
+  "
+  (click)="onOpenSortMenu()"
+>
+  <!-- Button: Sortierungsrichtung -->
+  <button
+    *ngIf="sort.type !== defaultSortType"
+    class="button-clean button-sort-direction"
+    (click)="onChangeSortDirection($event)"
+  >
+    <mat-icon
+      class="medium without-button"
+      [svgIcon]="'sort-direction-' + (sortingDirection === SortingDirection.ASC ? 'asc' : 'desc')"
+    ></mat-icon>
+  </button>
+
+  <!-- Menü: Button -->
+  <button
+    [ngClass]="{
+      'button-clean medium without-button': true,
+      'button-in-button': sortType !== defaultSortType,
+      'button-in-button-no-extra-button': sortType === defaultSortType
+    }"
+  >
+    <mat-icon [svgIcon]="sort.extraIcon ?? sort.icon" class="medium without-button"></mat-icon>
+    <span>{{ showButtonText ? (sort.text | translate) : "" }}</span>
+  </button>
+</button>
+
+<!-- Menü: Dropdown -->
+<mat-menu #sortMenu="matMenu">
+  <button mat-menu-item *ngFor="let sort of data" (click)="onChangeSortType(sort.type)">
+    <ng-container *ngIf="{ selected: sort.type === sortType } as s">
+      <mat-icon
+        [svgIcon]="sort.icon"
+        [ngClass]="{ highlight: s.selected, 'medium without-button': true }"
+      ></mat-icon>
+      <span
+        [ngClass]="{ highlight: s.selected }"
+        [style.flexGrow]="1"
+        [style.whiteSpace]="'nowrap'"
+        >{{ sort.text | translate }}</span
+      >
+      <app-check-icon [show]="s.selected"></app-check-icon>
+    </ng-container>
+  </button>
+</mat-menu>

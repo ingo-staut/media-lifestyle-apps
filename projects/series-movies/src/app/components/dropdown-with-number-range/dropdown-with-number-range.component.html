@@ -1,0 +1,117 @@
+<div
+  [formGroup]="range"
+  [style.lineHeight]="0"
+  tabindex="0"
+  [ngClass]="{
+    background: withRemoveButton,
+    blinking: blinkWhenValueSet && valueIsSet && withRemoveButton,
+    'with-value': blinkWhenValueSet && valueIsSet && withRemoveButton,
+    'error': !(selected.value!.range | numberInRange : selected.value!: !!selected.value?.showNumberInputs) && withRemoveButton,
+  }"
+>
+  <mat-select
+    matRipple
+    tabIndex="-1"
+    [value]="selectedKey"
+    [matTooltip]="tooltip ?? '' | translate"
+    [ngClass]="{
+      normal: !isSmall,
+      small: isSmall,
+      select: true,
+      'with-value': blinkWhenValueSet && valueIsSet && !withRemoveButton,
+      blinking: blinkWhenValueSet && valueIsSet,
+      'no-background-color': withRemoveButton,
+      'with-clear-button': withRemoveButton,
+      'with-inputs': selected.value?.showNumberInputs,
+      'error': !(selected.value!.range | numberInRange : selected.value!: !!selected.value?.showNumberInputs) && !withRemoveButton,
+    }"
+    (valueChange)="onSelectChanged($event)"
+  >
+    <mat-select-trigger [ngClass]="{ small: isSmall }">
+      <!-- Extra-Icon -->
+      <mat-icon *ngIf="extraIcon" class="medium without-button" [svgIcon]="extraIcon"></mat-icon>
+
+      <!-- Icon -->
+      <mat-icon
+        *ngIf="selected.icon"
+        [svgIcon]="selected.icon"
+        class="medium without-button"
+      ></mat-icon>
+
+      <!-- Text -->
+      <span *ngIf="!selected.value?.showNumberInputs">
+        {{ (selected.name | translate : { days: "|" }).split("|")[0] }}
+      </span>
+
+      <!-- <div *ngIf="selected.value && selected.value.showNumberInput" class="range-inputs-container">
+        <input
+          formControlName="start"
+          class="dropdown-input date"
+          [size]="1"
+          [placeholder]="selected.value.textFrom ?? '' | translate"
+          [min]="1990"
+          [max]="2500"
+          (click)="$event.preventDefault(); $event.stopPropagation()"
+          (change)="onFromInputChange($event)"
+        />
+        <span>
+          {{ (selected.name | translate : { days: "|" }).split("|")[1] }}
+        </span>
+      </div> -->
+
+      <div *ngIf="selected.value && selected.value.showNumberInputs" class="range-inputs-container">
+        <input
+          formControlName="start"
+          class="dropdown-input date"
+          type="number"
+          [placeholder]="selected.value.textFrom ?? '' | translate"
+          [min]="1900"
+          [max]="2500"
+          (click)="$event.preventDefault(); $event.stopPropagation()"
+          (change)="onFromInputChange($event)"
+        />
+        –
+        <input
+          formControlName="end"
+          class="dropdown-input date"
+          type="number"
+          [placeholder]="selected.value.textTo ?? '' | translate"
+          [min]="1900"
+          [max]="2500"
+          (click)="$event.preventDefault(); $event.stopPropagation()"
+          (change)="onToInputChange($event)"
+        />
+      </div>
+    </mat-select-trigger>
+
+    <!-- Optionen -->
+    <ng-container *ngFor="let menuEntry of data; index as index">
+      <mat-divider
+        *ngIf="index > 0 && menuEntry.groupKey !== data[index - 1].groupKey"
+        [style.flexGrow]="1"
+        [style.marginTop.px]="5"
+        [style.marginBottom.px]="5"
+      ></mat-divider>
+
+      <mat-option [value]="menuEntry.key">
+        <mat-icon
+          *ngIf="menuEntry.icon"
+          class="medium without-button"
+          [svgIcon]="menuEntry.icon"
+        ></mat-icon>
+        {{ (menuEntry.name | translate : { days: "|" }).replace("|", " ... ") }}
+      </mat-option>
+    </ng-container>
+  </mat-select>
+
+  <button
+    *ngIf="withRemoveButton"
+    mat-button
+    class="only-icon"
+    tabindex="-1"
+    [matTooltip]="'ACTION.REMOVE' | translate"
+    (click)="onRemoveClick($event)"
+  >
+    <mat-icon svgIcon="clear"></mat-icon>
+  </button>
+</div>

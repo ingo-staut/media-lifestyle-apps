@@ -1,0 +1,17 @@
+<div
+  [class]="'background ' + background"
+  [style.opacity]="opacityBackground"
+  [style.filter]="'blur(' + blurBackground + 'px) ' + (backgroundFilter || '')"
+  style="--transparent-stop-percentage: {{
+    gradientPercentage
+  }}%; --transparent-stop-end-percentage: {{ gradientPercentageEnd }}%;"
+></div>
+<div
+  class="content"
+  [style.opacity]="opacityContent"
+  [style.filter]="'blur(' + blurContent + 'px)'"
+  [style.transform]="'scale(' + scaleContent + ')'"
+>
+  <span class="big" [innerHTML]="textHTML"> </span>
+  <span class="small" [innerHTML]="textSmallHTML"> </span>
+</div>

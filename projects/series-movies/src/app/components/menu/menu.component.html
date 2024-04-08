@@ -1,0 +1,195 @@
+<ng-container *ngIf="!showPlayButton; else playButton">
+  <button
+    mat-flat-button
+    [color]="selected ? 'primary' : ''"
+    [class]="classList | join : ' '"
+    [disabled]="disabled"
+    [ngClass]="{
+    'only-icon': !showBigButton && !(image && (icon || iconsAfterIcon?.length)),
+    checked,
+    'with-image': !!image,
+    'with-text': showBigButton && !!(textBigButton || text),
+    'with-background': dragable,
+    blinking,
+  }"
+    [style.order]="-10"
+    [matMenuTriggerFor]="isSmallScreen.matches || !showMenu ? null : addMenu"
+    [matTooltip]="tooltip || text || '' | translate"
+    [style.fontSize.px]="textSize"
+    [style.padding.px]="padding ?? 'unset'"
+    [style.width]="width ?? 'unset'"
+    [style.maxWidth]="maxWidth ?? 'unset'"
+    [style.background]="noBackground ? 'transparent' : undefined"
+    (click)="onOpenMenu($event)"
+    (contextmenu)="onOpenContextMenu($event)"
+  >
+    <mat-icon
+      *ngIf="icon"
+      [svgIcon]="showBigButton && iconBigButton ? iconBigButton : icon"
+      [style.paddingLeft.px]="iconPaddingLeft ?? 'unset'"
+    >
+    </mat-icon>
+    <img *ngIf="image" height="16" width="16" loading="lazy" [src]="image" />
+
+    <mat-icon *ngFor="let icon of iconsAfterIcon" [svgIcon]="icon" [style.marginLeft.px]="0">
+    </mat-icon>
+
+    <span>
+      {{ showBigButton ? (textBigButton || text || "" | translate) : "" }}
+    </span>
+  </button>
+</ng-container>
+
+<ng-template #playButton>
+  <button
+    class="play-button"
+    [matTooltip]="tooltip || text || '' | translate"
+    [matMenuTriggerFor]="isSmallScreen.matches || !showMenu ? null : addMenu"
+    (click)="onOpenMenu($event)"
+    (contextmenu)="onOpenContextMenu($event)"
+  >
+    <mat-icon svgIcon="play-thin-lines"></mat-icon>
+  </button>
+</ng-template>
+
+<mat-menu #addMenu="matMenu">
+  <!-- Suchfeld -->
+  <div *ngIf="showFilterInput" class="search-container">
+    <input
+      #filterInput
+      cdkFocusInitial
+      [formControl]="filterControl"
+      [placeholder]="'SEARCH.INPUT' | translate"
+      [style.flexGrow]="1"
+      (keyup.enter)="onEnter()"
+      (click)="onSearchInputClick($event)"
+    />
+
+    <button
+      *ngIf="showAddButton"
+      mat-flat-button
+      class="only-icon"
+      [matTooltip]="'SEARCHENGINE.ADD' | translate"
+      (click)="addSearchEngine()"
+    >
+      <mat-icon svgIcon="add"></mat-icon>
+    </button>
+
+    <button
+      *ngIf="showShowDescriptionsButton"
+      mat-flat-button
+      class="only-icon"
+      [matTooltip]="'DESCRIPTION.' + (showDescriptions ? 'HIDE' : 'SHOW') | translate"
+      (click)="onShowDescriptions($event)"
+    >
+      <mat-icon [svgIcon]="showDescriptions ? 'info-not' : 'info'"></mat-icon>
+    </button>
+  </div>
+
+  <ng-container *ngFor="let item of filteredOptions$ | async; index as index">
+    <!-- Wenn Typ / Favorit anders ist als davor, dann einen Divider -->
+    <div
+      *ngIf="
+        (index > 0 &&
+          (item.groupKey !== (filteredOptions$ | async)![index - 1].groupKey ||
+            item.favorite !== (filteredOptions$ | async)![index - 1].favorite)) ||
+        (index === 0 && showFirstGroupName)
+      "
+      [ngClass]="{ 'menu-section-title': true, sticky: groupNames }"
+      [id]="item.groupKey"
+      [style.top.px]="showFilterInput && groupNames ? 59 : 0"
+      (mouseenter)="onHoverEnter(item.groupKey)"
+      (mouseleave)="onHoverLeave(item.groupKey)"
+    >
+      <span *ngIf="item.groupKey && groupNames" [style.padding.px]="10">
+        {{ item.groupKey | groupNameByKey : groupNames | translate }}
+      </span>
+      <mat-divider [style.flexGrow]="1"></mat-divider>
+    </div>
+
+    <button
+      mat-menu-item
+      [style.paddingRight.px]="item.favorite !== undefined ? 10 : 20"
+      [class]="'menu-button button-' + item.groupKey"
+      (click)="onMenuItemClicked($event, item)"
+      (contextmenu)="onEditSearchEngine($event, item)"
+      (mouseenter)="onHoverEnter(item.groupKey)"
+      (mouseleave)="onHoverLeave(item.groupKey)"
+    >
+      <!-- Icon -->
+      <mat-icon
+        *ngIf="item.icon"
+        [svgIcon]="item.icon"
+        [ngClass]="{ highlight: item.highlight, 'medium without-button button-icon': true }"
+      ></mat-icon>
+
+      <!-- Bild -->
+      <img *ngIf="item.image" class="image" loading="lazy" [src]="item.image" />
+
+      <!-- Name -->
+      <div
+        class="text"
+        [matTooltip]="
+          (!item.description || !showDescriptions ? item.description ?? item.text : item.text)
+            | translate
+        "
+      >
+        <span
+          [ngClass]="{ highlight: item.highlight }"
+          [innerHTML]="
+            item.text | translate | extendText : filterControl.value ?? '' : '<mark>' : '</mark>'
+          "
+        ></span>
+        <span
+          *ngIf="item.description && showDescriptions"
+          [ngClass]="{ highlight: item.highlight, 'descriptive-text': true }"
+          [innerHTML]="
+            item.description
+              | translate
+              | extendText : descriptionsReplace ?? '' : '<strong>' : '</strong>'
+          "
+        ></span>
+      </div>
+
+      <!-- Icon: Ausgewählt -->
+      <app-check-icon [show]="item.highlight ?? false"></app-check-icon>
+
+      <!-- Icons -->
+      <div [style.display]="'flex'" [style.gap.px]="10">
+        <mat-icon
+          *ngFor="let icon of item.icons; index as index"
+          [svgIcon]="icon"
+          [ngClass]="{
+            highlight: item.highlight,
+            'medium without-button button-icon extra-icon': true
+          }"
+          [matTooltip]="item.iconsTooltip![index] | translate"
+        ></mat-icon>
+      </div>
+
+      <!-- Action-Buttons -->
+      <button
+        *ngFor="let action of item.actions"
+        mat-button
+        class="only-icon medium"
+        [matTooltip]="action.tooltip || action.text | translate : { value: action.tooltipReplace }"
+        [style.marginLeft.px]="10"
+        (click)="$event.stopPropagation(); action.func ? action.func() : ''"
+      >
+        <mat-icon [svgIcon]="action.icon"></mat-icon>
+      </button>
+
+      <!-- Favorit-Button -->
+      <button
+        *ngIf="item.favorite !== undefined"
+        mat-button
+        class="only-icon medium"
+        [matTooltip]="'FAVORITE.' + (item.favorite ? '' : 'ADD') | translate"
+        [style.marginLeft.px]="10"
+        (click)="onFavoriteClicked($event, item)"
+      >
+        <mat-icon [svgIcon]="item.favorite ? 'favorite-filled' : 'favorite'"> </mat-icon>
+      </button>
+    </button>
+  </ng-container>
+</mat-menu>

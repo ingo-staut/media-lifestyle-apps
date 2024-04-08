@@ -1,0 +1,69 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../../styles.theme.scss";
+
+:host {
+  display: contents;
+}
+
+h3 {
+  color: $text-1;
+  position: sticky;
+  z-index: 3;
+  top: 64px;
+  background-color: $main-background-1;
+
+  margin-block-end: 0;
+  padding: $padding-m 0;
+}
+
+.subsection {
+  background: $main-background-1;
+  border-radius: $border-radius;
+  padding: $padding-m;
+  margin-bottom: $padding-m;
+
+  input,
+  textarea {
+    width: 96%;
+    color: white;
+    background-color: $background-1;
+    border-radius: $border-radius;
+    outline: none;
+    border: none;
+    padding: $padding-s;
+
+    &:hover,
+    &:focus {
+      background-color: $background-2;
+    }
+  }
+}
+
+.subsection:has(h3) {
+  padding-top: 0px;
+}
+
+.flex {
+  display: flex;
+  gap: $padding-s;
+  align-items: center;
+
+  &.wrap {
+    flex-wrap: wrap;
+  }
+
+  &.gap-l {
+    column-gap: $padding-l;
+  }
+}
+
+mat-slide-toggle {
+  p {
+    user-select: none;
+    margin-right: $padding-xs;
+  }
+}
+
+.toggle {
+  height: 50px;
+}

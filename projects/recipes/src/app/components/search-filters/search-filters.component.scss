@@ -1,0 +1,31 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+.pan-allowed {
+  touch-action: auto !important;
+}
+
+.scrollbox-content {
+  padding-bottom: 0;
+}
+
+.highlight {
+  color: $primary !important;
+}
+
+input.dropdown-input {
+  text-align: center;
+  background-color: $background-1;
+  color: white;
+  border: none;
+  font-size: $text-size-s;
+  outline: none;
+  margin: 0 $padding-s;
+  padding: 2px 0;
+  border-radius: $border-radius;
+
+  &:hover,
+  &:focus {
+    background-color: $background-2;
+  }
+}

@@ -1,0 +1,550 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+.toolbar {
+  background-color: $main-background-1;
+  height: calc(40px + ($padding-m * 2));
+  padding: 0 $padding-m;
+  position: relative;
+  z-index: 110;
+}
+
+$wpie-animation-duration: 2s;
+
+.quick-add-toolbar {
+  position: sticky;
+  top: 0px;
+  z-index: 110;
+  box-shadow: $shadow-toolbar;
+
+  background: linear-gradient(135deg, $primary 40%, $primary-white-3 50%, $primary 60%);
+  background-size: 600% 600%;
+
+  -webkit-animation: wipe-background-animation $wpie-animation-duration ease infinite;
+  -moz-animation: wipe-background-animation $wpie-animation-duration ease infinite;
+  animation: wipe-background-animation $wpie-animation-duration ease infinite;
+}
+
+.right {
+  z-index: 10;
+  position: sticky;
+  right: 0;
+  padding-right: $padding-m;
+  display: flex;
+  gap: $padding-s;
+  background-color: $main-background-1;
+  box-shadow: 0px 0px 5px 5px $main-background-1;
+
+  &.main-background {
+    background-color: $main-background;
+    box-shadow: 0px 0px 5px 5px $main-background;
+  }
+}
+
+.navbar-spacer {
+  flex: 1 1 auto;
+  height: inherit;
+  @media (min-width: $media-query-breakpoint-mobile-screen) {
+    cursor: move;
+  }
+}
+
+.separator {
+  background-color: $background-1;
+  width: 100%;
+  height: 2px;
+}
+
+.static-content {
+  display: flex;
+  padding: $padding-m;
+  flex-direction: column;
+  gap: $padding-s;
+  width: auto;
+}
+
+.header-image {
+  width: 100%;
+  object-fit: cover;
+  max-height: 50vh;
+  overflow: hidden;
+
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+
+  .animation {
+    animation: zoomAnimation 20s linear infinite;
+    -webkit-animation: zoomAnimation 20s linear infinite;
+
+    &.vertical-animation {
+      animation: zoomAnimation 20s linear infinite, scrollThroughImage 60s linear infinite;
+      -webkit-animation: zoomAnimation 20s linear infinite, scrollThroughImage 60s linear infinite;
+    }
+  }
+}
+
+.preview-image {
+  height: 240px;
+  aspect-ratio: 0.68 / 1;
+  position: absolute;
+  left: $padding-m;
+  bottom: $padding-m;
+  object-fit: cover;
+  border: 1px solid rgba(white, 0.25);
+  z-index: 11;
+}
+
+.header-image,
+.preview-image {
+  cursor: pointer;
+}
+
+.mat-mdc-dialog-title,
+.mat-mdc-dialog-content {
+  padding: 0px;
+  margin-bottom: 0px;
+}
+
+.mat-mdc-dialog-content,
+.tabgroup {
+  // Breite und Höhe von Media-Dialog ändern: MEDIA_DIALOG_SIZE
+  @media (max-width: $media-query-breakpoint-normal-screen) {
+    max-height: calc(100dvh - $padding-m - $padding-m - 40px - 1px);
+  }
+  // Breite und Höhe von Media-Dialog ändern: MEDIA_DIALOG_SIZE
+  @media (min-width: $media-query-breakpoint-normal-screen) {
+    max-height: calc(80vh - $padding-m - $padding-m - 40px - 1px);
+  }
+}
+
+.mdc-dialog__title::before {
+  display: none;
+}
+
+.mat-mdc-tab-header {
+  background-color: $main-background-1 !important;
+}
+
+.function-buttons {
+  display: flex;
+  gap: $padding-s;
+  margin: $padding-m $padding-m 0 $padding-m;
+}
+
+.functions {
+  display: flex;
+  gap: $padding-s;
+  margin: $padding-m;
+
+  @media (max-width: $media-query-breakpoint-mobile-screen) {
+    flex-direction: column;
+  }
+}
+
+.filter-buttons {
+  display: flex;
+  gap: $padding-s;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  padding-top: $padding-m;
+  margin: 0 $padding-m $padding-m $padding-m;
+}
+
+.divider {
+  margin-top: $padding-s;
+}
+
+.divider-image {
+  border-top-color: rgba(255, 255, 255, 0.25);
+}
+
+.details-container {
+  position: relative;
+  display: flex;
+  gap: $padding-m;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  line-height: normal;
+  padding: $padding-m;
+  padding-left: $padding-s;
+  align-items: flex-start;
+  overflow: auto;
+}
+
+.details-buttons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.button-title {
+  font-size: $text-size-xl !important;
+}
+
+.title-container {
+  display: flex;
+  gap: 0 $padding-s;
+  flex-wrap: wrap;
+}
+
+img.channel {
+  max-height: 16px;
+  min-height: 16px;
+  max-width: 16px;
+  min-width: 16px;
+  object-fit: contain;
+  margin-left: 0px;
+}
+
+.button-add {
+  color: $text-2;
+  margin-right: 0px;
+  margin-left: -4px;
+}
+
+.display-none {
+  display: none;
+}
+
+.video-container {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 50vh;
+
+  button,
+  iframe {
+    grid-row-start: 1;
+    grid-column-start: 1;
+  }
+}
+
+.video-overlay-button {
+  z-index: 10;
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  background-color: rgba($main-background, 0);
+  transition: all 500ms ease-in-out;
+
+  & > span {
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    opacity: 0;
+    transition: all 500ms ease-in-out;
+  }
+}
+
+.video-overlay-button:hover {
+  background-color: rgba($main-background, 0.5);
+  backdrop-filter: blur(5px);
+
+  & > span {
+    opacity: 1;
+  }
+}
+
+$episode-padding: $padding-xs;
+
+.table-container {
+  overflow: auto;
+  padding: 0px $padding-m 0px 0px;
+  margin-bottom: 15px;
+  scroll-behavior: smooth;
+}
+
+$episode-size: 40px;
+$episode-border-width: 3px;
+
+table {
+  border-collapse: collapse;
+
+  tr.wrap-season-episodes {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 65px;
+  }
+
+  tr.special {
+    opacity: 0.5;
+    transition: all 500ms ease-in-out;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  td {
+    height: $episode-size;
+    min-height: $episode-size;
+    min-width: $episode-size;
+    padding: $episode-padding;
+
+    > div {
+      -webkit-user-select: none; /* Safari */
+      -ms-user-select: none; /* IE 10 and IE 11 */
+      user-select: none; /* Standard syntax */
+    }
+
+    &.episode {
+      width: $episode-size;
+
+      > div {
+        max-width: $episode-size;
+        outline: none;
+        border: none;
+        padding: 0px;
+
+        height: 100%;
+        width: 100%;
+        // background-color: $background-1;
+        border: $episode-border-width solid $background-1;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+
+        border-radius: $border-radius;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        color: white;
+        font-size: $text-size-s;
+        cursor: pointer;
+
+        &:hover {
+          border: none;
+          background-color: $background-1;
+          padding: $episode-border-width;
+        }
+
+        &.watched {
+          border: none;
+          background-color: $background-1;
+          padding: $episode-border-width;
+
+          &:hover {
+            background-color: $background-2;
+          }
+        }
+
+        &.current {
+          border: none;
+          background-color: $primary;
+          padding: $episode-border-width;
+
+          &:hover {
+            background-color: $primary-white-1;
+          }
+        }
+      }
+    }
+
+    &.season {
+      &.add {
+        width: $episode-size;
+        max-width: $episode-size;
+      }
+
+      display: flex;
+      z-index: 10;
+      background-color: $main-background;
+      padding-left: $padding-m;
+      position: sticky;
+      left: 0px;
+
+      &.wrap-season-episodes {
+        margin-left: -50px;
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+
+      > div {
+        outline: none;
+        border: none;
+        padding: 0px;
+
+        height: 100%;
+        width: 100%;
+
+        border: $episode-border-width solid $background-1;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+
+        border-radius: $border-radius;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        // @media (max-width: $media-query-breakpoint-mobile-screen) {
+        //   flex-direction: column;
+        //   max-width: $episode-size;
+        // }
+
+        gap: 0px $padding-xs;
+        padding-left: $padding-xs;
+        padding-right: $padding-xs;
+
+        color: white;
+        font-size: $text-size-s;
+        cursor: pointer;
+
+        &:hover {
+          border: none;
+          background-color: $background-1;
+          padding: 0px calc($padding-xs + $episode-border-width);
+          // @media (max-width: $media-query-breakpoint-mobile-screen) {
+          //   padding: 0px;
+          // }
+        }
+
+        .season-number {
+          display: flex;
+          align-items: center;
+          font-weight: bold;
+        }
+
+        span.year {
+          font-size: $text-size-xs;
+          color: $text-2;
+          white-space: pre;
+        }
+
+        &.watched {
+          border: none;
+          background-color: $background-1;
+          padding: 0px calc($padding-s + $episode-border-width);
+          // @media (max-width: $media-query-breakpoint-mobile-screen) {
+          //   padding: 0px;
+          // }
+
+          &:hover {
+            background-color: $background-2;
+          }
+        }
+
+        &.current {
+          border: none;
+          background-color: $primary;
+
+          &:hover {
+            background-color: $primary-white-1;
+          }
+        }
+
+        &.current-season {
+          color: $primary;
+          border: $episode-border-width solid $primary;
+          background-color: rgba($primary, 0.1);
+          padding-left: $padding-s;
+          padding-right: $padding-s;
+
+          &:hover {
+            color: white;
+            border: none;
+            background-color: $primary;
+            padding: 0px calc($padding-s + $episode-border-width);
+            // @media (max-width: $media-query-breakpoint-mobile-screen) {
+            //   padding: 0px;
+            // }
+          }
+        }
+      }
+    }
+  }
+}
+
+.text-ellipsis {
+  max-width: calc(100vw - $padding-m - $padding-s);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  @include ellipsis-lines(1);
+}
+
+.television {
+  max-width: calc(100vw - $padding-m - $padding-s);
+
+  .text-container {
+    display: flex;
+    align-items: center;
+    gap: $padding-xs;
+    width: 100%;
+  }
+
+  .text {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    @include ellipsis-lines(1);
+  }
+}
+
+.error {
+  color: $error;
+}
+
+.good {
+  background-color: $success !important;
+}
+
+.middle {
+  background-color: $warning !important;
+}
+
+.bad {
+  background-color: $error !important;
+}
+
+.drag-placeholder {
+  border-radius: $border-radius;
+  border: 2px dotted $background-2;
+  width: 200px;
+  height: $episode-size;
+  margin-left: $padding-m;
+  margin-right: -200px;
+}
+
+.drag-preview {
+  width: 200px;
+  max-width: 80vw;
+  height: $episode-size;
+  background-color: $main-background-1;
+  // box-shadow: $shadow-material;
+  box-shadow: $shadow-dialog;
+  border-radius: $border-radius;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $padding-m;
+  padding: $padding-s $padding-m;
+}
+
+.toolbar-season {
+  padding-left: 0;
+  padding-right: 0;
+  z-index: 90;
+}
+
+.remove-last-margin-right {
+  mat-icon:last-of-type {
+    margin-right: 0 !important;
+  }
+}
+
+.episodes-count-text {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}

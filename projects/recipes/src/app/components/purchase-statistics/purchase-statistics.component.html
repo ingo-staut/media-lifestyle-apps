@@ -1,0 +1,127 @@
+<div
+  class="container"
+  *ngIf="{
+    purchasesThisMonth: purchases | filterPurchasesByDateRange : currentMonthFirstDay : today,
+    purchasesLastMonthToSameDayAsToday: purchases | filterPurchasesByDateRange : lastMonthFirstDay : lastMonthSameDayAsToday,
+    purchasesLastMonth: purchases | filterPurchasesByDateRange : lastMonthFirstDay : lastMonthLastDay,
+  } as data"
+>
+  <app-counter
+    [value]="data.purchasesThisMonth | totalCostOfPurchases"
+    [fontSize]="36"
+    [style.fontWeight]="'bold'"
+    [currency]="true"
+  ></app-counter>
+  <!-- <span class="text"> Dieser Monat bis Heute </span> -->
+
+  <div class="entry">
+    <div class="chip">
+      <div
+        *ngIf="{
+          lastMonth: data.purchasesLastMonthToSameDayAsToday | totalCostOfPurchases,
+          lastMonthTotal: data.purchasesLastMonth | totalCostOfPurchases
+        } as costs"
+        class="button-text"
+        [matTooltip]="
+          (costs.lastMonth | price : (localeService.locale$ | async)!) +
+          ' ' +
+          ('UNTIL' | translate) +
+          '&nbsp;' +
+          (lastMonthSameDayAsToday | date : 'shortDate' : '' : (localeService.locale$ | async)!) +
+          ' / ' +
+          (costs.lastMonthTotal | price : (localeService.locale$ | async)!) +
+          ' ' +
+          ('DATE.COMPLETE_MONTH' | translate)
+        "
+      >
+        <app-counter
+          [value]="costs.lastMonth"
+          [currency]="true"
+          [style.fontWeight]="'bold'"
+        ></app-counter>
+        &nbsp;/&nbsp;
+        <app-counter [value]="costs.lastMonthTotal" [currency]="true"></app-counter>
+      </div>
+    </div>
+
+    <span class="chip-text text" [matTooltip]="'DATE.PREVIOUS_MONTH' | translate">
+      {{ "DATE.PREVIOUS_MONTH" | translate }}
+    </span>
+  </div>
+
+  <div class="entry last-entry">
+    <button
+      *ngIf="data.purchasesThisMonth.length as totalPurchasesThisMonth"
+      mat-button
+      class="medium"
+      [matTooltip]="totalPurchasesThisMonth.toString() + ' ' + ('PURCHASE.S' | translate)"
+    >
+      <mat-icon svgIcon="shopping-cart"></mat-icon>{{ totalPurchasesThisMonth }}
+    </button>
+
+    <button
+      *ngIf="data.purchasesThisMonth | itemsCountFromPurchases as itemsCount"
+      mat-button
+      class="medium"
+      [matTooltip]="
+        itemsCount.itemsCount.toString() +
+        ' ' +
+        ('PURCHASE.ITEMS_SHORT' | translate) +
+        ' (' +
+        itemsCount.total +
+        ' ' +
+        ((itemType === ItemType.THING ? 'THINGS' : 'INGREDIENT.S.') | translate) +
+        ') '
+      "
+    >
+      <mat-icon [svgIcon]="itemType === ItemType.THING ? 'thing' : 'ingredient'"></mat-icon
+      >{{ itemsCount.itemsCount }} ({{ itemsCount.total }})
+    </button>
+
+    <button
+      *ngIf="
+        data.purchasesThisMonth | purchasesNoSugarCount : ingredientsConversion as purchasesCount
+      "
+      mat-button
+      class="medium"
+      [matTooltip]="purchasesCount + ' ' + ('PURCHASE.WITHOUT_SUGAR' | translate)"
+    >
+      <mat-icon svgIcon="contents-sugar-not"></mat-icon>
+      {{ purchasesCount }}
+      {{ isMobileScreen.matches ? "" : ("PURCHASE.WITHOUT_SUGAR" | translate) }}
+    </button>
+
+    <button
+      *ngIf="
+        data.purchasesThisMonth | purchasesNotVeganCount : ingredientsConversion as purchasesCount
+      "
+      mat-button
+      class="medium"
+      [matTooltip]="purchasesCount + ' ' + ('PURCHASE.NOT_VEGAN' | translate)"
+    >
+      <mat-icon svgIcon="contents-vegan-not"></mat-icon>
+      {{ purchasesCount }}
+      {{ isMobileScreen.matches ? "" : ("PURCHASE.NOT_VEGAN" | translate) }}
+    </button>
+
+    <button
+      *ngIf="data.purchasesThisMonth | notesCount as notesCount"
+      mat-button
+      class="medium"
+      [matTooltip]="notesCount + ' ' + ('NOTE.S' | translate)"
+    >
+      <mat-icon svgIcon="note"></mat-icon>{{ notesCount }}
+    </button>
+
+    <button
+      *ngFor="let store of data.purchasesThisMonth | storeCount : stores"
+      mat-button
+      class="medium with-image with-text"
+      [matTooltip]="store.image ? store.count.toString() + 'x ' + store.storeName : store.storeName"
+    >
+      <img *ngIf="store.image" [src]="store.image" [width]="18" [height]="18" />
+      <mat-icon *ngIf="!store.image" svgIcon="store"></mat-icon>
+      {{ store.count }}
+    </button>
+  </div>
+</div>

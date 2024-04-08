@@ -1,0 +1,22 @@
+<button
+  mat-flat-button
+  class="medium text"
+  [matTooltip]="
+    action.tooltip || 'CLICK_TO_SEARCH'
+      | translate : { value: action.tooltipReplace ?? '' | translate }
+  "
+  (click)="action.id === 'noFunc' ? buttonClick.emit() : action.func ? action.func() : ''"
+>
+  <mat-icon [svgIcon]="action.icon" class="text"></mat-icon>
+  <span class="text">{{
+    action.text
+      | translate
+        : {
+            value:
+              action.textReplace ?? ""
+              | translate
+              | trimToString : " / " : false
+              | toLowercase : (localeService.locale$ | async)!
+          }
+  }}</span>
+</button>

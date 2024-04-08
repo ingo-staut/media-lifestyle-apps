@@ -1,0 +1,136 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+:host {
+  // Überlappen mit Eltern-Inhalt (`<section>`)
+  grid-row-start: 2;
+  grid-column-start: 1;
+
+  // Hinter dem Scroll-Bereich
+  z-index: -1;
+
+  // Inhalt und Hintergrund übereinanderlegen
+  display: grid;
+  grid-template-columns: 1fr;
+
+  overflow: hidden;
+
+  // Inhalt und Hintergrund übereinanderlegen
+  .content,
+  .background {
+    grid-row-start: 1;
+    grid-column-start: 1;
+  }
+
+  .content {
+    // Elemente untereinander
+    display: flex;
+    flex-direction: column;
+    // Links ausrichten
+    align-items: flex-start;
+    justify-content: center;
+
+    gap: $padding-s;
+
+    // Für optische Mitte, etwas mehr Abstand unten
+    padding-bottom: $padding-m;
+    padding-left: $padding-l;
+
+    // Damit der der Inhalt korrekt umbricht
+    width: calc(var(--width, 100px) - $padding-l - $padding-l);
+
+    // Für "manuelle Animation" des Vergrößerns / Verkleinerns
+    transform-origin: left center;
+
+    transition: all 250ms ease-in-out;
+
+    span {
+      line-height: 100%;
+      text-shadow: 0px 0px 20px $main-background, 0px 0px 40px $main-background;
+
+      &.big {
+        font-size: 40px;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .background {
+    // Breite etwas größer als angegeben
+    width: calc(var(--width, 100px) + 200px);
+    // Für kleine Bildschirme
+    max-width: 100vw;
+    height: 100%;
+    // Rechts ausfaden
+    -webkit-mask-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 1) var(--transparent-stop-percentage, 50%),
+      rgba(0, 0, 0, 0) var(--transparent-stop-end-percentage, 100%)
+    );
+
+    transition: all 250ms ease-in-out;
+
+    &.animation {
+      animation: zoomDeepAnimation 20s linear infinite;
+      -webkit-animation: zoomDeepAnimation 20s linear infinite;
+    }
+  }
+
+  .germany {
+    // background-image: linear-gradient(16deg, #000000 0%, #b7181c 46%, #ffd600 100%);
+
+    // background-image: url("https://www.vereinsbedarf-deitert.de/out/pictures/master/product/1/deutschland-hissfahne-quer_3.jpg");
+    // background-size: 330%;
+    // background-position: center;
+
+    background-image: url("https://au.beefer.com/wp-content/uploads/german-flag-animated-gif-22.gif");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .lgbtq {
+    // background-image: url("https://i.kinja-img.com/image/upload/c_fill,h_675,pg_1,q_80,w_1200/fd119881479a157bf48302c7a210b414.jpg");
+    // background-image: url("https://townsquare.media/site/920/files/2018/06/RS9552_477122095.jpg?w=980&q=75");
+    // background-image: url("https://cdn.dribbble.com/users/3157019/screenshots/6638129/image.gif");
+    background-image: url("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExanJyc2dwY3A5c3liOXRsZml5cGVjbHl5a29pdDg1eGhjNmRoaXR5cCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/hqFVBGUBJTEpwkBoX2/giphy.gif");
+    background-size: cover;
+    background-position: left;
+  }
+
+  .international {
+    // background-image: url("https://cdn.dribbble.com/users/1742925/screenshots/3634111/map.gif");
+    background-image: url("https://c4.wallpaperflare.com/wallpaper/227/266/383/from-space-wallpaper-preview.jpg");
+    background-size: cover;
+    background-position: left;
+  }
+
+  .primary {
+    background: $primary;
+  }
+
+  .kino-plus {
+    background-image: url("https://media.giphy.com/media/hi1SRhHW5CloOtovyV/giphy.gif");
+    background-size: cover;
+    background-position: left;
+  }
+
+  .csb {
+    background-image: url("https://vanstephold.com/wp-content/uploads/2018/06/DVS-Portfolio_CSB1.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .reddit {
+    background-image: url("https://i.redd.it/ax8u9llk8jy61.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .eagerly-awaited {
+    // background-image: url("https://cdn.dribbble.com/users/2261302/screenshots/8025303/media/4aaedc32f3f90f3bc306d9064a405593.gif");
+    // background-image: url("https://media0.giphy.com/media/3o6gDWOo1d6zKmQCru/giphy.gif?cid=6c09b952l4umkdtaj4x9mfnv9gbu02whefj9r9tig1hs3unj&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g");
+    background-image: url("https://images3.alphacoders.com/610/610318.jpg");
+    background-size: cover;
+    background-position: right;
+  }
+}

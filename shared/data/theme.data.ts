@@ -1,0 +1,71 @@
+import { Theme } from "../models/theme.type";
+
+export const THEMES: ReadonlyArray<Theme> = [
+  {
+    name: "VALENTINE",
+    emoji: "💝",
+    startDay: 11,
+    startMonth: 2,
+    endDay: 16,
+    endMonth: 2,
+  },
+  {
+    name: "NEW_YEAR",
+    emoji: "🎉",
+    startDay: 30,
+    startMonth: 12,
+    endDay: 31,
+    endMonth: 12,
+  },
+  // Zweimal wegen über das Jahr hinweg
+  {
+    name: "NEW_YEAR",
+    emoji: "🎉",
+    startDay: 1,
+    startMonth: 1,
+    endDay: 7,
+    endMonth: 1,
+  },
+  {
+    name: "BIRTHDAY",
+    emoji: "🎂",
+    startDay: 30,
+    startMonth: 5,
+    endDay: 1,
+    endMonth: 6,
+  },
+  {
+    name: "CHRISTMAS",
+    emoji: "🎄",
+    icon: "christmas",
+    startDay: 1,
+    startMonth: 12,
+    endDay: 30,
+    endMonth: 12,
+  },
+  {
+    name: "HALLOWEEN",
+    emoji: "🎃",
+    startDay: 29,
+    startMonth: 10,
+    endDay: 2,
+    endMonth: 11,
+  },
+  {
+    name: "EASTER",
+    emoji: "🐰",
+    startDay: 1,
+    startMonth: 4,
+    endDay: 30,
+    endMonth: 4,
+  },
+  {
+    name: "PRIDE",
+    emoji: "🏳️‍🌈",
+    icon: "pride-flag",
+    startDay: 2,
+    startMonth: 6,
+    endDay: 15,
+    endMonth: 8,
+  },
+];

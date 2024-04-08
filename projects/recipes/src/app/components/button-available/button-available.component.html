@@ -1,0 +1,71 @@
+<!-- Button: Vorhanden -->
+<ng-container
+  *ngIf="{
+    available:
+      ingredient | ingredientAvailability : ingredientsAvailable ?? [] : ingredientsConversion ?? []
+  } as a"
+>
+  <button
+    *ngIf="showAddAvailabilityButton || (!showAddAvailabilityButton && a.available.ratio !== 0)"
+    mat-flat-button
+    [ngClass]="{
+      'medium button-chip': true,
+      'only-icon': !(
+        buttonTextWithIngredientAvailable &&
+        a.available.ingredientAvailable &&
+        a.available.ingredientAvailable.amount > 0
+      )
+    }"
+    [matTooltip]="
+      ((a.available.ratio | availableObject).type === AvailableType.AVAILABLE_HALF
+        ? ('AVAILABLE.FRACTION_TEXT'
+          | translate
+            : {
+                value:
+                  (a.available.ratio
+                  | closestFraction
+                  | fractionAsString : (localeService.locale$ | async)!)
+              })
+        : ((a.available.ratio | availableObject).text | translate)) +
+      (a.available.ingredientAvailable && a.available.ingredientAvailable.amount > 0
+        ? ' (' +
+          (a.available.ingredientAvailable
+            | ingredient
+              : (localeService.locale$ | async)!
+              : ingredientsConversion
+              : { onlyAmountAndUnitAndNote: true }) +
+          ')'
+        : '')
+    "
+    (click)="
+      onClickAddOrEditIngredientAvailable(
+        ingredient,
+        a.available.ratio === 0,
+        a.available.ratio < 0
+      )
+    "
+  >
+    <mat-icon [svgIcon]="(a.available.ratio | availableObject).icon">
+      <!-- WORKAROUND: weil mit einem *ngIf es nicht richtig aktualisiert wird -->
+      <div
+        class="radial linear"
+        [style]="
+          '--percent:' +
+          (a.available.ratio > 1 ? 0 : a.available.ratio < 1 ? a.available.ratio : 0) * 100 +
+          '%'
+        "
+      ></div>
+    </mat-icon>
+    {{
+      buttonTextWithIngredientAvailable &&
+      a.available.ingredientAvailable &&
+      a.available.ingredientAvailable.amount > 0
+        ? (a.available.ingredientAvailable
+          | ingredient
+            : (localeService.locale$ | async)!
+            : ingredientsConversion
+            : { onlyAmountAndUnitAndNote: true })
+        : ""
+    }}
+  </button>
+</ng-container>

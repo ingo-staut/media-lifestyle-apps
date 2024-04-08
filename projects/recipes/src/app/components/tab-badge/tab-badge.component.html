@@ -1,0 +1,31 @@
+<!-- <ng-template mat-tab-label> -->
+<ng-container *ngIf="showBadge; else noBadge">
+  <ng-container *ngIf="count; else noIngredients">
+    <mat-icon
+      class="tab-icon"
+      [svgIcon]="icon"
+      [matBadge]="count"
+      [matBadgeHidden]="!isMobileScreen.matches"
+    ></mat-icon>
+
+    <span class="tab-text" [matBadge]="count">{{ text | translate }}</span>
+  </ng-container>
+
+  <ng-template #noIngredients>
+    <mat-icon
+      class="tab-icon"
+      [svgIcon]="icon"
+      matBadgeColor="warn"
+      matBadge="✖"
+      [matBadgeHidden]="!isMobileScreen.matches"
+    ></mat-icon>
+
+    <span class="tab-text" matBadgeColor="warn" matBadge="✖">{{ text | translate }}</span>
+  </ng-template>
+</ng-container>
+
+<ng-template #noBadge>
+  <mat-icon class="tab-icon" [svgIcon]="icon"></mat-icon>
+  <span class="tab-text">{{ text | translate }}</span>
+</ng-template>
+<!-- </ng-template> -->

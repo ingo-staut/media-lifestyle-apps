@@ -1,0 +1,68 @@
+<div
+  *ngIf="{ store: purchase.store | store : (storeApiService.stores$ | async) } as _"
+  class="container"
+  [matTooltip]="'PURCHASE.EDIT' | translate"
+  (click)="onEdit($event)"
+>
+  <!-- Laden -->
+  <!-- Laden mit Bild -->
+  <img
+    *ngIf="_.store as store"
+    class="store-image"
+    loading="lazy"
+    [src]="store.icon"
+    [alt]="store.name"
+    [matTooltip]="store.name"
+    (click)="onEditOrAddStore($event, _.store, false)"
+  />
+  <!-- Laden ohne Bild: Laden hinzufügen-->
+  <button
+    *ngIf="!_.store && purchase.store"
+    mat-flat-button
+    class="only-icon small btn"
+    [matTooltip]="'ACTION.ADD' | translate"
+    (click)="onEditOrAddStore($event, { name: purchase.store, icon: '' }, true)"
+  >
+    <mat-icon class="small" svgIcon="add"></mat-icon>
+  </button>
+
+  <div class="items">
+    <!-- Laden ohne Bild -->
+    <div *ngIf="!_.store && purchase.store" class="item">
+      <mat-icon svgIcon="store" class="medium without-button"></mat-icon>
+      <span>{{ purchase.store }}</span>
+    </div>
+
+    <div class="item">
+      <mat-icon svgIcon="calendar" class="medium without-button"></mat-icon>
+      <span
+        [matTooltip]="
+          (purchase.date | date : 'fullDate' : undefined : (localeService.locale$ | async)!) ?? ''
+        "
+        >{{
+          purchase.date
+            | formatDate
+              : (localeService.locale$ | async)!
+              : { onlyDate: isSmallScreen.matches, strict: isSmallScreen.matches }
+        }}</span
+      >
+    </div>
+
+    <div class="item">
+      <mat-icon svgIcon="money" class="medium without-button"></mat-icon>
+      <span>{{ purchase.price | price : (localeService.locale$ | async)! }}</span>
+    </div>
+
+    <div *ngIf="purchase.items.length" class="item">
+      <mat-icon svgIcon="ingredient" class="medium without-button"></mat-icon>
+      <span
+        >{{ purchase.items | purchaseItemsCount }} {{ "PURCHASE.ITEMS_SHORT" | translate }}</span
+      >
+    </div>
+
+    <div *ngIf="purchase.note" class="item">
+      <mat-icon svgIcon="note" class="medium without-button"></mat-icon>
+      <span class="note">{{ purchase.note }}</span>
+    </div>
+  </div>
+</div>

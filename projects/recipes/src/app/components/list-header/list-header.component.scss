@@ -1,0 +1,23 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+:host {
+  display: contents;
+}
+
+header {
+  color: white;
+  cursor: pointer;
+  height: 40px;
+
+  display: flex;
+  gap: $padding-s;
+  align-items: center;
+
+  h3 {
+    margin-block: 0px;
+    line-height: normal;
+
+    @include ellipsis-lines(1);
+  }
+}

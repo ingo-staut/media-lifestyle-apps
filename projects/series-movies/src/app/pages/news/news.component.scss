@@ -1,0 +1,53 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+.container {
+  display: flex;
+  align-items: stretch;
+}
+
+section {
+  .title {
+    background-color: $main-background-1;
+    height: 50px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: $shadow-toolbar;
+
+    &.only-text {
+      display: flex;
+      align-items: center;
+      gap: $padding-s;
+      padding: 0px $padding-m;
+    }
+
+    > mat-tab-group {
+      margin-left: auto;
+    }
+
+    button,
+    app-button-show-in-search {
+      margin-left: auto;
+    }
+  }
+}
+
+.no-news-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  flex-direction: column;
+  gap: $padding-l;
+
+  img.no-news-drawing {
+    color: $primary;
+    max-width: 70vw;
+  }
+
+  .no-news-text {
+    font-size: clamp($text-size-m, 2vw, $text-size-xxxl);
+    color: $text-2;
+  }
+}

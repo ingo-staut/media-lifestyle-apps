@@ -1,0 +1,50 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+.button-plain {
+  top: 20px;
+  position: absolute;
+  z-index: 1000;
+
+  background-color: $main-background-2;
+  border-radius: $border-radius;
+
+  display: flex;
+  align-items: center;
+  padding: 0 $padding-xs;
+
+  min-height: 40px;
+
+  box-shadow: 0 0px 20px 0px $main-background;
+
+  @media (max-width: $media-query-breakpoint-small-screen) {
+    height: 370px;
+    width: 55px;
+  }
+}
+
+@media (max-width: $media-query-breakpoint-small-screen) {
+  .button-back {
+    top: 6px;
+    position: absolute;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    top: 36px;
+    position: absolute;
+  }
+}
+
+.number {
+  margin: 0 $padding-xs;
+  letter-spacing: normal;
+  font-size: $text-size;
+
+  @media (max-width: $media-query-breakpoint-small-screen) {
+    top: 14px;
+    position: absolute;
+    left: 32px;
+  }
+}

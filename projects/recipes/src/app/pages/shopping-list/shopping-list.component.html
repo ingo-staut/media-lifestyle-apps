@@ -1,0 +1,570 @@
+<ng-template #selectRecipeInfoInList>
+  <ng-container
+    *ngIf="
+      (onShoppingListRecipes$ | async)?.length &&
+      (recipeViewMode$ | async) !== ChooseRecipeViewMode.RECIPES
+    "
+  >
+    <app-dropdown
+      *ngIf="!isMobileScreen.matches"
+      [data]="withRecipesInList"
+      [selectedKey]="withRecipesInListSelected"
+      (selectedChange)="onWithRecipesInListChanged($event.key)"
+    >
+    </app-dropdown>
+
+    <app-toggle-group
+      *ngIf="isMobileScreen.matches"
+      [data]="withRecipesInList"
+      [value]="withRecipesInListSelected"
+      (valueChange)="onWithRecipesInListChanged($event)"
+    >
+    </app-toggle-group>
+  </ng-container>
+</ng-template>
+
+<ng-template #chooseRecipeViewMode>
+  <app-dropdown
+    *ngIf="!isMobileScreen.matches"
+    [data]="chooseRecipeViewModeDropdownData"
+    [selectedKey]="(recipeViewMode$ | async)!"
+    (selectedChange)="onChooseRecipeViewModeChanged($event.key)"
+  >
+  </app-dropdown>
+
+  <app-toggle-group
+    *ngIf="isMobileScreen.matches"
+    [data]="chooseRecipeViewModeDropdownData"
+    [value]="(recipeViewMode$ | async)!"
+    (valueChange)="onChooseRecipeViewModeChanged($event)"
+  >
+  </app-toggle-group>
+</ng-template>
+
+<!-- Einkaufen -->
+
+<ng-template #shoppinglist>
+  <div
+    *ngIf="{
+      showQuickRow:
+        (formGroup.controls.ingredients.value
+          | hasEmoji : (ingredientApiService.ingredientsConversion$ | async)) &&
+        quickRowLayout === QuickRowLayoutType.WITH_ROW
+    } as data"
+  >
+    <div class="sticky main-background sticky-can-pin shadow-if-pinned">
+      <div class="scrollbox no-scrollbar-on-mobile">
+        <div class="scrollbox-content function-buttons">
+          <app-add
+            addIconWhenBigButton="ingredient"
+            placeholder="INGREDIENT.ADD"
+            [isNoContent]="!formGroup.controls.ingredients.value!.length"
+            [doNotCloseAfterReturn]="true"
+            [completerList]="
+              ingredientConversionCompleterService.completerListIngredientsConversionNames$ | async
+            "
+            (add)="onAddIngredientAdditional($event)"
+            (openDialog)="onOpenAddAdditionalDialog()"
+            (valueChange)="onAddValueChanged($event)"
+          ></app-add>
+
+          <ng-container [ngTemplateOutlet]="selectRecipeInfoInList"></ng-container>
+
+          <span class="spacer"></span>
+
+          <!-- Einkauf erstellen, wenn Zutaten abgehakt sind -->
+          <ng-container *ngIf="formGroup.controls.ingredientsChecked.value!.length">
+            <button
+              mat-flat-button
+              onlyIconMobile
+              color="primary"
+              [text]="'PURCHASE.ADD' | translate"
+              [matTooltip]="'PURCHASE.ADD' | translate"
+              (click)="onAddPurchaseDialog()"
+            >
+              <mat-icon svgIcon="shopping-cart"></mat-icon>
+            </button>
+
+            <mat-divider class="divider-vertical-20px" [vertical]="true"></mat-divider>
+          </ng-container>
+
+          <app-menu
+            icon="check-checked"
+            text="CHECK.INGREDIENTS"
+            [textBigButton]="(formGroup.controls.ingredients.value | ingredientsChecked) || ''"
+            [showBigButton]="!!(formGroup.controls.ingredients.value | ingredientsChecked)"
+            [menuItems]="MENU_CHECK_ITEMS"
+            [openMenuByRightClick]="false"
+            (onItemClick)="onCheckMenuItemClick($event.value)"
+          ></app-menu>
+
+          <app-menu
+            icon="delete"
+            text="DELETE_MULTIPLE_INGREDIENTS"
+            [menuItems]="deleteMenuItems"
+            [openMenuByRightClick]="false"
+            (onItemClick)="onDeleteMenuItemClick($event.value)"
+          ></app-menu>
+
+          <app-toggle-group [(value)]="quickRowLayout" [data]="QUICK_ROW_DATA"></app-toggle-group>
+
+          <mat-divider class="divider-vertical-20px" [vertical]="true"></mat-divider>
+
+          <app-menu-sort
+            [data]="SORT_INGREDIENTS_SHOPPING_LIST_BUY"
+            [defaultSortType]="SortType.SORT_CUSTOM"
+            [(sortType)]="sortType"
+            [(sortingDirection)]="sortingDirection"
+            [buttonWithText]="!isMobileScreen.matches"
+            [buttonWithTextIfDefaultSortType]="false"
+          ></app-menu-sort>
+
+          <app-add
+            addIcon="search"
+            [text]="'SEARCH.' | translate"
+            [placeholder]="'SEARCH.INPUT' | translate"
+            [doNotCloseAfterReturn]="true"
+            [askIfCloseIfDiscard]="true"
+            [doNotBlurIfTextInInput]="true"
+            [doNotCleanInputAfterReturn]="true"
+            [smallerWidth]="true"
+            (valueChange)="searchText = $event"
+          >
+          </app-add>
+        </div>
+      </div>
+
+      <!-- QuickRow -->
+      <div *ngIf="data.showQuickRow" class="scrollbox no-scrollbar-on-mobile">
+        <div class="scrollbox-content function-buttons quick-buy-items">
+          <ng-container
+            *ngFor="let ingredient of formGroup.controls.ingredients.value; index as index"
+          >
+            <ng-container
+              *ngIf="
+                (
+                  ingredient
+                  | ingredientConversion : (ingredientApiService.ingredientsConversion$ | async)
+                )?.emoji as emoji
+              "
+            >
+              <ng-container
+                *ngIf="
+                  ingredient
+                    | ingredient
+                      : (localeService.locale$ | async)!
+                      : (ingredientApiService.ingredientsConversion$ | async) as text
+                "
+              >
+                <app-menu
+                  [classList]="['big']"
+                  [icon]="(ingredient | ingredientIsFromRecipe) ? 'recipe' : ''"
+                  [text]="emoji"
+                  [tooltip]="text"
+                  [showBigButton]="true"
+                  [textSize]="20"
+                  [padding]="10"
+                  [iconPaddingLeft]="4"
+                  [checked]="ingredient._checked"
+                  [showMenu]="!(ingredient | ingredientIsFromRecipe)"
+                  [switchOnMobile]="true"
+                  [openMenuByRightClick]="false"
+                  [menuItems]="[
+                                  {
+                                    text,
+                                    value: 'edit',
+                                    icon: 'edit',
+                                    onlyText: true,
+                                    groupKey: 'name'
+                                  },
+                                  {
+                                    text: ingredient._checked ? 'CHECK.NOT.' : 'CHECK.',
+                                    value: ingredient._checked ? 'unchecked' : 'checked',
+                                    icon: ingredient._checked ? 'check-unchecked' : 'check-checked',
+                                  },
+                                  {
+                                    text: 'ACTION.DELETE',
+                                    value: 'delete',
+                                    icon: 'delete',
+                                  },
+                                ]"
+                  (onItemClick)="onQuickBuyItemsMenuItemClicked($event, ingredient, index)"
+                  (onContextMenu)="onQuickBuyItemsMenuContextMenu(ingredient)"
+                >
+                </app-menu>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+
+          <div
+            class="swipe-region"
+            [style.height.px]="50"
+            (swipeLeft)="onNextTab()"
+            (swipeRight)="onPreviousTab()"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <app-ingredient-list
+      [parentFormGroup]="formGroup"
+      [ingredients]="formGroup.controls.ingredients.value!"
+      [editable]="false"
+      [moveable]="false"
+      [checkable]="true"
+      [additional]="true"
+      [marginTop]="0"
+      [checkableIfNotEditable]="true"
+      [showAvailability]="false"
+      [showCheckBoxButton]="!isSmallScreen.matches"
+      [showAddConversionButton]="!isSmallScreen.matches"
+      [withRecipes]="withRecipesInListSelected"
+      [ingredientsConversion]="ingredientApiService.ingredientsConversion$ | async"
+      [ingredientsAvailable]="ingredientApiService.ingredientsAvailable$ | async"
+      [showIngredient]="data.showQuickRow ? showIngredient : undefined"
+      [sortData]="SORT_INGREDIENTS_SHOPPING_LIST_BUY"
+      [sortType]="sortType"
+      [sortingDirection]="sortingDirection"
+      [searchText]="searchText"
+      [showIngredientNoteDialogOnClick]="true"
+      (ingredientChange)="onIngredientChanged($event)"
+    >
+      <div
+        afterAddAndRemove
+        class="swipe-region"
+        (swipeLeft)="onNextTab()"
+        (swipeRight)="onPreviousTab()"
+      ></div>
+    </app-ingredient-list>
+  </div>
+</ng-template>
+
+<!-- Einkaufsliste -->
+
+<ng-template #additionalList>
+  <div>
+    <!-- WORKAROUND: Nimmt den Fokus anstatt der Add-Button von den Rezepten -->
+    <button style="display: none"></button>
+
+    <!-- Rezept hinzufügen + Filter, wenn keine gemeinsame Liste -->
+    <app-add-remove
+      *ngIf="(recipeViewMode$ | async) !== ChooseRecipeViewMode.ALL_INGREDIENTS"
+      addText="RECIPE.ADD"
+      removeText="RECIPE.REMOVE_ALL_VALUE"
+      class="sticky sticky-can-pin shadow-if-pinned"
+      addIconWhenBigButton="recipe"
+      [isNoContent]="!(onShoppingListRecipes$ | async)?.length"
+      [badge]="(onShoppingListRecipes$ | async)?.length"
+      [completerList]="completerListRecipes$ | async"
+      (add)="onAddRecipeToShoppingList($event)"
+      (removeAll)="onRemoveAllRecipes()"
+    >
+      <ng-container *ngIf="(onShoppingListRecipes$ | async)?.length">
+        <ng-container [ngTemplateOutlet]="chooseRecipeViewMode"></ng-container>
+        <ng-container [ngTemplateOutlet]="selectRecipeInfoInList"></ng-container>
+      </ng-container>
+
+      <button
+        mat-flat-button
+        class="only-icon"
+        [matTooltip]="'SEARCH.SHOW_IN' | translate"
+        (click)="onActionSearchClick()"
+      >
+        <mat-icon svgIcon="search-show-in"></mat-icon>
+      </button>
+    </app-add-remove>
+
+    <!-- Filter, wenn eine gemeinsame Liste -->
+    <div
+      *ngIf="(recipeViewMode$ | async) === ChooseRecipeViewMode.ALL_INGREDIENTS"
+      class="scrollbox no-scrollbar-on-mobile sticky main-background"
+    >
+      <div class="scrollbox-content">
+        <app-add
+          addIconWhenBigButton="ingredient"
+          placeholder="INGREDIENT.ADD"
+          [isNoContent]="!formGroup.controls.ingredients.value!.length"
+          [doNotCloseAfterReturn]="true"
+          [completerList]="
+            ingredientConversionCompleterService.completerListIngredientsConversionNames$ | async
+          "
+          (add)="onAddIngredientAdditional($event)"
+          (openDialog)="onOpenAddAdditionalDialog()"
+        ></app-add>
+
+        <ng-container [ngTemplateOutlet]="chooseRecipeViewMode"></ng-container>
+        <ng-container [ngTemplateOutlet]="selectRecipeInfoInList"></ng-container>
+
+        <app-toggle-group
+          filter
+          [data]="AVAILABLE_DROPDOWN_DATA"
+          [showText]="false"
+          [closeIfSelected]="isMobileScreen.matches"
+          [ifFirstValueSelectedThenClose]="true"
+          [showTextOnlySelected]="!isMobileScreen.matches"
+          [highlightIfClosedAndNotFirstValue]="true"
+          [showAnimation]="true"
+          [value]="filterListSelectedKeys.available"
+          (valueChange)="filterAvailableChanged($event)"
+        ></app-toggle-group>
+
+        <app-menu-sort
+          [data]="SORT_INGREDIENTS_SHOPPING_LIST_LIST"
+          [defaultSortType]="SortType.SORT_CUSTOM"
+          [(sortType)]="sortType"
+          [(sortingDirection)]="sortingDirection"
+          [buttonWithText]="!isMobileScreen.matches"
+          [buttonWithTextIfDefaultSortType]="false"
+        ></app-menu-sort>
+
+        <app-add
+          addIcon="search"
+          [text]="'SEARCH.' | translate"
+          [placeholder]="'SEARCH.INPUT' | translate"
+          [doNotCloseAfterReturn]="true"
+          [askIfCloseIfDiscard]="true"
+          [doNotBlurIfTextInInput]="true"
+          [doNotCleanInputAfterReturn]="true"
+          [smallerWidth]="true"
+          (valueChange)="searchText = $event"
+        >
+        </app-add>
+      </div>
+    </div>
+
+    <ng-container *ngIf="(onShoppingListRecipes$ | async)?.length">
+      <div
+        *ngIf="(recipeViewMode$ | async) === ChooseRecipeViewMode.RECIPES"
+        class="scrollbox no-scrollbar-on-mobile"
+      >
+        <div class="scrollbox-content" [style.paddingTop.px]="0">
+          <app-recipe-chip
+            *ngFor="let recipe of onShoppingListRecipes$ | async; index as index"
+            [recipe]="recipe"
+            [shoppingList]="true"
+            [actions]="[{ text: 'SHOPPING_LIST.REMOVE', id: 'remove', icon: 'clear' }]"
+            (onActionClick)="onRemoveRecipeFromShoppingList(recipe)"
+          >
+          </app-recipe-chip>
+        </div>
+      </div>
+
+      <app-ingredient-list
+        *ngIf="(recipeViewMode$ | async) === ChooseRecipeViewMode.ALL_INGREDIENTS"
+        [parentFormGroup]="formGroup"
+        [editable]="false"
+        [moveable]="false"
+        [marginTop]="0"
+        [withRecipes]="withRecipesInListSelected"
+        [ingredients]="formGroup.controls.ingredientsList.value!"
+        [ingredientsConversion]="ingredientApiService.ingredientsConversion$ | async"
+        [ingredientsAvailable]="ingredientApiService.ingredientsAvailable$ | async"
+        [showAddAvailabilityButton]="true"
+        [showAddConversionButton]="false"
+        [sortData]="SORT_INGREDIENTS_SHOPPING_LIST_LIST"
+        [searchText]="searchText"
+        [sortType]="sortType"
+        [sortingDirection]="sortingDirection"
+        [showIngredient]="showIngredientFilterAvailability"
+        [filterKey]="filterListSelectedKeys"
+        [showIngredientNoteDialogOnClick]="true"
+        (ingredientChange)="onIngredientChanged($event)"
+      ></app-ingredient-list>
+
+      <app-ingredient-list
+        *ngIf="(recipeViewMode$ | async) === ChooseRecipeViewMode.INGREDIENTS"
+        [parentFormGroup]="formGroup"
+        [editable]="false"
+        [moveable]="false"
+        [marginTop]="0"
+        [withRecipes]="withRecipesInListSelected"
+        [ingredients]="formGroup.controls.ingredientsFromRecipes.value!"
+        [ingredientsConversion]="ingredientApiService.ingredientsConversion$ | async"
+        [ingredientsAvailable]="ingredientApiService.ingredientsAvailable$ | async"
+        [sortData]="SORT_INGREDIENTS_SHOPPING_LIST_LIST"
+        [showAddAvailabilityButton]="true"
+        [showAddConversionButton]="false"
+        [showSearch]="true"
+        [showIngredientNoteDialogOnClick]="true"
+        (ingredientChange)="onIngredientChanged($event)"
+      ></app-ingredient-list>
+    </ng-container>
+
+    <app-ingredient-list
+      addButtonId="shopping-list-add-ingredient-to-list"
+      *ngIf="(recipeViewMode$ | async) !== ChooseRecipeViewMode.ALL_INGREDIENTS"
+      [parentFormGroup]="formGroup"
+      [marginTop]="0"
+      [ingredients]="formGroup.controls.ingredientsAdditional.value!"
+      [ingredientsConversion]="ingredientApiService.ingredientsConversion$ | async"
+      [ingredientsAvailable]="ingredientApiService.ingredientsAvailable$ | async"
+      [showEditButton]="!isSmallScreen.matches"
+      [additional]="true"
+      [showAddAvailabilityButton]="false"
+      [showAddConversionButton]="false"
+      [sortData]="SORT_INGREDIENTS_SHOPPING_LIST_LIST"
+      [showSearch]="true"
+      [showIngredient]="showIngredientFilterAvailability"
+      [filterKey]="filterListSelectedKeys"
+      [showIngredientNoteDialogOnClick]="true"
+      (ingredientsChange)="onIngredientsAdditionalChanged($event)"
+    >
+      <div
+        afterAddAndRemove
+        class="swipe-region"
+        (swipeLeft)="onNextTab()"
+        (swipeRight)="onPreviousTab()"
+      ></div>
+
+      <app-toggle-group
+        filter
+        [data]="AVAILABLE_DROPDOWN_DATA"
+        [showText]="false"
+        [closeIfSelected]="isMobileScreen.matches"
+        [ifFirstValueSelectedThenClose]="true"
+        [showTextOnlySelected]="!isMobileScreen.matches"
+        [highlightIfClosedAndNotFirstValue]="true"
+        [showAnimation]="true"
+        [value]="filterListSelectedKeys.available"
+        (valueChange)="filterAvailableChanged($event)"
+      ></app-toggle-group>
+    </app-ingredient-list>
+  </div>
+</ng-template>
+
+<!-- Vorhanden -->
+
+<ng-template #availableList>
+  <div>
+    <app-ingredient-list
+      #ingredientsAvailableList
+      addButtonId="shopping-list-add-ingredient-to-available"
+      [parentFormGroup]="formGroup"
+      [ingredients]="formGroup.controls.ingredientsAvailable.value!"
+      [showAvailability]="false"
+      [ingredientsConversion]="ingredientApiService.ingredientsConversion$ | async"
+      [ingredientsAvailable]="ingredientApiService.ingredientsAvailable$ | async"
+      [showEditButton]="!isSmallScreen.matches"
+      [showAddConversionButton]="false"
+      [isIngredientAvailable]="true"
+      [showSearchSelectionOption]="true"
+      [showIngredient]="showIngredientFilterUseUntil"
+      [filterKey]="filterListSelectedKeys"
+      [sortData]="SORT_INGREDIENTS_SHOPPING_LIST_AVAILABLE"
+      [showSearch]="true"
+      [customAddIngredientDialog]="true"
+      [showIngredientNoteDialogOnClick]="true"
+      (openAddIngredientDialog)="
+        ingredientAvailableDialogsService.openAddOrEditIngredientAvailableDialog()
+      "
+      (ingredientsChange)="onIngredientsAvailableChanged($event)"
+      (searchApply)="onOpenSearchWithIngredientsSelected($event)"
+    >
+      <div
+        afterAddAndRemove
+        class="swipe-region"
+        (swipeLeft)="onNextTab()"
+        (swipeRight)="onPreviousTab()"
+      ></div>
+
+      <app-toggle-group
+        filter
+        [data]="
+          isMobileScreen.matches
+            ? MENU_AVAILABLE_INGREDIENTS_DATE_UNTIL_SELECTED
+            : MENU_AVAILABLE_INGREDIENTS_DATE_UNTIL
+        "
+        [showText]="false"
+        [closeIfSelected]="isMobileScreen.matches"
+        [ifFirstValueSelectedThenClose]="true"
+        [showTextOnlySelected]="!isMobileScreen.matches"
+        [highlightIfClosedAndNotFirstValue]="true"
+        [showAnimation]="true"
+        [value]="filterListSelectedKeys.useUntil"
+        (valueChange)="filterUseUntilChanged($event)"
+      ></app-toggle-group>
+    </app-ingredient-list>
+  </div>
+</ng-template>
+
+<!-- Content -->
+
+<app-sidenav>
+  <form [formGroup]="formGroup">
+    <!-- 1-Spalten-Ansicht -->
+    <div *ngIf="!isBigScreen.matches" class="one-column-wrapper">
+      <mat-tab-group
+        mat-stretch-tabs="false"
+        mat-align-tabs="center"
+        class="with-background tabs-only-icons-in-mobile no-scrollbar-on-mobile sticky-header page-content"
+        [style.flex]="'unset'"
+        [(selectedIndex)]="tabIndex"
+        (selectedIndexChange)="tabIndexChanged($event)"
+      >
+        <!-- Einkaufen -->
+        <mat-tab *ngFor="let column of columns">
+          <ng-template mat-tab-label>
+            <mat-icon class="tab-icon" [svgIcon]="column.icon"></mat-icon>
+            <span class="tab-text">{{ column.text | translate }}</span>
+          </ng-template>
+
+          <ng-container [ngSwitch]="column.type">
+            <ng-container
+              *ngSwitchCase="ColumnType.BUY"
+              [ngTemplateOutlet]="shoppinglist"
+            ></ng-container>
+            <ng-container
+              *ngSwitchCase="ColumnType.LIST"
+              [ngTemplateOutlet]="additionalList"
+            ></ng-container>
+            <ng-container
+              *ngSwitchCase="ColumnType.AVAILABLE"
+              [ngTemplateOutlet]="availableList"
+            ></ng-container>
+          </ng-container>
+
+          <!-- Swipe-Region in Liste in mobiler Ansicht -->
+          <div
+            *ngIf="isSmallScreen.matches"
+            class="swipe-region"
+            [style.minHeight.px]="70"
+            (swipeLeft)="onNextTab()"
+            (swipeRight)="onPreviousTab()"
+          ></div>
+        </mat-tab>
+      </mat-tab-group>
+
+      <!-- Swipe-Region außerhalb Liste -->
+      <div class="swipe-region" (swipeLeft)="onNextTab()" (swipeRight)="onPreviousTab()"></div>
+    </div>
+
+    <!-- 3-Spalten-Ansicht -->
+    <ng-container *ngIf="isBigScreen.matches">
+      <div class="columns">
+        <div *ngFor="let column of columns" class="column">
+          <div class="header">
+            <div class="text">
+              <mat-icon [svgIcon]="column.icon"></mat-icon>
+              {{ column.text | translate }}
+            </div>
+          </div>
+
+          <div [ngSwitch]="column.type" class="content">
+            <ng-container
+              *ngSwitchCase="ColumnType.BUY"
+              [ngTemplateOutlet]="shoppinglist"
+            ></ng-container>
+            <ng-container
+              *ngSwitchCase="ColumnType.LIST"
+              [ngTemplateOutlet]="additionalList"
+            ></ng-container>
+            <ng-container
+              *ngSwitchCase="ColumnType.AVAILABLE"
+              [ngTemplateOutlet]="availableList"
+            ></ng-container>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </form>
+</app-sidenav>

@@ -1,0 +1,153 @@
+<mat-sidenav-container class="sidenav-container" (backdropClick)="close()">
+  <!-- Sidenav -->
+  <mat-sidenav
+    #sidenav
+    disableClose
+    class="sidenav-content"
+    style="touch-action: pan-x"
+    (keydown.escape)="close()"
+  >
+    <div class="sidenav-buttons">
+      <ng-container *ngFor="let item of SidenavMenu">
+        <button
+          *ngIf="!item.notSidenav"
+          mat-button
+          class="sidenav-button"
+          [color]="(item.url | equal : activeButton) ? 'primary' : ''"
+          [routerLink]="'/' + item.url"
+          (click)="setActive(item.url)"
+        >
+          <mat-icon [svgIcon]="item.icon"></mat-icon>
+          {{ item.name | translate }}
+        </button>
+      </ng-container>
+
+      <mat-divider></mat-divider>
+
+      <button mat-button class="sidenav-button" (click)="openRecipesApp()">
+        <mat-icon svgIcon="app-recipes-favicon"></mat-icon>{{ "Ernährung" | translate }}
+      </button>
+
+      <mat-divider></mat-divider>
+
+      <button mat-button class="sidenav-button" (click)="onSettings()">
+        <mat-icon svgIcon="settings"></mat-icon> {{ "SETTINGS." | translate }}
+      </button>
+
+      <button mat-button class="sidenav-button" (click)="onSettingsVersion()">
+        <mat-icon svgIcon="info"></mat-icon> {{ versionService.currentVersion | version : true }}
+      </button>
+    </div>
+
+    <div [style.flexGrow]="1"></div>
+
+    <!-- Aktuelles Theme -->
+    <app-theme></app-theme>
+  </mat-sidenav>
+
+  <!-- Hauptinhalt -->
+  <mat-sidenav-content class="page-container">
+    <!-- Menübar -->
+    <mat-toolbar class="toolbar page-header">
+      <button class="only-icon" mat-button [matTooltip]="'MENU.' | translate" (click)="open()">
+        <mat-icon svgIcon="menu"></mat-icon>
+      </button>
+      <!-- Spacer -->
+      <span class="navbar-spacer"></span>
+
+      <mat-tab-group
+        #tabGroup
+        *ngIf="!isMobileScreen.matches"
+        mat-stretch-tabs="false"
+        mat-align-tabs="center"
+        class="main-tab-group"
+        [selectedIndex]="selectedIndex"
+        (selectedTabChange)="onTabChange($event)"
+        color="primary"
+        backgroundColor="primary"
+      >
+        <ng-container *ngFor="let item of SidenavMenu">
+          <mat-tab *ngIf="!item.notTopnav">
+            <ng-template mat-tab-label>
+              <mat-icon class="tab-icon" [svgIcon]="item.icon"></mat-icon>
+              {{ item.name | translate }}
+            </ng-template>
+          </mat-tab>
+        </ng-container>
+      </mat-tab-group>
+
+      <!-- Spacer -->
+      <span *ngIf="!isMobileScreen.matches" class="navbar-spacer"></span>
+
+      <!-- Menüicons, rechts -->
+      <button
+        *ngIf="!isMobileScreen.matches"
+        mat-button
+        class="only-icon"
+        [matTooltip]="'SEARCH.' | translate"
+        routerLink="/search"
+      >
+        <mat-icon svgIcon="search"></mat-icon>
+      </button>
+
+      <button
+        *ngIf="!isSmallScreen.matches"
+        mat-button
+        class="only-icon"
+        [matTooltip]="'CREATE' | translate"
+        (click)="onOpenCreateDialog()"
+      >
+        <mat-icon svgIcon="add"></mat-icon>
+      </button>
+
+      <button
+        *ngIf="!isSmallScreen.matches"
+        mat-button
+        class="only-icon"
+        [matTooltip]="'SETTINGS.' | translate"
+        (click)="onSettings()"
+      >
+        <mat-icon svgIcon="settings"></mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <!-- Inhalt -->
+    <div
+      [ngClass]="{
+        'page-content no-scrollbar-on-mobile': true,
+        'only-mobile-device': isMobileDevice
+      }"
+    >
+      <ng-content></ng-content>
+
+      <app-fab-menu
+        *ngIf="isSmallScreen.matches"
+        [menuItems]="selectedIndex | sidenavMenuItems"
+        (actionClicked)="onOpenCreateDialogByKey($event)"
+      ></app-fab-menu>
+    </div>
+
+    <!-- Bottom Navigationsleiste -->
+    <footer
+      *ngIf="isMobileScreen.matches"
+      class="page-footer shadow"
+      id="bottom-nav-bar"
+      [style.zIndex]="1001"
+    >
+      <div class="bottom-nav-bar">
+        <ng-container *ngFor="let item of SidenavMenu">
+          <button
+            *ngIf="!item.notSubnav"
+            [routerLink]="'/' + item.url"
+            [class.active]="item.url | equal : activeButton"
+            (click)="setActive(item.url)"
+            matRipple
+          >
+            <mat-icon [svgIcon]="item.icon"></mat-icon>
+            <span>{{ item.name | translate }}</span>
+          </button>
+        </ng-container>
+      </div>
+    </footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

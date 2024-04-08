@@ -1,0 +1,235 @@
+<mat-card
+  matRipple
+  [ngClass]="{
+    card: true,
+  }"
+  (click)="onOpenUrl($event, news.url)"
+  (mouseenter)="onChipHovered = true"
+  (mouseleave)="onChipHovered = false"
+>
+  <div class="content">
+    <!-- Bild -->
+    <div *ngIf="news.image" mat-card-image class="image">
+      <img loading="lazy" [src]="news.image" [alt]="news.title" />
+    </div>
+
+    <!-- Titel -->
+    <div class="title">
+      <span *ngIf="news.categorySub" class="category">
+        {{ news.categorySub }}
+      </span>
+
+      <span class="header">
+        {{ news.title }}
+      </span>
+      <span class="text" [innerHTML]="news.text"> </span>
+    </div>
+
+    <div class="footer">
+      <span class="detail-info">
+        <!-- Quelle / Link zur News-Webseite -->
+        <span
+          *ngIf="news.source | newsSourceById as source"
+          class="source"
+          [matTooltip]="source.name"
+          [style.color]="source.color"
+          (click)="onSourceNewsWebsite($event, source.website)"
+        >
+          <mat-icon class="small" [svgIcon]="source.icon"></mat-icon>
+          {{ source.name }}
+        </span>
+        &nbsp;|&nbsp;
+
+        <!-- Datum -->
+        <span
+          *ngIf="news.date"
+          [matTooltip]="(news.date | date : 'short' : '' : (localeService.locale$ | async)!) ?? ''"
+          (click)="$event.stopPropagation()"
+        >
+          <mat-icon
+            class="small"
+            [svgIcon]="(news.date | isSameDate : today) ? 'calendar' : 'calendar-yesterday'"
+          ></mat-icon>
+          {{ news.date | formatDate : (localeService.locale$ | async)! : { onlyDate: true } }}
+        </span>
+
+        <!-- Autor -->
+        <ng-container *ngIf="news.author && news.authorUrl"> &nbsp;|&nbsp; </ng-container>
+        <span
+          *ngIf="news.author && news.authorUrl"
+          class="hover"
+          [matTooltip]="news.author"
+          (click)="onOpenUrl($event, news.authorUrl)"
+        >
+          <mat-icon class="small" svgIcon="person"></mat-icon>
+          {{ news.author }}
+        </span>
+
+        <!-- Autor mit URL -->
+        <span
+          *ngIf="news.author && !news.authorUrl"
+          [matTooltip]="news.author"
+          (click)="$event.stopPropagation()"
+        >
+          &nbsp;|&nbsp;
+          <mat-icon class="small" svgIcon="person"></mat-icon>
+          {{ news.author }}
+        </span>
+      </span>
+    </div>
+
+    <!-- Erkannte Serien / Filme -->
+    <ng-container
+      *ngIf="news.mediaIds.length || news.channelIds.length || news.mediaSuggestions.length"
+    >
+      <mat-divider></mat-divider>
+
+      <div class="footer" [style.marginTop]="'unset'" [style.overflowY]="'hidden'">
+        <ng-container *ngFor="let id of news.channelIds">
+          <button
+            *ngIf="id | channelById : (channelApiService.channels$ | async)! as channel"
+            mat-flat-button
+            class="medium button-chip with-image with-text"
+            [matTooltip]="channel.name"
+          >
+            <img
+              *ngIf="channel.displayIcon"
+              height="16"
+              width="16"
+              loading="lazy"
+              [src]="channel.displayIcon"
+            />
+            {{ channel.name }}
+          </button>
+        </ng-container>
+
+        <ng-container *ngIf="news.mediaIds.length">
+          <mat-divider
+            *ngIf="news.channelIds.length"
+            class="divider-vertical-20px"
+            [vertical]="true"
+          ></mat-divider>
+
+          <ng-container *ngFor="let id of news.mediaIds">
+            <app-menu
+              *ngIf="id | mediaById : (mediaApiService.media$ | async) as media"
+              [image]="media.images[0]"
+              [showBigButton]="true"
+              [textBigButton]="media.name"
+              [tooltip]="media.name"
+              [padding]="8"
+              [maxWidth]="'200px'"
+              [classList]="['medium', media.isMovie ? 'border-left-accent' : 'border-left-primary']"
+              [menuItems]="[
+                        {
+                          text: 'MEDIA.OPEN',
+                          value: 'open',
+                          icon: 'open',
+                          groupKey: 'open'
+                        },
+                        {
+                          text: 'NEWS.HIDE_FROM',
+                          value: 'hide-from-news',
+                          icon: 'news-not',
+                          groupKey: 'hide'
+                        },
+                        {
+                          text: 'URL.ADD_AS_INFO_URL',
+                          value: 'add-info-url',
+                          icon: 'url',
+                        },
+                        {
+                          text: 'URL.ADD_AS_INFO_URL_AND_MARK_AS_READ',
+                          value: 'quick-add',
+                          icon: 'watched',
+                        }
+                      ]"
+              (onItemClick)="onMediaMenuItemClicked($event.value, media, $event.event)"
+              (onContextMenu)="openMenu(media)"
+            ></app-menu>
+          </ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="news.mediaSuggestions.length && !news.mediaIds.length">
+          <mat-divider
+            *ngIf="news.mediaIds.length || news.channelIds.length"
+            class="divider-vertical-20px"
+            [vertical]="true"
+          ></mat-divider>
+
+          <app-menu
+            *ngFor="let mediaSuggestion of news.mediaSuggestions"
+            [icon]="mediaSuggestion.type === MediaEnum.SERIES ? 'series' : 'movie'"
+            [showBigButton]="true"
+            [textBigButton]="mediaSuggestion.name"
+            [tooltip]="mediaSuggestion.name"
+            [padding]="8"
+            [maxWidth]="'200px'"
+            [classList]="['medium']"
+            [menuItems]="[
+                {
+                  text: (mediaSuggestion.type === MediaEnum.SERIES ? 'SERIES' : 'MOVIE') + '.CREATE',
+                  value: {id: 'add'},
+                  icon: 'added',
+                  groupKey: 'add'
+                },
+                {
+                  text: 'Google: ' + ('SEARCH.' | translate),
+                  value: {id: 'search', url: 'https://www.google.com/search?q=' + (mediaSuggestion.name | replaceAll : ' ' : '+') + '+' + (mediaSuggestion.type === MediaEnum.SERIES ? 'series' : 'movie')},
+                  image: 'https://cdn.iconscout.com/icon/free/png-256/free-google-1772223-1507807.png',
+                },
+                {
+                  text: 'Youtube: ' + ('URL.TYPE.TRAILER' | translate),
+                  value: {id: 'search', url: 'https://www.youtube.com/results?search_query=' + (mediaSuggestion.name | replaceAll : ' ' : '+') + '+' + (mediaSuggestion.type === MediaEnum.SERIES ? 'series' : 'movie') + '+trailer'},
+                  image: 'https://cdn-icons-png.freepik.com/256/1384/1384060.png',
+                }
+              ]"
+            (onItemClick)="
+              onSuggestionMediaItemClicked($event.value, mediaSuggestion, $event.event)
+            "
+            (onContextMenu)="onAddMedia($event, mediaSuggestion.name, mediaSuggestion.type)"
+          ></app-menu>
+        </ng-container>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="!news.hideActions">
+      <mat-divider></mat-divider>
+
+      <!-- Buttons: Gelesen / Verstecken / Informationen -->
+      <div class="footer" [style.marginTop]="'unset'">
+        <button
+          mat-flat-button
+          class="medium"
+          [matTooltip]="'READ.MARK' | translate"
+          [style.flexGrow]="1"
+          [style.backgroundColor]="(news.source | newsSourceById).color"
+          (click)="onRead($event)"
+        >
+          <mat-icon svgIcon="watched"></mat-icon>
+          {{ "READ." | translate }}
+        </button>
+
+        <ng-container *ngIf="onChipHovered || isSmallScreen.matches">
+          <button
+            mat-flat-button
+            class="medium only-icon"
+            [matTooltip]="'NEWS.HIDE' | translate"
+            (click)="onHideTerm($event)"
+          >
+            <mat-icon svgIcon="hide"></mat-icon>
+          </button>
+
+          <button
+            mat-flat-button
+            class="medium only-icon"
+            [matTooltip]="'INFORMATION.S' | translate"
+            (click)="onInformation($event)"
+          >
+            <mat-icon svgIcon="info"></mat-icon>
+          </button>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+</mat-card>

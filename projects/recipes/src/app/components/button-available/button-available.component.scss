@@ -1,0 +1,46 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+:host {
+  display: contents;
+}
+
+.radial {
+  position: absolute;
+  margin: 5px 3px;
+  width: 12px;
+  height: 11px;
+
+  &.with-border {
+    // Eingerückt
+    position: absolute;
+    margin: 7px 5px;
+    width: 8px;
+    height: 7px;
+    border-radius: 1px;
+    background: conic-gradient(white var(--percent, 50%), transparent 0);
+  }
+
+  &.linear {
+    // Von unten nach oben
+    background: linear-gradient(to top, white var(--percent, 50%), transparent var(--percent, 50%));
+  }
+
+  &.circle {
+    // Verlauf: Kreisförmig im Uhrzeigersinn
+    background: conic-gradient(white var(--percent, 50%), transparent 0);
+  }
+
+  &.diagonal {
+    // Verlauf: Diagonal von links unten nach rechts oben
+    background: linear-gradient(
+      to top right,
+      white var(--percent, 50%),
+      transparent var(--percent, 50%)
+    );
+  }
+}
+
+.button-chip {
+  padding: 0px $padding-s;
+}

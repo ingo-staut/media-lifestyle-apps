@@ -1,0 +1,137 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+// ----------------------------------------------------------------
+// Akkordeon (Expansion-Panel)
+// Info: Style kann nicht in styles.fixes.scss definiert werden
+// ----------------------------------------------------------------
+.expansion-panel {
+  background-color: transparent;
+  box-shadow: none !important;
+  // Border zwischen den einzelnen Panels
+  margin: $padding-xs 0 0 0;
+
+  &.with-background {
+    background-color: $background-1;
+  }
+
+  &.optional {
+    opacity: 0.5;
+    transition: all 250ms ease-in-out;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.expansion-panel-header {
+  background-color: $background-1;
+
+  &.with-background {
+    background-color: transparent;
+  }
+
+  // Immer dieselbe Höhe, auch wenn aufgeklappt
+  &.mat-expanded {
+    height: 48px;
+  }
+}
+
+// Unterdrückt andere Farbe,
+// wenn Panel Fokus hat oder gehovert wird
+.expansion-panel-header,
+.expansion-panel-header.mat-expanded {
+  &:focus {
+    background-color: $background-1 !important;
+  }
+  &:hover {
+    background-color: $background-2 !important;
+  }
+  &:focus:hover {
+    background-color: $background-2 !important;
+  }
+}
+
+.mat-expansion-panel-spacing {
+  // Border zwischen den einzelnen Panels,
+  // wenn aufgeklappt
+  margin: $padding-xs 0 0 0;
+}
+
+.with-drag-handle {
+  padding-left: $padding-s;
+}
+
+// Wenn Panel aufgeklappt und Tabs,
+// dann links kein Abstand (wichtig für Mobile,
+// nicht Desktop, da hier centered)
+.expansion-panel-header.tab-group.mat-expanded {
+  padding-left: 0px;
+
+  // Wenn nur Icons in Tabs und Mobile
+  @media (max-width: $media-query-breakpoint-mobile-screen) {
+    // Bei wenigen Tabs einen Abstand
+    .tabs-only-icons-in-mobile {
+      padding-left: 14px;
+    }
+
+    // Bei vielen Tabs kein Abstand
+    .tabs-only-icons-in-mobile.many-tabs {
+      padding-left: 0px;
+    }
+  }
+}
+
+.grab {
+  cursor: grab;
+  flex-shrink: 0;
+  color: $text-1;
+  padding-right: $padding-s;
+
+  &:hover {
+    color: white;
+  }
+}
+
+.drag-placeholder {
+  background: transparent;
+  border: dotted 1px $background-3;
+  border-radius: $border-radius;
+  min-height: 50px;
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.drag-preview {
+  background: $main-background-1;
+  border-radius: $border-radius;
+  min-height: 50px;
+  padding: 0 $padding-m;
+  width: inherit;
+  box-shadow: $shadow-material;
+}
+
+.name {
+  flex-shrink: 0;
+
+  @include ellipsis-lines(1);
+}
+
+.note {
+  padding-left: $padding-m;
+  color: $text-1;
+  max-width: 300px;
+
+  @include ellipsis-lines(1);
+}
+
+.extra-icon {
+  margin-right: $padding-s;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin-right: 16px;
+}

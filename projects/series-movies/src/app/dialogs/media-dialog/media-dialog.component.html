@@ -1,0 +1,1378 @@
+<app-loading />
+
+<div
+  cdkDrag
+  cdkDragRootElement=".cdk-overlay-pane"
+  cdkDragBoundary=".cdk-overlay-container"
+  cdkDragHandle
+  [cdkDragFreeDragPosition]="dragPosition"
+  [cdkDragDisabled]="lockDragging"
+  (cdkDragStarted)="onDragStarted()"
+>
+  <!-- Toolbar -->
+  <div
+    class="scrollbox toolbar no-scrollbar-on-mobile"
+    [style.paddingLeft.px]="0"
+    [style.paddingRight.px]="0"
+  >
+    <div class="scrollbox-content" [style.paddingRight.px]="0">
+      <!-- Menüicons, links -->
+      <button
+        mat-flat-button
+        type="button"
+        class="only-icon"
+        [matTooltip]="'QUICKADD.' | translate"
+        (click)="onQuickAdd()"
+      >
+        <mat-icon svgIcon="quick-add"></mat-icon>
+      </button>
+
+      <button
+        mat-flat-button
+        type="button"
+        class="only-icon"
+        [matTooltip]="'FAVORITE.ADD' | translate"
+        (click)="onFavorite()"
+      >
+        <mat-icon [svgIcon]="media.favorite ? 'favorite-filled' : 'favorite'"></mat-icon>
+      </button>
+
+      <!-- Bewertung -->
+      <button
+        mat-flat-button
+        type="button"
+        [ngClass]="{ 'only-icon': !media.rating }"
+        [matTooltip]="'RATING.' | translate"
+        (click)="openRatingDialog(RatingIndex.OWN)"
+      >
+        <mat-icon
+          *ngIf="media.rating | ratingSection : RatingIndex.OWN as icon"
+          [svgIcon]="icon"
+        ></mat-icon>
+        {{ media.rating ? media.rating : "" }}
+      </button>
+
+      <!-- Sehenswertigkeit -->
+      <button
+        mat-flat-button
+        type="button"
+        [ngClass]="{ 'only-icon': !media.ratingWatchability }"
+        [matTooltip]="'RATING.' | translate"
+        (click)="openRatingDialog(RatingIndex.WATCHABILITY)"
+      >
+        <mat-icon
+          *ngIf="media.ratingWatchability ?? 0 | ratingSection : RatingIndex.WATCHABILITY as icon"
+          [svgIcon]="icon"
+        ></mat-icon>
+        {{ media.ratingWatchability ? media.ratingWatchability : "" }}
+      </button>
+
+      <button
+        *ngIf="media.id && !isMobileScreen.matches"
+        class="only-icon"
+        mat-flat-button
+        [matTooltip]="'SHARE' | translate"
+        type="button"
+        (click)="onShare()"
+      >
+        <mat-icon svgIcon="share"></mat-icon>
+      </button>
+
+      <button
+        class="only-icon"
+        mat-flat-button
+        [matTooltip]="(media.hideFromNews ? 'NEWS.SHOW_IN' : 'NEWS.HIDE_FROM') | translate"
+        type="button"
+        (click)="onHideFromNews()"
+      >
+        <mat-icon [svgIcon]="media.hideFromNews ? 'news' : 'news-not'"></mat-icon>
+      </button>
+
+      <button
+        *ngIf="showDialogWindowResetButton"
+        class="only-icon"
+        mat-flat-button
+        [matTooltip]="'RESET_WINDOW' | translate"
+        (click)="onDialogWindowReset()"
+        type="button"
+      >
+        <mat-icon svgIcon="move"></mat-icon>
+      </button>
+
+      <app-developer-menu-buttons [media]="media" />
+
+      <span class="navbar-spacer"></span>
+
+      <app-dropdown
+        [data]="DATA_MEDIA_TYPE_WITHOUT_NONE"
+        [selectedKey]="media.type"
+        (selectedKeyChange)="onMediaTypeChanged($event)"
+      ></app-dropdown>
+
+      <span class="navbar-spacer"></span>
+
+      <!-- Menüicons, rechts -->
+      <button
+        *ngIf="media.id"
+        class="only-icon"
+        mat-flat-button
+        [matTooltip]="'RESET' | translate"
+        (click)="onReset()"
+      >
+        <mat-icon svgIcon="reset"></mat-icon>
+      </button>
+      <button
+        *ngIf="media.id"
+        class="only-icon"
+        mat-flat-button
+        [matTooltip]="media.type + '.DELETE' | translate"
+        (click)="onRemove()"
+      >
+        <mat-icon svgIcon="delete"></mat-icon>
+      </button>
+
+      <!-- Menüicons, sticky -->
+      <div class="right">
+        <button
+          mat-flat-button
+          onlyIconMobile
+          [text]="'ACTION.SAVE' | translate"
+          [matTooltip]="saveButtonTooltip | translate"
+          color="primary"
+          [mat-dialog-close]="newData()"
+          type="submit"
+          [disabled]="!savingAllowed"
+          (click)="onSave()"
+        >
+          <mat-icon svgIcon="check"></mat-icon>
+        </button>
+        <button
+          class="only-icon"
+          mat-flat-button
+          [matTooltip]="'ACTION.CLOSE' | translate"
+          (click)="onClose()"
+        >
+          <mat-icon svgIcon="clear"></mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  mat-dialog-content
+  [ngClass]="{ 'no-scrollbar-on-mobile': true, 'only-mobile-device': isMobileDevice }"
+  [style.lineHeight.px]="0"
+>
+  <!-- QuickAdd-Toolbar -->
+  <div
+    *ngIf="(quickAddData$ | async)?.length"
+    class="scrollbox no-scrollbar-on-mobile quick-add-toolbar"
+  >
+    <div class="scrollbox-content">
+      <!-- QuickFill suchen -->
+      <button
+        mat-flat-button
+        onlyIconSmallScreen
+        [text]="'SEARCH.' | translate"
+        [matTooltip]="'SEARCH.' | translate"
+        (click)="onQuickAddSearch()"
+        type="button"
+      >
+        <mat-icon svgIcon="search-again"></mat-icon>
+      </button>
+
+      <!-- QuickFill abbrechen -->
+      <button
+        mat-flat-button
+        onlyIconSmallScreen
+        [text]="'ACTION.CANCEL' | translate"
+        [matTooltip]="'ACTION.CANCEL' | translate"
+        (click)="onQuickAddCancel()"
+        type="button"
+      >
+        <mat-icon svgIcon="clear"></mat-icon>
+      </button>
+
+      <!-- QuickFill Fehler -->
+      <ng-container *ngIf="quickAddErrors$ | async as errors">
+        <button
+          *ngIf="errors.length"
+          mat-flat-button
+          onlyIconSmallScreen
+          [text]="errors.length.toString() + ' ' + ('ERRORS' | translate)"
+          [matTooltip]="errors.length.toString() + ' ' + ('ERRORS' | translate)"
+          color="warn"
+          type="button"
+          (click)="onQuickErrorButtonClick(errors)"
+        >
+          <mat-icon svgIcon="error"></mat-icon>
+        </button>
+      </ng-container>
+
+      <!-- Alle hinzufügen und ersetzen -->
+      <button
+        mat-flat-button
+        onlyIconSmallScreen
+        [text]="'ADD.ALL_OR_REPLACE' | translate"
+        [matTooltip]="'ADD.ALL_OR_REPLACE' | translate"
+        [style.marginLeft]="'auto'"
+        (click)="onQuickAddOrReplaceAll()"
+        type="button"
+      >
+        <mat-icon svgIcon="add-and-replace"></mat-icon>
+      </button>
+
+      <!-- Alle hinzufügen -->
+      <button
+        mat-flat-button
+        onlyIconSmallScreen
+        [text]="'ADD.ALL' | translate"
+        [matTooltip]="'ADD.ALL' | translate"
+        (click)="onQuickAddAppendAll()"
+        type="button"
+      >
+        <mat-icon svgIcon="add-to-text"></mat-icon>
+      </button>
+
+      <!-- Alle ersetzen -->
+      <button
+        mat-flat-button
+        onlyIconSmallScreen
+        [text]="'REPLACE.ALL' | translate"
+        [matTooltip]="'REPLACE.ALL' | translate"
+        (click)="onQuickReplaceAll()"
+        type="button"
+      >
+        <mat-icon svgIcon="replace"></mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- Header Bild -->
+  <div class="header-image">
+    <img
+      *ngIf="media.images | headerImage | async as image; else verticalImage"
+      [ngClass]="{ animation: !isSmallScreen.matches }"
+      loading="lazy"
+      [src]="image"
+      [alt]="media.name"
+      (click)="onEditImages()"
+    />
+
+    <ng-template #verticalImage>
+      <img
+        *ngIf="media.images[0]; else lineIfNoImage"
+        [ngClass]="{ 'vertical-animation': true, animation: !isSmallScreen.matches }"
+        loading="lazy"
+        [src]="media.images[0]"
+        [alt]="media.name"
+        (click)="onEditImages()"
+      />
+    </ng-template>
+  </div>
+
+  <ng-template #lineIfNoImage>
+    <mat-divider class="divider-image"></mat-divider>
+  </ng-template>
+
+  <!-- Margin-Bottom ist für die Border vom Preview-Image -->
+  <div class="details-container main-background-1">
+    <!-- Preview Bild -->
+    <img
+      *ngIf="media.images.length && !isMobileScreen.matches"
+      class="preview-image"
+      loading="lazy"
+      [src]="media.images[0]"
+      [alt]="media.name"
+      (click)="onEditImages()"
+    />
+
+    <div
+      class="details"
+      [style.marginLeft.px]="isMobileScreen.matches || !media.images.length ? 0 : 190"
+    >
+      <div class="title-container">
+        <button
+          mat-button
+          [ngClass]="{ 'button-title text-ellipsis': !!media.name, 'only-icon': !media.name }"
+          [matTooltip]="('TITLE' | translate) + (media.name ? ': ' + media.name : '')"
+          (click)="openTitlesDialog()"
+        >
+          <span
+            *ngIf="media.name"
+            [innerHTML]="
+              media.name | translate | extendText : data.searchText ?? '' : '<mark>' : '</mark>'
+            "
+          >
+          </span>
+          <mat-icon *ngIf="!media.name" svgIcon="rename"></mat-icon>
+        </button>
+
+        <app-quick-add-button
+          key="name"
+          [data]="quickAddData$ | async"
+          [media]="media"
+          [overflowXAuto]="true"
+          (mediaChange)="onMediaChange($event, 'name')"
+          (dataChange)="quickAddDataSubject.next($event)"
+        />
+      </div>
+
+      <p *ngIf="!media.name" class="error" [style.paddingLeft.px]="10" [style.paddingBottom.px]="5">
+        {{
+          "FIELD.ERROR_TEXT.MANDATORY"
+            | translate
+              : {
+                  formfieldName: ("TITLE" | translate)
+                }
+        }}
+      </p>
+
+      <div class="title-container">
+        <button
+          *ngIf="media.nameOriginal"
+          mat-button
+          class="medium text-ellipsis"
+          [matTooltip]="
+            ('TITLE_ORIGINAL' | translate) + (media.nameOriginal ? ': ' + media.nameOriginal : '')
+          "
+          (click)="openTitlesDialog()"
+        >
+          <span
+            *ngIf="media.nameOriginal"
+            [innerHTML]="
+              media.nameOriginal
+                | translate
+                | extendText : data.searchText ?? '' : '<mark>' : '</mark>'
+            "
+          ></span>
+        </button>
+
+        <app-quick-add-button
+          key="nameOriginal"
+          [data]="quickAddData$ | async"
+          [media]="media"
+          [overflowXAuto]="true"
+          (mediaChange)="onMediaChange($event, 'nameOriginal')"
+          (dataChange)="quickAddDataSubject.next($event)"
+        />
+      </div>
+
+      <div class="details-buttons">
+        <app-button-rating-metascore
+          [rating]="media.ratingMetascore"
+          [showAddButton]="true"
+          [medium]="true"
+          (open)="openRatingDialog(RatingIndex.METASCORE)"
+        />
+
+        <app-quick-add-button
+          key="ratingMetascore"
+          [data]="quickAddData$ | async"
+          [media]="media"
+          [margin]="{ right: 10 }"
+          [overflowXAuto]="true"
+          (mediaChange)="onMediaChange($event)"
+        />
+
+        <app-button-rating-imdb
+          [rating]="media.ratingImdb"
+          [showAddButton]="true"
+          [showTotal]="true"
+          (open)="openRatingDialog(RatingIndex.IMDB)"
+        />
+
+        <app-quick-add-button
+          key="ratingImdb"
+          [data]="quickAddData$ | async"
+          [media]="media"
+          [margin]="{ right: 10 }"
+          [overflowXAuto]="true"
+          (mediaChange)="onMediaChange($event)"
+        />
+
+        <button
+          *ngIf="media.tagline"
+          mat-button
+          class="text-ellipsis"
+          [matTooltip]="
+            ('TAGLINE.' | translate) +
+            (media.tagline
+              ? ': ' + media.tagline + ' (' + ('IS_SET_AUTOMATICALLY' | translate) + ')'
+              : ' (' + ('IS_SET_AUTOMATICALLY' | translate) + ')')
+          "
+        >
+          <mat-icon svgIcon="tagline"></mat-icon>{{ media.tagline }}
+        </button>
+
+        <app-quick-add-button
+          key="tagline"
+          [data]="quickAddData$ | async"
+          [media]="media"
+          [overflowXAuto]="true"
+          (mediaChange)="onMediaChange($event)"
+          (dataChange)="quickAddDataSubject.next($event)"
+        />
+      </div>
+
+      <div class="details-buttons">
+        <!-- Status -->
+        <ng-container *ngIf="!media.isMovie || (media.isMovie && !media.isWatched)">
+          <button
+            *ngIf="media.status | status as status"
+            mat-button
+            [style.order]="-1"
+            [matTooltip]="
+              ('STATUS.' | translate) +
+              ': ' +
+              (status.name | translate) +
+              ' (' +
+              ('IS_SET_AUTOMATICALLY' | translate) +
+              ')'
+            "
+          >
+            <mat-icon [svgIcon]="status.icon"></mat-icon>
+            {{ status.name | translate }}
+          </button>
+        </ng-container>
+
+        <ng-container *ngIf="!media.isMovie">
+          <!-- Eine Episode zurück -->
+          <button
+            mat-button
+            class="only-icon"
+            [matTooltip]="'EPISODE.PREVIOUS' | translate"
+            (click)="previousEpisode()"
+          >
+            <mat-icon svgIcon="arrow-single-down"></mat-icon>
+          </button>
+
+          <!-- Eine Episode weiter -->
+          <button
+            mat-button
+            class="only-icon"
+            [matTooltip]="'EPISODE.NEXT' | translate"
+            [style.marginLeft.px]="-10"
+            (click)="nextEpisode()"
+          >
+            <mat-icon svgIcon="arrow-single-up"></mat-icon>
+          </button>
+
+          <!-- Aktuelle Episode -->
+          <button
+            *ngIf="{
+              currentEpisode:
+                media | currentEpisode : media.currentEpisode : (localeService.locale$ | async)!
+            } as c"
+            mat-button
+            [style.marginLeft.px]="-5"
+            [ngClass]="{ 'only-icon': !c.currentEpisode }"
+            [matTooltip]="c.currentEpisode"
+            (click)="openCurrentEpisodeDialog()"
+          >
+            <mat-icon *ngIf="!c.currentEpisode" svgIcon="season"></mat-icon>
+            <span [innerHTML]="c.currentEpisode"></span>
+          </button>
+        </ng-container>
+
+        <!-- Jahre -->
+        <button
+          *ngIf="{ years: (media | years) } as d"
+          mat-button
+          [ngClass]="{ 'only-icon': !d.years }"
+          [matTooltip]="d.years ? d.years : ('YEAR.S_NOT' | translate)"
+          (click)="openYearsDialog()"
+        >
+          <mat-icon svgIcon="calendar"></mat-icon>
+          <span *ngIf="d.years">{{ d.years }}</span>
+        </button>
+
+        <app-quick-add-button
+          key="yearStart"
+          [data]="quickAddData$ | async"
+          [media]="media"
+          [margin]="{ right: 10 }"
+          [overflowXAuto]="true"
+          (mediaChange)="onMediaChange($event)"
+        />
+
+        <app-quick-add-button
+          key="yearEnd"
+          [data]="quickAddData$ | async"
+          [media]="media"
+          [margin]="{ right: 10 }"
+          [overflowXAuto]="true"
+          (mediaChange)="onMediaChange($event)"
+        />
+
+        <!-- Spielzeit -->
+        <button
+          mat-button
+          [ngClass]="{ 'only-icon': !media.runtime }"
+          [matTooltip]="
+            media.runtime
+              ? (media.runtime | formatDuration : false : (localeService.locale$ | async)!)
+              : ('RUNTIME.NOT' | translate)
+          "
+          (click)="openRuntimeDialog()"
+        >
+          <mat-icon svgIcon="time"></mat-icon>
+          <span *ngIf="media.runtime">{{
+            media.runtime | formatDuration : false : (localeService.locale$ | async)!
+          }}</span>
+        </button>
+
+        <app-quick-add-button
+          key="runtime"
+          [data]="quickAddData$ | async"
+          [media]="media"
+          [margin]="{ right: 10 }"
+          [overflowXAuto]="true"
+          (mediaChange)="onMediaChange($event)"
+        />
+
+        <!-- x Mal angeschaut -->
+        <button
+          mat-button
+          [ngClass]="{ 'only-icon': !media.rewatch && !media.isMovie }"
+          [matTooltip]="(media.isMovie ? 'WATCH' : 'REWATCH') | translate"
+          [style.order]="media.isMovie ? -1 : 'unset'"
+          (click)="openRewatchDialog()"
+        >
+          <mat-icon
+            *ngIf="media.isMovie && !media.isWatchedOnce; else watched"
+            svgIcon="hide"
+          ></mat-icon>
+
+          <ng-template #watched>
+            <mat-icon [svgIcon]="media.isMovie ? 'watched' : 'watch'"></mat-icon>
+          </ng-template>
+
+          <span *ngIf="media.rewatch && !media.isMovie">{{ media.rewatch }}x</span>
+          <span *ngIf="media.isMovie && media.isWatchedOnce">{{ "WATCHED" | translate }}</span>
+          <span *ngIf="media.isMovie && !media.isWatchedOnce">{{ "NOT_WATCHED" | translate }}</span>
+          <span *ngIf="media.isMovie && media.rewatch > 1"
+            >{{ media.rewatch }}x
+            {{
+              "WATCHED" | translate | firstCharToLowercase : (localeService.locale$ | async)!
+            }}</span
+          >
+        </button>
+
+        <!-- DVD vorhanden -->
+        <button
+          mat-button
+          [ngClass]="{ 'only-icon': !media.dvd }"
+          [matTooltip]="(media.dvd ? 'DVD.AVAILABLE' : 'DVD.NOT_AVAILABLE') | translate"
+          (click)="onDVDAvailable()"
+        >
+          <mat-icon svgIcon="dvd"></mat-icon>
+          <span *ngIf="media.dvd">{{ "DVD.AVAILABLE" | translate }}</span>
+        </button>
+
+        <!-- Kino -->
+        <ng-container *ngIf="media.isMovie">
+          <ng-container *ngIf="media.cinema; else noCinema">
+            <button
+              *ngIf="
+                media
+                  | cinema
+                    : (media.cinema.date
+                        | date : 'shortDate' : '' : (localeService.locale$ | async)!)!
+                    : (media.cinema.price | price : (localeService.locale$ | async)!)! as cinemaText
+              "
+              mat-button
+              [ngClass]="{ 'only-icon': !media.cinema, television: true }"
+              [matTooltip]="cinemaText"
+              (click)="onEditCinema()"
+            >
+              <mat-icon svgIcon="cinema"></mat-icon>
+              <span>{{ cinemaText }}</span>
+            </button>
+          </ng-container>
+
+          <ng-template #noCinema>
+            <button
+              mat-button
+              class="only-icon television"
+              [matTooltip]="'CINEMA.VISIT_NOT' | translate"
+              (click)="onEditCinema()"
+            >
+              <mat-icon svgIcon="cinema"></mat-icon>
+            </button>
+          </ng-template>
+        </ng-container>
+
+        <!-- Notiz -->
+        <button
+          mat-button
+          [ngClass]="{ 'text-ellipsis': true, 'only-icon': !media.note }"
+          [matTooltip]="media.note || ('NOTE.NO' | translate)"
+          (click)="openNoteDialog()"
+        >
+          <mat-icon svgIcon="note"></mat-icon>
+          <span
+            *ngIf="media.note"
+            [innerHTML]="
+              media.note | translate | extendText : data.searchText ?? '' : '<mark>' : '</mark>'
+            "
+          ></span>
+        </button>
+
+        <!-- Bilder -->
+        <button
+          *ngIf="'IMAGE.' + (media.images.length > 1 ? 'S' : '') | translate as text"
+          [ngClass]="{ 'only-icon': !media.images.length }"
+          mat-button
+          [matTooltip]="
+            media.images.length
+              ? media.images.length.toString() + ' ' + text
+              : ('IMAGE.NO' | translate)
+          "
+          (click)="onEditImages()"
+          type="button"
+        >
+          <mat-icon svgIcon="image"></mat-icon>
+          <span *ngIf="media.images.length">{{ media.images.length }} {{ text }}</span>
+        </button>
+
+        <!-- Sprachen -->
+        <button
+          *ngIf="media.languages | allLanguages : (localeService.locale$ | async)! as allLanguages"
+          mat-button
+          type="button"
+          [ngClass]="{
+            'only-icon': allLanguages.icons.length === 0 && allLanguages.moreCount === 0,
+            'remove-last-margin-right': allLanguages.moreCount === 0
+          }"
+          [matTooltip]="allLanguages.tooltip | translate"
+          (click)="onEditLanguages()"
+        >
+          <mat-icon svgIcon="language"></mat-icon>
+          <mat-icon *ngFor="let icon of allLanguages.icons" [svgIcon]="icon"></mat-icon>
+          <span *ngIf="allLanguages.moreCount">+{{ allLanguages.moreCount }}</span>
+        </button>
+
+        <app-quick-add-button
+          key="languages"
+          [data]="quickAddData$ | async"
+          [media]="media"
+          [margin]="{ right: 10 }"
+          [overflowXAuto]="true"
+          (mediaChange)="onMediaChange($event)"
+        />
+
+        <!-- Länder -->
+        <button
+          *ngIf="media.countries | allCountries : (localeService.locale$ | async)! as allCountries"
+          mat-button
+          type="button"
+          [ngClass]="{
+            'only-icon': allCountries.icons.length === 0 && allCountries.moreCount === 0,
+            'remove-last-margin-right': allCountries.moreCount === 0
+          }"
+          [matTooltip]="allCountries.tooltip | translate"
+          (click)="onEditCountries()"
+        >
+          <mat-icon svgIcon="country"></mat-icon>
+          <mat-icon *ngFor="let icon of allCountries.icons" [svgIcon]="icon"></mat-icon>
+          <span *ngIf="allCountries.moreCount">+{{ allCountries.moreCount }}</span>
+        </button>
+
+        <app-quick-add-button
+          key="countries"
+          [data]="quickAddData$ | async"
+          [media]="media"
+          [margin]="{ right: 10 }"
+          [overflowXAuto]="true"
+          (mediaChange)="onMediaChange($event)"
+        />
+
+        <!-- Quellen -->
+        <button
+          *ngIf="
+            media.sources | allDiscoverySources : (localeService.locale$ | async)! as allSources
+          "
+          mat-button
+          type="button"
+          [ngClass]="{
+            'only-icon': allSources.icons.length === 0 && allSources.moreCount === 0,
+            'remove-last-margin-right': allSources.moreCount === 0
+          }"
+          [matTooltip]="allSources.tooltip | translate"
+          (click)="onEditSources()"
+        >
+          <mat-icon svgIcon="explore"></mat-icon>
+          <mat-icon *ngFor="let icon of allSources.icons" [svgIcon]="icon"></mat-icon>
+          <span *ngIf="allSources.moreCount">+{{ allSources.moreCount }}</span>
+        </button>
+
+        <!-- Verfügbar Bis -->
+        <button
+          mat-button
+          [ngClass]="{ 'only-icon': !media.availableUntil }"
+          [matTooltip]="
+            media.availableUntil
+              ? (media.availableUntil | date : 'shortDate' : '' : (localeService.locale$ | async)!)!
+              : ('AVAILABLE_UNTIL_NOT' | translate)
+          "
+          (click)="openAvailableUntilDialog()"
+        >
+          <mat-icon svgIcon="calendar-until"></mat-icon>
+          <span *ngIf="media.availableUntil">{{
+            media.availableUntil | date : "shortDate" : "" : (localeService.locale$ | async)!
+          }}</span>
+        </button>
+
+        <!-- Kein Fernsehen -->
+        <button
+          *ngIf="!media.television"
+          mat-button
+          class="only-icon"
+          [matTooltip]="'TELEVISION.NOT' | translate"
+          (click)="openTelevisionDialog(true)"
+        >
+          <mat-icon svgIcon="television"></mat-icon>
+        </button>
+
+        <!-- Fernsehen -->
+        <button
+          *ngIf="media.television"
+          mat-button
+          class="with-image with-text television"
+          [matTooltip]="'TELEVISION.' | translate"
+          (click)="openTelevisionDialog(false)"
+        >
+          <mat-icon *ngIf="media.television.live" svgIcon="live"></mat-icon>
+          <mat-icon *ngIf="media.television.onlyStart" svgIcon="once"></mat-icon>
+          <span
+            *ngIf="{
+              channel: media.television | channel : (channelApiService.channels$ | async)!,
+              televisionText: media.television | television : (localeService.locale$ | async)!
+            } as data"
+            class="text-container"
+          >
+            <ng-container *ngIf="data.channel">
+              <img class="channel" [src]="data.channel.displayIcon" />
+              {{ data.channel.name | translate }}
+            </ng-container>
+            <ng-container *ngIf="media.television.note">
+              – {{ media.television.note }}
+            </ng-container>
+            <ng-container *ngIf="!media.isMovie; else televisionWithMovie">
+              <ng-container
+                *ngIf="
+                  media.television.onlyStart ||
+                    (media.isFuture && (media.isSeasonStart || media.isSeriesStart));
+                  else weekdays
+                "
+              >
+                –
+                {{
+                  media.television.date | date : "shortDate" : "" : (localeService.locale$ | async)!
+                }}
+              </ng-container>
+              <ng-container *ngIf="!media.television.onlyChannel">
+                –
+                {{ media | episode : media.television.episode : (localeService.locale$ | async)! }}
+              </ng-container>
+              <ng-template #weekdays>
+                <ng-container *ngIf="data.televisionText">
+                  – {{ data.televisionText }}
+                </ng-container>
+              </ng-template>
+              <ng-container *ngIf="media.television.weekly > 1">
+                – {{ "DATE.WEEKLY_VALUE" | translate : { value: media.television.weekly } }}
+              </ng-container>
+            </ng-container>
+
+            <ng-template #televisionWithMovie>
+              <ng-container
+                *ngIf="
+                  media.television.date &&
+                    !(
+                      media.television.date.getHours() === 0 &&
+                      media.television.date.getMinutes() === 0
+                    );
+                  else onlyDate
+                "
+              >
+                –
+                {{ media.television.date | date : "short" : "" : (localeService.locale$ | async)! }}
+              </ng-container>
+              <ng-template #onlyDate>
+                <ng-container *ngIf="!media.television.onlyChannel">
+                  –
+                  {{
+                    media.television.date
+                      | date : "shortDate" : "" : (localeService.locale$ | async)!
+                  }}
+                </ng-container>
+              </ng-template>
+            </ng-template>
+          </span>
+        </button>
+
+        <app-quick-add-button
+          key="television"
+          [data]="quickAddData$ | async"
+          [media]="media"
+          [margin]="{ right: 10 }"
+          [overflowXAuto]="true"
+          (mediaChange)="onMediaChange($event)"
+        />
+
+        <!-- Serie: x Episoden bis x Uhrzeit -->
+        <div class="details-buttons" *ngIf="!media.isMovie && media.runtime">
+          <button mat-button class="only-icon" (click)="onEpisodeTimeModeChange()">
+            <mat-icon [svgIcon]="episodeTimeMode ? 'time' : 'once'"></mat-icon>
+          </button>
+
+          <!-- Eine Episode runter -->
+          <button
+            mat-button
+            class="only-icon"
+            [style.marginLeft.px]="-10"
+            (click)="onEpisodeDown()"
+          >
+            <mat-icon svgIcon="arrow-single-down"></mat-icon>
+          </button>
+
+          <!-- Eine Episode hoch -->
+          <button mat-button class="only-icon" [style.marginLeft.px]="-10" (click)="onEpisodeUp()">
+            <mat-icon svgIcon="arrow-single-up"></mat-icon>
+          </button>
+
+          <!-- Episode -->
+          <button mat-button [style.marginLeft.px]="-5">
+            {{ episode }} {{ "EPISODE.SHORT" | translate }}
+          </button>
+          <button mat-button [style.marginLeft.px]="-10">
+            {{ ("UNTIL" | translate).toLowerCase() }}
+            {{ time | time : (localeService.locale$ | async)! }} ({{
+              minutes | formatDuration : false : (localeService.locale$ | async)!
+            }})
+          </button>
+        </div>
+
+        <!-- Film: Anschauen bis -->
+        <div class="details-buttons" *ngIf="media.isMovie && media.runtime">
+          <button mat-button (click)="calculateMinutes()">
+            <mat-icon svgIcon="watch"></mat-icon>
+            {{ "WATCH_UNTIL" | translate }}
+            {{ time | time : (localeService.locale$ | async)! }}
+          </button>
+        </div>
+      </div>
+
+      <ng-container *ngIf="!media.isMovie">
+        <ng-container *ngIf="media | nextInTelevision as nextEpisodeInTV">
+          <div class="details-buttons" [style.marginLeft.px]="5">
+            <button
+              mat-flat-button
+              class="medium"
+              color="primary"
+              [style.marginTop.px]="5"
+              [style.marginBottom.px]="5"
+              [style.paddingLeft.px]="10"
+              [style.paddingRight.px]="10"
+              [matTooltip]="
+                (nextEpisodeInTV.date | date : 'shortDate' : '' : (localeService.locale$ | async)!)!
+              "
+            >
+              <mat-icon svgIcon="arrow-right"></mat-icon>
+
+              <span
+                *ngIf="
+                  nextEpisodeInTV.episode.episode === 1 && nextEpisodeInTV.episode.season === 1;
+                  else seasonStart
+                "
+                >{{ "START_OF_SERIES" | translate }}:</span
+              >
+
+              <ng-template #seasonStart>
+                <span *ngIf="nextEpisodeInTV.episode.episode === 1; else nextEpisode"
+                  >{{ "START_OF_SEASON" | translate }}:</span
+                >
+              </ng-template>
+
+              <ng-template #nextEpisode> {{ "EPISODE.NEXT" | translate }}: </ng-template>
+
+              {{
+                nextEpisodeInTV.date
+                  | formatDate
+                    : (localeService.locale$ | async)!
+                    : { onlyDate: true, strict: false }
+              }}
+            </button>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+
+  <!-- QuickAdd: Bilder, extra hier, damit in neuer Zeile -->
+  <app-quick-add-button
+    key="images"
+    [data]="quickAddData$ | async"
+    [media]="media"
+    [margin]="{ top: 20, left: 20, bottom: 20 }"
+    [imageSize]="30"
+    (mediaChange)="onMediaChange($event)"
+  />
+
+  <!-- Stichworte -->
+  <app-tags
+    addIconWhenBigButton="tag"
+    [searchText]="data.searchText"
+    [tags]="media.tags"
+    [firstCharToTitleCase]="false"
+    (tagsChange)="onTagsChange($event)"
+  ></app-tags>
+
+  <app-quick-add-button
+    key="tags"
+    [data]="quickAddData$ | async"
+    [media]="media"
+    [margin]="{ left: 20, bottom: 20 }"
+    (mediaChange)="onMediaChange($event)"
+  />
+
+  <div class="separator"></div>
+
+  <app-genre-tags [genreIds]="media.genreIds" (tagsChange)="onGenreChange($event)">
+  </app-genre-tags>
+
+  <app-quick-add-button
+    key="genreIds"
+    [data]="quickAddData$ | async"
+    [media]="media"
+    [margin]="{ left: 20, bottom: 20 }"
+    (mediaChange)="onMediaChange($event)"
+  />
+
+  <div class="separator"></div>
+
+  <div cdkDropListGroup>
+    <app-urls-tags
+      icon="stream"
+      text="URL.ADD.WATCH"
+      [showText]="!isSmallScreen.matches"
+      [urls]="media.urlsWatch"
+      [title]="media.name"
+      [titleOriginal]="media.nameOriginal"
+      [season]="media | currentSeason"
+      [episode]="media.currentEpisode.episode + 1"
+      [year]="media.yearStart"
+      [searchEngineType]="SearchEngineType.URL_WATCH"
+      [urlType]="UrlEnum.WATCH"
+      [mediaType]="media.type"
+      (urlsChange)="onUrlsWatchChanged($event)"
+    >
+    </app-urls-tags>
+
+    <app-urls-tags
+      icon="video"
+      text="URL.ADD.VIDEO"
+      [marginTop]="-20"
+      [showText]="!isSmallScreen.matches"
+      [urls]="media.urlsVideo"
+      [title]="media.name"
+      [titleOriginal]="media.nameOriginal"
+      [season]="media | currentSeason"
+      [episode]="media.currentEpisode.episode + 1"
+      [year]="media.yearStart"
+      [searchEngineType]="SearchEngineType.URL_VIDEO"
+      [urlType]="UrlEnum.VIDEO"
+      [mediaType]="media.type"
+      (urlsChange)="onUrlsVideoChanged($event)"
+    >
+    </app-urls-tags>
+
+    <app-quick-add-button
+      key="urlsVideo"
+      [data]="quickAddData$ | async"
+      [media]="media"
+      [margin]="{ left: 20, bottom: 20 }"
+      (mediaChange)="onMediaChange($event)"
+    />
+
+    <app-urls-tags
+      icon="info"
+      text="URL.ADD.INFO"
+      [marginTop]="-20"
+      [showText]="!isSmallScreen.matches"
+      [urls]="media.urlsInfo"
+      [title]="media.name"
+      [titleOriginal]="media.nameOriginal"
+      [season]="media | currentSeason"
+      [episode]="media.currentEpisode.episode + 1"
+      [year]="media.yearStart"
+      [searchEngineType]="SearchEngineType.URL_INFO"
+      [urlType]="UrlEnum.INFO"
+      [mediaType]="media.type"
+      (urlsChange)="onUrlsInfoChanged($event)"
+    >
+    </app-urls-tags>
+
+    <app-quick-add-button
+      key="urlsInfo"
+      [data]="quickAddData$ | async"
+      [media]="media"
+      [margin]="{ left: 20, bottom: 20 }"
+      (mediaChange)="onMediaChange($event)"
+    />
+  </div>
+
+  <div class="separator"></div>
+
+  <ng-container *ngIf="!media.isMovie">
+    <!-- <div class="function-buttons"> -->
+    <div
+      class="scrollbox no-scrollbar-on-mobile sticky main-background toolbar-season"
+      [style.top.px]="(quickAddData$ | async)?.length ? 80 : -1"
+    >
+      <div class="scrollbox-content" [style.paddingRight.px]="0">
+        <!-- Staffel hinzufügen -->
+        <button
+          mat-flat-button
+          class="only-icon"
+          [matTooltip]="'SEASON.ADD' | translate"
+          (click)="onAddSeasonToSeasons()"
+        >
+          <mat-icon class="medium without-button" svgIcon="add"></mat-icon>
+        </button>
+
+        <mat-divider class="divider-vertical-20px" [vertical]="true"></mat-divider>
+
+        <button
+          mat-flat-button
+          class="only-icon"
+          [matTooltip]="(media.automatic ? 'AUTOMATIC.' : 'AUTOMATIC.NOT') | translate"
+          (click)="onAutomaticClicked()"
+        >
+          <mat-icon
+            class="medium without-button"
+            [svgIcon]="media.automatic ? 'automatic' : 'automatic-not'"
+          ></mat-icon>
+        </button>
+
+        <button
+          mat-flat-button
+          class="only-icon"
+          [matTooltip]="
+            (media.consecutiveEpisodeNumbering
+              ? 'EPISODE.CONSECUTIVE_NUMBERING'
+              : 'EPISODE.NUMBERING_PER_SEASON'
+            ) | translate
+          "
+          (click)="onConsecutiveEpisodeNumberingClicked()"
+        >
+          <mat-icon
+            class="medium without-button"
+            [svgIcon]="
+              media.consecutiveEpisodeNumbering ? 'consecutive-numbering' : 'numbering-per-season'
+            "
+          ></mat-icon>
+        </button>
+
+        <button
+          mat-flat-button
+          class="only-icon"
+          [matTooltip]="
+            (media.wrapSeasonEpisodes ? 'EPISODE.S.WRAP' : 'EPISODE.S.NOWRAP') | translate
+          "
+          (click)="onWrapSeasonEpisodes()"
+        >
+          <mat-icon
+            class="medium without-button"
+            [svgIcon]="media.wrapSeasonEpisodes ? 'season-wrap' : 'season-nowrap'"
+          ></mat-icon>
+        </button>
+
+        <button
+          mat-flat-button
+          class="only-icon"
+          [matTooltip]="
+            (media.showYearPerSeason ? 'YEAR.PER_SEASON' : 'YEAR.NOT_PER_SEASON') | translate
+          "
+          (click)="onShowYearPerSeason()"
+        >
+          <mat-icon
+            class="medium without-button"
+            [svgIcon]="media.showYearPerSeason ? 'calendar' : 'calendar-not'"
+          ></mat-icon>
+        </button>
+
+        <ng-container *ngIf="media.seasons.length && media.totalEpisodeCount">
+          <span
+            *ngIf="{
+            episodesText: media.totalEpisodeCountWithoutSpecialSeasons.toString() + ' ' + ('EPISODE.S.' | translate),
+            episodesTextShort: media.totalEpisodeCountWithoutSpecialSeasons.toString() + ' ' + ('EPISODE.SHORT' | translate),
+            episodeDetailsText: media.totalEpisodeCount - media.totalEpisodeCountWithoutSpecialSeasons ?
+              ' (+' +
+              (media.totalEpisodeCount - media.totalEpisodeCountWithoutSpecialSeasons).toString() +
+              ' ' +
+              ('EPISODE.S.SPECIAL' | translate) +
+              ')' : '',
+            episodeDetailsTextShort: media.totalEpisodeCount - media.totalEpisodeCountWithoutSpecialSeasons ?
+              ' (+' +
+              (media.totalEpisodeCount - media.totalEpisodeCountWithoutSpecialSeasons).toString() +
+              ' ' +
+              ('EPISODE.SHORT' | translate) +
+              ')' : '',
+          } as data"
+            class="episodes-count-text"
+            [matTooltip]="data.episodesText + data.episodeDetailsText"
+            (click)="showEpisodesDetails()"
+          >
+            {{
+              isSmallScreen.matches
+                ? data.episodesTextShort
+                : data.episodesText + data.episodeDetailsTextShort
+            }}
+          </span></ng-container
+        >
+
+        <div class="spacer"></div>
+
+        <div class="right main-background">
+          <button
+            *ngIf="displayScrollToButton"
+            mat-flat-button
+            [matTooltip]="'EPISODE.TO_CURRENT' | translate"
+            (click)="scrollToCurrentEpisode()"
+          >
+            <mat-icon class="medium without-button" svgIcon="scroll-to"></mat-icon>
+            {{
+              media
+                | currentEpisode : media.currentEpisode : (localeService.locale$ | async)! : false
+            }}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="localeService.locale$ | async as locale" class="table-container" id="table">
+      <table
+        [style.lineHeight]="'normal'"
+        cdkDropList
+        cdkDropListOrientation="vertical"
+        [cdkDropListDisabled]="isSmallScreen.matches"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <tr
+          cdkDrag
+          *ngFor="
+            let season of media | season : media.consecutiveEpisodeNumbering as seasons;
+            index as seasonIndex
+          "
+          [ngClass]="{
+            special: seasons[seasonIndex].special,
+            'wrap-season-episodes': media.wrapSeasonEpisodes
+          }"
+        >
+          <ng-container
+            *ngIf="{
+              episodeDetails: media | episodeDetailsBySeasonAndEpisode : seasonIndex + 1 : 0
+            } as details"
+          >
+            <div *cdkDragPlaceholder class="drag-placeholder"></div>
+            <div *cdkDragPreview class="drag-preview">
+              {{ seasons[seasonIndex].season }}.
+              {{ "SEASON." | translate }}
+
+              <app-episode-in-table-with-episode-details
+                [media]="media"
+                [details]="details.episodeDetails"
+                [seasons]="seasons"
+                [season]="seasonIndex + 1"
+                [seasonIndex]="seasonIndex"
+                [episode]="0"
+              ></app-episode-in-table-with-episode-details>
+            </div>
+
+            <!-- Staffel -->
+            <td
+              cdkDragHandle
+              [ngClass]="{ season: true, 'wrap-season-episodes': media.wrapSeasonEpisodes }"
+            >
+              <div
+                [ngClass]="{
+                  watched: (media | watched : seasonIndex + 1 : 0),
+                  current:
+                    seasonIndex + 1 === media.currentEpisode.season &&
+                    0 === media.currentEpisode.episode,
+                  'current-season':
+                    seasonIndex + 1 === media.currentEpisode.season &&
+                    0 !== media.currentEpisode.episode
+                }"
+                [style.overflow]="'hidden'"
+                [matMenuTriggerFor]="isSmallScreen.matches ? null : addMenu"
+                (click)="onOpenMenu(details.episodeDetails, seasonIndex + 1, 0)"
+                (contextmenu)="$event.preventDefault(); onEpisodeClick(seasonIndex + 1, 0)"
+              >
+                <span class="season-number">
+                  {{ seasons[seasonIndex].season }}
+                  <span
+                    class="year"
+                    *ngIf="
+                      media.showYearPerSeason &&
+                      seasons[seasonIndex].year &&
+                      !seasons[seasonIndex].special
+                    "
+                  >
+                    – {{ seasons[seasonIndex].year }}</span
+                  >
+                </span>
+
+                <app-episode-in-table-with-episode-details
+                  [media]="media"
+                  [details]="details.episodeDetails"
+                  [seasons]="seasons"
+                  [season]="seasonIndex + 1"
+                  [seasonIndex]="seasonIndex"
+                  [episode]="0"
+                ></app-episode-in-table-with-episode-details>
+
+                <mat-menu #addMenu="matMenu">
+                  <!-- Als aktuelle Episode setzen -->
+                  <app-episode-detail-menu
+                    [media]="media"
+                    [episodeDetails]="details.episodeDetails"
+                    [season]="seasonIndex + 1"
+                    [episode]="0"
+                    [year]="media.yearStart"
+                    (applyChanges)="applyChanges(); checkSavingAllowed()"
+                    (openEditEpisodeDetailDialog)="openEditEpisodeDetail($event)"
+                    (openAddEpisodeDetailDialog)="openAddEpisodeDetail($event)"
+                    (deleteDetailByIndex)="onDeleteEpisodeDetailById($event)"
+                    (editSeason)="onEditSeason($event)"
+                  />
+                </mat-menu>
+              </div>
+            </td>
+          </ng-container>
+
+          <!-- Episoden -->
+          <td class="episode" *ngFor="let episode of season.episodes; index as episodeIndex">
+            <ng-container
+              *ngIf="{
+                episodeDetails:
+                  media | episodeDetailsBySeasonAndEpisode : seasonIndex + 1 : episodeIndex + 1
+              } as details"
+            >
+              <div
+                [ngClass]="{
+                  watched:
+                    (seasonIndex + 1 < media.currentEpisode.season ||
+                      (seasonIndex + 1 === media.currentEpisode.season &&
+                        episodeIndex < media.currentEpisode.episode)) &&
+                    (media | watched : seasonIndex + 1 : episodeIndex + 1),
+                  current:
+                    seasonIndex + 1 === media.currentEpisode.season &&
+                    episodeIndex + 1 === media.currentEpisode.episode
+                }"
+                [style.overflow]="'hidden'"
+                [matMenuTriggerFor]="isSmallScreen.matches ? null : addMenu"
+                (click)="onOpenMenu(details.episodeDetails, seasonIndex + 1, episodeIndex + 1)"
+                (contextmenu)="
+                  $event.preventDefault(); onEpisodeClick(seasonIndex + 1, episodeIndex + 1)
+                "
+              >
+                <span>
+                  {{ episode.episode }}
+                </span>
+
+                <app-episode-in-table-with-episode-details
+                  [media]="media"
+                  [details]="details.episodeDetails"
+                  [seasons]="seasons"
+                  [season]="seasonIndex + 1"
+                  [seasonIndex]="seasonIndex"
+                  [episode]="episodeIndex + 1"
+                ></app-episode-in-table-with-episode-details>
+
+                <mat-menu #addMenu="matMenu">
+                  <!-- Als aktuelle Episode setzen -->
+                  <app-episode-detail-menu
+                    [media]="media"
+                    [episodeDetails]="details.episodeDetails"
+                    [season]="seasonIndex + 1"
+                    [episode]="episodeIndex + 1"
+                    [year]="media.yearStart"
+                    (applyChanges)="applyChanges(); checkSavingAllowed()"
+                    (openEditEpisodeDetailDialog)="openEditEpisodeDetail($event)"
+                    (openAddEpisodeDetailDialog)="openAddEpisodeDetail($event)"
+                    (deleteDetailByIndex)="onDeleteEpisodeDetailById($event)"
+                    (editSeason)="onEditSeason($event)"
+                  />
+                </mat-menu>
+              </div>
+            </ng-container>
+          </td>
+
+          <td
+            *ngIf="!media.automatic"
+            class="episode add"
+            [matTooltip]="'EPISODE.ADD' | translate"
+            (click)="onAddEpisodeToSeason(seasonIndex)"
+          >
+            <div class="watched">
+              <mat-icon class="medium without-button" svgIcon="add"></mat-icon>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <p *ngIf="!media.seasons.length" class="error" [style.padding]="'10px 20px'">
+      {{
+        "FIELD.ERROR_TEXT.MANDATORY"
+          | translate
+            : {
+                formfieldName: ("SEASON.S" | translate)
+              }
+      }}
+    </p>
+
+    <app-quick-add-button
+      key="seasons"
+      [data]="quickAddData$ | async"
+      [media]="media"
+      [margin]="{ left: 20, bottom: 20 }"
+      (mediaChange)="onMediaChange($event)"
+    />
+
+    <div class="separator"></div>
+  </ng-container>
+
+  <!-- Verlinkte Rezepte -->
+  <app-add-remove
+    addText="LINK.MEDIA"
+    removeText="REMOVE_ALL_VALUE"
+    removeIcon="unlink"
+    scrollToElementIdAfterAdd="linked-media"
+    addIconWhenBigButton="link"
+    [completerList]="completerListMedia$ | async"
+    [isNoContent]="!linkedMedia.length"
+    [badge]="linkedMedia.length"
+    [askIfCloseIfDiscard]="true"
+    (add)="onAddLinkedMediaByName($event)"
+    (removeAll)="onRemoveAllLinkedMedia()"
+  >
+  </app-add-remove>
+
+  <div *ngIf="linkedMedia.length" id="linked-media" class="scrollbox no-scrollbar-on-mobile">
+    <div class="scrollbox-content" [style.paddingTop.px]="0">
+      <app-media-chip
+        *ngFor="let media of linkedMedia; index as index"
+        [media]="media"
+        [actions]="[{ text: 'LINK.REMOVE', id: 'remove', icon: 'unlink' }]"
+        (onActionClick)="onRemoveLinkedMediaById(media.id)"
+      >
+      </app-media-chip>
+    </div>
+  </div>
+</div>

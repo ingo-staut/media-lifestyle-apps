@@ -1,0 +1,43 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../../styles.theme.scss";
+
+:host {
+  display: contents;
+}
+
+.recipe-button {
+  padding: 0px 0px 0px $padding-s;
+}
+
+.recipe-text {
+  display: flex;
+  // gap: $padding-xs;
+  max-width: 175px;
+  margin-top: 6px;
+
+  &.without-margin {
+    margin-top: 0px;
+  }
+}
+
+.recipe-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: $padding-xs;
+}
+
+.recipe-bracket {
+  color: $text-2;
+}
+
+.recipe-note {
+  flex-shrink: 1;
+  color: $text-2;
+  max-width: 75px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.recipe-icon {
+  flex-shrink: 0;
+}

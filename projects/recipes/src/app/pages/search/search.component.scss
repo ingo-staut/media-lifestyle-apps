@@ -1,0 +1,49 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+.searchbar {
+  background-color: $main-background-1;
+}
+
+.filters {
+  width: auto;
+  display: flex;
+  align-items: center;
+  padding: $padding-s $padding-m;
+  gap: $padding-s;
+}
+
+.results {
+  padding: 0 $padding-m $padding-m $padding-m;
+  display: flex;
+  gap: $padding-m;
+  flex-wrap: wrap;
+
+  &.list {
+    flex-direction: column;
+    gap: $padding-s;
+  }
+}
+
+.start-search {
+  text-align: center;
+  line-height: 250%;
+  padding: $padding-m;
+}
+
+.start-search-text {
+  color: $text-2;
+}
+
+.scrollbox-content {
+  padding-bottom: 0;
+}
+
+.highlight {
+  color: $primary !important;
+}
+
+.load-more {
+  display: flex;
+  justify-content: center;
+}

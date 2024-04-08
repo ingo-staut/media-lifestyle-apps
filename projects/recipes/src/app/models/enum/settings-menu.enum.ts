@@ -1,0 +1,37 @@
+export enum SettingsMenu {
+  SEPARATOR = "SEPARATOR",
+
+  APPLICATION = "SETTINGS.APPLICATION.",
+  KEYMAP = "SETTINGS.KEYMAP",
+  LANGUAGE_AND_REGION = "SETTINGS.LANGUAGE_AND_REGION",
+
+  DB = "SETTINGS.DB",
+  IMPORT = "SETTINGS.IMPORT",
+  DOWNLOAD = "SETTINGS.DOWNLOAD",
+  REQUESTS = "SETTINGS.REQUESTS",
+  TESTING = "SETTINGS.TESTING",
+
+  ABOUT = "SETTINGS.ABOUT",
+  HELP = "SETTINGS.HELP",
+
+  SPECIFIC_CONVERSIONS = "CONVERSION.VALUES",
+  SPECIFIC_UTENSILS = "UTENSIL.S.",
+}
+
+export enum SettingsMenuKey {
+  APPLICATION = "application",
+  KEYMAP = "keymap",
+  LANGUAGE_AND_REGION = "language",
+
+  DB = "db",
+  IMPORT = "import",
+  DOWNLOAD = "download",
+  REQUESTS = "requests",
+  TESTING = "testing",
+
+  ABOUT = "about",
+  HELP = "help",
+
+  SPECIFIC_CONVERSIONS = "conversions",
+  SPECIFIC_UTENSILS = "utensils",
+}

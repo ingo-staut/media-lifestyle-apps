@@ -1,0 +1,89 @@
+<!-- Titel -->
+<header>
+  <mat-icon class="large" svgIcon="available-move-to"></mat-icon>
+
+  <h1 [innerHTML]="'AVAILABLE.INGREDIENTS_ADD' | translate | highlightQuotesInText"></h1>
+</header>
+
+<div mat-dialog-content>
+  <table>
+    <tr>
+      <th></th>
+      <th>
+        <div>
+          <mat-icon class="medium without-button" svgIcon="shopping-cart"></mat-icon>
+          <span>{{ "PURCHASED" | translate }}</span>
+        </div>
+      </th>
+      <th></th>
+      <th>
+        <div>
+          <mat-icon class="medium without-button" svgIcon="replace"></mat-icon>
+          <span>{{ "REPLACE." | translate }}</span>
+        </div>
+      </th>
+    </tr>
+
+    <tr *ngFor="let entry of data.dataItems">
+      <td>
+        <!-- Button: Inhaltsstoffe -->
+        <app-button-contents
+          [name]="entry.item.name"
+          [ingredientsConversion]="ingredientApiService.ingredientsConversion$ | async"
+        ></app-button-contents>
+      </td>
+
+      <td>
+        <div>{{ entry.item | item }}</div>
+      </td>
+
+      <td>
+        <mat-checkbox [(ngModel)]="entry.change"></mat-checkbox>
+      </td>
+
+      <td>
+        <app-dropdown
+          *ngIf="
+            entry.item
+              | ingredientsDropdownData
+                : (ingredientApiService.ingredientsAvailable$ | async)
+                : (ingredientApiService.ingredientsConversion$ | async)
+                : (localeService.locale$ | async)! as dropdownData
+          "
+          width="100%"
+          [disabled]="!entry.change"
+          [data]="dropdownData"
+          [selectedKey]="entry.key || dropdownData[0].key"
+          (selectedChange)="entry.value = $event.value"
+          (selectedInitial)="entry.value = $event.value"
+          (selectedKeyInitial)="entry.key = $event"
+        ></app-dropdown>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- Sticky Buttons unten rechts -->
+<footer class="buttons">
+  <!-- Primary Button -->
+  <button
+    mat-flat-button
+    color="primary"
+    [matTooltip]="'ACTION.APPLY' | translate"
+    (click)="onApply()"
+  >
+    <mat-icon svgIcon="check"></mat-icon>
+    {{ "ACTION.APPLY" | translate }}
+  </button>
+
+  <!-- Abbrechen Button mit Standard-Text und keinem Text bei kleinem Bildschirm -->
+  <button
+    mat-flat-button
+    onlyIconSmallScreen
+    [text]="'ACTION.CANCEL' | translate"
+    [matTooltip]="'ACTION.CANCEL' | translate"
+    (click)="onCancel()"
+  >
+    <mat-icon svgIcon="clear"></mat-icon>
+  </button>
+</footer>

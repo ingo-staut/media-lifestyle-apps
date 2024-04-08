@@ -1,0 +1,105 @@
+<div
+  [formGroup]="parentFormGroup"
+  [ngClass]="{
+    'scrollbox no-scrollbar-on-mobile': true,
+    'no-padding': !withPadding,
+    'no-space-for-scrollbar': withSpaceForScrollbar
+  }"
+  [style.paddingTop.px]="10"
+>
+  <div
+    [ngClass]="{
+      'scrollbox-content': true,
+      'no-padding': !withPadding,
+      'padding-if-not-editable': !editable && withPadding,
+      wrap
+    }"
+  >
+    <div
+      *ngIf="editable"
+      [ngClass]="{
+        'sticky-function-buttons': true,
+        'no-padding': !withPadding
+      }"
+    >
+      <app-add
+        placeholder="INGREDIENT.ADD"
+        addIconWhenBigButton="ingredient"
+        [isNoContent]="!tags.length"
+        [value]="addValue"
+        [smallerWidth]="true"
+        [doNotCloseAfterReturn]="true"
+        [openDialogOnClick]="isMobileScreen.matches"
+        [completerList]="
+          ingredientConversionCompleterService.completerListIngredientsConversionNames$ | async
+        "
+        (add)="add($event)"
+        (openDialog)="onOpenAddIngredientDialog()"
+      ></app-add>
+      <button
+        *ngIf="tags.length"
+        class="only-icon"
+        mat-flat-button
+        [matBadge]="tags.length"
+        [matBadgeHidden]="tags.length < 1"
+        [matTooltip]="'REMOVE_ALL_VALUE' | translate : { value: tags.length }"
+        (click)="onRemoveAll()"
+      >
+        <mat-icon svgIcon="clear"></mat-icon>
+      </button>
+    </div>
+
+    <div *ngIf="!editable && amountFactor !== 1" class="sticky-function-buttons no-padding">
+      <button
+        *ngIf="amountFactor !== 1"
+        class="only-icon"
+        mat-flat-button
+        color="primary"
+        [matTooltip]="'PORTION.S' | translate"
+        (click)="factorButtonClicked.emit()"
+      >
+        <mat-icon svgIcon="portion"></mat-icon>
+      </button>
+    </div>
+
+    <div [ngClass]="{ chip: true, editable }" *ngFor="let tag of tags; index as index">
+      <button
+        *ngIf="
+          tag
+            | ingredient
+              : (localeService.locale$ | async)!
+              : (ingredientApiService.ingredientsConversion$ | async)
+              : { amountFactor, hideIngredientNotes } as ingredientText
+        "
+        mat-button
+        [disabled]="!editable"
+        [ngClass]="{ text: true, editable: editable }"
+        [matTooltip]="ingredientText"
+        (click)="edit(tag, index)"
+        (contextmenu)="edit(tag, index, $event)"
+      >
+        {{ ingredientText }}
+      </button>
+
+      <button
+        *ngIf="hideIngredientNotes && tag.note"
+        mat-button
+        class="only-icon small note-button"
+        [matTooltip]="tag.note"
+        (click)="$event.stopPropagation(); hideIngredientNotesChange.emit(false)"
+      >
+        <mat-icon class="small text-color-2" svgIcon="note-filled"></mat-icon>
+      </button>
+
+      <button
+        *ngIf="editable"
+        mat-button
+        class="only-icon clear-button"
+        [matTooltip]="'ACTION.REMOVE' | translate"
+        (click)="remove(tag)"
+      >
+        <mat-icon svgIcon="clear"></mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

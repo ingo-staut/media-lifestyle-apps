@@ -1,0 +1,23 @@
+<button
+  *ngIf="fromWith?.length && hasAtLeastOne && withInList === WithInList.WITH"
+  mat-flat-button
+  [matTooltip]="'HIDE' | translate"
+  class="recipe-button medium only-icon"
+  (click)="withInListChange.emit(WithInList.WITH_MEDIUM)"
+>
+  <mat-icon class="recipe-icon" svgIcon="arrow-single-up"></mat-icon>
+</button>
+
+<button
+  *ngIf="fromWith?.length && hasAtLeastOne && withInList === WithInList.WITH_MEDIUM"
+  mat-flat-button
+  [matTooltip]="fromWith.length + ' ' + (tooltip | translate)"
+  class="recipe-button medium"
+  (click)="withInListChange.emit(WithInList.WITH)"
+>
+  <mat-icon
+    class="recipe-icon"
+    [svgIcon]="hasNotAtLeastOne ? 'arrow-single-down' : icon"
+  ></mat-icon>
+  {{ fromWith.length }}
+</button>

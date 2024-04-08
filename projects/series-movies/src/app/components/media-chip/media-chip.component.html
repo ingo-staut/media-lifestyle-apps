@@ -1,0 +1,646 @@
+<mat-card
+  *ngIf="media.type | mediaType as t"
+  matRipple
+  [ngClass]="{
+    card: true,
+    movie: media.isMovie,
+    selected,
+    shadow,
+    outline,
+    'blinking-main-background-1': media.editHistory | mediaLastEdited,
+    'light-background': lightBackground,
+    'genre-clickable': genreClickable,
+  }"
+  (click)="onOpen($event)"
+  (mouseenter)="onChipHovered = true"
+  (mouseleave)="onChipHovered = false"
+>
+  <div *ngIf="localeService.locale$ | async as locale" class="content">
+    <div>
+      <!-- Funktionsicons oben -->
+      <div *ngIf="!apiSearchResult" class="header-icons">
+        <button
+          class="only-icon"
+          mat-button
+          [ngClass]="{ visible: onChipHovered || media.favorite || isMobileScreen.matches }"
+          [matTooltip]="'FAVORITE.' | translate"
+          (click)="onFavorite($event)"
+        >
+          <mat-icon [svgIcon]="media.favorite ? 'favorite-filled' : 'favorite'"></mat-icon>
+        </button>
+
+        <ng-container *ngIf="onChipHovered || isMobileScreen.matches">
+          <button
+            *ngFor="let action of actions"
+            mat-button
+            class="only-icon visible"
+            [matTooltip]="action.text | translate"
+            [style.marginLeft]="'auto'"
+            (click)="onAction($event, action)"
+          >
+            <mat-icon *ngIf="action.icon" [svgIcon]="action.icon"></mat-icon>
+          </button>
+        </ng-container>
+
+        <ng-container *ngIf="showWatchability">
+          <button
+            *ngIf="media.ratingWatchability as rating"
+            mat-button
+            class="visible"
+            [matTooltip]="
+              ('RATING.WATCHABILITY.' | translate) +
+              ': ' +
+              (rating | number : '1.0-1' : (localeService.locale$ | async)!)! +
+              '/10'
+            "
+            [style.marginLeft]="'auto'"
+            [style.marginRight]="'auto'"
+            (click)="onOpenRatingDialog($event)"
+          >
+            <mat-icon
+              [svgIcon]="rating | ratingSection : RatingIndex.WATCHABILITY"
+              [style.marginRight.px]="5"
+            ></mat-icon>
+            <span *ngIf="rating">
+              {{ rating | number : "1.0-1" : (localeService.locale$ | async)! }}
+            </span>
+          </button>
+        </ng-container>
+
+        <button
+          class="only-icon"
+          mat-button
+          [ngClass]="{ visible: onChipHovered || media.note || isMobileScreen.matches }"
+          [matTooltip]="media.note ? media.note : ('NOTE.ADD' | translate)"
+          [style.marginLeft]="'auto'"
+          (click)="onNote($event)"
+        >
+          <mat-icon [svgIcon]="media.note ? 'note-filled' : 'note'"></mat-icon>
+        </button>
+      </div>
+
+      <div
+        *ngIf="
+          onChipHovered ||
+          isMobileScreen.matches ||
+          media.favorite ||
+          media.note ||
+          (showWatchability && !!media.ratingWatchability)
+        "
+        class="gradient"
+      ></div>
+
+      <!-- Infobanner -->
+      <div
+        *ngIf="
+          media.television &&
+          (!media.isMovie ||
+            (media.isMovie &&
+              episodeInTV &&
+              (episodeInTV.date.getHours() !== 0 || episodeInTV.date.getMinutes() !== 0))) &&
+          episodeInTV &&
+          (episodeInTV.date | isSameDate : today) &&
+          (episodeInTV.date | isAfterDate : today)
+        "
+        class="banner"
+        [style.backgroundColor]="t.colorHEX"
+        [matTooltip]="(episodeInTV.date | date : 'shortTime' : '' : locale) ?? ''"
+      >
+        <mat-icon
+          *ngIf="media.television.live"
+          class="icon-in-text medium without-button"
+          svgIcon="live"
+        ></mat-icon>
+        <mat-icon
+          *ngIf="!media.television.live"
+          class="icon-in-text medium without-button"
+          [svgIcon]="media.television | channelTypeIcon : (channelApiService.channels$ | async)!"
+        ></mat-icon>
+        {{ media.television.live ? ("LIVE." | translate) : "" }}
+        {{
+          media.television.live
+            ? (episodeInTV.date
+              | formatDate : locale : { strict: true }
+              | firstCharToLowercase : "en")
+            : (episodeInTV.date | formatDate : locale : { strict: true })
+        }}
+      </div>
+
+      <!-- Banner: Verfügbar -->
+      <!-- Zeitraum: Heute bis in 2 Wochen -->
+      <div
+        *ngIf="media.availableUntilTodayOrNext2Week"
+        class="banner"
+        [style.backgroundColor]="t.colorHEX"
+        [matTooltip]="(media.availableUntil | date : 'shortDate' : '' : locale) ?? ''"
+      >
+        <mat-icon class="icon-in-text medium without-button" svgIcon="calendar-until"></mat-icon>
+        {{ media.availableUntil | formatDate : locale : { onlyDate: true } }}
+      </div>
+
+      <!-- Bild -->
+      <div mat-card-image class="image">
+        <app-menu
+          *ngIf="media | urlsForPlay as url"
+          class="play-menu"
+          [tooltip]="url.url | urlTitle"
+          [showPlayButton]="true"
+          [groupNames]="URLS_MENU_GROUP_NAMES"
+          [showFirstGroupName]="true"
+          [menuItems]="
+            media
+              | urlsMenu
+                : isSmallScreen.matches
+                : !openUrlOnDeviceApiService.isOpenUrlOnDevice
+                : (searchEngineApiService.searchEngines$ | async)
+          "
+          (onItemClick)="
+            openUrl($event.value.url, $event.event, $event.value.searchEngine, episodeInTV)
+          "
+          (onContextMenu)="openUrl(url.url, $event)"
+        ></app-menu>
+
+        <img
+          *ngIf="media.images.length"
+          loading="lazy"
+          [src]="media.images[0]"
+          [alt]="media.name"
+        />
+        <div *ngIf="!media.images[0]"></div>
+      </div>
+    </div>
+
+    <!-- Titel -->
+    <div class="title">
+      <!-- Genres -->
+      <div
+        class="genre-container"
+        (mouseenter)="onGenreHovered = true"
+        (mouseleave)="onGenreHovered = false"
+      >
+        <div *ngIf="media.genreIds.length > 1" class="genre-list">
+          <ng-container *ngFor="let id of media.genreIds">
+            <mat-icon
+              *ngIf="id | genre as genre"
+              class="medium without-button genre"
+              [svgIcon]="genre.icon"
+              [matTooltip]="genre.name | translate"
+              [style.backgroundColor]="onGenreHovered ? genre.color : undefined"
+              (click)="$event.stopPropagation(); onGenreClick.emit(genre.type)"
+            ></mat-icon>
+          </ng-container>
+        </div>
+      </div>
+
+      <!-- Titel -->
+      <div
+        class="title-text"
+        (mouseenter)="onGenreHovered = media.genreIds.length <= 1"
+        (mouseleave)="onGenreHovered = false"
+      >
+        <!-- Nur ein oder kein Genre -->
+        <ng-container *ngIf="media.genreIds.length === 1">
+          <mat-icon
+            *ngIf="media.genreIds[0] | genre as genre"
+            class="medium without-button genre single"
+            [svgIcon]="genre.icon"
+            [matTooltip]="genre.name | translate"
+            [style.backgroundColor]="onGenreHovered ? genre.color : undefined"
+            (click)="$event.stopPropagation(); onGenreClick.emit(genre.type)"
+          ></mat-icon>
+        </ng-container>
+        <span
+          [ngClass]="{ movie: media.isMovie }"
+          [style.display]="'contents'"
+          [innerHTML]="media.name | extendText : searchTextHighlight ?? '' : '<mark>' : '</mark>'"
+        >
+        </span>
+      </div>
+      <i
+        *ngIf="apiSearchResult || searchTextHighlight"
+        class="name-original"
+        [ngClass]="{ movie: media.isMovie }"
+        [innerHTML]="
+          media.nameOriginal | extendText : searchTextHighlight ?? '' : '<mark>' : '</mark>'
+        "
+      >
+      </i>
+      <!-- Film: Jahreszahl -->
+      <i
+        *ngIf="media.isMovie && media.yearStart"
+        class="year"
+        [innerText]="media.yearStart.toString()"
+      >
+      </i>
+      <!-- Series: Jahreszahl bei Explore oder Suchergebnis -->
+      <i
+        *ngIf="!media.isMovie && media.yearStart && (apiSearchResult || mediaToExplore || showYear)"
+        class="year"
+        [innerText]="media | years"
+      >
+      </i>
+    </div>
+
+    <!-- Buttons im Footer -->
+    <div class="footer" [style.rowGap.px]="mediaToExplore ? 5 : undefined">
+      <ng-container *ngIf="apiSearchResult">
+        <!-- IMDb -->
+        <button
+          *ngIf="media.urlsInfo[0] as url"
+          mat-flat-button
+          class="button-chip medium only-icon"
+          [style.padding.px]="0"
+          [matTooltip]="(url.url | urlTitle) + ': ' + url.url"
+          (click)="openUrl(url.url, $event)"
+        >
+          <img height="16" width="16" loading="lazy" [src]="URL_FAVICON + url.url" />
+        </button>
+      </ng-container>
+
+      <ng-container *ngIf="episodeInTV">
+        <!-- Channel -->
+        <img
+          *ngIf="media.television | channel : (channelApiService.channels$ | async)! as channel"
+          class="channel"
+          [src]="channel.displayIcon"
+          [matTooltip]="channel.name | translate"
+          (click)="$event.stopPropagation()"
+        />
+
+        <div class="spacer"></div>
+
+        <!-- Mehrere Episoden im TV -->
+        <button
+          *ngIf="episodesInTV"
+          matRipple
+          class="button medium button-chip"
+          (click)="$event.stopPropagation()"
+        >
+          <span style="padding-left: 10px; padding-right: 8px"
+            >{{
+              (media | televisionEpisodeCount : episodesInTV[0].episode) > 9 &&
+              (media | televisionEpisodeCount : episodesInTV[episodesInTV.length - 1].episode) > 9
+                ? ""
+                : "E"
+            }}{{ media | televisionEpisodeCount : episodesInTV[0].episode }}-{{
+              media | televisionEpisodeCount : episodesInTV[episodesInTV.length - 1].episode
+            }}
+          </span>
+
+          <mat-divider class="divider-vertical-20px" [vertical]="true"></mat-divider>
+
+          <button
+            mat-button
+            class="medium only-icon"
+            [matTooltip]="(expanded ? 'COLLAPSE_ALL' : 'EXPAND_ALL') | translate"
+            (click)="$event.stopPropagation(); onTelevisionExpand.emit()"
+          >
+            <mat-icon
+              [svgIcon]="expanded ? 'arrow-multiple-left' : 'arrow-multiple-right'"
+            ></mat-icon>
+          </button>
+        </button>
+
+        <ng-container *ngIf="!apiSearchResult">
+          <ng-container
+            *ngIf="{
+              info:
+                'E' +
+                (media | episode : episodeInTV.episode : locale) +
+                ' | ' +
+                (episodeInTV.date | date : 'EEEEEE d.M.' : '' : locale) +
+                ', ' +
+                (episodeInTV.date | date : 'shortTime' : '' : locale),
+              infoIfMovie:
+                (episodeInTV.date | date : 'EEEEEE d.M.' : '' : locale) +
+                ', ' +
+                (episodeInTV.date | date : 'shortTime' : '' : locale),
+              watched: 'WATCHED' | translate,
+              notWatched: 'NOT_WATCHED' | translate,
+              onMoveToNext: 'DID_NOT_TAKE_PLACE' | translate
+            } as data"
+          >
+            <button
+              *ngIf="isMobileScreen.matches"
+              matRipple
+              class="button medium button-chip"
+              (click)="mediaEpisodeService.onEpisodeInTVClicked(media, episodeInTV, $event, [
+          {
+            value: 'info',
+            icon: 'info',
+            text: media.isMovie ? data.infoIfMovie : data.info,
+            groupKey: 'info',
+          },
+          {
+            value: 'note',
+            icon: 'note',
+            text: 'NOTE.ADD',
+            groupKey: 'note',
+          },
+          {
+            value: 'next',
+            text: data.watched,
+            icon: 'check',
+            groupKey: 'action',
+          },
+          {
+            value: 'onNotWatched',
+            text: data.notWatched,
+            icon: 'clear',
+            groupKey: 'action',
+          },
+          ])"
+            >
+              <ng-container *ngIf="!media.isMovie">
+                <span style="padding-left: 8px; padding-right: 8px">{{
+                  media | televisionEpisode : episodeInTV.episode
+                }}</span>
+
+                <mat-divider class="divider-vertical-20px" [vertical]="true"></mat-divider>
+              </ng-container>
+
+              <span
+                *ngIf="
+                  timeInsteadOfDateOnEpisodeInTV &&
+                    (episodeInTV.date.getHours() !== 0 || episodeInTV.date.getMinutes() !== 0);
+                  else date
+                "
+                style="padding-left: 8px; padding-right: 8px"
+                >{{ episodeInTV.date | formatTimeOfDate : locale }}</span
+              >
+
+              <ng-template #date>
+                <span style="padding-left: 8px; padding-right: 8px">{{
+                  episodeInTV.date | date : "EEEEEE d.M." : "" : locale
+                }}</span>
+              </ng-template>
+            </button>
+
+            <button *ngIf="!isMobileScreen.matches" matRipple class="button medium button-chip">
+              <ng-container *ngIf="!onChipHovered || noEpisodeInTVActions">
+                <ng-container *ngIf="!media.isMovie">
+                  <span style="padding-left: 8px; padding-right: 8px">{{
+                    media | televisionEpisode : episodeInTV.episode
+                  }}</span>
+
+                  <mat-divider class="divider-vertical-20px" [vertical]="true"></mat-divider>
+                </ng-container>
+
+                <span
+                  *ngIf="
+                    timeInsteadOfDateOnEpisodeInTV &&
+                      (episodeInTV.date.getHours() !== 0 || episodeInTV.date.getMinutes() !== 0);
+                    else date
+                  "
+                  style="padding-left: 8px; padding-right: 8px"
+                  >{{ episodeInTV.date | formatTimeOfDate : locale }}</span
+                >
+
+                <ng-template #date>
+                  <span style="padding-left: 8px; padding-right: 8px">{{
+                    episodeInTV.date | date : "EEEEEE d.M." : "" : locale
+                  }}</span>
+                </ng-template>
+              </ng-container>
+
+              <ng-container *ngIf="onChipHovered && !noEpisodeInTVActions">
+                <!-- [style.margin]="'0px -5px'"> -->
+
+                <app-episode-in-television-buttons
+                  [media]="media"
+                  [episodeInTV]="episodeInTV"
+                ></app-episode-in-television-buttons>
+              </ng-container>
+            </button>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+
+      <!-- Ohne Episode im TV -->
+      <ng-container *ngIf="!episodesInTV && !episodeInTV">
+        <!-- DVD -->
+        <mat-icon
+          *ngIf="media.dvd"
+          class="medium"
+          svgIcon="dvd"
+          [matTooltip]="'DVD.AVAILABLE' | translate"
+          [style.color]="'white'"
+          (click)="$event.stopPropagation()"
+        ></mat-icon>
+
+        <!-- Channel -->
+        <img
+          *ngIf="media.television | channel : (channelApiService.channels$ | async)! as channel"
+          class="channel"
+          [src]="channel.displayIcon"
+          [matTooltip]="channel.name | translate"
+          (click)="$event.stopPropagation()"
+        />
+
+        <div *ngIf="!mediaToExplore && !apiSearchResult" class="spacer"></div>
+
+        <ng-container *ngIf="mediaToExplore || apiSearchResult">
+          <!-- Sprache -->
+          <ng-container *ngIf="media.languages.length">
+            <ng-container
+              *ngIf="
+                media.languages
+                  | mostSignificantFlags
+                    : media.countries
+                    : 1
+                    : (localeService.locale$ | async)! as flags
+              "
+            >
+              <mat-icon
+                *ngFor="let flag of flags"
+                class="medium without-button"
+                [svgIcon]="flag.icon"
+                [matTooltip]="flag.tooltip"
+              ></mat-icon>
+            </ng-container>
+          </ng-container>
+
+          <div class="spacer"></div>
+
+          <app-button-rating-metascore
+            [rating]="media.ratingMetascore"
+            [small]="true"
+            [disabled]="true"
+          />
+          <app-button-rating-imdb [rating]="media.ratingImdb" [medium]="true" [disabled]="true" />
+        </ng-container>
+
+        <!-- Aktuelle Staffel -->
+        <ng-container *ngIf="!mediaToExplore && !media.isMovie && !apiSearchResult">
+          <!-- Staffelstart bei Hover-->
+          <ng-container
+            *ngIf="
+              media.currentEpisode.isSeasonStart &&
+                media.television &&
+                !media.television.onlyChannel &&
+                media.television.onlyStart &&
+                onChipHovered;
+              else episode
+            "
+          >
+            <button
+              mat-flat-button
+              class="medium"
+              [style.minWidth.px]="55"
+              [style.padding]="'0px 8px'"
+              [matTooltip]="('ACTION.REMOVE' | translate) + ' & ' + ('EPISODE.NEXT' | translate)"
+              (click)="$event.stopPropagation(); onRemoveTelevisionAndNextEpisode()"
+            >
+              <mat-icon [style.margin.px]="0" svgIcon="television-not"></mat-icon>
+              <mat-icon [style.margin.px]="0" svgIcon="count-up"></mat-icon>
+            </button>
+          </ng-container>
+
+          <!-- Normale aktelle Episode -->
+          <ng-template #episode>
+            <ng-container *ngIf="isMobileScreen.matches">
+              <button
+                *ngIf="{
+                  currentEpisode: media | currentEpisode : media.currentEpisode : locale,
+                  icon: (media | episodeIcon)?.icon ?? 'info'
+                } as data"
+                matRipple
+                class="button medium button-chip button-with-content"
+                (click)="onEpisodeClick($event, [
+                        {
+                          value: 'info',
+                          text: data.currentEpisode,
+                          icon: data.icon,
+                          groupKey: 'info',
+                        },
+                        {
+                          value: 'note',
+                          text: 'NOTE.',
+                          icon: 'note',
+                          groupKey: 'action',
+                        },
+                        {
+                          value: 'next-episode',
+                          text: 'EPISODE.NEXT',
+                          icon: 'arrow-single-up',
+                          groupKey: 'action',
+                        },
+                        {
+                          value: 'next-episodes',
+                          text: 'EPISODE.NEXT_MULTIPLE',
+                          icon: 'arrow-multiple-up',
+                          groupKey: 'action',
+                        },
+                        {
+                          value: 'previous-episode',
+                          text: 'EPISODE.PREVIOUS',
+                          icon: 'arrow-single-down',
+                          groupKey: 'action',
+                        },
+                      ])"
+              >
+                <ng-container *ngIf="!media.isMovie">
+                  <mat-icon
+                    *ngIf="media | episodeIcon as typ"
+                    [svgIcon]="typ.icon"
+                    [matTooltip]="typ.name | translate"
+                    class="medium without-button"
+                  ></mat-icon>
+
+                  {{ data.currentEpisode }}
+                </ng-container>
+              </button>
+            </ng-container>
+
+            <ng-container *ngIf="!isMobileScreen.matches">
+              <button
+                *ngIf="media | currentEpisode : media.currentEpisode : locale as currentEpisode"
+                [ngClass]="{
+                  'button medium button-chip': true,
+                  'button-with-content': !onChipHovered
+                }"
+              >
+                <ng-container *ngIf="!onChipHovered">
+                  <mat-icon
+                    *ngIf="media | episodeIcon as typ"
+                    [svgIcon]="typ.icon"
+                    [matTooltip]="typ.name | translate"
+                    class="medium without-button"
+                  ></mat-icon>
+
+                  {{ currentEpisode }}
+                </ng-container>
+
+                <ng-container *ngIf="onChipHovered">
+                  <button
+                    *ngIf="!media.isMovie"
+                    mat-button
+                    class="medium only-icon"
+                    [matTooltip]="'NOTE.' | translate"
+                    (click)="onAddNoteToCurrentEpisode($event)"
+                  >
+                    <mat-icon svgIcon="note"></mat-icon>
+                  </button>
+
+                  <mat-divider class="divider-vertical-20px" [vertical]="true"></mat-divider>
+
+                  <button
+                    mat-button
+                    class="medium only-icon"
+                    [matTooltip]="'EPISODE.PREVIOUS' | translate"
+                    [style.marginRight.px]="-5"
+                    (click)="onPreviousEpisode($event)"
+                  >
+                    <mat-icon svgIcon="arrow-single-down"></mat-icon>
+                  </button>
+
+                  <button
+                    mat-button
+                    class="medium only-icon"
+                    [matTooltip]="'EPISODE.NEXT' | translate"
+                    (click)="onNextEpisode($event)"
+                  >
+                    <mat-icon svgIcon="arrow-single-up"></mat-icon>
+                  </button>
+                </ng-container>
+              </button>
+            </ng-container>
+          </ng-template>
+        </ng-container>
+      </ng-container>
+    </div>
+    <!-- Spezialepisoden -->
+    <app-episode-details-list
+      [media]="media"
+      [episode]="episodeInTV?.episode || media.currentEpisode"
+      [showNextEpisodeDetails]="showNextEpisodeDetails"
+    ></app-episode-details-list>
+  </div>
+
+  <ng-container *ngIf="episodeInTV ? episodeInTV.episode : media.currentEpisode as episode">
+    <mat-progress-bar
+      *ngIf="
+        episode
+          | episodeProgressByEpisodeDetailsWithDuration
+            : media.episodeDetails
+            : media.runtime as progress;
+        else episodeProgress
+      "
+      style="--mdc-linear-progress-active-indicator-color: white"
+      class="white progress-bar-height"
+      mode="determinate"
+      [value]="progress"
+      [color]="t.color"
+    ></mat-progress-bar>
+
+    <ng-template #episodeProgress>
+      <mat-progress-bar
+        *ngIf="media | episodeProgress : media.currentEpisode as progressValue"
+        mode="determinate"
+        class="progress-bar-height"
+        [value]="progressValue"
+        [color]="t.color"
+      ></mat-progress-bar>
+    </ng-template>
+  </ng-container>
+</mat-card>

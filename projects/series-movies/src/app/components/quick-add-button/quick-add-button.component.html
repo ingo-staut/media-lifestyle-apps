@@ -1,0 +1,106 @@
+<div
+  *ngIf="entries && entries.length"
+  class="scrollbox no-scrollbar-on-mobile"
+  [style.overflowX]="overflowXAuto ? 'auto' : 'scroll'"
+>
+  <div
+    class="scrollbox-content"
+    [style.paddingTop.px]="margin?.top || 0"
+    [style.paddingRight.px]="margin?.right || 20"
+    [style.paddingLeft.px]="
+      (entries.length > 1 && entries[0].strategy === Strategy.APPEND ? 0 : margin?.left) || 0
+    "
+  >
+    <!-- Sticky Buttons links -->
+    <div
+      *ngIf="entries.length > 1 && entries[0].strategy === Strategy.APPEND"
+      class="sticky-buttons"
+      [style.paddingLeft.px]="margin?.left || 0"
+    >
+      <button
+        mat-flat-button
+        class="only-icon wipe-animation"
+        color="primary"
+        (click)="onQuickAddAppendAll()"
+      >
+        <mat-icon svgIcon="add-to-text"></mat-icon>
+      </button>
+
+      <button
+        mat-flat-button
+        class="only-icon wipe-animation"
+        color="primary"
+        (click)="onQuickReplaceAll()"
+      >
+        <mat-icon svgIcon="replace"></mat-icon>
+      </button>
+    </div>
+
+    <button
+      *ngFor="let entry of entries"
+      mat-flat-button
+      [matTooltip]="entry.tooltip || entry.text || '' | translate"
+      [color]="
+        (media | isMediaEqualToEntry : entry)
+          ? ''
+          : entry.strategy === Strategy.APPEND
+          ? 'primary'
+          : !(media[key] | isValue : media)
+          ? 'primary'
+          : 'warn'
+      "
+      [ngClass]="{
+        'no-padding-right':
+          (!isSmallScreen.matches && (!!(entry.value['url'] | url) || !!(entry.value | url))) ||
+          key === 'name' ||
+          key === 'nameOriginal',
+        'with-image': !!entry.images?.length || withSwitchButton,
+        'with-text': true,
+        'small-padding': imageSize > 16 && isSmallScreen.matches,
+        'wipe-animation': !(media | isMediaEqualToEntry : entry) || !(media[key] | isValue : media),
+        'wipe-animation-error':
+          !(media | isMediaEqualToEntry : entry) &&
+          entry.strategy !== Strategy.APPEND &&
+          (media[key] | isValue : media),
+        equal: (media | isMediaEqualToEntry : entry)
+      }"
+      (click)="onClick($event, entry)"
+    >
+      <mat-icon *ngFor="let icon of entry.icons" [svgIcon]="icon"></mat-icon>
+
+      <img
+        *ngFor="let image of entry.images"
+        [height]="imageSize"
+        [width]="imageSize"
+        loading="lazy"
+        [src]="image"
+      />
+
+      <!-- Text nicht anzeigen bei kleinem Bildschirm, außer es gibt keine Bilder -->
+      <span *ngIf="entry.text && (!isSmallScreen.matches || !entry.images?.length)">
+        {{ entry.text | translate }}
+      </span>
+
+      <!-- Url öffnen -->
+      <ng-container *ngIf="!isSmallScreen.matches">
+        <button
+          *ngIf="entry.value['url'] ?? entry.value | url as url"
+          mat-button
+          class="only-icon"
+          (click)="onOpenUrl($event, url)"
+        >
+          <mat-icon svgIcon="open"></mat-icon>
+        </button>
+      </ng-container>
+
+      <button
+        *ngIf="withSwitchButton"
+        mat-button
+        class="only-icon"
+        (click)="onSwitchClicked($event)"
+      >
+        <mat-icon [svgIcon]="key === 'name' ? 'arrow-down' : 'arrow-up'"></mat-icon>
+      </button>
+    </button>
+  </div>
+</div>

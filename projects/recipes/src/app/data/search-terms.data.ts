@@ -1,0 +1,17 @@
+export const SEARCHTERM_SUGGESTIONS = [
+  "Kartoffeln",
+  "Äpfel",
+  "Vegan",
+  "Kuchen",
+  "Torte",
+  "Salat",
+  "Pizza",
+  "Brot",
+  "Käse",
+  "Schokolade",
+  "Kaffee",
+  "Kekse",
+  "Eis",
+  "Gurken",
+  "Tomaten",
+];

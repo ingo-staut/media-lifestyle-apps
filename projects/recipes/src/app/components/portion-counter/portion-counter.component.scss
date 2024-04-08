@@ -1,0 +1,14 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+:host {
+  display: flex;
+  gap: $padding-s;
+
+  flex-shrink: 1;
+  min-width: 0px;
+}
+
+.text-with-fraction {
+  font-size: 18px;
+}

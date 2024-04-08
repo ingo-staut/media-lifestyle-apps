@@ -1,0 +1,499 @@
+<!-- Sticky Titel -->
+<header class="page-header">
+  <mat-icon *ngFor="let icon of data.icons" class="large" [svgIcon]="icon"></mat-icon>
+
+  <h1 [innerHTML]="data.title | translate : data.titleReplace | highlightQuotesInText"></h1>
+
+  <button
+    *ngIf="data.actionClose"
+    mat-flat-button
+    (click)="onCancel()"
+    class="only-icon"
+    [matTooltip]="'ACTION.CLOSE' | translate"
+  >
+    <mat-icon svgIcon="clear"></mat-icon>
+  </button>
+</header>
+
+<form [formGroup]="formGroup" mat-dialog-content>
+  <!-- Text -->
+  <p
+    *ngIf="data.text"
+    [class]="data.textCssClassList"
+    [innerHTML]="data.text | translate : data.textReplace | highlightQuotesInText"
+  ></p>
+
+  <div
+    *ngIf="
+      data.textInputs?.length ||
+      data.numberInputs?.length ||
+      data.tristateInput ||
+      data.dateInputs?.length ||
+      data.timeInputs?.length ||
+      data.itemsInputs?.length ||
+      (data.buttonInputs && data.buttonInputs.length > 0) ||
+      (data.tristateButtonsInputs && data.tristateButtonsInputs.length > 0)
+    "
+    class="list"
+  >
+    <!-- Textfelder -->
+    <div *ngFor="let input of data.textInputs" mat-list-item [style.order]="input.order">
+      <span
+        *ngIf="input.placeholder"
+        matListItemTitle
+        [ngClass]="{ title: true, disabled: input.disabled }"
+      >
+        {{ input.placeholder | translate | required : !!input.required }}
+      </span>
+
+      <app-formfield
+        *ngIf="input as input"
+        [parentFormGroup]="formGroup"
+        [formfieldType]="FormfieldType.TEXT"
+        [formfieldKey]="'textInput' + input.placeholder"
+        [formfieldName]="input.placeholder"
+        [formfieldIcon]="input.icon"
+        [required]="input.required ?? false"
+        [hint]="input.hint ?? '' | translate : { value: input.hintReplace ?? '' | translate }"
+        [disabled]="input.disabled"
+        [tabIndex]="input.order"
+        [completerList]="input.completerList"
+        (submit)="onEnter()"
+        (onActionClicked)="onFormfieldActionClicked($event)"
+      >
+      </app-formfield>
+      <ng-container
+        *ngIf="
+          input
+            | imageByFormfield
+              : (formGroup.controls['textInput' + input.placeholder].valueChanges | async) ??
+                  formGroup.controls['textInput' + input.placeholder].value as image
+        "
+      >
+        <img class="preview" loading="lazy" [src]="image" [alt]="'IMAGE.NO' | translate" />
+      </ng-container>
+    </div>
+
+    <!-- Zahlenfelder -->
+    <div *ngFor="let input of data.numberInputs" mat-list-item [style.order]="input.order">
+      <span
+        *ngIf="input.placeholder"
+        matListItemTitle
+        [ngClass]="{ title: true, disabled: input.disabled }"
+      >
+        {{ input.placeholder | translate | required : !!input.required }}
+      </span>
+
+      <app-formfield
+        [parentFormGroup]="formGroup"
+        [formfieldType]="FormfieldType.NUMBER"
+        [formfieldKey]="'numberInput' + input.placeholder"
+        [formfieldName]="input.placeholder"
+        [formfieldIcon]="input.icon"
+        [required]="input.required ?? false"
+        [min]="input.min"
+        [max]="input.max"
+        [sliderSteps]="input.sliderSteps"
+        [sliderMin]="input.sliderMin"
+        [sliderMax]="input.sliderMax"
+        [sliderNoNumberFormatting]="input.sliderNoNumberFormatting"
+        [formatAsDuration]="input.formatAsDuration"
+        [suffixLong]="input.suffixLong ?? '' | translate"
+        [suffixShort]="input.suffixShort ?? '' | translate"
+        [hint]="input.hint ?? '' | translate : { value: input.hintReplace ?? '' | translate }"
+        [disabled]="input.disabled"
+        [tabIndex]="input.order"
+        [showSlider]="input.showSlider"
+        [hideSliderInitially]="input.hideSliderInitially"
+        [sliderWithIcons]="input.sliderWithIcons"
+        (submit)="onEnter()"
+      >
+      </app-formfield>
+    </div>
+
+    <!-- Datumsfeld -->
+    <div *ngFor="let input of data.dateInputs" mat-list-item [style.order]="input.order">
+      <span
+        *ngIf="input.placeholder"
+        matListItemTitle
+        [ngClass]="{ title: true, disabled: input.disabled }"
+      >
+        {{ input.placeholder | translate | required : !!input.required }}
+      </span>
+
+      <app-formfield
+        [parentFormGroup]="formGroup"
+        [formfieldType]="FormfieldType.DATE"
+        [formfieldKey]="'dateInput' + input.placeholder"
+        [formfieldName]="input.placeholder"
+        formfieldIcon="calendar"
+        [required]="input.required ?? false"
+        [hint]="input.hint ?? '' | translate : { value: input.hintReplace ?? '' | translate }"
+        [disabled]="input.disabled"
+        [tabIndex]="input.order"
+        [minDate]="input.min"
+        [maxDate]="input.max"
+        (submit)="onEnter()"
+      >
+      </app-formfield>
+    </div>
+
+    <!-- Uhrzeitfelder -->
+    <div *ngFor="let input of data.timeInputs" mat-list-item [style.order]="input.order">
+      <span
+        *ngIf="input.placeholder"
+        matListItemTitle
+        [ngClass]="{ title: true, disabled: input.disabled }"
+      >
+        {{ input.placeholder | translate | required : !!input.required }}
+      </span>
+
+      <app-formfield
+        [parentFormGroup]="formGroup"
+        [formfieldType]="FormfieldType.TIME"
+        [formfieldKey]="'timeInput' + input.placeholder"
+        [formfieldName]="input.placeholder"
+        [value]="input.time"
+        formfieldIcon="time"
+        [required]="input.required ?? false"
+        [hint]="input.hint ?? '' | translate : { value: input.hintReplace ?? '' | translate }"
+        [disabled]="input.disabled"
+        [tabIndex]="input.order"
+        [minutesSteps]="input.minutesSteps"
+        (submit)="onEnter()"
+      >
+      </app-formfield>
+    </div>
+
+    <!-- Textareafelder -->
+    <div *ngFor="let input of data.textareaInputs" mat-list-item [style.order]="input.order">
+      <span
+        *ngIf="input.placeholder"
+        matListItemTitle
+        [ngClass]="{ title: true, disabled: input.disabled }"
+      >
+        {{ input.placeholder | translate | required : !!input.required }}
+      </span>
+
+      <app-formfield
+        *ngIf="input as input"
+        [parentFormGroup]="formGroup"
+        [formfieldType]="FormfieldType.TEXTAREA"
+        [formfieldKey]="'textareaInput' + input.placeholder"
+        [formfieldName]="input.placeholder"
+        [required]="input.required ?? false"
+        [hint]="input.hint ?? '' | translate : { value: input.hintReplace ?? '' | translate }"
+        [disabled]="input.disabled"
+        [tabIndex]="input.order"
+        (submit)="onEnter()"
+        (onActionClicked)="onFormfieldActionClicked($event)"
+      >
+      </app-formfield>
+    </div>
+
+    <!-- TwostateButtons -->
+    <div
+      *ngFor="let input of data.buttonInputs"
+      mat-list-item
+      class="buttonInput"
+      [style.order]="input.order"
+    >
+      <span
+        *ngIf="input.placeholder"
+        matListItemTitle
+        [ngClass]="{ title: true, disabled: input.disabled }"
+      >
+        {{ input.placeholder | translate }}
+      </span>
+
+      <button
+        #buttonInput
+        mat-flat-button
+        [disabled]="
+          data.disableButtonsAndSetTrueIfValueOfNumberInputIsZero &&
+          data.numberInputs &&
+          data.numberInputs.length &&
+          (data.numberInputs[0].number ?? 0) <= 1
+        "
+        [tabIndex]="input.order"
+        [matTooltip]="input.texts[input.state ? 0 : 1] | translate"
+        (click)="input.state = !input.state"
+      >
+        <mat-icon [svgIcon]="input.icons[input.state ? 0 : 1]"></mat-icon>
+        {{ input.texts[input.state ? 0 : 1] | translate }}
+      </button>
+    </div>
+
+    <!-- TristateButtons -->
+    <div *ngIf="data.tristateInput as input" mat-list-item [style.order]="input.order">
+      <span
+        *ngIf="input.placeholder"
+        matListItemTitle
+        [ngClass]="{ title: true, disabled: input.disabled }"
+      >
+        {{ input.placeholder | translate }}
+      </span>
+
+      <app-button-tristate
+        [(state)]="tristateButtonState"
+        [icons]="input.icons"
+        [texts]="input.texts"
+        [tabIndex]="input.order"
+      >
+      </app-button-tristate>
+    </div>
+
+    <!-- Toggle-Gruppe -->
+    <div *ngFor="let input of data.toggleGroupInputs" mat-list-item [style.order]="input.order">
+      <span
+        *ngIf="input.placeholder"
+        matListItemTitle
+        [ngClass]="{ title: true, disabled: input.disabled }"
+      >
+        {{ input.placeholder | translate }}
+      </span>
+
+      <app-toggle-group
+        [(value)]="input.selectedKey"
+        [showText]="input.showText"
+        [showTextOnlySelected]="input.showTextOnlySelected"
+        [data]="input.data"
+      ></app-toggle-group>
+    </div>
+
+    <!-- Dropdown -->
+    <div *ngFor="let input of data.dropdownInputs" mat-list-item [style.order]="input.order">
+      <span
+        *ngIf="input.placeholder"
+        matListItemTitle
+        [ngClass]="{ title: true, disabled: input.disabled }"
+      >
+        {{ input.placeholder | translate }}
+      </span>
+
+      <app-dropdown
+        [data]="input.data"
+        [tooltip]="input.placeholder"
+        [tabIndex]="input.order"
+        [(selectedKey)]="input.selectedKey"
+      >
+      </app-dropdown>
+    </div>
+
+    <!-- Dropdowns mit Gruppen -->
+    <div
+      *ngFor="let input of data.dropdownWithGroupsInputs"
+      mat-list-item
+      [style.order]="input.order"
+    >
+      <span
+        *ngIf="input.placeholder"
+        matListItemTitle
+        [ngClass]="{ title: true, disabled: input.disabled }"
+      >
+        {{ input.placeholder | translate | required : !!input.required }}
+      </span>
+
+      <app-dropdown-with-groups
+        [parentFormGroup]="formGroup"
+        [formfieldKey]="'dropdownWithGroup' + input.placeholder"
+        [formfieldName]="input.placeholder"
+        [noneText]="input.noneText"
+        [noneIcon]="input.noneIcon"
+        [defaultText]="input.defaultText"
+        [groups]="input.data"
+        [required]="input.required"
+      ></app-dropdown-with-groups>
+    </div>
+
+    <!-- Buttons: TwoState Tristate -->
+    <div *ngFor="let input of data.tristateButtonsInputs" mat-list-item [style.order]="input.order">
+      <span
+        *ngIf="input.placeholder"
+        matListItemTitle
+        [ngClass]="{ title: true, disabled: input.disabled }"
+      >
+        {{ input.placeholder | translate }}
+      </span>
+
+      <app-check-button-group
+        [(buttons)]="input.buttons"
+        [twoStates]="input.twoStates"
+      ></app-check-button-group>
+    </div>
+
+    <!-- Aktionsbuttons -->
+    <div *ngFor="let input of data.actionButtons" mat-list-item [style.order]="input.order">
+      <span
+        *ngIf="input.placeholder"
+        matListItemTitle
+        [ngClass]="{ title: true, disabled: input.disabled }"
+      >
+        {{ input.placeholder | translate }}
+      </span>
+
+      <app-action-button-group [buttons]="input.buttons" />
+    </div>
+
+    <!-- List -->
+    <div *ngFor="let input of data.itemsInputs" mat-list-item [style.order]="input.order">
+      <span
+        *ngIf="input.placeholder"
+        matListItemTitle
+        [ngClass]="{ 'title special sticky': true, disabled: input.disabled }"
+      >
+        {{ input.placeholder | translate }}
+      </span>
+
+      <app-list
+        [(items)]="input.items"
+        [itemsType]="input.itemsType ?? ItemsType.STRING"
+        [maxHeight]="input.maxHeight"
+        [addIconWhenBigButton]="input.addIconWhenBigButton"
+        [completerList]="input.completerList"
+        [ingredientsConversion]="input.ingredientsConversion"
+        [firstCharToTitleCase]="input.firstCharToTitleCase ?? true"
+        [showDeleteButton]="input.showDeleteButton ?? false"
+        [showAddFromClipboardButton]="input.showAddFromClipboardButton ?? false"
+        [smallerAddInputWidth]="true"
+      ></app-list>
+    </div>
+
+    <!-- Gruppenfelder -->
+    <div
+      *ngFor="let groupInput of data.groupInputs; index as index"
+      mat-list-item
+      [style.order]="groupInput.order"
+    >
+      <mat-divider class="divider"></mat-divider>
+
+      <span
+        *ngIf="groupInput.placeholder"
+        matListItemTitle
+        [ngClass]="{ 'title sticky main-background-1': true, disabled: groupInput.disabled }"
+      >
+        {{ groupInput.placeholder | translate }}
+      </span>
+
+      <div class="group">
+        <ng-container *ngFor="let input of groupInput.inputs; index as i">
+          <app-formfield
+            *ngIf="input.type === FormfieldType.NUMBER && showInputsInGroupIndex[index]"
+            [style.order]="input.order"
+            [parentFormGroup]="formGroup"
+            [formfieldType]="FormfieldType.NUMBER"
+            [formfieldKey]="input.key"
+            [formfieldName]="input.placeholder"
+            [formfieldIcon]="$any(input).icon"
+            [required]="$any(input).required ?? false"
+            [min]="$any(input).min"
+            [max]="$any(input).max"
+            [sliderSteps]="$any(input).sliderSteps"
+            [sliderMin]="$any(input).sliderMin"
+            [sliderMax]="$any(input).sliderMax"
+            [sliderNoNumberFormatting]="$any(input).sliderNoNumberFormatting"
+            [suffixLong]="$any(input).suffixLong ?? ''"
+            [suffixShort]="$any(input).suffixShort ?? ''"
+            [hint]="input.hint ?? '' | translate : { value: input.hintReplace ?? '' | translate }"
+            [disabled]="input.disabled"
+            [tabIndex]="input.order"
+            (submit)="onEnter()"
+            (valueChange)="onInputNumberChange($event, index, i)"
+          >
+          </app-formfield>
+
+          <app-formfield
+            *ngIf="input.type === FormfieldType.TEXT && showInputsInGroupIndex[index]"
+            [style.order]="input.order"
+            [parentFormGroup]="formGroup"
+            [formfieldType]="FormfieldType.TEXT"
+            [formfieldKey]="input.key"
+            [formfieldName]="input.placeholder"
+            [formfieldIcon]="$any(input).icon"
+            [required]="$any(input).required ?? false"
+            [hint]="input.hint ?? '' | translate : { value: input.hintReplace ?? '' | translate }"
+            [disabled]="input.disabled"
+            [tabIndex]="input.order"
+            (submit)="onEnter()"
+            (onActionClicked)="onFormfieldActionClicked($event)"
+            (valueChange)="onInputTextChange($event, index, i)"
+          >
+          </app-formfield>
+
+          <app-check-button-group
+            *ngIf="input.type === FormfieldType.TOGGLE"
+            [(buttons)]="$any(input).buttons"
+            [twoStates]="$any(input).twoStates"
+            (buttonsChange)="onButtonInGroupChange($event, index)"
+          ></app-check-button-group>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div *ngIf="data.checkBoxes" class="checkboxes">
+  <mat-checkbox *ngFor="let checkBox of data.checkBoxes" [(ngModel)]="checkBox.checked">{{
+    (!checkBox.checked && checkBox.texts.length > 1 && checkBox.texts[1]
+      ? checkBox.texts[1]
+      : checkBox.texts[0]
+    ) | translate
+  }}</mat-checkbox>
+</div>
+
+<!-- Sticky Buttons unten rechts -->
+<footer
+  *ngIf="data.actionPrimary || data.actions || data.actionCancel || data.actionDelete"
+  class="page-footer buttons"
+>
+  <!-- Primary Button -->
+  <button
+    *ngIf="actionPrimary as a"
+    mat-flat-button
+    [disabled]="!isAllowedSubmit"
+    [color]="a.color ?? 'primary'"
+    [matTooltip]="a.text | translate"
+    (click)="onActionPrimary(a)"
+  >
+    <mat-icon [svgIcon]="a.icon"></mat-icon>
+    {{ a.text | translate }}
+  </button>
+
+  <!-- Löschen Button -->
+  <button
+    *ngIf="data.actionDelete"
+    mat-flat-button
+    color="warn"
+    [onlyIconSmallScreen]="data.actionDeleteIconDirective ?? ButtonIconDirective.NORMAL"
+    [text]="'ACTION.DELETE' | translate"
+    [matTooltip]="'ACTION.DELETE' | translate"
+    (click)="onActionDelete()"
+  >
+    <mat-icon svgIcon="delete"></mat-icon>
+  </button>
+
+  <!-- Zusätzliche Buttons -->
+  <button
+    *ngFor="let action of data.actions"
+    mat-flat-button
+    [color]="action.color ?? ''"
+    [onlyIconSmallScreen]="action.buttonIconDirective ?? ButtonIconDirective.ALWAYS_ICON_AND_TEXT"
+    [text]="action.text | translate"
+    [matTooltip]="action.text | translate"
+    (click)="onActionClick(action)"
+  >
+    <mat-icon *ngIf="action.icon" [svgIcon]="action.icon"></mat-icon>
+  </button>
+
+  <!-- Abbrechen Button mit Standard-Text und keinem Text bei kleinem Bildschirm -->
+  <button
+    *ngIf="data.actionCancel"
+    mat-flat-button
+    [onlyIconSmallScreen]="data.actionCancelIconDirective ?? ButtonIconDirective.NORMAL"
+    [text]="'ACTION.CANCEL' | translate"
+    [matTooltip]="'ACTION.CANCEL' | translate"
+    (click)="onCancel()"
+  >
+    <mat-icon svgIcon="clear"></mat-icon>
+  </button>
+</footer>

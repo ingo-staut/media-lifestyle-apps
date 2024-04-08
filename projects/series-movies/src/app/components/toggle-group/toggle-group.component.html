@@ -1,0 +1,49 @@
+<ng-container *ngIf="!showToggle">
+  <button
+    *ngIf="value | dropdownDataSelected : data as selected"
+    mat-flat-button
+    [ngClass]="{
+      'only-icon toggle-button': true,
+      animation: _showButtonAnimation && showAnimation
+    }"
+    [color]="
+      selected.value?.toString() ||
+      (highlightIfClosedAndNotFirstValue && (value | dropdownDataSelectedIndex : data) !== 0
+        ? 'primary'
+        : null)
+    "
+    [matTooltip]="selected.name | translate"
+    [style]="'--width: ' + width + 'px;'"
+    (click)="onButtonClick()"
+  >
+    <mat-icon [svgIcon]="selected.icon"></mat-icon>
+  </button>
+</ng-container>
+
+<mat-button-toggle-group
+  #toggle
+  *ngIf="showToggle"
+  [ngClass]="{ 'toggle-group': true, animation: showAnimation }"
+  id="toggle"
+  [style.height.px]="40"
+  [style.flexShrink]="shrinkable ? 1 : 0"
+  [style]="'--width: ' + width + 'px;'"
+  [value]="value"
+  (valueChange)="valueChange.emit($event)"
+>
+  <mat-button-toggle
+    *ngFor="let d of data; index as index"
+    [value]="d.key"
+    [matTooltip]="d.tooltip ?? d.name | translate"
+    (click)="onToggleButtonClick(index)"
+  >
+    <mat-icon *ngIf="d.icon" [svgIcon]="d.icon" class="medium without-button"></mat-icon>
+    <span
+      *ngIf="showText || (d.key === value && showTextOnlySelected)"
+      class="text"
+      [style.paddingLeft.px]="d.icon ? 10 : 0"
+    >
+      {{ d.name | translate }}
+    </span>
+  </mat-button-toggle>
+</mat-button-toggle-group>

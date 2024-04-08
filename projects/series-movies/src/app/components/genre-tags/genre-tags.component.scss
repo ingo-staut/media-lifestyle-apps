@@ -1,0 +1,58 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+.chip {
+  border-radius: $border-radius;
+  box-shadow: $shadow-material;
+}
+
+// Nur wenn "hover" unterstützt wird
+@media (hover: hover) {
+  .clear-button {
+    display: none;
+  }
+
+  .chip:hover .clear-button {
+    display: block;
+  }
+}
+
+.sticky-function-buttons {
+  position: sticky;
+  left: 0;
+  padding-left: $padding-m;
+  background-color: $main-background;
+  box-shadow: 0px 0px 5px 5px $main-background;
+  display: flex;
+  gap: $padding-s;
+  z-index: 2;
+
+  &.no-padding {
+    padding-left: 0;
+  }
+}
+
+.scrollbox-content {
+  padding-left: 0;
+}
+
+.drag-placeholder {
+  border-radius: $border-radius;
+  border: 2px dotted $background-2;
+  // Breite wird in Komponente berechnet
+  width: 100px;
+}
+
+.text {
+  padding-bottom: 2px;
+}
+
+.emoji {
+  font-size: $text-size;
+  padding-bottom: $padding-xs;
+  text-shadow: $shadow-small-image;
+}
+
+.button {
+  padding-left: 12px;
+}

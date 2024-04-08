@@ -1,0 +1,101 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+.container {
+  display: flex;
+  align-items: stretch;
+}
+
+section {
+  .title {
+    background-color: $main-background-1;
+    height: 50px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: $shadow-toolbar;
+
+    &.only-text {
+      display: flex;
+      align-items: center;
+      gap: $padding-s;
+      padding: 0px $padding-m;
+    }
+
+    > mat-tab-group {
+      margin-left: auto;
+    }
+
+    mat-tab-group.with-show-in-search-button {
+      max-width: calc(100% - 40px);
+    }
+
+    div.buttons {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: $padding-s;
+    }
+  }
+}
+
+.animation {
+  transition: margin 1s ease-in-out;
+}
+
+button.collapse {
+  position: relative;
+  cursor: pointer;
+  border: none;
+  color: white;
+  background: $main-background-1;
+  border-radius: $border-radius;
+  animation: expand 1s ease-in-out;
+  animation-fill-mode: forwards;
+  margin-left: -20px;
+  width: 0;
+
+  transition: background 250ms ease-in-out;
+
+  mat-icon {
+    opacity: 0;
+    animation: opacity 1s ease-in-out;
+    animation-fill-mode: forwards;
+    animation-delay: 0.5s;
+  }
+
+  &:hover {
+    background: $background-2;
+  }
+
+  &:focus {
+    background: $background-3;
+  }
+}
+
+@keyframes expand {
+  0% {
+    margin-left: -20px;
+    width: 0;
+  }
+  100% {
+    margin-left: 0px;
+    width: 30px;
+  }
+}
+
+button.expand-overlay {
+  position: relative;
+  cursor: pointer;
+  z-index: 30;
+  border: none;
+  background: rgba($main-background, 0.5);
+  opacity: 0;
+  animation: opacity 1s ease-in-out 500ms;
+  animation-fill-mode: forwards;
+  transition: background 250ms ease-in-out;
+
+  &:hover {
+    background: transparent;
+  }
+}

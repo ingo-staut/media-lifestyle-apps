@@ -1,0 +1,38 @@
+<button
+  [id]="'rating-button-' + id"
+  [ngClass]="{ 'only-icon': !rating }"
+  mat-flat-button
+  [matTooltip]="text | translate"
+  type="button"
+  (click)="onOpen()"
+>
+  <mat-icon [svgIcon]="rating ? icon + '-full' : icon"></mat-icon>
+  {{ rating ? rating : "" }}
+</button>
+
+<div *ngIf="open" class="button-plain" [style.left.px]="isSmallScreen.matches && left_px">
+  <button
+    mat-button
+    class="only-icon medium button-back"
+    (click)="onClose()"
+    [matTooltip]="'BACK' | translate"
+  >
+    <mat-icon svgIcon="arrow-left"></mat-icon>
+  </button>
+  <div (mouseenter)="onHoverEnter()" (mouseleave)="onHoverLeave()" class="buttons">
+    <button
+      mat-button
+      [ngClass]="{ 'only-icon': !isSmallScreen.matches, medium: true }"
+      *ngFor="let r of ratingList; index as index"
+      (click)="onRating(index)"
+      (mouseenter)="onHover(index)"
+      [matTooltip]="index ? index.toString() : (noText | translate)"
+      [color]="r && hover ? 'primary' : ''"
+    >
+      <mat-icon *ngIf="index === 0" svgIcon="clear"></mat-icon>
+      <mat-icon *ngIf="index" [svgIcon]="r ? icon + '-full' : icon"></mat-icon>
+      {{ isSmallScreen.matches ? index : "" }}
+    </button>
+  </div>
+  <span class="number"> {{ rating_tmp }} </span>
+</div>

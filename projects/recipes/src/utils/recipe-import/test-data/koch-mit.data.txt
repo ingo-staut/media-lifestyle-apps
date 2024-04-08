@@ -1,0 +1,2060 @@
+
+<!DOCTYPE html>
+<html lang="de-DE" class="no-js">
+
+<head>
+
+            <script>
+    dataLayer = [{"Pagetype":"Artikel","Category":"K\u00fcche","Subcategory1":"Kochen &amp; Grillen"}];
+</script>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="google-site-verification" content="5eziCbN7vUK7ga7AQhjJq3U387DeaX-eQCIGjWswJKg">
+    <meta property="fb:pages" content="2173299849562550" />
+    <title>Yum-Yum-Salat - Nudelsalat mit asiatischem Flair &#8226; Koch-Mit</title>
+
+    
+<link rel="preload" href="https://www.koch-mit.de/app/themes/kommkochen/lib/fonts/MMTextProWebTT-Bold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://www.koch-mit.de/app/themes/kommkochen/lib/fonts/MMTextProWebTT-Semibold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://www.koch-mit.de/app/themes/kommkochen/lib/fonts/MMTextProWebTT-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://www.koch-mit.de/app/themes/kommkochen/lib/fonts/SourceSansPro-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://www.koch-mit.de/app/themes/kommkochen/lib/fonts/SourceSansPro-Semibold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://www.koch-mit.de/app/themes/kommkochen/lib/fonts/fontawesome-webfont.woff2" as="font" type="font/woff2" crossorigin>
+
+<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+	
+	<meta name="description" content="Nudelsalat mal anders: Intensiv würziger Yum-Yum-Salat mit knackigem Chinakohl, frischem Feldsalat und gerösteten Cashewkernen." />
+	<link rel="canonical" href="https://www.koch-mit.de/kueche/yum-yum-salat/" />
+	<meta property="og:locale" content="de_DE" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Yum-Yum-Salat | Nudelsalat mit asiatischem Flair" />
+	<meta property="og:description" content="Nudelsalat mal anders: Intensiv würziger Yum-Yum-Salat mit knackigem Chinakohl, frischem Feldsalat und gerösteten Cashewkernen." />
+	<meta property="og:url" content="https://www.koch-mit.de/kueche/yum-yum-salat/" />
+	<meta property="og:site_name" content="Koch-Mit" />
+	<meta property="article:publisher" content="https://www.facebook.com/kochmitde" />
+	<meta property="article:modified_time" content="2023-08-10T11:48:27+00:00" />
+	<meta property="og:image" content="https://www.koch-mit.de/app/uploads/2023/04/yum-yum-salat1.jpeg" />
+	<meta property="og:image:width" content="1000" />
+	<meta property="og:image:height" content="562" />
+	<meta property="og:image:type" content="image/jpeg" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:label1" content="Geschätzte Lesezeit" />
+	<meta name="twitter:data1" content="3 Minuten" />
+	
+
+
+<link rel='dns-prefetch' href='//js-mw.mm-cmty.de' />
+<link rel='dns-prefetch' href='//mmco-output.koch-mit.de' />
+
+
+<script type="application/ld+json" class="schema-premium">[null,{"@context":"https:\/\/schema.org","@type":"Recipe","image":{"@type":"ImageObject","url":"https:\/\/www.koch-mit.de\/app\/uploads\/2023\/04\/yum-yum-salat1.jpeg","contentUrl":"https:\/\/www.koch-mit.de\/app\/uploads\/2023\/04\/yum-yum-salat1.jpeg","width":1200,"height":562,"alternativeHeadline":"Yum-Yum-Salat auf einem weißen Teller.","name":"chinese-noodles-with-tofu-and-cashew-nuts-2","headline":"Yum-Yum-Salat","caption":"Diesen Nudelsalat kannst du mit Stäbchen essen. ","description":"Diesen Nudelsalat kannst du mit Stäbchen essen. ","uploadDate":"2023-04-18 12:45:17","dateModified":"2023-08-08 10:49:51","encodingFormat":"image\/jpeg"},"name":"Yum-Yum-Salat: Rezept mit Chinakohl","url":"https:\/\/www.koch-mit.de\/kueche\/yum-yum-salat\/","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.koch-mit.de\/kueche\/yum-yum-salat\/#webpage"},"description":"Dieser Nudelsalat verwendet asiatische Instant-Nudeln als Grundzutat. Welche Marke du für dieses Gericht verwendest, ist egal. Hauptsache du pimpst den Salat mit frischen und knusprigen Zutaten, wie in diesem Rezept.  ","headline":"Yum-Yum-Salat | Nudelsalat mit asiatischem Flair","dateCreated":"2023-04-22T09:00:47+02:00","datePublished":"2023-04-22T09:00:47+02:00","dateModified":"2023-08-10T13:48:27+02:00","prepTime":"PT00H15M00S","cookTime":"PT00H30M00S","keywords":"yum yum salat, yum yum salat rezept, yum yum salat chinakohl, chinakohl salat yum yum ","publisher":{"@type":"Organization","@id":"https:\/\/www.koch-mit.de\/#organization","url":"https:\/\/www.koch-mit.de\/","name":"KOCH MIT","description":"","logo":{"@type":"ImageObject","@id":"https:\/\/www.koch-mit.de\/#logo","url":"https:\/\/www.koch-mit.de\/app\/uploads\/2020\/06\/Koch-Mit-Quadrat-weiss.jpg","width":600,"height":60},"image":{"@type":"ImageObject","@id":"https:\/\/www.koch-mit.de\/#logo","url":"https:\/\/www.koch-mit.de\/app\/uploads\/2020\/06\/Koch-Mit-Quadrat-weiss.jpg","width":600,"height":60},"sameAs":["https:\/\/www.facebook.com\/kochmitbleibfit\/","https:\/\/www.instagram.com\/kochmitbleibfit\/","https:\/\/www.youtube.com\/channel\/UCB5InFXkLo7xvnr6FN8pwuQ","https:\/\/www.pinterest.de\/kochmitbleibfit\/"]},"author":{"@type":"Person","name":"Julia Uehren","description":"Als Foodjournalistin schreibt Julia nicht nur gerne übers Essen, sondern steht auch liebend gerne selber in der Küche. Ganz nach dem Motto: Essen gut, alles gut!"},"tool":[],"supply":[],"step":[],"totalTime":"PT00H45M00S","recipeIngredient":["2 Pck. asiatische Instant-Nudeln inkl. Gewürzmischung (z.B. Yum-Yum)  ","200 g Tofu (Natur)","160 g Cashewkerne ","2 Zehen Knoblauch ","50 g Feldsalat  ","½ Kopf Chinakohl ","3 EL Sonnenblumenöl ","1 EL Sesamöl ","4 EL Weißweinessig ","1 EL Honig ","Öl zum Anbraten","Sojasauce"],"recipeInstructions":[{"@type":"HowToStep","text":"Zunächst bereitest du die Sauce für den Yum-Yum Salat zu. Dafür vermengst du in einer großen Schüssel Sonnenblumenöl mit dem Sesamöl, Weißweinessig und Honig sowie der Gewürzmischung, die den Instant-Nudeln beiliegt.\r\n"},{"@type":"HowToStep","text":"Dann zerbröselst du die trockenen Nudeln in die Schüssel und gibst einen Schluck kochendes Wasser dazu. Rühre alles einmal gut durch, decke die Schüssel zu und lass die Nudeln ca. 10-15 Minuten quellen.\r\n"},{"@type":"HowToStep","text":"Damit der Tofu schön knusprig wird, ist es wichtig, ihm vor dem Anbraten möglichst viel Feuchtigkeit zu entziehen. Dafür kannst du den Tofu in ein sauberes Küchentuch einschlagen und mit einem Gegenstand beschweren. Wenn du ihn ca. 10 Minuten so liegen lässt, saugt das Küchentuch ein Großteil der Feuchtigkeit auf. Anschließend schneidest du den Tofu in ca. 1-2 cm große Würfel.\r\n"},{"@type":"HowToStep","text":"Für einen schönen Crunch röstest du die Cashewkerne in einer großen Pfanne ohne Öl bei großer Hitze an. Ob du die Cashewkerne dafür grob hackst oder ganz lässt, entscheidest du ganz nach Geschmack. Wichtig ist nur, dass du die Pfanne dabei regelmäßig schwenkst, damit die Cashewkerne von allen Seiten gleichmäßig geröstet werden und nicht anbrennen. Sind die Cashewkerne goldbraun, nimmst du sie aus der Pfanne und gibst sie zu deinem Yum-Yum-Salat.\r\n"},{"@type":"HowToStep","text":"Nun gibst du Öl in die Pfanne und brätst den Tofu darin bei großer Hitze scharf an, bis er rundherum goldbraun und knusprig ist. Dann schälst du den Knoblauch, drückst ihn durch eine Knoblauchpresse, mengst ihn unter den Tofu und dünstest ihn für ca. 5 Minuten mit an.\r\n"},{"@type":"HowToStep","text":"Den Feldsalat wäschst du gründlich in kaltem Wasser und schüttelst ihn dann trocken. Vom Chinakohl entfernst du die äußeren Blätter und den Strunk. Den Kohl schneidest du dann in feine Streifen.\r\n"},{"@type":"HowToStep","text":"Jetzt gibst du den Tofu, den Feldsalat und den Chinakohl zu den Nudeln und vermengst alles gut. Wenn du magst, kannst du den Yum-Yum-Salat noch mal mit Sojasauce nachwürzen."}],"@id":"https:\/\/www.koch-mit.de\/kueche\/yum-yum-salat#recipe","aggregateRating":{"@type":"AggregateRating","ratingValue":5,"ratingCount":3}}]</script>
+
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}body .is-layout-grid{display: grid;}body .is-layout-grid > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+</style>
+<link rel='stylesheet' id='toc-screen-css' href='https://www.koch-mit.de/app/plugins/table-of-contents-plus/screen.min.css' type='text/css' media='all' />
+<style id='toc-screen-inline-css' type='text/css'>
+div#toc_container {background: #ffffff;border: 1px solid #ff0d0d;}div#toc_container ul li {font-size: 100%;}div#toc_container p.toc_title {color: #000000;}div#toc_container p.toc_title a,div#toc_container ul.toc_list a {color: #000000;}div#toc_container p.toc_title a:hover,div#toc_container ul.toc_list a:hover {color: #454545;}div#toc_container p.toc_title a:hover,div#toc_container ul.toc_list a:hover {color: #454545;}div#toc_container p.toc_title a:visited,div#toc_container ul.toc_list a:visited {color: #000000;}
+</style>
+<link rel='stylesheet' id='mm-kk-css' href='https://www.koch-mit.de/app/themes/kommkochen/lib/css/kochmit.min.css?v=2024-03-15__01-36-38' type='text/css' media='all' />
+<link rel='stylesheet' id='borlabs-cookie-css' href='https://www.koch-mit.de/app/cache/borlabs-cookie/borlabs-cookie_1_de.css' type='text/css' media='all' />
+<script type="text/javascript" src="https://www.koch-mit.de/app/plugins/stop-user-enumeration/frontend/js/frontend.js" id="stop-user-enumeration-js"></script>
+<script type="text/javascript" id="borlabs-cookie-prioritize-js-extra">
+/* <![CDATA[ */
+var borlabsCookiePrioritized = {"domain":".koch-mit.de","path":"\/","version":"4","bots":"1","optInJS":{"statistics":{"google-tag-manager":"PCEtLSBHb29nbGUgVGFnIE1hbmFnZXIgLS0+DQo8c2NyaXB0PihmdW5jdGlvbih3LGQscyxsLGkpe3dbbF09d1tsXXx8W107d1tsXS5wdXNoKHsiZ3RtLnN0YXJ0IjoNCm5ldyBEYXRlKCkuZ2V0VGltZSgpLGV2ZW50OiJndG0uanMifSk7dmFyIGY9ZC5nZXRFbGVtZW50c0J5VGFnTmFtZShzKVswXSwNCmo9ZC5jcmVhdGVFbGVtZW50KHMpLGRsPWwhPSJkYXRhTGF5ZXIiPyImbD0iK2w6IiI7ai5hc3luYz10cnVlO2ouc3JjPQ0KImh0dHBzOi8vd3d3Lmdvb2dsZXRhZ21hbmFnZXIuY29tL2d0bS5qcz9pZD0iK2krZGw7Zi5wYXJlbnROb2RlLmluc2VydEJlZm9yZShqLGYpOw0KfSkod2luZG93LGRvY3VtZW50LCJzY3JpcHQiLCJkYXRhTGF5ZXIiLCJHVE0tUEJIREtLIik7DQo8L3NjcmlwdD4NCjwhLS0gRW5kIEdvb2dsZSBUYWcgTWFuYWdlciAtLT4NCjwhLS0gR29vZ2xlIFRhZyBNYW5hZ2VyIChub3NjcmlwdCkgLS0+DQo8bm9zY3JpcHQ+DQogICAgPGlmcmFtZSBzcmM9Imh0dHBzOi8vd3d3Lmdvb2dsZXRhZ21hbmFnZXIuY29tL25zLmh0bWw\/aWQ9R1RNLVBCSERLSyINCiAgICAgICAgICAgIGhlaWdodD0iMCIgd2lkdGg9IjAiIHN0eWxlPSJkaXNwbGF5Om5vbmU7dmlzaWJpbGl0eTpoaWRkZW4iPjwvaWZyYW1lPg0KPC9ub3NjcmlwdD4NCjwhLS0gRW5kIEdvb2dsZSBUYWcgTWFuYWdlciAobm9zY3JpcHQpIC0tPg=="}}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.koch-mit.de/app/plugins/wordpress-borlabs-cookie/assets/javascript/borlabs-cookie-prioritize.min.js" id="borlabs-cookie-prioritize-js"></script>
+<script></script><link rel="alternate" type="application/rss+xml" title="Koch-Mit RSS Feed" href="https://www.koch-mit.de/kueche/yum-yum-salat/feed/" /><meta name="generator" content="Powered by WPBakery Page Builder - drag and drop page builder for WordPress."/>
+<noscript><style> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript>    <script src="https://www.koch-mit.de/app/themes/kommkochen/lib/js/modernizr.min.js"></script>
+
+    
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "headline": "Yum-Yum-Salat | Nudelsalat mit asiatischem Flair",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://www.koch-mit.de/app/uploads/2023/04/yum-yum-salat1-940x330.jpeg",
+    "height": 330,
+    "width": 940  },
+  "datePublished": "2023-04-22T09:00:47+02:00",
+  "dateModified": "2023-08-10T13:48:27+02:00",
+  "description": "Dieser Nudelsalat verwendet asiatische Instant-Nudeln als Grundzutat. Welche Marke du für dieses Gericht verwendest, ist egal. Hauptsache du pimpst den Salat mit frischen und knusprigen Zutaten, wie in diesem Rezept.  ",
+  "author": {
+    "@type": "Person",
+    "name": "Julia Uehren"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "KOCH-MIT",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.koch-mit.de/app/themes/kommkochen/lib/image/koch-mit.png",
+      "width": 60,
+      "height": 60    }
+  }
+}
+</script>
+
+    <link rel="dns-prefetch" href="//www.koch-mit.de">
+    <link rel="preconnect" href="//www.koch-mit.de">
+
+    <link rel="preconnect" href="//js-mw.mm-cmty.de">
+
+    <link rel="preconnect" href="//mmco-output.koch-mit.de">
+
+    <link rel="dns-prefetch" href="//beacon.krxd.net">
+    <link rel="preconnect" href="//beacon.krxd.net">
+
+    <link rel="dns-prefetch" href="//cdn.krxd.net">
+    <link rel="preconnect" href="//cdn.krxd.net">
+
+
+</head>
+
+
+<body class="kk_food_article-template-default single single-kk_food_article postid-71607 wpb-js-composer js-comp-ver-7.4 vc_responsive" data-need-logged-in="">
+
+    <div class="svg-sprite">
+        <svg xmlns="http://www.w3.org/2000/svg"><symbol viewBox="0 0 37 32" id="icon-category-food"><title>category-food</title> <path fill="#fff" d="M36.862 1.837s0.516-0.526 0.196-0.836c-0.836-0.846-2.147-0.588-3.252-0.341-4.676 1.197-8.186 4.346-11.479 7.907-1.548 1.672-0.826 3.179-0.217 4.635l-3.623 3.623-4.036-4.057c-0.276-0.313-0.444-0.726-0.444-1.178 0-0.245 0.049-0.479 0.139-0.691 0.305-1.815-0.541-2.641-1.883-3.777-0.268-0.217-0.537-0.423-0.908-0.712-2.168-1.899-6.483-5.77-7.226-6.41l-0.475 0.485 6.668 6.988-0.289 0.299-7.123-6.545-0.526 0.526 6.627 6.988-0.237 0.237-7.019-6.586-0.526 0.526 6.524 7.092-0.299 0.31-6.968-6.658-0.485 0.465c0.63 0.743 4.49 5.068 6.4 7.277 0.279 0.341 0.495 0.609 0.702 0.877 1.156 1.363 1.951 2.168 3.778 1.879 0.2-0.085 0.432-0.135 0.677-0.135 0.45 0 0.861 0.169 1.173 0.446l4.055 4.107-11.355 11.355c-0.219 0.219-0.355 0.522-0.355 0.857 0 0.669 0.542 1.212 1.212 1.212 0.335 0 0.638-0.136 0.857-0.355l11.355-11.355 11.355 11.355c0.218 0.217 0.519 0.351 0.852 0.351 0.667 0 1.208-0.541 1.208-1.208 0-0.335-0.136-0.638-0.356-0.857l-11.355-11.355 6.049-6.070z"/> </symbol><symbol viewBox="0 0 40 32" id="icon-category-health"><title>category-health</title> <path fill="#fff" d="M30.132 0c-3.541 0-7.422 2.684-8.454 5.791-1.311-2.963-4.945-5.791-8.495-5.791-0.003 0-0.007 0-0.011 0-5.535 0-10.028 4.464-10.074 9.988-0 0.242-0 0.479-0 0.717l0.072 0.557h-2.219c-0.029-0.003-0.064-0.005-0.098-0.005-0.519 0-0.939 0.421-0.939 0.939s0.421 0.939 0.939 0.939c0.035 0 0.069-0.002 0.103-0.006l2.515 0 0.403 1.321c3.014 8.444 13.729 15.030 17.806 17.548 4.335-2.787 18.581-11.355 18.581-22.008-0.047-5.529-4.539-9.992-10.075-9.992-0.018 0-0.037 0-0.055 0zM36.397 13.13h-10.323l-0.867-2.684-5.667 9.29-4.057-6.606h-12.015l-0.31-1.868h13.419l2.942 4.821 6.194-10.157 1.724 5.337h8.929c0.034-0.004 0.073-0.007 0.113-0.007 0.519 0 0.939 0.421 0.939 0.939s-0.421 0.939-0.939 0.939c-0.029 0-0.057-0.001-0.085-0.004z"/> </symbol><symbol viewBox="0 0 33.25 35.83" id="icon-category-specials"><title>category-specials</title><path d="M18.67 17.04l5.54.25-4.34 3.64 1.48 5.63-4.63-3.23-4.63 3.23 1.48-5.63-4.34-3.64 5.54-.25 1.95-5.47zm-4.83-13.3v3h5.76v-3zm11.6.66v3.26a8.59 8.59 0 0 1 4.8 7.67v8.91a8.6 8.6 0 0 1-8.57 8.6H11.58A8.6 8.6 0 0 1 3 24.23v-8.9a8.6 8.6 0 0 1 5-7.77V4.33a11.64 11.64 0 0 0-8 11v8.91a11.6 11.6 0 0 0 11.58 11.6h10.09a11.6 11.6 0 0 0 11.58-11.6v-8.9A11.64 11.64 0 0 0 25.44 4.4zM10.9 0a1.9 1.9 0 0 0-1.92 1.88v4.9a1.92 1.92 0 0 0 3.84 0v-4.9A1.9 1.9 0 0 0 10.9 0zm11.61 0a1.9 1.9 0 0 0-1.91 1.88v4.9a1.92 1.92 0 0 0 3.83 0v-4.9A1.9 1.9 0 0 0 22.52 0z" fill="#fff" fill-rule="evenodd"/></symbol><symbol viewBox="0 0 51.98 46" id="icon-checkmark"><title>checkmark</title><path d="M17.1 51a1.87 1.87 0 0 1-1-.5l-13.7-15.3a1.15 1.15 0 0 1 0-1.7 1.15 1.15 0 0 1 1.7 0l12.8 14.1 35-42.2a1.38 1.38 0 0 1 1.7-.2 1.38 1.38 0 0 1 .2 1.7l-35.4 43.6a2.35 2.35 0 0 1-1.3.5z" transform="translate(-2.03 -5)" fill="#df0000"/></symbol><symbol viewBox="0 0 54 54" id="icon-chefs-hat-o"><title>chefs-hat-o</title><path d="M40.73 4.86c-3.47 0-7.33 1.93-10 4.24-3.12-5.01-8.13-8.1-13.53-8.1-8.87 0-16.2 7.71-16.2 17.36 0 .89.06 4.2.77 5.79 1.93 5 5.79 9.64 10.8 11.19v19.66h34.72v-19.29a16.38 16.38 0 0 0 7.71-14.27c0-8.87-6.17-16.58-14.27-16.58zm3.77 29.22a4.78 4.78 0 0 1-1.46.47c0 4.24.39 16.59.39 17a1.51 1.51 0 0 1-1.54 1.54h-23.89c-.77 0-1.54-1.16-1.54-1.93v-15.45h2.31a7 7 0 0 0 3.09-.77 4.77 4.77 0 0 0 1.14-.77 2.66 2.66 0 0 0-1.94-1.17c-6.94 0-14.27-2.31-16.2-8.87a15.87 15.87 0 0 1-.77-6.56c0-6.57 4.62-13.48 13.11-13.48 5.4 0 9.64 2.7 12.34 7.71h2.7c2.7-2.31 5.4-5 8.87-5 8.1 0 10 6.17 10 14.66a15.72 15.72 0 0 1-6.61 12.62z" transform="translate(-1 -1)" fill="#df0000"/></symbol><symbol viewBox="0 0 54 54" id="icon-chefs-hat"><title>chefs-hat</title><path d="M40.73 4.86c-3.47 0-7.33 1.93-10 4.24-3.12-5.01-8.13-8.1-13.53-8.1-8.87 0-16.2 7.71-16.2 17.36 0 .89.06 4.2.77 5.79 1.93 5 5.79 9.64 10.8 11.19v19.66h34.72v-19.29a16.38 16.38 0 0 0 7.71-14.27c0-8.87-6.17-16.58-14.27-16.58z" transform="translate(-1 -1)" fill="#df0000"/></symbol><symbol viewBox="0 0 21 32" id="icon-live-show"><title>live-show</title> <path fill="#fff" d="M5.338 10.962v3.329h11.341v-3.21c1.52-0.928 2.519-2.578 2.519-4.462 0-0.033-0-0.066-0.001-0.1 0-2.826-2.026-5.286-4.66-5.286-1.132 0-2.394 0.617-3.265 1.355-1.022-1.601-2.657-2.588-4.42-2.588-2.897 0-5.291 2.46-5.291 5.54 0 0.289 0.020 1.34 0.252 1.85 0.631 1.583 1.89 3.077 3.526 3.572z"/> <path fill="#fff" d="M15.871 22.511c-1.242 1.302-2.984 2.118-4.917 2.139-1.995-0.021-3.781-0.879-5.030-2.238-5.032 1.578-5.924 5.457-5.924 6.919v2.669h21.333v-1.607c0-1.534-0.556-6.047-5.462-7.882z"/> <path fill="#fff" d="M9.182 22.1l0.046 0.020c0.121 0.053 0.278 0.11 0.438 0.159l0.132 0.038c0.148 0.041 0.289 0.069 0.449 0.096l0.124 0.020c0.173 0.025 0.374 0.040 0.578 0.041 0.206-0.001 0.407-0.015 0.603-0.043l0.093-0.018c0.181-0.028 0.335-0.062 0.485-0.103l0.027-0.022c0.195-0.056 0.355-0.113 0.51-0.179l-0.001 0.011c1.974-0.839 3.381-3.039 3.381-5.621v-0.029c0.358-0.043 0.635-0.341 0.643-0.705l-11.353-0.001c0.005 0.319 0.215 0.587 0.504 0.679 0.005 0.019 0.005 0.033 0.005 0.048-0.003 2.576 1.389 4.765 3.335 5.61z"/> </symbol><symbol viewBox="0 0 1120 1024" id="icon-logo-icon"><title>logo-icon</title> <path fill="#e20613" d="M390.4 294.4l-64-230.4c-3.2-12.8-16-19.2-28.8-16l-176 44.8c-12.8 3.2-19.2 16-16 32l64 230.4c3.2 12.8 105.6 121.6 105.6 121.6l60.8 227.2c-9.6 9.6-16 22.4-9.6 35.2l67.2 249.6c6.4 19.2 25.6 28.8 44.8 25.6l57.6-16c19.2-6.4 28.8-25.6 25.6-44.8l-73.6-249.6c-3.2-12.8-16-22.4-28.8-25.6l-60.8-227.2c0 0 35.2-144 32-156.8zM268.8 108.8c-3.2-9.6 3.2-19.2 12.8-19.2s16 3.2 19.2 9.6l51.2 188.8c3.2 9.6-3.2 16-9.6 19.2-9.6 3.2-16-3.2-19.2-9.6l-54.4-188.8zM230.4 320c3.2 9.6-3.2 16-9.6 19.2-9.6 3.2-16-3.2-19.2-9.6l-54.4-188.8c-3.2-9.6 3.2-16 12.8-19.2s16 3.2 19.2 9.6l51.2 188.8zM291.2 304c3.2 9.6-3.2 16-9.6 19.2-9.6 3.2-19.2-3.2-22.4-9.6l-51.2-188.8c-3.2-9.6 3.2-19.2 12.8-19.2 9.6-3.2 16 3.2 19.2 9.6l51.2 188.8z"/> <path fill="#e20613" d="M768 598.4l-12.8 54.4c-12.8 3.2-25.6 12.8-28.8 28.8l-67.2 268.8c-6.4 19.2 6.4 41.6 28.8 44.8l64 16c19.2 6.4 41.6-6.4 44.8-28.8l67.2-268.8c3.2-16-3.2-28.8-12.8-38.4l166.4-665.6c0 0-185.6 76.8-310.4 572.8l60.8 16z"/> </symbol><symbol viewBox="0 0 54 40" id="icon-menu-search"><title>menu-search</title><path d="M45 19.46c-5.53 0-10 4.73-10 10.6a11.15 11.15 0 0 0 1.75 6 .46.46 0 0 0 .14.29l-7.56 7.88a1.37 1.37 0 0 0 0 1.72l1.67 1.73a1.18 1.18 0 0 0 1.62 0l7.7-8.31a8.72 8.72 0 0 0 4.68 1.29c5.53 0 10-4.73 10-10.6s-4.46-10.6-10-10.6zm0 18a7.19 7.19 0 0 1-7-7.45 7 7 0 1 1 14 0 7.19 7.19 0 0 1-7 7.5zM3 13.73h36.47a2.14 2.14 0 0 0 2-2.15v-1.43a2.14 2.14 0 0 0-2-2.15h-36.47a2.14 2.14 0 0 0-2 2.15v1.43a2.14 2.14 0 0 0 2 2.15zM3 25.19h29.86a14.87 14.87 0 0 1 3.78-5.73h-33.64a2.14 2.14 0 0 0-2 2.15v1.39a2.14 2.14 0 0 0 2 2.19zM32 30.92h-29a2.14 2.14 0 0 0-2 2.15v1.43a2.14 2.14 0 0 0 2 2.15h30.53a16.23 16.23 0 0 1-1.53-5.73z" transform="translate(-1 -8)" fill="#444"/></symbol><symbol viewBox="0 0 1057 1024" id="icon-newsletter"><title>newsletter</title> <path fill="#df0000" d="M838.909 595.548c-118.253 1.714-212.512 98.544-210.798 216.797s99.401 212.512 217.654 210.798c117.396-1.714 210.798-96.83 210.798-214.226-0.857-118.253-98.544-214.226-217.654-213.369zM950.306 765.215c0 0-52.271 35.99-121.68 173.951l-11.997-1.714c0 0-5.998-23.136-35.99-42.845-11.997-6.855-23.993-14.567-34.276-23.136l4.285-55.699 63.411 63.411c0 0 41.988-96.83 77.978-139.675 18.852-21.423 39.418-41.988 60.84-61.697l-2.571 87.404z"/> <path fill="#df0000" d="M329.051 217.654c-0.857-4.285-5.141-6.855-9.426-5.141s-6.855 5.141-5.141 9.426l24.85 92.546c0.857 4.285 5.141 6.855 9.426 5.141 4.285-0.857 6.855-5.141 5.141-9.426l-24.85-92.546z"/> <path fill="#df0000" d="M299.059 226.223c-0.857-4.285-5.141-6.855-9.426-5.141-4.285 0.857-6.855 5.141-5.141 9.426l24.85 92.546c0.857 4.285 5.141 6.855 9.426 5.141s6.855-5.141 5.141-9.426l-24.85-92.546z"/> <path fill="#df0000" d="M903.177 293.061v5.141c0 0 0 0 0 0v-5.141z"/> <path fill="#fff" d="M347.903 558.701l64.268-9.426-3.428-11.14h-65.982z"/> <path fill="#df0000" d="M288.777 335.906c4.285-0.857 6.855-5.141 5.141-9.426l-24.85-92.546c-0.857-4.285-5.141-6.855-9.426-5.141-4.285 0.857-6.855 5.141-5.141 9.426l24.85 92.546c1.714 4.285 5.998 5.998 9.426 5.141z"/> <path fill="#df0000" d="M884.325 263.926l-434.45-263.926-431.023 263.069c-11.997 7.712-18.852 20.566-18.852 34.276v22.279c0 0.857 0 1.714 0 3.428v420.74c0 0.857 0 0.857 0 1.714v33.419c0 22.279 17.995 40.274 40.274 40.274h550.989c0-3.428 0-6.855 0-9.426 0-76.264 34.276-148.244 94.259-195.374l-33.419-41.131h-400.174l-171.381 210.798h-44.559l186.805-228.793-186.805-245.931h44.559l171.381 228.793h90.832l-2.571-7.712c-1.714-6.855 0.857-13.71 5.141-17.995l-29.992-110.541c0 0-49.7-52.271-51.414-59.126l-30.849-113.111c-1.714-5.998 1.714-12.854 8.569-14.567l86.547-23.136c5.998-1.714 12.854 1.714 14.567 8.569l30.849 113.111c1.714 5.998-15.424 77.121-15.424 77.121l29.992 110.541c6.855 0.857 11.997 5.998 13.71 12.854l6.855 24.85h119.967l8.569-35.133c1.714-6.855 7.712-12.854 14.567-13.71l6.855-26.564-31.705-6.855c60.84-243.361 152.529-280.208 152.529-280.208l-81.406 326.48c5.141 4.285 7.712 11.997 5.998 18.852l-4.285 16.281h51.414l171.381-228.793h44.559l-173.951 230.507-11.997 16.281 26.564 34.276 5.141 5.998c38.561-22.279 82.263-34.276 126.822-34.276 21.423-0.857 43.702 3.428 63.411 11.14v-275.066c0-13.71-6.855-26.564-18.852-34.276z"/> </symbol></svg>    </div>
+
+    <div class="page">
+        <header>
+            
+            <div class="navbar navbar-desktop hidden-xs hidden-ms" role="navigation">
+	<div class="container">
+
+		<div class="navbar-row">
+
+							<div class="navbar-brand">
+    <a href="https://www.koch-mit.de/" title="Koch-Mit" rel="home">
+        <span>KOCH-MIT! Tob dich aus in deiner Küche.</span>
+        <img src="https://www.koch-mit.de/app/themes/kommkochen/lib/image/koch-mit.svg" alt="KOCH-MIT! Tob dich aus in deiner Küche.">
+    </a>
+</div>
+			
+			<div class="navbar-sponsor">
+				<a class="powered-by" href="https://www.mediamarkt.de?rbtc=koc%7crea%7cheader%7c%7cp%7c%7c" target="_blank">
+					<span>powered by MediaMarkt/Saturn</span>
+				</a>
+			</div>
+
+			<div class="navbar-search">
+				<form role="search" method="get" id="searchform" action="https://www.koch-mit.de/search">
+    <div class="input-group">
+        <input class="search-query form-control" id="q" name="q" type="text" autocomplete="off"
+               value=""
+               placeholder="Suchbegriff eingeben">
+
+        <span class="input-group-btn">
+            <button class="btn btn-kk btn-search" type="submit"><i class="fa fa-search"></i></button>
+        </span>
+    </div>
+</form>
+			</div>
+
+			<div class="navbar-user">
+				<div class="mm-cmty">
+	<div class="mm-cmty-user-profile"></div>
+</div>
+            </div>
+
+		</div>
+
+		
+		<div class="collapse navbar-collapse" role="navigation">
+			<nav class="menu-main-container"><ul id="menu-main" class="kk-nav"><li id="menu-item-78822-desktop" class="dropdown menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children"><a target="_blank" href="https://www.mediamarkt.de/"><span>Onlineshop<i class="fa fa-angle-down"></i></span></a>
+<ul class="dropdown-menu">
+	<li id="menu-item-78823-desktop" class="menu-item menu-item-type-custom menu-item-object-custom"><a target="_blank" href="https://www.mediamarkt.de/de/category/k%C3%BChlschr%C3%A4nke-33.html"><span>Kühlschränke</span></a></li>
+	<li id="menu-item-78824-desktop" class="menu-item menu-item-type-custom menu-item-object-custom"><a target="_blank" href="https://www.mediamarkt.de/de/category/k%C3%BChl-gefrierkombinationen-34.html"><span>Kühl-Gefrier-Kombi</span></a></li>
+	<li id="menu-item-78825-desktop" class="menu-item menu-item-type-custom menu-item-object-custom"><a target="_blank" href="https://www.mediamarkt.de/de/category/geschirrsp%C3%BCler-28.html"><span>Geschirrspüler</span></a></li>
+	<li id="menu-item-78826-desktop" class="menu-item menu-item-type-custom menu-item-object-custom"><a target="_blank" href="https://www.mediamarkt.de/de/category/herde-back%C3%B6fen-1201.html"><span>Backofen &#038; Herd</span></a></li>
+	<li id="menu-item-78827-desktop" class="menu-item menu-item-type-custom menu-item-object-custom"><a target="_blank" href="https://www.mediamarkt.de/de/category/k%C3%BCchenkleinger%C3%A4te-54.html"><span>Küchenkleingeräte</span></a></li>
+	<li id="menu-item-78828-desktop" class="menu-item menu-item-type-custom menu-item-object-custom"><a target="_blank" href="https://www.mediamarkt.de/de/category/kaffeevollautomaten-43.html"><span>Kaffeevollautomaten</span></a></li>
+</ul>
+</li>
+<li id="menu-item-41-desktop" class="dropdown menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children"><a href="https://www.koch-mit.de/kueche/"><span>Küche<i class="fa fa-angle-down"></i></span></a>
+<ul class="dropdown-menu">
+	<li id="menu-item-76628-desktop" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.koch-mit.de/kueche/"><span>Alle Rezepte</span></a></li>
+	<li id="menu-item-70969-desktop" class="menu-item menu-item-type-taxonomy menu-item-object-kk_food_taxonomy"><a href="https://www.koch-mit.de/kueche/rezeptsammlungen/"><span>Rezeptsammlungen</span></a></li>
+	<li id="menu-item-70968-desktop" class="menu-item menu-item-type-taxonomy menu-item-object-kk_food_taxonomy current-kk_food_article-ancestor current-menu-parent current-kk_food_article-parent"><a href="https://www.koch-mit.de/kueche/kochen-grillen/"><span>Kochen &amp; Grillen</span></a></li>
+	<li id="menu-item-70962-desktop" class="menu-item menu-item-type-taxonomy menu-item-object-kk_food_taxonomy"><a href="https://www.koch-mit.de/kueche/backen/"><span>Backen</span></a></li>
+	<li id="menu-item-70963-desktop" class="menu-item menu-item-type-taxonomy menu-item-object-kk_food_taxonomy"><a href="https://www.koch-mit.de/kueche/cocktails-kaffee-co/"><span>Cocktails, Kaffee &amp; Co</span></a></li>
+	<li id="menu-item-70966-desktop" class="menu-item menu-item-type-taxonomy menu-item-object-kk_food_taxonomy"><a href="https://www.koch-mit.de/kueche/gesunde-ernaehrung/"><span>Gesunde Ernährung</span></a></li>
+	<li id="menu-item-70965-desktop" class="menu-item menu-item-type-taxonomy menu-item-object-kk_food_taxonomy"><a href="https://www.koch-mit.de/kueche/foodtrends/"><span>Foodtrends</span></a></li>
+	<li id="menu-item-70964-desktop" class="menu-item menu-item-type-taxonomy menu-item-object-kk_food_taxonomy"><a href="https://www.koch-mit.de/kueche/food-gadgets/"><span>Food Gadgets</span></a></li>
+	<li id="menu-item-78837-desktop" class="menu-item menu-item-type-taxonomy menu-item-object-kk_food_taxonomy"><a href="https://www.koch-mit.de/kueche/gut-zu-wissen/"><span>Gut zu Wissen</span></a></li>
+</ul>
+</li>
+<li id="menu-item-48-desktop" class="dropdown menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children"><a href="https://www.koch-mit.de/rezepte/"><span>Rezepte<i class="fa fa-angle-down"></i></span></a>
+<ul class="dropdown-menu">
+	<li id="menu-item-76631-desktop" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.koch-mit.de/rezepte/"><span>Neue Rezepte</span></a></li>
+	<li id="menu-item-70986-desktop" class="dropdown menu-item menu-item-type-taxonomy menu-item-object-kk_recipe_taxonomy menu-item-has-children"><a href="https://www.koch-mit.de/rezepte/mahlzeiten/"><span>Mahlzeiten<i class="fa fa-angle-down"></i></span></a>
+	<ul class="dropdown-menu">
+		<li id="menu-item-70979-desktop" class="menu-item menu-item-type-taxonomy menu-item-object-kk_recipe_taxonomy"><a href="https://www.koch-mit.de/rezepte/fruehstueck/"><span>Frühstück</span></a></li>
+		<li id="menu-item-70991-desktop" class="menu-item menu-item-type-taxonomy menu-item-object-kk_recipe_taxonomy"><a href="https://www.koch-mit.de/rezepte/salate/"><span>Salate</span></a></li>
+		<li id="menu-item-70995-desktop" class="menu-item menu-item-type-taxonomy menu-item-object-kk_recipe_taxonomy"><a href="https://www.koch-mit.de/rezepte/suppe/"><span>Suppe</span></a></li>
+		<li id="menu-item-70981-desktop" class="menu-item menu-item-type-taxonomy menu-item-object-kk_recipe_taxonomy"><a href="https://www.koch-mit.de/rezepte/hauptgerichte/"><span>Hauptgerichte</span></a></li>
+		<li id="menu-item-70978-desktop" class="menu-item menu-item-type-taxonomy menu-item-object-kk_recipe_taxonomy"><a href="https://www.koch-mit.de/rezepte/fleisch-und-fisch/"><span>Fleisch &amp; Fisch</span></a></li>
+		<li id="menu-item-70992-desktop" class="menu-item menu-item-type-taxonomy menu-item-object-kk_recipe_taxonomy"><a href="https://www.koch-mit.de/rezepte/sauce/"><span>Sauce</span></a></li>
+		<li id="menu-item-70976-desktop" class="menu-item menu-item-type-taxonomy menu-item-object-kk_recipe_taxonomy"><a href="https://www.koch-mit.de/rezepte/dessert/"><span>Dessert</span></a></li>
+	</ul>
+</li>
+	<li id="menu-item-867-desktop" class="menu-item menu-item-type-taxonomy menu-item-object-kk_recipe_taxonomy"><a href="https://www.koch-mit.de/rezepte/vegetarisch/"><span>Vegetarisch</span></a></li>
+	<li id="menu-item-62634-desktop" class="menu-item menu-item-type-taxonomy menu-item-object-kk_recipe_taxonomy"><a href="https://www.koch-mit.de/rezepte/vegan/"><span>Vegan</span></a></li>
+	<li id="menu-item-858-desktop" class="menu-item menu-item-type-taxonomy menu-item-object-kk_recipe_taxonomy"><a href="https://www.koch-mit.de/rezepte/kuchen/"><span>Kuchen &amp; Gebäck</span></a></li>
+	<li id="menu-item-47963-desktop" class="menu-item menu-item-type-taxonomy menu-item-object-kk_recipe_taxonomy"><a href="https://www.koch-mit.de/rezepte/brot/"><span>Brot</span></a></li>
+	<li id="menu-item-10604-desktop" class="menu-item menu-item-type-taxonomy menu-item-object-kk_recipe_taxonomy"><a href="https://www.koch-mit.de/rezepte/cheat-day/"><span>Cheat Day</span></a></li>
+	<li id="menu-item-861-desktop" class="menu-item menu-item-type-taxonomy menu-item-object-kk_recipe_taxonomy"><a href="https://www.koch-mit.de/rezepte/getraenke-und-mehr/"><span>Getränke &amp; mehr</span></a></li>
+	<li id="menu-item-64685-desktop" class="menu-item menu-item-type-taxonomy menu-item-object-kk_recipe_taxonomy"><a href="https://www.koch-mit.de/rezepte/snacks/"><span>Snacks</span></a></li>
+</ul>
+</li>
+<li id="menu-item-82401-desktop" class="dropdown menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children"><a href="https://www.koch-mit.de/produkttests/"><span>Produkte<i class="fa fa-angle-down"></i></span></a>
+<ul class="dropdown-menu">
+	<li id="menu-item-82958-desktop" class="dropdown menu-item menu-item-type-taxonomy menu-item-object-kk_producttest_taxonomy menu-item-has-children"><a href="https://www.koch-mit.de/produkttests/kuechenkleingeraete/"><span>Küchenkleingeräte<i class="fa fa-angle-down"></i></span></a>
+	<ul class="dropdown-menu">
+		<li id="menu-item-82403-desktop" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://www.koch-mit.de/produkttests/beste-kuechenmaschine/"><span>Beste Küchenmaschinen</span></a></li>
+		<li id="menu-item-82446-desktop" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://www.koch-mit.de/produkttests/bester-kaffeevollautomat/"><span>Beste Kaffeevollautomaten</span></a></li>
+		<li id="menu-item-83567-desktop" class="menu-item menu-item-type-post_type menu-item-object-kk_product_page"><a href="https://www.koch-mit.de/produkttests/food-processor/"><span>Beste Food Processoren</span></a></li>
+		<li id="menu-item-82445-desktop" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://www.koch-mit.de/produkttests/bester-multikocher/"><span>Beste Multikocher</span></a></li>
+		<li id="menu-item-82404-desktop" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://www.koch-mit.de/produkttests/beste-zerkleinerer/"><span>Beste Zerkleinerer</span></a></li>
+		<li id="menu-item-82677-desktop" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://www.koch-mit.de/produkttests/beste-kuechenwaage/"><span>Beste Küchenwaagen</span></a></li>
+		<li id="menu-item-82942-desktop" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://www.koch-mit.de/produkttests/bester-toaster/"><span>Beste Toaster</span></a></li>
+		<li id="menu-item-82943-desktop" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://www.koch-mit.de/produkttests/beste-vakuumierer/"><span>Beste Vakuumierer</span></a></li>
+		<li id="menu-item-83566-desktop" class="menu-item menu-item-type-post_type menu-item-object-kk_product_page"><a href="https://www.koch-mit.de/produkttests/bester-brotbackautomat/"><span>Beste Brotbackautomaten</span></a></li>
+		<li id="menu-item-82405-desktop" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://www.koch-mit.de/produkttests/thermomix-alternative/"><span>Thermomix-Alternativen</span></a></li>
+	</ul>
+</li>
+	<li id="menu-item-82959-desktop" class="dropdown menu-item menu-item-type-taxonomy menu-item-object-kk_producttest_taxonomy menu-item-has-children"><a href="https://www.koch-mit.de/produkttests/kuechengrossgeraete/"><span>Küchengroßgeräte<i class="fa fa-angle-down"></i></span></a>
+	<ul class="dropdown-menu">
+		<li id="menu-item-82944-desktop" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://www.koch-mit.de/produkttests/backofen-vergleich/"><span>Backofen-Vergleich</span></a></li>
+		<li id="menu-item-82945-desktop" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://www.koch-mit.de/produkttests/guenstige-spuelmaschine/"><span>Günstige Spülmaschinen</span></a></li>
+		<li id="menu-item-83565-desktop" class="menu-item menu-item-type-post_type menu-item-object-kk_product_page"><a href="https://www.koch-mit.de/produkttests/beste-mikrowellen/"><span>Beste Mikrowellen</span></a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-26786-desktop" class="dropdown menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children"><a href="https://www.koch-mit.de/mach-mit/"><span>Mach Mit<i class="fa fa-angle-down"></i></span></a>
+<ul class="dropdown-menu">
+	<li id="menu-item-71913-desktop" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://www.koch-mit.de/aktion/community-vorteile/"><span>Community</span></a></li>
+	<li id="menu-item-60005-desktop" class="menu-item menu-item-type-taxonomy menu-item-object-kk_join_in_taxonomy"><a href="https://www.koch-mit.de/mach-mit/gewinnspiele/"><span>Gewinnspiele</span></a></li>
+</ul>
+</li>
+</ul></nav>		</div>
+		
+
+	</div>
+</div>
+
+<div class="navbar navbar-mobile navbar-fixed-top visible-xs visible-ms Fixed" role="navigation">
+	<div class="container">
+					<div class="navbar-brand">
+    <a href="https://www.koch-mit.de/" title="Koch-Mit" rel="home">
+        <span>KOCH-MIT! Tob dich aus in deiner Küche.</span>
+        <img src="https://www.koch-mit.de/app/themes/kommkochen/lib/image/koch-mit.svg" alt="KOCH-MIT! Tob dich aus in deiner Küche.">
+    </a>
+</div>
+				<a class="powered-by" href="https://www.mediamarkt.de/?rbtc=koc%7Cbut%7Cpowered%20by%20media%20markt%7C%7Cb%7C%7C" target="_blank">
+			<span>powered by MediaMarkt/Saturn</span>
+		</a>
+		<a href="#menu-right" class="icon icon-menu-search pull-right" aria-hidden="true">
+			<svg>
+				<use xlink:href="#icon-menu-search"/>
+			</svg>
+		</a>
+		<div class="mm-cmty">
+	<div class="mm-cmty-user-profile"></div>
+</div>
+	</div>
+</div>
+        </header>
+        <main>
+            <div class="container kk-breadcrumb"><div class="row"><ul class="col-sm-12"><li><a href="https://www.koch-mit.de">Start</a><i class="fa fa-angle-right" aria-hidden="true"></i></li><li><a href="https://www.koch-mit.de/kueche/">Küche</a><i class="fa fa-angle-right" aria-hidden="true"></i></li><li><a href="https://www.koch-mit.de/kueche/kochen-grillen/">Kochen &amp; Grillen</a><i class="fa fa-angle-right" aria-hidden="true"></i></li><li><span>Yum-Yum-Salat | Nudelsalat mit asiatischem Flair</span></li></ul></div></div><div class="container">
+	<div class="c-advertisement">
+		<div id="Kochmit_DetailKitchen_Fireplace_Superbanner_Viewport_XXL_1140_xxl_leaderboard" data-category="kueche" data-sizes="[[1140,250],[970,250],[800,250],[728,90]]" data-pos="atf" class="c-advertisement__banner c-advertisement__banner--1140 u-block@xxl-up"></div>
+		<div id="Kochmit_DetailKitchen_Fireplace_Superbanner_Viewport_XL_1140_xxl_leaderboard" data-category="kueche" data-sizes="[[1140,250],[970,250],[800,250],[728,90]]" data-pos="atf" class="c-advertisement__banner c-advertisement__banner--1140 u-block@xl-up"></div>
+		<div id="Kochmit_DetailKitchen_Top_Viewport_LG_970_large_leaderboard" data-category="kueche" data-sizes="[[970,250],[800,250],[728,90]]" data-pos="atf" class="c-advertisement__banner c-advertisement__banner--970 u-block@md-lg"></div>
+		<div id="Kochmit_DetailKitchen_Top_Viewport_MD_728_medium_leaderboard" data-category="kueche" data-sizes="[728,90]" data-pos="atf" class="c-advertisement__banner c-advertisement__banner--728x90 u-block@sm-md"></div>
+		<div id="Kochmit_DetailKitchen_Top_Viewport_XS_300_small_rectangle" data-category="kueche" data-sizes="[[300,250],[320,150],[320,50]]" data-pos="atf" class="c-advertisement__banner c-advertisement__banner--320  u-block@xs u-block@xs-sm "></div>
+	</div>
+</div>  
+<div class="container kk-single-header image">
+    <div class="row">
+        <div class="col-md-12">
+                            <div class="kk-title-image">
+                    <picture>
+                        <source
+                            srcset="/app/uploads/2023/04/yum-yum-salat1-1000x400.jpeg"
+                            media="(min-width: 1200px)">
+                        <source
+                            srcset="/app/uploads/2023/04/yum-yum-salat1-940x330.jpeg"
+                            media="(min-width: 992px)">
+                        <source
+                            srcset="/app/uploads/2023/04/yum-yum-salat1-720x253.jpeg"
+                            media="(min-width: 768px)">
+                        <source
+                            srcset="/app/uploads/2023/04/yum-yum-salat1-720x253.jpeg"
+                            media="(min-width: 480px)">
+                        <source
+                            srcset="/app/uploads/2023/04/yum-yum-salat1-479x168.jpeg">
+                        <img
+                            fetchpriority="high"
+                            src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                            alt="Yum-Yum-Salat auf einem weißen Teller.">
+                    </picture>
+                    <span class="kk-copyright">©stock.adobe.com/Stepanek Photography</span>
+                </div>
+                        <h1 class="kk-headline">
+                Yum-Yum-Salat | Nudelsalat mit asiatischem Flair            </h1>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-8">
+
+                                                <article data-post-id="71607" data-post-type="kk_food_article">
+                        
+                        <div class="text-center">
+                            <div class="widget widget_mmkkinteract">    <div class="kk-interact hidden-md hidden-lg">
+        
+<div class="mm-cmty">
+    <div
+            class="mm-cmty-detail-page-bookmark"
+            data-bookmark-page-id="71607"
+            data-bookmark-page-type="kk_food_article"
+            data-bookmark-page-url="https://www.koch-mit.de/kueche/yum-yum-salat/"
+            data-bookmark-page-image="/app/uploads/2023/04/yum-yum-salat1-365x184.jpeg"
+            data-bookmark-page-title="Yum-Yum-Salat | Nudelsalat mit asiatischem Flair"
+            data-bookmark-page-topic="Küche">
+    </div>
+</div>
+        <a href="#print" class="print-this print-this--mobile"><i class="fa fa-print fa-lg red" aria-hidden="true"></i> Drucken</a>
+    </div>
+</div>                        </div>
+
+                        <div class="kk-rating-comment-anchor">
+                            <div class="mm-cmty">
+                                
+<div class="mm-cmty-rating-page-container mm-cmty-rating" data-page-id="71607" data-page-type="kk_food_article"></div>
+                                <div class="mm-cmty-comments-anchor"></div>
+                            </div>
+                        </div>
+
+                        <hr class="sm hidden-md hidden-lg">
+
+                        <div class="kk-entry">
+
+                                                            <div class="kk-meta hidden-md hidden-lg">
+                                    <p>10.08.2023 | Julia Uehren</p>
+                                </div>
+                            
+                            <p class="kk-lead-in">
+                                Dieser Nudelsalat verwendet asiatische Instant-Nudeln als Grundzutat. Welche Marke du für dieses Gericht verwendest, ist egal. Hauptsache du pimpst den Salat mit frischen und knusprigen Zutaten, wie in diesem Rezept.                              </p>
+
+                            <div class="kk-social text-center hidden-md hidden-lg">
+                                <div class="widget widget_mmkkshare"><div class="shariff shariff-align-center"><ul class="shariff-buttons theme-round orientation-horizontal buttonsize-big"><li class="shariff-button facebook shariff-nocustomcolor" style="background-color:#4273c8"><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.koch-mit.de%2Fkueche%2Fyum-yum-salat%2F" title="Bei Facebook teilen" aria-label="Bei Facebook teilen" role="button" rel="nofollow" class="shariff-link" style="; background-color:#3b5998; color:#fff" target="_blank"><span class="shariff-icon" style=""><svg width="32px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 32"><path fill="#3b5998" d="M17.1 0.2v4.7h-2.8q-1.5 0-2.1 0.6t-0.5 1.9v3.4h5.2l-0.7 5.3h-4.5v13.6h-5.5v-13.6h-4.5v-5.3h4.5v-3.9q0-3.3 1.9-5.2t5-1.8q2.6 0 4.1 0.2z"/></svg></span></a></li><li class="shariff-button twitter shariff-nocustomcolor" style="background-color:#595959"><a href="https://twitter.com/share?url=https%3A%2F%2Fwww.koch-mit.de%2Fkueche%2Fyum-yum-salat%2F&text=Yum-Yum-Salat%20%7C%20Nudelsalat%20mit%20asiatischem%20Flair" title="Bei X teilen" aria-label="Bei X teilen" role="button" rel="noopener nofollow" class="shariff-link" style="; background-color:#000; color:#fff" target="_blank"><span class="shariff-icon" style=""><svg width="32px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#000" d="M14.258 10.152L23.176 0h-2.113l-7.747 8.813L7.133 0H0l9.352 13.328L0 23.973h2.113l8.176-9.309 6.531 9.309h7.133zm-2.895 3.293l-.949-1.328L2.875 1.56h3.246l6.086 8.523.945 1.328 7.91 11.078h-3.246zm0 0"/></svg></span></a></li><li class="shariff-button pinterest shariff-nocustomcolor" style="background-color:#e70f18"><a href="https://www.pinterest.com/pin/create/link/?url=https%3A%2F%2Fwww.koch-mit.de%2Fkueche%2Fyum-yum-salat%2F&media=https%3A%2F%2Fwww.koch-mit.de%2Fapp%2Fuploads%2F2023%2F04%2Fyum-yum-salat1.jpeg&description=Yum-Yum-Salat%20%7C%20Nudelsalat%20mit%20asiatischem%20Flair" title="Bei Pinterest pinnen" aria-label="Bei Pinterest pinnen" role="button" rel="noopener nofollow" class="shariff-link" style="; background-color:#cb2027; color:#fff" target="_blank"><span class="shariff-icon" style=""><svg width="32px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 32"><path fill="#cb2027" d="M27.4 16q0 3.7-1.8 6.9t-5 5-6.9 1.9q-2 0-3.9-0.6 1.1-1.7 1.4-2.9 0.2-0.6 1-3.8 0.4 0.7 1.3 1.2t2 0.5q2.1 0 3.8-1.2t2.7-3.4 0.9-4.8q0-2-1.1-3.8t-3.1-2.9-4.5-1.2q-1.9 0-3.5 0.5t-2.8 1.4-2 2-1.2 2.3-0.4 2.4q0 1.9 0.7 3.3t2.1 2q0.5 0.2 0.7-0.4 0-0.1 0.1-0.5t0.2-0.5q0.1-0.4-0.2-0.8-0.9-1.1-0.9-2.7 0-2.7 1.9-4.6t4.9-2q2.7 0 4.2 1.5t1.5 3.8q0 3-1.2 5.2t-3.1 2.1q-1.1 0-1.7-0.8t-0.4-1.9q0.1-0.6 0.5-1.7t0.5-1.8 0.2-1.4q0-0.9-0.5-1.5t-1.4-0.6q-1.1 0-1.9 1t-0.8 2.6q0 1.3 0.4 2.2l-1.8 7.5q-0.3 1.2-0.2 3.2-3.7-1.6-6-5t-2.3-7.6q0-3.7 1.9-6.9t5-5 6.9-1.9 6.9 1.9 5 5 1.8 6.9z"/></svg></span></a></li><li class="shariff-button whatsapp shariff-nocustomcolor" style="background-color:#5cbe4a"><a href="https://api.whatsapp.com/send?text=https%3A%2F%2Fwww.koch-mit.de%2Fkueche%2Fyum-yum-salat%2F%20Yum-Yum-Salat%20%7C%20Nudelsalat%20mit%20asiatischem%20Flair" title="Bei Whatsapp teilen" aria-label="Bei Whatsapp teilen" role="button" rel="noopener nofollow" class="shariff-link" style="; background-color:#34af23; color:#fff" target="_blank"><span class="shariff-icon" style=""><svg width="32px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#34af23" d="M17.6 17.4q0.2 0 1.7 0.8t1.6 0.9q0 0.1 0 0.3 0 0.6-0.3 1.4-0.3 0.7-1.3 1.2t-1.8 0.5q-1 0-3.4-1.1-1.7-0.8-3-2.1t-2.6-3.3q-1.3-1.9-1.3-3.5v-0.1q0.1-1.6 1.3-2.8 0.4-0.4 0.9-0.4 0.1 0 0.3 0t0.3 0q0.3 0 0.5 0.1t0.3 0.5q0.1 0.4 0.6 1.6t0.4 1.3q0 0.4-0.6 1t-0.6 0.8q0 0.1 0.1 0.3 0.6 1.3 1.8 2.4 1 0.9 2.7 1.8 0.2 0.1 0.4 0.1 0.3 0 1-0.9t0.9-0.9zM14 26.9q2.3 0 4.3-0.9t3.6-2.4 2.4-3.6 0.9-4.3-0.9-4.3-2.4-3.6-3.6-2.4-4.3-0.9-4.3 0.9-3.6 2.4-2.4 3.6-0.9 4.3q0 3.6 2.1 6.6l-1.4 4.2 4.3-1.4q2.8 1.9 6.2 1.9zM14 2.2q2.7 0 5.2 1.1t4.3 2.9 2.9 4.3 1.1 5.2-1.1 5.2-2.9 4.3-4.3 2.9-5.2 1.1q-3.5 0-6.5-1.7l-7.4 2.4 2.4-7.2q-1.9-3.2-1.9-6.9 0-2.7 1.1-5.2t2.9-4.3 4.3-2.9 5.2-1.1z"/></svg></span></a></li><li class="shariff-button mailto shariff-nocustomcolor" style="background-color:#a8a8a8"><a href="/cdn-cgi/l/email-protection#a699c4c9c2df9bced2d2d6d58395e78394e08394e0d1d1d188cdc9c5ce8bcbcfd288c2c38394e0cdd3c3c5cec38394e0dfd3cb8bdfd3cb8bd5c7cac7d28394e080d5d3c4ccc3c5d29bffd3cb8bffd3cb8bf5c7cac7d28394968391e5839496e8d3c2c3cad5c7cac7d2839496cbcfd2839496c7d5cfc7d2cfd5c5cec3cb839496e0cac7cfd4" title="Per E-Mail versenden" aria-label="Per E-Mail versenden" role="button" rel="noopener nofollow" class="shariff-link" style="; background-color:#999; color:#fff"><span class="shariff-icon" style=""><svg width="32px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#999" d="M32 12.7v14.2q0 1.2-0.8 2t-2 0.9h-26.3q-1.2 0-2-0.9t-0.8-2v-14.2q0.8 0.9 1.8 1.6 6.5 4.4 8.9 6.1 1 0.8 1.6 1.2t1.7 0.9 2 0.4h0.1q0.9 0 2-0.4t1.7-0.9 1.6-1.2q3-2.2 8.9-6.1 1-0.7 1.8-1.6zM32 7.4q0 1.4-0.9 2.7t-2.2 2.2q-6.7 4.7-8.4 5.8-0.2 0.1-0.7 0.5t-1 0.7-0.9 0.6-1.1 0.5-0.9 0.2h-0.1q-0.4 0-0.9-0.2t-1.1-0.5-0.9-0.6-1-0.7-0.7-0.5q-1.6-1.1-4.7-3.2t-3.6-2.6q-1.1-0.7-2.1-2t-1-2.5q0-1.4 0.7-2.3t2.1-0.9h26.3q1.2 0 2 0.8t0.9 2z"/></svg></span></a></li></ul></div></div>                            </div>
+
+                            <p>Intensiv würzig wird unser Yum-Yum-Salat durch die Gewürzmischung, die den <a href="/kueche/instant-nudelsuppe/">Instant-Nudeln</a> beiliegt. Eine frische Note bringen wir in das Gericht, indem wir nussigen Feldsalat und knackigen <a href="/kueche/schnelle-einfache-chinakohl-rezepte/">Chinakohl</a> untermischen. Für einen schönen Crunch verwenden wir Cashewkerne, die wir goldbraun anrösten.</p>
+<hr />
+<h2>Yum-Yum-Salat: Rezept mit Chinakohl</h2>
+<p><strong>Zutaten für 4 Portionen</strong></p>
+<ul>
+<li>2 Pck. asiatische Instant-Nudeln inkl. Gewürzmischung (z.B. Yum-Yum)</li>
+<li>200 g Tofu (Natur)</li>
+<li>160 g Cashewkerne</li>
+<li>2 Zehen Knoblauch</li>
+<li>50 g Feldsalat</li>
+<li>½ Chinakohl</li>
+<li>3 EL Sonnenblumenöl</li>
+<li>1 EL Sesamöl</li>
+<li>4 EL Weißweinessig</li>
+<li>1 EL Honig</li>
+<li>Öl zum Anbraten</li>
+<li>Sojasauce (optional)</li>
+</ul>
+<hr />
+<div class="kk-image-wrapper">
+<img decoding="async" width="754" height="424" loading="lazy" class="alignnone size-full wp-image-71644" src="/app/uploads/2023/04/yum-yum-salat2.jpeg" alt="Yum-Yum-Salat auf einem weißen Teller." srcset="https://www.koch-mit.de/app/uploads/2023/04/yum-yum-salat2.jpeg 754w, https://www.koch-mit.de/app/uploads/2023/04/yum-yum-salat2-300x169.jpeg 300w, https://www.koch-mit.de/app/uploads/2023/04/yum-yum-salat2-459x258.jpeg 459w, https://www.koch-mit.de/app/uploads/2023/04/yum-yum-salat2-720x405.jpeg 720w" sizes="(max-width: 754px) 100vw, 754px" />
+<div class="kk-wrapper">
+<p class="kk-image-description">In diesem Yum-Yum-Salat kombinieren wir die Instant-Nudeln mit Tofu und Cashews.</p>
+<p class="kk-copyright">©stock.adobe.com/Stepanek Photography</p>
+</div>
+</div>
+<hr />
+<h3>Zubereitung</h3>
+<p>Schritt 1</p>
+<p>Zunächst bereitest du die Sauce für den Yum-Yum Salat zu. Dafür vermengst du in einer großen Schüssel Sonnenblumenöl mit dem Sesamöl, Weißweinessig und Honig sowie der Gewürzmischung, die den Instant-Nudeln beiliegt.</p>
+<p>Schritt 2</p>
+<p>Dann zerbröselst du die trockenen Nudeln in die Schüssel und gibst einen Schluck kochendes Wasser dazu. Rühre alles einmal gut durch, decke die Schüssel zu und lass die Nudeln ca. 10-15 Minuten quellen.</p>
+<p>Schritt 3</p>
+<p>Damit der Tofu schön knusprig wird, ist es wichtig, ihm vor dem Anbraten möglichst viel Feuchtigkeit zu entziehen. Dafür kannst du den Tofu in ein sauberes Küchentuch einschlagen und mit einem Gegenstand beschweren. Wenn du ihn ca. 10 Minuten so liegen lässt, saugt das Küchentuch ein Großteil der Feuchtigkeit auf. Anschließend schneidest du den Tofu in ca. 1-2 cm große Würfel.</p>
+    <div class="mm-product-teaser mm-products-list with-border horizontal">
+        <div class="mm-boxheadline"><span class="label">Schnippeln dein Gemüse klein</span></div>
+
+        
+                
+        <div class="owl-products owl-carousel owl-theme">
+    <div class="mm-wrapper">
+        <a href="//www.mediamarkt.de/catentry/2086821?rbtc=koc%7crea%7c2086821-related%7c%7cp%7c%7c" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2086821?rbtc=koc%7crea%7c2086821-related%7c%7cp%7c%7c'}">
+            <div class="mm-product-image">
+                <img decoding="async" loading="lazy" class="owl-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://assets.mmsrg.com/isr/166325/c1/-/pixelboxx-mss-70206244/QUADRAT_250/" alt="OK. OCH 100 Zerkleinerer">
+            </div>
+            <div class="mm-subheadline sm black">OK. OCH 100 Zerkleinerer</div>
+                        <span class="mm-price">&euro; 16.99</span>
+        </a>
+                <span class="mm-onlineshop">
+            <a href="//www.mediamarkt.de/catentry/2086821?rbtc=koc%7crea%7c2086821-related%7c%7cp%7c%7c" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2086821?rbtc=koc%7crea%7c2086821-related%7c%7cp%7c%7c'}">Zum Onlineshop</a>
+        </span>
+    </div>
+    <div class="mm-wrapper">
+        <a href="//www.mediamarkt.de/catentry/2305290?rbtc=koc%7crea%7c2305290-related%7c%7cp%7c%7c" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2305290?rbtc=koc%7crea%7c2305290-related%7c%7cp%7c%7c'}">
+            <div class="mm-product-image">
+                <img decoding="async" loading="lazy" class="owl-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://assets.mmsrg.com/isr/166325/c1/-/pixelboxx-mss-75829144/QUADRAT_250/" alt="WMF 04.1658.0011 KÜCHENminis® Zerkleinerer">
+            </div>
+            <div class="mm-subheadline sm black">WMF 04.1658.0011 KÜCHENminis® Zerkleinerer</div>
+                        <span class="mm-price">&euro; 39.99</span>
+        </a>
+                <span class="mm-onlineshop">
+            <a href="//www.mediamarkt.de/catentry/2305290?rbtc=koc%7crea%7c2305290-related%7c%7cp%7c%7c" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2305290?rbtc=koc%7crea%7c2305290-related%7c%7cp%7c%7c'}">Zum Onlineshop</a>
+        </span>
+    </div>
+    <div class="mm-wrapper">
+        <a href="//www.mediamarkt.de/catentry/2301777?rbtc=koc%7crea%7c2301777-related%7c%7cp%7c%7c" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2301777?rbtc=koc%7crea%7c2301777-related%7c%7cp%7c%7c'}">
+            <div class="mm-product-image">
+                <img decoding="async" loading="lazy" class="owl-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://assets.mmsrg.com/isr/166325/c1/-/pixelboxx-mss-75859989/QUADRAT_250/" alt="KITCHENAID 5KFC3516EER Zerkleinerer">
+            </div>
+            <div class="mm-subheadline sm black">KITCHENAID 5KFC3516EER Zerkleinerer</div>
+                        <span class="mm-price">&euro; 72.99</span>
+        </a>
+                <span class="mm-onlineshop">
+            <a href="//www.mediamarkt.de/catentry/2301777?rbtc=koc%7crea%7c2301777-related%7c%7cp%7c%7c" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2301777?rbtc=koc%7crea%7c2301777-related%7c%7cp%7c%7c'}">Zum Onlineshop</a>
+        </span>
+    </div>
+    <div class="mm-wrapper">
+        <a href="//www.mediamarkt.de/catentry/2388484?rbtc=koc%7crea%7c2388484-related%7c%7cp%7c%7c" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2388484?rbtc=koc%7crea%7c2388484-related%7c%7cp%7c%7c'}">
+            <div class="mm-product-image">
+                <img decoding="async" loading="lazy" class="owl-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://assets.mmsrg.com/isr/166325/c1/-/pixelboxx-mss-77171762/QUADRAT_250/" alt="RUSSELL HOBBS 24660-56 Desire Zerkleinerer">
+            </div>
+            <div class="mm-subheadline sm black">RUSSELL HOBBS 24660-56 Desire Zerkleinerer</div>
+                        <span class="mm-price">&euro; 33.99</span>
+        </a>
+                <span class="mm-onlineshop">
+            <a href="//www.mediamarkt.de/catentry/2388484?rbtc=koc%7crea%7c2388484-related%7c%7cp%7c%7c" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2388484?rbtc=koc%7crea%7c2388484-related%7c%7cp%7c%7c'}">Zum Onlineshop</a>
+        </span>
+    </div>
+</div>
+    </div>
+
+<h4>Jetzt röstest du die Nüsse</h4>
+<p>Schritt 4</p>
+<p>Für einen schönen Crunch röstest du die Cashewkerne in einer großen Pfanne ohne Öl bei großer Hitze an. Ob du die Cashewkerne dafür grob hackst oder ganz lässt, entscheidest du ganz nach Geschmack. Wichtig ist nur, dass du die Pfanne dabei regelmäßig schwenkst, damit die Cashewkerne von allen Seiten gleichmäßig geröstet werden und nicht anbrennen. Sind die Cashewkerne goldbraun, nimmst du sie aus der Pfanne und gibst sie zu deinem Yum-Yum-Salat.</p>
+<p>Schritt 5</p>
+<p>Nun gibst du Öl in die Pfanne und brätst den Tofu darin bei großer Hitze scharf an, bis er rundherum goldbraun und knusprig ist. Dann schälst du den Knoblauch, drückst ihn durch eine <a href="https://www.mediamarkt.de/de/product/_wmf-1871636030-1285521.html" target="_blank" rel="noopener sponsored">Knoblauchpresse</a>, mengst ihn unter den Tofu und dünstest ihn für ca. 5 Minuten mit an.</p>
+<p>Schritt 6</p>
+<p>Den Feldsalat wäschst du gründlich in kaltem Wasser und schüttelst ihn dann trocken. Vom Chinakohl entfernst du die äußeren Blätter und den Strunk. Den Kohl schneidest du dann in feine Streifen.</p>
+<p>Schritt 7</p>
+<p>Jetzt gibst du den Tofu, den Feldsalat und den Chinakohl zu den Nudeln und vermengst alles gut. Wenn du magst, kannst du den Yum-Yum-Salat noch mal mit Sojasauce nachwürzen.</p>
+<hr />
+
+<div class="mmad-columns-container">
+            <span class="mmad-columns-title">Weitere köstliche Rezepte aus der asiatischen Küche</span>
+        <div class="mmad-columns">
+                    <div class="mmad-column">
+                <a href="/kueche/dumplings-guide/" target="_blank" rel="">
+                    <div class="mmad-column__image-container">
+                                                <img decoding="async" loading="lazy" class="mmad-column__image" src="/app/uploads/2019/04/Servierte_Dumplings-1000x400.jpeg" alt="Teigtaschen" />
+                    </div>
+                    <span class="mmad-column__title">Teigtaschen</span>
+                </a>
+            </div>
+                    <div class="mmad-column">
+                <a href="/kueche/bandnudeln-asiatisch-pastamaker/" target="_blank" rel="">
+                    <div class="mmad-column__image-container">
+                                                <img decoding="async" loading="lazy" class="mmad-column__image" src="/app/uploads/2019/12/AdobeStock_296251299-1000x400.jpeg" alt="Bandnudeln" />
+                    </div>
+                    <span class="mmad-column__title">Bandnudeln</span>
+                </a>
+            </div>
+                    <div class="mmad-column">
+                <a href="/rezepte/japanischer-gurkensalat/" target="_blank" rel="">
+                    <div class="mmad-column__image-container">
+                                                <img decoding="async" loading="lazy" class="mmad-column__image" src="/app/uploads/2018/03/Asiatischer_Gurkensalat-1000x400.jpg" alt="Gurkensalat" />
+                    </div>
+                    <span class="mmad-column__title">Gurkensalat</span>
+                </a>
+            </div>
+                    <div class="mmad-column">
+                <a href="/rezepte/asiatische-gemuesesuppe-mit-gefuellten-wan-tan/" target="_blank" rel="">
+                    <div class="mmad-column__image-container">
+                                                <img decoding="async" loading="lazy" class="mmad-column__image" src="/app/uploads/2017/01/asiatische_gemuesesuppe.jpg" alt="Gemüsesuppe " />
+                    </div>
+                    <span class="mmad-column__title">Gemüsesuppe </span>
+                </a>
+            </div>
+            </div>
+</div>
+
+
+                        </div>
+
+                        
+                    </article>
+                                    </div>
+
+        <div class="col-xs-12 col-md-4">
+
+    <div id="sidebar" class="pull-right widget-area clearfix" role="complementary">
+
+                    <div class="kk-meta visible-md visible-lg">
+                <p>10.08.2023</p>
+            </div>
+        
+         
+<div id="widget-author" class="widget widget_mm_kk_author">
+    <div class="kk-author">
+
+        <div class="kk-author-wrap">
+
+                            <div class="user image">
+                                        <img width="140" height="140" src="/app/uploads/2021/11/Uehren-150x150.jpg" class="avatar avatar-140 photo img-responsive" alt="" decoding="async" loading="lazy" />                </div>
+            
+            <div class="kk-user-meta">
+
+                <span class="kk-subheadline">Julia Uehren</span>
+
+                
+            </div>
+
+        </div>
+
+                    <p class="kk-author-bio">
+                Als Foodjournalistin schreibt Julia nicht nur gerne übers Essen, sondern steht auch liebend gerne selber in der Küche. Ganz nach dem Motto: Essen gut, alles gut!            </p>
+        
+    </div>
+</div>
+
+    <div id="widget-interact" class="widget widget_mm_kk_interact visible-sm-block visible-md-block visible-lg-block">
+        <div class="kk-interact">
+            
+<div class="mm-cmty">
+    <div
+            class="mm-cmty-detail-page-bookmark"
+            data-bookmark-page-id="71607"
+            data-bookmark-page-type="kk_food_article"
+            data-bookmark-page-url="https://www.koch-mit.de/kueche/yum-yum-salat/"
+            data-bookmark-page-image="/app/uploads/2023/04/yum-yum-salat1-365x184.jpeg"
+            data-bookmark-page-title="Yum-Yum-Salat | Nudelsalat mit asiatischem Flair"
+            data-bookmark-page-topic="Küche">
+    </div>
+</div>
+            <a href="#print" class="print-this"><i class="fa fa-print fa-lg red" aria-hidden="true"></i> Drucken</a>
+        </div>
+    </div>
+	<div id="widget-social" class="widget widget_mm_kk_social">
+		<div class="kk-social">
+			<span>Teilen:</span>
+			<div class="shariff shariff-align-center"><ul class="shariff-buttons theme-round orientation-horizontal buttonsize-big"><li class="shariff-button facebook shariff-nocustomcolor" style="background-color:#4273c8"><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.koch-mit.de%2Fkueche%2Fyum-yum-salat%2F" title="Bei Facebook teilen" aria-label="Bei Facebook teilen" role="button" rel="nofollow" class="shariff-link" style="; background-color:#3b5998; color:#fff" target="_blank"><span class="shariff-icon" style=""><svg width="32px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 32"><path fill="#3b5998" d="M17.1 0.2v4.7h-2.8q-1.5 0-2.1 0.6t-0.5 1.9v3.4h5.2l-0.7 5.3h-4.5v13.6h-5.5v-13.6h-4.5v-5.3h4.5v-3.9q0-3.3 1.9-5.2t5-1.8q2.6 0 4.1 0.2z"/></svg></span></a></li><li class="shariff-button twitter shariff-nocustomcolor" style="background-color:#595959"><a href="https://twitter.com/share?url=https%3A%2F%2Fwww.koch-mit.de%2Fkueche%2Fyum-yum-salat%2F&text=Yum-Yum-Salat%20%7C%20Nudelsalat%20mit%20asiatischem%20Flair" title="Bei X teilen" aria-label="Bei X teilen" role="button" rel="noopener nofollow" class="shariff-link" style="; background-color:#000; color:#fff" target="_blank"><span class="shariff-icon" style=""><svg width="32px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#000" d="M14.258 10.152L23.176 0h-2.113l-7.747 8.813L7.133 0H0l9.352 13.328L0 23.973h2.113l8.176-9.309 6.531 9.309h7.133zm-2.895 3.293l-.949-1.328L2.875 1.56h3.246l6.086 8.523.945 1.328 7.91 11.078h-3.246zm0 0"/></svg></span></a></li><li class="shariff-button pinterest shariff-nocustomcolor" style="background-color:#e70f18"><a href="https://www.pinterest.com/pin/create/link/?url=https%3A%2F%2Fwww.koch-mit.de%2Fkueche%2Fyum-yum-salat%2F&media=https%3A%2F%2Fwww.koch-mit.de%2Fapp%2Fuploads%2F2023%2F04%2Fyum-yum-salat1.jpeg&description=Yum-Yum-Salat%20%7C%20Nudelsalat%20mit%20asiatischem%20Flair" title="Bei Pinterest pinnen" aria-label="Bei Pinterest pinnen" role="button" rel="noopener nofollow" class="shariff-link" style="; background-color:#cb2027; color:#fff" target="_blank"><span class="shariff-icon" style=""><svg width="32px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 32"><path fill="#cb2027" d="M27.4 16q0 3.7-1.8 6.9t-5 5-6.9 1.9q-2 0-3.9-0.6 1.1-1.7 1.4-2.9 0.2-0.6 1-3.8 0.4 0.7 1.3 1.2t2 0.5q2.1 0 3.8-1.2t2.7-3.4 0.9-4.8q0-2-1.1-3.8t-3.1-2.9-4.5-1.2q-1.9 0-3.5 0.5t-2.8 1.4-2 2-1.2 2.3-0.4 2.4q0 1.9 0.7 3.3t2.1 2q0.5 0.2 0.7-0.4 0-0.1 0.1-0.5t0.2-0.5q0.1-0.4-0.2-0.8-0.9-1.1-0.9-2.7 0-2.7 1.9-4.6t4.9-2q2.7 0 4.2 1.5t1.5 3.8q0 3-1.2 5.2t-3.1 2.1q-1.1 0-1.7-0.8t-0.4-1.9q0.1-0.6 0.5-1.7t0.5-1.8 0.2-1.4q0-0.9-0.5-1.5t-1.4-0.6q-1.1 0-1.9 1t-0.8 2.6q0 1.3 0.4 2.2l-1.8 7.5q-0.3 1.2-0.2 3.2-3.7-1.6-6-5t-2.3-7.6q0-3.7 1.9-6.9t5-5 6.9-1.9 6.9 1.9 5 5 1.8 6.9z"/></svg></span></a></li><li class="shariff-button whatsapp shariff-nocustomcolor" style="background-color:#5cbe4a"><a href="https://api.whatsapp.com/send?text=https%3A%2F%2Fwww.koch-mit.de%2Fkueche%2Fyum-yum-salat%2F%20Yum-Yum-Salat%20%7C%20Nudelsalat%20mit%20asiatischem%20Flair" title="Bei Whatsapp teilen" aria-label="Bei Whatsapp teilen" role="button" rel="noopener nofollow" class="shariff-link" style="; background-color:#34af23; color:#fff" target="_blank"><span class="shariff-icon" style=""><svg width="32px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#34af23" d="M17.6 17.4q0.2 0 1.7 0.8t1.6 0.9q0 0.1 0 0.3 0 0.6-0.3 1.4-0.3 0.7-1.3 1.2t-1.8 0.5q-1 0-3.4-1.1-1.7-0.8-3-2.1t-2.6-3.3q-1.3-1.9-1.3-3.5v-0.1q0.1-1.6 1.3-2.8 0.4-0.4 0.9-0.4 0.1 0 0.3 0t0.3 0q0.3 0 0.5 0.1t0.3 0.5q0.1 0.4 0.6 1.6t0.4 1.3q0 0.4-0.6 1t-0.6 0.8q0 0.1 0.1 0.3 0.6 1.3 1.8 2.4 1 0.9 2.7 1.8 0.2 0.1 0.4 0.1 0.3 0 1-0.9t0.9-0.9zM14 26.9q2.3 0 4.3-0.9t3.6-2.4 2.4-3.6 0.9-4.3-0.9-4.3-2.4-3.6-3.6-2.4-4.3-0.9-4.3 0.9-3.6 2.4-2.4 3.6-0.9 4.3q0 3.6 2.1 6.6l-1.4 4.2 4.3-1.4q2.8 1.9 6.2 1.9zM14 2.2q2.7 0 5.2 1.1t4.3 2.9 2.9 4.3 1.1 5.2-1.1 5.2-2.9 4.3-4.3 2.9-5.2 1.1q-3.5 0-6.5-1.7l-7.4 2.4 2.4-7.2q-1.9-3.2-1.9-6.9 0-2.7 1.1-5.2t2.9-4.3 4.3-2.9 5.2-1.1z"/></svg></span></a></li><li class="shariff-button mailto shariff-nocustomcolor" style="background-color:#a8a8a8"><a href="/cdn-cgi/l/email-protection#1a2578757e6327726e6e6a693f295b3f285c3f285c6d6d6d34717579723777736e347e7f3f285c716f7f79727f3f285c636f7737636f7737697b767b6e3f285c3c696f78707f796e27436f7737436f7737497b767b6e3f282a3f2d593f282a546f7e7f76697b767b6e3f282a77736e3f282a7b69737b6e736979727f773f282a5c767b7368" title="Per E-Mail versenden" aria-label="Per E-Mail versenden" role="button" rel="noopener nofollow" class="shariff-link" style="; background-color:#999; color:#fff"><span class="shariff-icon" style=""><svg width="32px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#999" d="M32 12.7v14.2q0 1.2-0.8 2t-2 0.9h-26.3q-1.2 0-2-0.9t-0.8-2v-14.2q0.8 0.9 1.8 1.6 6.5 4.4 8.9 6.1 1 0.8 1.6 1.2t1.7 0.9 2 0.4h0.1q0.9 0 2-0.4t1.7-0.9 1.6-1.2q3-2.2 8.9-6.1 1-0.7 1.8-1.6zM32 7.4q0 1.4-0.9 2.7t-2.2 2.2q-6.7 4.7-8.4 5.8-0.2 0.1-0.7 0.5t-1 0.7-0.9 0.6-1.1 0.5-0.9 0.2h-0.1q-0.4 0-0.9-0.2t-1.1-0.5-0.9-0.6-1-0.7-0.7-0.5q-1.6-1.1-4.7-3.2t-3.6-2.6q-1.1-0.7-2.1-2t-1-2.5q0-1.4 0.7-2.3t2.1-0.9h26.3q1.2 0 2 0.8t0.9 2z"/></svg></span></a></li></ul></div>		</div>
+	</div>
+	
+<!-- advertising -->
+<div id="Kochmit_DetailKitchen_Sidebar_Viewport_XXL_970_large_rectangle" data-category="kueche" data-sizes="[[300,600],[300,250],[200,600],[160,600],[120,600]]" data-pos="btf" class="c-advertisement__banner c-advertisement__banner--300 u-block@xxl-up"></div>
+<div id="Kochmit_DetailKitchen_Sidebar_Viewport_LG_970_large_rectangle" data-category="kueche" data-sizes="[[300,600],[300,250],[200,600],[160,600],[120,600]]" data-pos="btf" class="c-advertisement__banner c-advertisement__banner--300 u-block@md-lg u-block@xl-up"></div>
+<div id="Kochmit_DetailKitchen_Viewport_XS_300_mobilerectangle" data-category="kueche" data-sizes="[[300,250],[320,150],[320,50]]" data-pos="btf" class="c-advertisement__banner c-advertisement__banner--320 u-block@xs u-block@sm-md u-block@xs-sm"></div>
+    </div>
+
+</div>
+    </div>
+
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="kk-tags kk-tags--flex">
+                                    <a href="https://www.koch-mit.de/thema/partysnacks/" class="label label-kk">Party</a>
+                                    <a href="https://www.koch-mit.de/thema/salat/" class="label label-kk">Salat</a>
+                                    <a href="https://www.koch-mit.de/thema/tofu/" class="label label-kk">Tofu</a>
+                                    <a href="https://www.koch-mit.de/thema/vegetarische-rezepte/" class="label label-kk">vegetarisch</a>
+                            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="kk-box kk-box--bookmark-rating">
+                <h2 class="kk-subheadline md">Zu deinen Lieblingsbeiträgen hinzufügen.</h2>
+                
+<div class="mm-cmty">
+    <div
+            class="mm-cmty-detail-page-bookmark"
+            data-bookmark-page-id="71607"
+            data-bookmark-page-type="kk_food_article"
+            data-bookmark-page-url="https://www.koch-mit.de/kueche/yum-yum-salat/"
+            data-bookmark-page-image="/app/uploads/2023/04/yum-yum-salat1-365x184.jpeg"
+            data-bookmark-page-title="Yum-Yum-Salat | Nudelsalat mit asiatischem Flair"
+            data-bookmark-page-topic="Küche">
+    </div>
+</div>
+                <h2 class="kk-subheadline md">Wie interessant findest Du das?</h2>
+                <div class="mm-cmty">
+                    
+<div class="mm-cmty-rating-page-container mm-cmty-rating" data-page-id="71607" data-page-type="kk_food_article"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+<div class="row kk-comments">
+    <div class="col-md-12">
+        <div class="mm-cmty">
+            <div id="mm-cmty-comments" class="mm-cmty-comments"
+                 data-comment-page-id="71607"
+                 data-comment-page-type="kk_food_article"
+                 data-comment-page-url="https://www.koch-mit.de/kueche/yum-yum-salat/">
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="kk-social-channels">
+	<span class="kk-social-channels__headline">Folge uns</span>
+	<a href="https://www.facebook.com/kochmitde/" target="_blank" class="kk-social-channels__item">
+		<i class="fa fa-facebook-square" aria-hidden="true"></i>
+	</a>
+	<a href="https://www.instagram.com/kochmitde/" target="_blank" class="kk-social-channels__item">
+		<i class="fa fa-instagram" aria-hidden="true"></i>
+	</a>
+	<a href="https://www.pinterest.de/kochmitde/" target="_blank" class="kk-social-channels__item">
+		<i class="fa fa-pinterest-square" aria-hidden="true"></i>
+	</a>
+</div>        </div>
+    </div>
+
+    
+
+    
+    <div class="row">
+        <div class="col-md-12">
+                <div class="mm-product-teaser mm-products-list with-border horizontal">
+        <div class="mm-boxheadline"><span class="label">Passende Produkte</span></div>
+
+        
+                
+        <div class="owl-products owl-carousel owl-theme">
+    <div class="mm-wrapper">
+        <a href="//www.mediamarkt.de/catentry/2873785" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2873785'}">
+            <div class="mm-product-image">
+                <img loading="lazy" class="owl-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_134592125/QUADRAT_250/" alt="KOENIC KKS-TR 101024 M Küchenwaage, Max. Tragkraft: 10 kg">
+            </div>
+            <div class="mm-subheadline sm black">KOENIC KKS-TR 101024 M Küchenwaage, Max. Tragkraft: 10 kg</div>
+                        <span class="mm-price">&euro; 19.99</span>
+        </a>
+                <span class="mm-onlineshop">
+            <a href="//www.mediamarkt.de/catentry/2873785" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2873785'}">Zum Onlineshop</a>
+        </span>
+    </div>
+    <div class="mm-wrapper">
+        <a href="//www.mediamarkt.de/catentry/2086821" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2086821'}">
+            <div class="mm-product-image">
+                <img loading="lazy" class="owl-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://assets.mmsrg.com/isr/166325/c1/-/pixelboxx-mss-70206244/QUADRAT_250/" alt="OK. OCH 100 Zerkleinerer">
+            </div>
+            <div class="mm-subheadline sm black">OK. OCH 100 Zerkleinerer</div>
+                        <span class="mm-price">&euro; 16.99</span>
+        </a>
+                <span class="mm-onlineshop">
+            <a href="//www.mediamarkt.de/catentry/2086821" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2086821'}">Zum Onlineshop</a>
+        </span>
+    </div>
+    <div class="mm-wrapper">
+        <a href="//www.mediamarkt.de/catentry/2260503" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2260503'}">
+            <div class="mm-product-image">
+                <img loading="lazy" class="owl-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://assets.mmsrg.com/isr/166325/c1/-/pixelboxx-mss-77604439/QUADRAT_250/" alt="KOENIC KMO 4341 Minibackofen">
+            </div>
+            <div class="mm-subheadline sm black">KOENIC KMO 4341 Minibackofen</div>
+                        <span class="mm-price">&euro; 69.99</span>
+        </a>
+                <span class="mm-onlineshop">
+            <a href="//www.mediamarkt.de/catentry/2260503" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2260503'}">Zum Onlineshop</a>
+        </span>
+    </div>
+    <div class="mm-wrapper">
+        <a href="//www.mediamarkt.de/catentry/2396758" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2396758'}">
+            <div class="mm-product-image">
+                <img loading="lazy" class="owl-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://assets.mmsrg.com/isr/166325/c1/-/pixelboxx-mss-79002165/QUADRAT_250/" alt="OK. OSB 1021 Stabmixer Schwarz/Edelstahl (400 Watt)">
+            </div>
+            <div class="mm-subheadline sm black">OK. OSB 1021 Stabmixer Schwarz/Edelstahl (400 Watt)</div>
+                        <span class="mm-price">&euro; 14.99</span>
+        </a>
+                <span class="mm-onlineshop">
+            <a href="//www.mediamarkt.de/catentry/2396758" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2396758'}">Zum Onlineshop</a>
+        </span>
+    </div>
+    <div class="mm-wrapper">
+        <a href="//www.mediamarkt.de/catentry/2225490" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2225490'}">
+            <div class="mm-product-image">
+                <img loading="lazy" class="owl-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://assets.mmsrg.com/isr/166325/c1/-/pixelboxx-mss-74653507/QUADRAT_250/" alt="KOENIC KKS 3230 Küchenwaage, Max. Tragkraft: 5 kg">
+            </div>
+            <div class="mm-subheadline sm black">KOENIC KKS 3230 Küchenwaage, Max. Tragkraft: 5 kg</div>
+                        <span class="mm-price">&euro; 16.99</span>
+        </a>
+                <span class="mm-onlineshop">
+            <a href="//www.mediamarkt.de/catentry/2225490" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2225490'}">Zum Onlineshop</a>
+        </span>
+    </div>
+    <div class="mm-wrapper">
+        <a href="//www.mediamarkt.de/catentry/2617838" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2617838'}">
+            <div class="mm-product-image">
+                <img loading="lazy" class="owl-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_77458261/QUADRAT_250/" alt="OK. OMX 5220 M Standmixer Edelstahl/Schwarz (500 Watt, 1.5 l)">
+            </div>
+            <div class="mm-subheadline sm black">OK. OMX 5220 M Standmixer Edelstahl/Schwarz (500 Watt, 1.5 l)</div>
+                        <span class="mm-price">&euro; 35.99</span>
+        </a>
+                <span class="mm-onlineshop">
+            <a href="//www.mediamarkt.de/catentry/2617838" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2617838'}">Zum Onlineshop</a>
+        </span>
+    </div>
+    <div class="mm-wrapper">
+        <a href="//www.mediamarkt.de/catentry/2440231" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2440231'}">
+            <div class="mm-product-image">
+                <img loading="lazy" class="owl-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://assets.mmsrg.com/isr/166325/c1/-/pixelboxx-mss-78943165/QUADRAT_250/" alt="KOENIC KIP 2432 Doppelkocher (Kochfelder: 2)">
+            </div>
+            <div class="mm-subheadline sm black">KOENIC KIP 2432 Doppelkocher (Kochfelder: 2)</div>
+                        <span class="mm-price">&euro; 104.99</span>
+        </a>
+                <span class="mm-onlineshop">
+            <a href="//www.mediamarkt.de/catentry/2440231" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2440231'}">Zum Onlineshop</a>
+        </span>
+    </div>
+    <div class="mm-wrapper">
+        <a href="//www.mediamarkt.de/catentry/2606511" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2606511'}">
+            <div class="mm-product-image">
+                <img loading="lazy" class="owl-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_71760886/QUADRAT_250/" alt="OK. OHM 2519 W Handmixer Weiß (250 Watt)">
+            </div>
+            <div class="mm-subheadline sm black">OK. OHM 2519 W Handmixer Weiß (250 Watt)</div>
+                        <span class="mm-price">&euro; 14.99</span>
+        </a>
+                <span class="mm-onlineshop">
+            <a href="//www.mediamarkt.de/catentry/2606511" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2606511'}">Zum Onlineshop</a>
+        </span>
+    </div>
+    <div class="mm-wrapper">
+        <a href="//www.mediamarkt.de/catentry/2086818" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2086818'}">
+            <div class="mm-product-image">
+                <img loading="lazy" class="owl-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://assets.mmsrg.com/isr/166325/c1/-/pixelboxx-mss-72376420/QUADRAT_250/" alt="KOENIC KBL 350 Smoothie Maker Weiß/Grau (350 Watt, 0.6 l)">
+            </div>
+            <div class="mm-subheadline sm black">KOENIC KBL 350 Smoothie Maker Weiß/Grau (350 Watt, 0.6 l)</div>
+                        <span class="mm-price">&euro; 22.99</span>
+        </a>
+                <span class="mm-onlineshop">
+            <a href="//www.mediamarkt.de/catentry/2086818" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2086818'}">Zum Onlineshop</a>
+        </span>
+    </div>
+    <div class="mm-wrapper">
+        <a href="//www.mediamarkt.de/catentry/2688990" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2688990'}">
+            <div class="mm-product-image">
+                <img loading="lazy" class="owl-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_84477061/QUADRAT_250/" alt="KOENIC KKS 10121 M Küchenwaage (Max. Tragkraft: 10 kg">
+            </div>
+            <div class="mm-subheadline sm black">KOENIC KKS 10121 M Küchenwaage (Max. Tragkraft: 10 kg</div>
+                        <span class="mm-price">&euro; 11.-</span>
+        </a>
+                <span class="mm-onlineshop">
+            <a href="//www.mediamarkt.de/catentry/2688990" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2688990'}">Zum Onlineshop</a>
+        </span>
+    </div>
+    <div class="mm-wrapper">
+        <a href="//www.mediamarkt.de/catentry/1829948" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/1829948'}">
+            <div class="mm-product-image">
+                <img loading="lazy" class="owl-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://assets.mmsrg.com/isr/166325/c1/-/pixelboxx-mss-65945907/QUADRAT_250/" alt="OK. OJU 102 Zitruspresse 40 Watt, Weiß">
+            </div>
+            <div class="mm-subheadline sm black">OK. OJU 102 Zitruspresse 40 Watt, Weiß</div>
+                        <span class="mm-price">&euro; 9.99</span>
+        </a>
+                <span class="mm-onlineshop">
+            <a href="//www.mediamarkt.de/catentry/1829948" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/1829948'}">Zum Onlineshop</a>
+        </span>
+    </div>
+    <div class="mm-wrapper">
+        <a href="//www.mediamarkt.de/catentry/2225491" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2225491'}">
+            <div class="mm-product-image">
+                <img loading="lazy" class="owl-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://assets.mmsrg.com/isr/166325/c1/-/pixelboxx-mss-76522020/QUADRAT_250/" alt="OK. OKS 3220 Küchenwaage (Max. Tragkraft: 5 kg, Standwaage)">
+            </div>
+            <div class="mm-subheadline sm black">OK. OKS 3220 Küchenwaage (Max. Tragkraft: 5 kg, Standwaage)</div>
+                        <span class="mm-price">&euro; 9.99</span>
+        </a>
+                <span class="mm-onlineshop">
+            <a href="//www.mediamarkt.de/catentry/2225491" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2225491'}">Zum Onlineshop</a>
+        </span>
+    </div>
+    <div class="mm-wrapper">
+        <a href="//www.mediamarkt.de/catentry/1937925" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/1937925'}">
+            <div class="mm-product-image">
+                <img loading="lazy" class="owl-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://assets.mmsrg.com/isr/166325/c1/-/pixelboxx-mss-69250097/QUADRAT_250/" alt="OK. OWK 103 W Wasserkocher, Weiß">
+            </div>
+            <div class="mm-subheadline sm black">OK. OWK 103 W Wasserkocher, Weiß</div>
+                        <span class="mm-price">&euro; 9.99</span>
+        </a>
+                <span class="mm-onlineshop">
+            <a href="//www.mediamarkt.de/catentry/1937925" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/1937925'}">Zum Onlineshop</a>
+        </span>
+    </div>
+    <div class="mm-wrapper">
+        <a href="//www.mediamarkt.de/catentry/2440240" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2440240'}">
+            <div class="mm-product-image">
+                <img loading="lazy" class="owl-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://assets.mmsrg.com/isr/166325/c1/-/pixelboxx-mss-79746034/QUADRAT_250/" alt="KOENIC KHM 3210 B Handmixer Schwarz (450 Watt)">
+            </div>
+            <div class="mm-subheadline sm black">KOENIC KHM 3210 B Handmixer Schwarz (450 Watt)</div>
+                        <span class="mm-price">&euro; 25.99</span>
+        </a>
+                <span class="mm-onlineshop">
+            <a href="//www.mediamarkt.de/catentry/2440240" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2440240'}">Zum Onlineshop</a>
+        </span>
+    </div>
+    <div class="mm-wrapper">
+        <a href="//www.mediamarkt.de/catentry/2873500" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2873500'}">
+            <div class="mm-product-image">
+                <img loading="lazy" class="owl-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_134648897/QUADRAT_250/" alt="KOENIC KCH-TR 201224 M 2in1 Zerkleinerer">
+            </div>
+            <div class="mm-subheadline sm black">KOENIC KCH-TR 201224 M 2in1 Zerkleinerer</div>
+                        <span class="mm-price">&euro; 29.99</span>
+        </a>
+                <span class="mm-onlineshop">
+            <a href="//www.mediamarkt.de/catentry/2873500" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2873500'}">Zum Onlineshop</a>
+        </span>
+    </div>
+    <div class="mm-wrapper">
+        <a href="//www.mediamarkt.de/catentry/2873608" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2873608'}">
+            <div class="mm-product-image">
+                <img loading="lazy" class="owl-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_134526476/QUADRAT_250/" alt="KOENIC KVS-TR 115124 M Vakuumierer Silber">
+            </div>
+            <div class="mm-subheadline sm black">KOENIC KVS-TR 115124 M Vakuumierer Silber</div>
+                        <span class="mm-price">&euro; 59.99</span>
+        </a>
+                <span class="mm-onlineshop">
+            <a href="//www.mediamarkt.de/catentry/2873608" target="_blank" rel="nofollow" data-gtm-params="{'event':'gaEvent','eventCategory':'Recommendation','eventAction':'Related Products','eventLabel':'//www.mediamarkt.de/catentry/2873608'}">Zum Onlineshop</a>
+        </span>
+    </div>
+</div>
+    </div>
+        </div>
+    </div>
+
+    <div class="c-advertisement">
+		<div id="Kochmit_DetailKitchen_Content_Viewport_XXL_1140_xxl_leaderboard" data-category="kueche" data-sizes="[[1140,250],[970,250],[800,250],[728,90]]" data-pos="btf" class="c-advertisement__banner c-advertisement__banner--1140 u-block@xxl-up"></div>
+		<div id="Kochmit_DetailKitchen_Content_Viewport_XL_1140_xxl_leaderboard" data-category="kueche" data-sizes="[[1140,250],[970,250],[800,250],[728,90]]" data-pos="btf" class="c-advertisement__banner c-advertisement__banner--1140 u-block@xl-up"></div>
+		<div id="Kochmit_DetailKitchen_Content_Viewport_LG_970_large_leaderboard" data-category="kueche" data-sizes="[[970,250],[800,250],[728,90]]" data-pos="btf" class="c-advertisement__banner c-advertisement__banner--970 u-block@md-lg"></div>
+		<div id="Kochmit_DetailKitchen_Content_Viewport_MD_728_medium_leaderboard" data-category="kueche" data-sizes="[728,90]" data-pos="btf" class="c-advertisement__banner c-advertisement__banner--728x90 u-block@sm-md"></div>
+		<div id="Kochmit_DetailKitchen_Content_Viewport_XS_300_medium_rectangle" data-category="kueche" data-sizes="[[300,250],[320,150],[320,50]]" data-pos="btf" class="c-advertisement__banner c-advertisement__banner--320  u-block@xs u-block@xs-sm "></div>
+</div>
+
+    <h2 class="kk-boxheadline">
+    <span class="label label-kk label-gray">Newsletter abonnieren</span>
+</h2>
+<div class="row kk-newsletter kk-newsletter--teaser">
+    <div class="col-xs-12">
+        <div class="kk-teaser">
+            <svg class="icon icon-newsletter">
+                <use xlink:href="#icon-newsletter"/>
+            </svg>
+            <div class="row">
+                <div class="kk-subscribe">
+                    <div class="col-xs-12 col-lg-8 kk-wrapper kk-text">
+                        <h3 class="kk-subheadline md">Rezeptinspiration gefällig?</h3>
+                        <ul>
+                            <li>Keine Live-Kochshow verpassen</li>
+                            <li>An Gewinnspielen teilnehmen</li>
+                            <li>Leckere Rezepte entdecken</li>
+                            <li>Saisonale Highlights ausprobieren</li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-12 col-lg-4 kk-wrapper kk-form">
+                        <form action="#" class="input-group newsletter-form">
+                            <input type="email" class="form-control" placeholder="E-Mail-Adresse" aria-describedby="newsletter-subscription" name="email">
+                            <span class="input-group-btn">
+                                <button class="btn btn-kk btn-newsletter-subscription" type="submit">
+                                    Newsletter abonnieren<i class="fa fa-angle-right"></i>
+                                </button>
+                            </span>
+                        </form>
+                    </div>
+                    <div class="col-xs-12 kk-wrapper kk-legal">
+                        <p>Ich möchte zukünftig über Neuigkeiten auf koch-mit.de per E-Mail durch die MMS E-Commerce GmbH informiert werden und akzeptiere die <a href="/datenschutz/">Datenschutzinformationen</a>. Diese Einwilligung kann jederzeit am Ende jeder E-Mail widerrufen werden.</p>                    </div>
+                </div>
+                <div class="kk-success">
+                    <div class="col-xs-12 kk-wrapper kk-text">
+                        <h3 class="kk-subheadline md">Vielen Dank!</h3>
+                        <p>Nur noch 1 Klick bis zum Newsletter. Wir haben eine E-Mail an: <a class="kk-subscriber-email" href="#">#</a> geschickt.<br>Jetzt E-Mail abrufen & Bestätigungslink klicken.</p>                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="row">
+    <div class="col-md-12">
+        <h2 class="kk-boxheadline">
+            <span class="label label-kk label-gray">Auch interessant</span>
+        </h2>
+    </div>
+</div>
+<div class="row kk-content-teaser">
+            <div class="col-xs-12 col-ms-6 col-md-4 kk-medium">
+            <a href="/kueche/nudelsalat-vegetarisch/" target="_self" title="" class="panel panel-kk">
+                <div class="panel-heading">
+                    <picture>
+                        <source
+                                srcset="/app/uploads/2023/04/nudelsalat-vegetarisch1-365x184.jpeg"
+                                media="(min-width: 1200px)">
+                        <source
+                                srcset="/app/uploads/2023/04/nudelsalat-vegetarisch1-365x184.jpeg"
+                                media="(min-width: 992px)">
+                        <source
+                                srcset="/app/uploads/2023/04/nudelsalat-vegetarisch1-365x184.jpeg"
+                                media="(min-width: 768px)">
+                        <source
+                                srcset="/app/uploads/2023/04/nudelsalat-vegetarisch1-365x184.jpeg"
+                                media="(min-width: 480px)">
+                        <source
+                                srcset="/app/uploads/2023/04/nudelsalat-vegetarisch1-457x230.jpeg">
+                        <img
+                                loading="lazy"
+                                src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                alt="">
+                    </picture>
+                                                                            </div>
+                <div class="panel-body">
+                    <span class="kk-subheadline ms red">Küche</span>
+                    <h3 class="kk-subheadline ms dotdotdot">Nudelsalat vegetarisch | Schnell gemacht und lecker!</h3>
+                </div>
+            </a>
+        </div>
+            <div class="col-xs-12 col-ms-6 col-md-4 kk-medium">
+            <a href="/kueche/schnelle-einfache-chinakohl-rezepte/" target="_self" title="" class="panel panel-kk">
+                <div class="panel-heading">
+                    <picture>
+                        <source
+                                srcset="/app/uploads/2023/08/chinakohl-pfanne-mit-fleisch-365x184.jpeg"
+                                media="(min-width: 1200px)">
+                        <source
+                                srcset="/app/uploads/2023/08/chinakohl-pfanne-mit-fleisch-365x184.jpeg"
+                                media="(min-width: 992px)">
+                        <source
+                                srcset="/app/uploads/2023/08/chinakohl-pfanne-mit-fleisch-365x184.jpeg"
+                                media="(min-width: 768px)">
+                        <source
+                                srcset="/app/uploads/2023/08/chinakohl-pfanne-mit-fleisch-365x184.jpeg"
+                                media="(min-width: 480px)">
+                        <source
+                                srcset="/app/uploads/2023/08/chinakohl-pfanne-mit-fleisch-457x230.jpeg">
+                        <img
+                                loading="lazy"
+                                src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                alt="">
+                    </picture>
+                                                                            </div>
+                <div class="panel-body">
+                    <span class="kk-subheadline ms red">Küche</span>
+                    <h3 class="kk-subheadline ms dotdotdot">Schnelle &amp;amp; einfache Chinakohl-Rezepte | Von Salat bis Eintopf</h3>
+                </div>
+            </a>
+        </div>
+            <div class="col-xs-12 col-ms-6 col-md-4 kk-medium">
+            <a href="/kueche/schnelle-einfache-hausmannskost/" target="_self" title="" class="panel panel-kk">
+                <div class="panel-heading">
+                    <picture>
+                        <source
+                                srcset="/app/uploads/2024/03/leberkaes_groestl_hausmannskost-365x184.jpeg"
+                                media="(min-width: 1200px)">
+                        <source
+                                srcset="/app/uploads/2024/03/leberkaes_groestl_hausmannskost-365x184.jpeg"
+                                media="(min-width: 992px)">
+                        <source
+                                srcset="/app/uploads/2024/03/leberkaes_groestl_hausmannskost-365x184.jpeg"
+                                media="(min-width: 768px)">
+                        <source
+                                srcset="/app/uploads/2024/03/leberkaes_groestl_hausmannskost-365x184.jpeg"
+                                media="(min-width: 480px)">
+                        <source
+                                srcset="/app/uploads/2024/03/leberkaes_groestl_hausmannskost-457x230.jpeg">
+                        <img
+                                loading="lazy"
+                                src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                alt="">
+                    </picture>
+                                                                            </div>
+                <div class="panel-body">
+                    <span class="kk-subheadline ms red">Küche</span>
+                    <h3 class="kk-subheadline ms dotdotdot">Schnelle und einfache Hausmannskost | Deftig und fix gemacht</h3>
+                </div>
+            </a>
+        </div>
+    </div></div>
+</main>
+
+
+<footer>
+    <div class="container">
+
+        <div class="row">
+    <div class="col-sm-4 col-md-5">
+        <a class="footer-logo" href="https://www.koch-mit.de/" target="_self" title="Koch-Mit" rel="home">
+            <span>KOCH-MIT! Tob dich aus in deiner Küche.</span>
+        </a>
+    </div>
+
+    <div class="col-sm-8 col-md-7">
+
+        <hr class="visible-xs visible-ms">
+
+        <div class="checkmark-wrap">
+
+            <div class="checkmark-inner">
+                <span class="checkmark-item">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                    Küche
+                </span>
+                <span class="checkmark-item">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                    Specials
+                </span>
+                <span class="checkmark-item">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                    Mitmachen
+                </span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+        <div class="row">
+    <div class="footer-widgets">
+        
+<div class="col-sm-4 col-md-4">
+    <div class="widget-area-1">
+        <hr class="hidden-xs hidden-ms">
+                    <span>Beliebt auf KOCH-MIT</span>
+            <ul>
+                                    <li>
+                        <a class="js-test--footer-1" href="https://www.koch-mit.de/produkttests/backofen-vergleich/" title="Backofen-Vergleich">Backofen-Vergleich</a>
+                    </li>
+                                    <li>
+                        <a class="js-test--footer-2" href="https://www.koch-mit.de/produkttests/guenstige-spuelmaschine/" title="Günstige Spülmaschinen">Günstige Spülmaschinen</a>
+                    </li>
+                                    <li>
+                        <a class="js-test--footer-3" href="https://www.koch-mit.de/produkttests/bester-kaffeevollautomat/" title="Beste Kaffeevollautomaten">Beste Kaffeevollautomaten</a>
+                    </li>
+                                    <li>
+                        <a class="js-test--footer-4" href="https://www.koch-mit.de/produkttests/thermomix-alternative/" title="Thermomix-Alternativen">Thermomix-Alternativen</a>
+                    </li>
+                                    <li>
+                        <a class="js-test--footer-5" href="https://www.koch-mit.de/produkttests/beste-kuechenmaschine/" title="Beste Küchenmaschinen">Beste Küchenmaschinen</a>
+                    </li>
+                                    <li>
+                        <a class="js-test--footer-6" href="https://www.koch-mit.de/produkttests/bester-multikocher/" title="Beste Multikocher">Beste Multikocher</a>
+                    </li>
+                            </ul>
+            </div>
+</div>
+        
+<div class="col-sm-4 col-md-4">
+    <div class="widget-area-2">
+        <hr class="hidden-xs hidden-ms">
+                    <span>Beliebt in Küche </span>
+            <ul>
+                                    <li>
+                        <a class="js-test--footer-1" href="https://www.koch-mit.de/kueche/kochen-grillen/" title="Kochen &amp; Grillen">Kochen &amp; Grillen</a>
+                    </li>
+                                    <li>
+                        <a class="js-test--footer-2" href="https://www.koch-mit.de/kueche/backen/" title="Backen">Backen</a>
+                    </li>
+                                    <li>
+                        <a class="js-test--footer-3" href="https://www.koch-mit.de/kueche/rezeptsammlungen/" title="Rezeptsammlung">Rezeptsammlung</a>
+                    </li>
+                                    <li>
+                        <a class="js-test--footer-4" href="https://www.koch-mit.de/kueche/foodtrends/" title="Foodtrends">Foodtrends</a>
+                    </li>
+                                    <li>
+                        <a class="js-test--footer-5" href="https://www.koch-mit.de/kueche/gesunde-ernaehrung/" title="Gesunde Ernährung">Gesunde Ernährung</a>
+                    </li>
+                                    <li>
+                        <a class="js-test--footer-6" href="https://www.koch-mit.de/produkttests/kuechenkleingeraete/" title="Küchenkleingeräte">Küchenkleingeräte</a>
+                    </li>
+                            </ul>
+            </div>
+</div>
+        <div class="col-sm-4 col-md-4">
+    <div class="widget-area-3">
+        <div class="kk-newsletter kk-newsletter--footer">
+            <hr class="hidden-xs hidden-ms">
+            <svg class="icon icon-newsletter">
+                <use xlink:href="#icon-newsletter"/>
+            </svg>
+            <div class="kk-subscribe">
+                <span>Füttere Deine Mailbox!</span>
+                <p>Mit leckeren Rezepten, aktuellen Gewinnspielen und jeder Menge mehr.</p>
+                <form action="#" class="input-group newsletter-form">
+                    <input type="email" class="form-control" placeholder="E-Mail-Adresse" aria-describedby="newsletter-subscription" name="email">
+                    <input type="hidden" name="type" value="create">
+                    <span class="input-group-btn">
+                        <button class="btn btn-kk btn-newsletter-subscription" type="submit">
+                            Newsletter abonnieren<i class="fa fa-angle-right"></i>
+                        </button>
+                    </span>
+                </form>
+                <div class="kk-legal">
+                    <p>Ich möchte zukünftig über Neuigkeiten auf koch-mit.de per E-Mail durch die MMS E-Commerce GmbH informiert werden und akzeptiere die <a href="/datenschutz/">Datenschutzinformationen</a>. Diese Einwilligung kann jederzeit am Ende jeder E-Mail widerrufen werden.</p>                </div>
+            </div>
+            <div class="kk-success">
+                <span>Vielen Dank!</span>
+                <p>Nur noch 1 Klick bis zum Newsletter. Wir haben eine E-Mail an: <a class="kk-subscriber-email" href="#">#</a> geschickt.<br>Jetzt E-Mail abrufen & Bestätigungslink klicken.</p>            </div>
+        </div>
+        <div class="kk-social-channels">
+	<span class="kk-social-channels__headline">Folge uns</span>
+	<a href="https://www.facebook.com/kochmitde/" target="_blank" class="kk-social-channels__item">
+		<i class="fa fa-facebook-square" aria-hidden="true"></i>
+	</a>
+	<a href="https://www.instagram.com/kochmitde/" target="_blank" class="kk-social-channels__item">
+		<i class="fa fa-instagram" aria-hidden="true"></i>
+	</a>
+	<a href="https://www.pinterest.de/kochmitde/" target="_blank" class="kk-social-channels__item">
+		<i class="fa fa-pinterest-square" aria-hidden="true"></i>
+	</a>
+</div>        <a href="/feed/" target="_blank" class="kk-rss-feed">
+	<i class="fa fa-rss-square" aria-hidden="true"></i>
+	<p><strong>Wissen was es Neues gibt?</strong><span>Jetzt RSS-Feed abonnieren.</span></p>
+</a>
+    </div>
+</div>    </div>
+</div>                <div class="row">
+
+    <div class="col-md-12">
+
+        <hr>
+
+        <nav class="menu-footer-container">
+
+            <ul id="menu-footer" class="kk-nav">
+                <li class="menu-item menu-item-type-post_type menu-item-object-page">
+                    <a href="/impressum/" target="_self">Impressum</a>
+                </li>
+                <li class="menu-item menu-item-type-post_type menu-item-object-page">
+                    <a href="/datenschutz/" target="_self">Datenschutzhinweise</a>
+                </li>
+                <li class="menu-item menu-item-type-post_type menu-item-object-page">
+                    <a href="/nutzungsbedingungen/" target="_self">Nutzungsbedingungen</a>
+                </li>
+                <li class="menu-item menu-item-type-post_type menu-item-object-page">
+                    <a href="https://www.mediamarkt.de?rbtc=koc%7crea%7cfooter%7c%7cp%7c%7c" target="_blank" rel="noopener">MediaMarkt</a>
+                </li>
+                <li class="menu-item menu-item-type-post_type menu-item-object-page">
+                    <a href="https://www.mediamarkt.de/de/content" target="_blank" rel="noopener">TURN ON</a>
+                </li>
+            </ul>
+
+        </nav>
+
+    </div>
+
+</div>
+    </div>
+
+</footer>
+
+<nav id="menu-right" class="padd-menu mm-menu mm-offcanvas mm-right">
+    <div>
+        <div class="navbar-brand">
+    <a href="https://www.koch-mit.de/" title="Koch-Mit" rel="home">
+        <span>KOCH-MIT! Tob dich aus in deiner Küche.</span>
+        <img src="https://www.koch-mit.de/app/themes/kommkochen/lib/image/koch-mit.svg" alt="KOCH-MIT! Tob dich aus in deiner Küche.">
+    </a>
+</div>
+        <ul class="kk-nav">
+            <li id="menu-item-78822" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-78822"><a target="_blank" rel="noopener" href="https://www.mediamarkt.de/">Onlineshop</a>
+<ul class="sub-menu">
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-78822"><a target="_blank" rel="noopener" href="https://www.mediamarkt.de/">Onlineshop</a></li>
+	<li id="menu-item-78823" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-78823"><a target="_blank" rel="noopener" href="https://www.mediamarkt.de/de/category/k%C3%BChlschr%C3%A4nke-33.html">Kühlschränke</a></li>
+	<li id="menu-item-78824" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-78824"><a target="_blank" rel="noopener" href="https://www.mediamarkt.de/de/category/k%C3%BChl-gefrierkombinationen-34.html">Kühl-Gefrier-Kombi</a></li>
+	<li id="menu-item-78825" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-78825"><a target="_blank" rel="noopener" href="https://www.mediamarkt.de/de/category/geschirrsp%C3%BCler-28.html">Geschirrspüler</a></li>
+	<li id="menu-item-78826" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-78826"><a target="_blank" rel="noopener" href="https://www.mediamarkt.de/de/category/herde-back%C3%B6fen-1201.html">Backofen &#038; Herd</a></li>
+	<li id="menu-item-78827" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-78827"><a target="_blank" rel="noopener" href="https://www.mediamarkt.de/de/category/k%C3%BCchenkleinger%C3%A4te-54.html">Küchenkleingeräte</a></li>
+	<li id="menu-item-78828" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-78828"><a target="_blank" rel="noopener" href="https://www.mediamarkt.de/de/category/kaffeevollautomaten-43.html">Kaffeevollautomaten</a></li>
+</ul>
+</li>
+<li id="menu-item-41" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-41"><a href="https://www.koch-mit.de/kueche/">Küche</a>
+<ul class="sub-menu">
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-41"><a href="https://www.koch-mit.de/kueche/">Küche</a></li>
+	<li id="menu-item-76628" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-76628"><a href="https://www.koch-mit.de/kueche/">Alle Rezepte</a></li>
+	<li id="menu-item-70969" class="menu-item menu-item-type-taxonomy menu-item-object-kk_food_taxonomy menu-item-70969"><a href="https://www.koch-mit.de/kueche/rezeptsammlungen/">Rezeptsammlungen</a></li>
+	<li id="menu-item-70968" class="menu-item menu-item-type-taxonomy menu-item-object-kk_food_taxonomy current-kk_food_article-ancestor current-menu-parent current-kk_food_article-parent menu-item-70968"><a href="https://www.koch-mit.de/kueche/kochen-grillen/">Kochen &amp; Grillen</a></li>
+	<li id="menu-item-70962" class="menu-item menu-item-type-taxonomy menu-item-object-kk_food_taxonomy menu-item-70962"><a href="https://www.koch-mit.de/kueche/backen/">Backen</a></li>
+	<li id="menu-item-70963" class="menu-item menu-item-type-taxonomy menu-item-object-kk_food_taxonomy menu-item-70963"><a href="https://www.koch-mit.de/kueche/cocktails-kaffee-co/">Cocktails, Kaffee &amp; Co</a></li>
+	<li id="menu-item-70966" class="menu-item menu-item-type-taxonomy menu-item-object-kk_food_taxonomy menu-item-70966"><a href="https://www.koch-mit.de/kueche/gesunde-ernaehrung/">Gesunde Ernährung</a></li>
+	<li id="menu-item-70965" class="menu-item menu-item-type-taxonomy menu-item-object-kk_food_taxonomy menu-item-70965"><a href="https://www.koch-mit.de/kueche/foodtrends/">Foodtrends</a></li>
+	<li id="menu-item-70964" class="menu-item menu-item-type-taxonomy menu-item-object-kk_food_taxonomy menu-item-70964"><a href="https://www.koch-mit.de/kueche/food-gadgets/">Food Gadgets</a></li>
+	<li id="menu-item-78837" class="menu-item menu-item-type-taxonomy menu-item-object-kk_food_taxonomy menu-item-78837"><a href="https://www.koch-mit.de/kueche/gut-zu-wissen/">Gut zu Wissen</a></li>
+</ul>
+</li>
+<li id="menu-item-48" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-48"><a href="https://www.koch-mit.de/rezepte/">Rezepte</a>
+<ul class="sub-menu">
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-48"><a href="https://www.koch-mit.de/rezepte/">Rezepte</a></li>
+	<li id="menu-item-76631" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-76631"><a href="https://www.koch-mit.de/rezepte/">Neue Rezepte</a></li>
+	<li id="menu-item-70986" class="menu-item menu-item-type-taxonomy menu-item-object-kk_recipe_taxonomy menu-item-has-children menu-item-70986"><a href="https://www.koch-mit.de/rezepte/mahlzeiten/">Mahlzeiten</a>
+	<ul class="sub-menu">
+<li class="menu-item menu-item-type-taxonomy menu-item-object-kk_recipe_taxonomy menu-item-has-children menu-item-70986"><a href="https://www.koch-mit.de/rezepte/mahlzeiten/">Mahlzeiten</a></li>
+		<li id="menu-item-70979" class="menu-item menu-item-type-taxonomy menu-item-object-kk_recipe_taxonomy menu-item-70979"><a href="https://www.koch-mit.de/rezepte/fruehstueck/">Frühstück</a></li>
+		<li id="menu-item-70991" class="menu-item menu-item-type-taxonomy menu-item-object-kk_recipe_taxonomy menu-item-70991"><a href="https://www.koch-mit.de/rezepte/salate/">Salate</a></li>
+		<li id="menu-item-70995" class="menu-item menu-item-type-taxonomy menu-item-object-kk_recipe_taxonomy menu-item-70995"><a href="https://www.koch-mit.de/rezepte/suppe/">Suppe</a></li>
+		<li id="menu-item-70981" class="menu-item menu-item-type-taxonomy menu-item-object-kk_recipe_taxonomy menu-item-70981"><a href="https://www.koch-mit.de/rezepte/hauptgerichte/">Hauptgerichte</a></li>
+		<li id="menu-item-70978" class="menu-item menu-item-type-taxonomy menu-item-object-kk_recipe_taxonomy menu-item-70978"><a href="https://www.koch-mit.de/rezepte/fleisch-und-fisch/">Fleisch &amp; Fisch</a></li>
+		<li id="menu-item-70992" class="menu-item menu-item-type-taxonomy menu-item-object-kk_recipe_taxonomy menu-item-70992"><a href="https://www.koch-mit.de/rezepte/sauce/">Sauce</a></li>
+		<li id="menu-item-70976" class="menu-item menu-item-type-taxonomy menu-item-object-kk_recipe_taxonomy menu-item-70976"><a href="https://www.koch-mit.de/rezepte/dessert/">Dessert</a></li>
+	</ul>
+</li>
+	<li id="menu-item-867" class="menu-item menu-item-type-taxonomy menu-item-object-kk_recipe_taxonomy menu-item-867"><a href="https://www.koch-mit.de/rezepte/vegetarisch/">Vegetarisch</a></li>
+	<li id="menu-item-62634" class="menu-item menu-item-type-taxonomy menu-item-object-kk_recipe_taxonomy menu-item-62634"><a href="https://www.koch-mit.de/rezepte/vegan/">Vegan</a></li>
+	<li id="menu-item-858" class="menu-item menu-item-type-taxonomy menu-item-object-kk_recipe_taxonomy menu-item-858"><a href="https://www.koch-mit.de/rezepte/kuchen/">Kuchen &amp; Gebäck</a></li>
+	<li id="menu-item-47963" class="menu-item menu-item-type-taxonomy menu-item-object-kk_recipe_taxonomy menu-item-47963"><a href="https://www.koch-mit.de/rezepte/brot/">Brot</a></li>
+	<li id="menu-item-10604" class="menu-item menu-item-type-taxonomy menu-item-object-kk_recipe_taxonomy menu-item-10604"><a href="https://www.koch-mit.de/rezepte/cheat-day/">Cheat Day</a></li>
+	<li id="menu-item-861" class="menu-item menu-item-type-taxonomy menu-item-object-kk_recipe_taxonomy menu-item-861"><a href="https://www.koch-mit.de/rezepte/getraenke-und-mehr/">Getränke &amp; mehr</a></li>
+	<li id="menu-item-64685" class="menu-item menu-item-type-taxonomy menu-item-object-kk_recipe_taxonomy menu-item-64685"><a href="https://www.koch-mit.de/rezepte/snacks/">Snacks</a></li>
+</ul>
+</li>
+<li id="menu-item-82401" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-82401"><a href="https://www.koch-mit.de/produkttests/">Produkte</a>
+<ul class="sub-menu">
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-82401"><a href="https://www.koch-mit.de/produkttests/">Produkte</a></li>
+	<li id="menu-item-82958" class="menu-item menu-item-type-taxonomy menu-item-object-kk_producttest_taxonomy menu-item-has-children menu-item-82958"><a href="https://www.koch-mit.de/produkttests/kuechenkleingeraete/">Küchenkleingeräte</a>
+	<ul class="sub-menu">
+<li class="menu-item menu-item-type-taxonomy menu-item-object-kk_producttest_taxonomy menu-item-has-children menu-item-82958"><a href="https://www.koch-mit.de/produkttests/kuechenkleingeraete/">Küchenkleingeräte</a></li>
+		<li id="menu-item-82403" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-82403"><a href="https://www.koch-mit.de/produkttests/beste-kuechenmaschine/">Beste Küchenmaschinen</a></li>
+		<li id="menu-item-82446" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-82446"><a href="https://www.koch-mit.de/produkttests/bester-kaffeevollautomat/">Beste Kaffeevollautomaten</a></li>
+		<li id="menu-item-83567" class="menu-item menu-item-type-post_type menu-item-object-kk_product_page menu-item-83567"><a href="https://www.koch-mit.de/produkttests/food-processor/">Beste Food Processoren</a></li>
+		<li id="menu-item-82445" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-82445"><a href="https://www.koch-mit.de/produkttests/bester-multikocher/">Beste Multikocher</a></li>
+		<li id="menu-item-82404" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-82404"><a href="https://www.koch-mit.de/produkttests/beste-zerkleinerer/">Beste Zerkleinerer</a></li>
+		<li id="menu-item-82677" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-82677"><a href="https://www.koch-mit.de/produkttests/beste-kuechenwaage/">Beste Küchenwaagen</a></li>
+		<li id="menu-item-82942" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-82942"><a href="https://www.koch-mit.de/produkttests/bester-toaster/">Beste Toaster</a></li>
+		<li id="menu-item-82943" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-82943"><a href="https://www.koch-mit.de/produkttests/beste-vakuumierer/">Beste Vakuumierer</a></li>
+		<li id="menu-item-83566" class="menu-item menu-item-type-post_type menu-item-object-kk_product_page menu-item-83566"><a href="https://www.koch-mit.de/produkttests/bester-brotbackautomat/">Beste Brotbackautomaten</a></li>
+		<li id="menu-item-82405" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-82405"><a href="https://www.koch-mit.de/produkttests/thermomix-alternative/">Thermomix-Alternativen</a></li>
+	</ul>
+</li>
+	<li id="menu-item-82959" class="menu-item menu-item-type-taxonomy menu-item-object-kk_producttest_taxonomy menu-item-has-children menu-item-82959"><a href="https://www.koch-mit.de/produkttests/kuechengrossgeraete/">Küchengroßgeräte</a>
+	<ul class="sub-menu">
+<li class="menu-item menu-item-type-taxonomy menu-item-object-kk_producttest_taxonomy menu-item-has-children menu-item-82959"><a href="https://www.koch-mit.de/produkttests/kuechengrossgeraete/">Küchengroßgeräte</a></li>
+		<li id="menu-item-82944" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-82944"><a href="https://www.koch-mit.de/produkttests/backofen-vergleich/">Backofen-Vergleich</a></li>
+		<li id="menu-item-82945" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-82945"><a href="https://www.koch-mit.de/produkttests/guenstige-spuelmaschine/">Günstige Spülmaschinen</a></li>
+		<li id="menu-item-83565" class="menu-item menu-item-type-post_type menu-item-object-kk_product_page menu-item-83565"><a href="https://www.koch-mit.de/produkttests/beste-mikrowellen/">Beste Mikrowellen</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-26786" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-26786"><a href="https://www.koch-mit.de/mach-mit/">Mach Mit</a>
+<ul class="sub-menu">
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-26786"><a href="https://www.koch-mit.de/mach-mit/">Mach Mit</a></li>
+	<li id="menu-item-71913" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-71913"><a href="https://www.koch-mit.de/aktion/community-vorteile/">Community</a></li>
+	<li id="menu-item-60005" class="menu-item menu-item-type-taxonomy menu-item-object-kk_join_in_taxonomy menu-item-60005"><a href="https://www.koch-mit.de/mach-mit/gewinnspiele/">Gewinnspiele</a></li>
+</ul>
+</li>
+        </ul>
+    </div>
+</nav>
+
+</div>
+<!--googleoff: all--><div data-nosnippet><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script id="BorlabsCookieBoxWrap" type="text/template"><div
+    id="BorlabsCookieBox"
+    class="BorlabsCookie"
+    role="dialog"
+    aria-labelledby="CookieBoxTextHeadline"
+    aria-describedby="CookieBoxTextDescription"
+    aria-modal="true"
+>
+    <div class="middle-center" style="display: none;">
+        <div class="_brlbs-box-wrap">
+            <div class="_brlbs-box _brlbs-box-advanced">
+                <div class="cookie-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="_brlbs-flex-center">
+                                    
+                                    <span role="heading" aria-level="3" class="_brlbs-h3" id="CookieBoxTextHeadline">Wir respektieren Ihre Privatsphäre</span>
+                                </div>
+
+                                <p id="CookieBoxTextDescription"><span class="_brlbs-paragraph _brlbs-text-description">Wir verwenden Dienste von Drittanbietern, die uns helfen, unsere Webseite zu optimieren (Analytics) und personalisierte Werbung auszuspielen (Werbung). Um diese Dienste verwenden zu dürfen, benötigen wir Ihre Einwilligung.<br />
+<br />
+Indem Sie auf "Alle zulassen" klicken, stimmen Sie den in den <a href="#" class="_brlbs-cursor" role="button" data-cookie-individual="">Individuellen Datenschutzeinstellungen</a> genannten Datenverarbeitungen freiwillig zu. Dies umfasst zeitlich begrenzt auch Ihre Einwilligung gem. Art. 49 Abs. 1 lit. a DSGVO zur Datenverarbeitung außerhalb des EWR, z.B. in den USA. In diesen Ländern kann trotz sorgfältiger Auswahl und Verpflichtung der Dienstleister das hohe europäische Datenschutzniveau nicht zwingend garantiert werden. Sofern eine Datenübermittlung in die USA stattfindet, besteht bspw. das Risiko, dass diese Daten von US-Behörden zu Kontroll- und Überwachungszwecken verarbeitet werden können, ohne dass wirksame Rechtsbehelfe vorhanden oder sämtliche Betroffenenrechte durchsetzbar sind. Ihre Einwilligung können Sie jederzeit widerrufen. Die einzelnen Cookie-Informationen können Sie durch Klick auf <a href="#" class="_brlbs-cursor" role="button" data-cookie-individual="">Individuelle Datenschutzeinstellungen</a> abrufen und entsprechende Einstellungen vornehmen.</span></p>
+
+                                                                    <fieldset>
+                                        <legend class="sr-only">Wir respektieren Ihre Privatsphäre</legend>
+                                        <ul>
+                                                                                                <li>
+                                                        <label class="_brlbs-checkbox">
+                                                            Notwendig                                                            <input
+                                                                id="checkbox-essential"
+                                                                tabindex="0"
+                                                                type="checkbox"
+                                                                name="cookieGroup[]"
+                                                                value="essential"
+                                                                 checked                                                                 disabled                                                                data-borlabs-cookie-checkbox
+                                                            >
+                                                            <span class="_brlbs-checkbox-indicator"></span>
+                                                        </label>
+                                                    </li>
+                                                                                                    <li>
+                                                        <label class="_brlbs-checkbox">
+                                                            Komfort                                                            <input
+                                                                id="checkbox-statistics"
+                                                                tabindex="0"
+                                                                type="checkbox"
+                                                                name="cookieGroup[]"
+                                                                value="statistics"
+                                                                                                                                                                                                data-borlabs-cookie-checkbox
+                                                            >
+                                                            <span class="_brlbs-checkbox-indicator"></span>
+                                                        </label>
+                                                    </li>
+                                                                                        </ul>
+                                    </fieldset>
+
+                                    
+                                                                    <p class="_brlbs-accept">
+                                        <a
+                                            href="#"
+                                            tabindex="0"
+                                            role="button"
+                                            class="_brlbs-btn _brlbs-btn-accept-all _brlbs-cursor"
+                                            data-cookie-accept-all
+                                        >
+                                            Alle zulassen                                        </a>
+                                    </p>
+
+                                    <p class="_brlbs-accept">
+                                        <a
+                                            href="#"
+                                            tabindex="0"
+                                            role="button"
+                                            id="CookieBoxSaveButton"
+                                            class="_brlbs-btn _brlbs-cursor"
+                                            data-cookie-accept
+                                        >
+                                            Einstellungen speichern                                        </a>
+                                    </p>
+                                
+                                                                    <p class="_brlbs-refuse-btn">
+                                        <a
+                                            class="_brlbs-btn _brlbs-cursor"
+                                            href="#"
+                                            tabindex="0"
+                                            role="button"
+                                            data-cookie-refuse
+                                        >
+                                            Alle ablehnen                                        </a>
+                                    </p>
+                                
+                                <p class="_brlbs-manage-btn ">
+                                    <a href="#" class="_brlbs-cursor _brlbs-btn " tabindex="0" role="button" data-cookie-individual>
+                                        Individuelle Datenschutzeinstellungen                                    </a>
+                                </p>
+
+                                <p class="_brlbs-legal">
+                                    <a href="#" class="_brlbs-cursor" tabindex="0" role="button" data-cookie-individual>
+                                        Datenschutzeinstellungen                                    </a>
+
+                                                                            <span class="_brlbs-separator"></span>
+                                        <a href="https://www.koch-mit.de/datenschutz/" tabindex="0" role="button">
+                                            Datenschutzhinweise                                        </a>
+                                    
+                                                                            <span class="_brlbs-separator"></span>
+                                        <a href="https://www.koch-mit.de/impressum/" tabindex="0" role="button">
+                                            Impressum                                        </a>
+                                                                    </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+    class="cookie-preference"
+    aria-hidden="true"
+    role="dialog"
+    aria-describedby="CookiePrefDescription"
+    aria-modal="true"
+>
+    <div class="container not-visible">
+        <div class="row no-gutters">
+            <div class="col-12">
+                <div class="row no-gutters align-items-top">
+                    <div class="col-12">
+                        <div class="_brlbs-flex-center">
+                                                    <span role="heading" aria-level="3" class="_brlbs-h3">Datenschutzeinstellungen</span>
+                        </div>
+
+                        <p id="CookiePrefDescription">
+                            <span class="_brlbs-paragraph _brlbs-text-description">Hier finden Sie eine Übersicht über alle verwendeten Cookies. Sie können Ihre Einwilligung zu ganzen Kategorien geben oder sich weitere Informationen anzeigen lassen und so nur bestimmte Cookies auswählen.</span>                        </p>
+
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-12 col-sm-10">
+                                <p class="_brlbs-accept">
+                                                                            <a
+                                            href="#"
+                                            class="_brlbs-btn _brlbs-btn-accept-all _brlbs-cursor"
+                                            tabindex="0"
+                                            role="button"
+                                            data-cookie-accept-all
+                                        >
+                                            Alle zulassen                                        </a>
+                                        
+                                    <a
+                                        href="#"
+                                        id="CookiePrefSave"
+                                        tabindex="0"
+                                        role="button"
+                                        class="_brlbs-btn _brlbs-cursor"
+                                        data-cookie-accept
+                                    >
+                                        Einstellungen speichern                                    </a>
+
+                                                                            <a
+                                            href="#"
+                                            class="_brlbs-btn _brlbs-refuse-btn _brlbs-cursor"
+                                            tabindex="0"
+                                            role="button"
+                                            data-cookie-refuse
+                                        >
+                                            Alle ablehnen                                        </a>
+                                                                    </p>
+                            </div>
+
+                            <div class="col-12 col-sm-2">
+                                <p class="_brlbs-refuse">
+                                    <a
+                                        href="#"
+                                        class="_brlbs-cursor"
+                                        tabindex="0"
+                                        role="button"
+                                        data-cookie-back
+                                    >
+                                        Zurück                                    </a>
+
+                                                                    </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-cookie-accordion>
+                                            <fieldset>
+                            <legend class="sr-only">Datenschutzeinstellungen</legend>
+
+                                                                                                <div class="bcac-item">
+                                        <div class="d-flex flex-row">
+                                            <label class="w-75">
+                                                <span role="heading" aria-level="4" class="_brlbs-h4">Notwendig (2)</span>
+                                            </label>
+
+                                            <div class="w-25 text-right">
+                                                                                            </div>
+                                        </div>
+
+                                        <div class="d-block">
+                                            <p>Diese Cookies & Technologien sind notwendig. Es handelt sich um grundlegende Cookies, mit denen unsere Webseite ordnungsgemäß funktioniert, sodass Sie die wichtigsten Funktionen nutzen und problemlos auf der Webseite navigieren können.</p>
+
+                                            <p class="text-center">
+                                                <a
+                                                    href="#"
+                                                    class="_brlbs-cursor d-block"
+                                                    tabindex="0"
+                                                    role="button"
+                                                    data-cookie-accordion-target="essential"
+                                                >
+                                                    <span data-cookie-accordion-status="show">
+                                                        Cookie-Informationen anzeigen                                                    </span>
+
+                                                    <span data-cookie-accordion-status="hide" class="borlabs-hide">
+                                                        Cookie-Informationen ausblenden                                                    </span>
+                                                </a>
+                                            </p>
+                                        </div>
+
+                                        <div
+                                            class="borlabs-hide"
+                                            data-cookie-accordion-parent="essential"
+                                        >
+                                                                                            <table>
+                                                    
+                                                    <tr>
+                                                        <th scope="row">Name</th>
+                                                        <td>
+                                                            <label>
+                                                                Borlabs Cookie                                                            </label>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th scope="row">Anbieter</th>
+                                                        <td>MMS E-Commerce GmbH (Eigentümer der Website)<span>, </span><a href="https://www.koch-mit.de/impressum/">Impressum</a></td>
+                                                    </tr>
+
+                                                                                                            <tr>
+                                                            <th scope="row">Zweck</th>
+                                                            <td>Im Borlabs Cookie speichern wir die Einstellungen der Besucher, die in der Cookie Box von Borlabs Cookie ausgewählt wurden. Es werden folgende Informationen zu Cookie Laufzeit, Cookie Version, Domain und Pfad der WordPress-Website, Einwilligungen und UID gespeichert. Die UID ist eine per Zufall generierte ID und enthält keine personenbezogene Information.</td>
+                                                        </tr>
+                                                        
+                                                    
+                                                                                                            <tr>
+                                                            <th scope="row">Host(s)</th>
+                                                            <td>*.koch-mit.de</td>
+                                                        </tr>
+                                                        
+                                                                                                            <tr>
+                                                            <th scope="row">Cookie Name</th>
+                                                            <td>borlabs-cookie</td>
+                                                        </tr>
+                                                        
+                                                                                                            <tr>
+                                                            <th scope="row">Cookie Laufzeit</th>
+                                                            <td>1 Jahr</td>
+                                                        </tr>
+                                                                                                        </table>
+                                                                                                <table>
+                                                    
+                                                    <tr>
+                                                        <th scope="row">Name</th>
+                                                        <td>
+                                                            <label>
+                                                                Koch-Mit Community                                                            </label>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th scope="row">Anbieter</th>
+                                                        <td>MMS E-Commerce GmbH (Eigentümer der Website)</td>
+                                                    </tr>
+
+                                                                                                            <tr>
+                                                            <th scope="row">Zweck</th>
+                                                            <td>Um die Anmeldung innerhalb der Koch-Mit Community während einer Session zu speichern, verwenden wir Laravel Session Cookies. Damit speichern wir die Browser-Session und stellen so die reibungslose Funktion der Community sicher.</td>
+                                                        </tr>
+                                                        
+                                                    
+                                                                                                            <tr>
+                                                            <th scope="row">Host(s)</th>
+                                                            <td>*.koch-mit.de</td>
+                                                        </tr>
+                                                        
+                                                                                                            <tr>
+                                                            <th scope="row">Cookie Name</th>
+                                                            <td>_laravel_session</td>
+                                                        </tr>
+                                                        
+                                                                                                            <tr>
+                                                            <th scope="row">Cookie Laufzeit</th>
+                                                            <td>6 Monate</td>
+                                                        </tr>
+                                                                                                        </table>
+                                                                                        </div>
+                                    </div>
+                                                                                                                                        <div class="bcac-item">
+                                        <div class="d-flex flex-row">
+                                            <label class="w-75">
+                                                <span role="heading" aria-level="4" class="_brlbs-h4">Komfort (5)</span>
+                                            </label>
+
+                                            <div class="w-25 text-right">
+                                                                                                    <label class="_brlbs-btn-switch">
+                                                        <span class="sr-only">Komfort</span>
+                                                        <input
+                                                            tabindex="0"
+                                                            id="borlabs-cookie-group-statistics"
+                                                            type="checkbox"
+                                                            name="cookieGroup[]"
+                                                            value="statistics"
+                                                                                                                        data-borlabs-cookie-switch
+                                                        />
+                                                        <span class="_brlbs-slider"></span>
+                                                        <span
+                                                            class="_brlbs-btn-switch-status"
+                                                            data-active="An"
+                                                            data-inactive="Aus">
+                                                        </span>
+                                                    </label>
+                                                                                                </div>
+                                        </div>
+
+                                        <div class="d-block">
+                                            <p>Diese Cookies & Technologien ermöglichen eine verbesserte Funktionalität und Personalisierung. Das bedeutet, dass unsere Dienste möglicherweise nicht ordnungsgemäß funktionieren, wenn sie deaktiviert sind.</p>
+
+                                            <p class="text-center">
+                                                <a
+                                                    href="#"
+                                                    class="_brlbs-cursor d-block"
+                                                    tabindex="0"
+                                                    role="button"
+                                                    data-cookie-accordion-target="statistics"
+                                                >
+                                                    <span data-cookie-accordion-status="show">
+                                                        Cookie-Informationen anzeigen                                                    </span>
+
+                                                    <span data-cookie-accordion-status="hide" class="borlabs-hide">
+                                                        Cookie-Informationen ausblenden                                                    </span>
+                                                </a>
+                                            </p>
+                                        </div>
+
+                                        <div
+                                            class="borlabs-hide"
+                                            data-cookie-accordion-parent="statistics"
+                                        >
+                                                                                            <table>
+                                                                                                            <tr>
+                                                            <th scope="row">Akzeptieren</th>
+                                                            <td>
+                                                                <label class="_brlbs-btn-switch _brlbs-btn-switch--textRight">
+                                                                    <span class="sr-only">Google Tag Manager</span>
+                                                                    <input
+                                                                        id="borlabs-cookie-google-tag-manager"
+                                                                        tabindex="0"
+                                                                        type="checkbox" data-cookie-group="statistics"
+                                                                        name="cookies[statistics][]"
+                                                                        value="google-tag-manager"
+                                                                                                                                                data-borlabs-cookie-switch
+                                                                    />
+
+                                                                    <span class="_brlbs-slider"></span>
+
+                                                                    <span
+                                                                        class="_brlbs-btn-switch-status"
+                                                                        data-active="An"
+                                                                        data-inactive="Aus"
+                                                                        aria-hidden="true">
+                                                                    </span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                        
+                                                    <tr>
+                                                        <th scope="row">Name</th>
+                                                        <td>
+                                                            <label>
+                                                                Google Tag Manager                                                            </label>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th scope="row">Anbieter</th>
+                                                        <td>Google Inc., 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA</td>
+                                                    </tr>
+
+                                                                                                            <tr>
+                                                            <th scope="row">Zweck</th>
+                                                            <td>Wir verwenden den Dienst "Google Tag Manager", ein Produkt von Google Inc., 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA (“Google”), um auf unserer Website Dienste von Partnern auszuspielen. Der Dienst selbst erhebt eigenständig keine Daten außer die technisch bedingt zur Auslieferung notwendig sind (einschließlich Ihrer IP-Adresse) an einen Server von Google in den USA übertragen und dort gespeichert werden.
+
+Weitere Informationen finden Sie in den AGB und Datenschutzbestimmungen des <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener">Google Tag Managers</a>.</td>
+                                                        </tr>
+                                                        
+                                                                                                            <tr>
+                                                            <th scope="row">Datenschutzerklärung</th>
+                                                            <td class="_brlbs-pp-url">
+                                                                <a
+                                                                    href="https://policies.google.com/privacy?hl=de"
+                                                                    target="_blank"
+                                                                    rel="nofollow noopener noreferrer"
+                                                                >
+                                                                    https://policies.google.com/privacy?hl=de                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        
+                                                    
+                                                                                                            <tr>
+                                                            <th scope="row">Cookie Name</th>
+                                                            <td>_ga,_gat,_gid,IDE,_dc_gtm_UA-88305217-1,_gcl_au</td>
+                                                        </tr>
+                                                        
+                                                                                                            <tr>
+                                                            <th scope="row">Cookie Laufzeit</th>
+                                                            <td>2 Jahre</td>
+                                                        </tr>
+                                                                                                        </table>
+                                                                                                <table>
+                                                                                                            <tr>
+                                                            <th scope="row">Akzeptieren</th>
+                                                            <td>
+                                                                <label class="_brlbs-btn-switch _brlbs-btn-switch--textRight">
+                                                                    <span class="sr-only">YouTube</span>
+                                                                    <input
+                                                                        id="borlabs-cookie-youtube"
+                                                                        tabindex="0"
+                                                                        type="checkbox" data-cookie-group="statistics"
+                                                                        name="cookies[statistics][]"
+                                                                        value="youtube"
+                                                                                                                                                data-borlabs-cookie-switch
+                                                                    />
+
+                                                                    <span class="_brlbs-slider"></span>
+
+                                                                    <span
+                                                                        class="_brlbs-btn-switch-status"
+                                                                        data-active="An"
+                                                                        data-inactive="Aus"
+                                                                        aria-hidden="true">
+                                                                    </span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                        
+                                                    <tr>
+                                                        <th scope="row">Name</th>
+                                                        <td>
+                                                            <label>
+                                                                YouTube                                                            </label>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th scope="row">Anbieter</th>
+                                                        <td>Google Inc., 1600 Amphitheatre Parkway Mountain View, CA 94043, USA</td>
+                                                    </tr>
+
+                                                                                                            <tr>
+                                                            <th scope="row">Zweck</th>
+                                                            <td>YouTube ist ein Video Streamingdienst der Google Inc., 1600 Amphitheatre Parkway Mountain View, CA 94043, USA. Wir binden in einigen Teilen unserer Website direkt YouTube-Videos ein, um z.B. Erklär-Videos, Live-Streaming der Kochshow oder andere Bewegtbildinhalte für ein besseres Produktverständnis oder Informationen über MediaMarktSaturn anzubieten. Bei der Nutzung von YouTube können Informationen über Ihre Benutzung dieser Webseite (einschließlich Ihrer IP-Adresse) an einen Server von Google in den USA übertragen und dort gespeichert werden.</td>
+                                                        </tr>
+                                                        
+                                                                                                            <tr>
+                                                            <th scope="row">Datenschutzerklärung</th>
+                                                            <td class="_brlbs-pp-url">
+                                                                <a
+                                                                    href="https://policies.google.com/privacy?hl=de"
+                                                                    target="_blank"
+                                                                    rel="nofollow noopener noreferrer"
+                                                                >
+                                                                    https://policies.google.com/privacy?hl=de                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        
+                                                                                                            <tr>
+                                                            <th scope="row">Host(s)</th>
+                                                            <td>*.google.com, *.google.de, *.youtube.com</td>
+                                                        </tr>
+                                                        
+                                                                                                            <tr>
+                                                            <th scope="row">Cookie Name</th>
+                                                            <td>NID,CONSENT,YSC</td>
+                                                        </tr>
+                                                        
+                                                                                                            <tr>
+                                                            <th scope="row">Cookie Laufzeit</th>
+                                                            <td>6 Monate</td>
+                                                        </tr>
+                                                                                                        </table>
+                                                                                                <table>
+                                                                                                            <tr>
+                                                            <th scope="row">Akzeptieren</th>
+                                                            <td>
+                                                                <label class="_brlbs-btn-switch _brlbs-btn-switch--textRight">
+                                                                    <span class="sr-only">Embedded Code</span>
+                                                                    <input
+                                                                        id="borlabs-cookie-embedded_code"
+                                                                        tabindex="0"
+                                                                        type="checkbox" data-cookie-group="statistics"
+                                                                        name="cookies[statistics][]"
+                                                                        value="embedded_code"
+                                                                                                                                                data-borlabs-cookie-switch
+                                                                    />
+
+                                                                    <span class="_brlbs-slider"></span>
+
+                                                                    <span
+                                                                        class="_brlbs-btn-switch-status"
+                                                                        data-active="An"
+                                                                        data-inactive="Aus"
+                                                                        aria-hidden="true">
+                                                                    </span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                        
+                                                    <tr>
+                                                        <th scope="row">Name</th>
+                                                        <td>
+                                                            <label>
+                                                                Embedded Code                                                            </label>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th scope="row">Anbieter</th>
+                                                        <td>MMS E-Commerce GmbH (Eigentümer der Website)</td>
+                                                    </tr>
+
+                                                                                                            <tr>
+                                                            <th scope="row">Zweck</th>
+                                                            <td>Embedded Code wird verwendet, um extern eingebundene Inhalte, wie zum Beispiel Gewinnspiele oder Umfragen, anzuzeigen.</td>
+                                                        </tr>
+                                                        
+                                                                                                            <tr>
+                                                            <th scope="row">Datenschutzerklärung</th>
+                                                            <td class="_brlbs-pp-url">
+                                                                <a
+                                                                    href="https://www.koch-mit.de/datenschutz/"
+                                                                    target="_blank"
+                                                                    rel="nofollow noopener noreferrer"
+                                                                >
+                                                                    https://www.koch-mit.de/datenschutz/                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        
+                                                                                                            <tr>
+                                                            <th scope="row">Host(s)</th>
+                                                            <td>*.koch-mit.de</td>
+                                                        </tr>
+                                                        
+                                                                                                            <tr>
+                                                            <th scope="row">Cookie Name</th>
+                                                            <td>embedded_code</td>
+                                                        </tr>
+                                                        
+                                                                                                            <tr>
+                                                            <th scope="row">Cookie Laufzeit</th>
+                                                            <td>6 Monate</td>
+                                                        </tr>
+                                                                                                        </table>
+                                                                                                <table>
+                                                                                                            <tr>
+                                                            <th scope="row">Akzeptieren</th>
+                                                            <td>
+                                                                <label class="_brlbs-btn-switch _brlbs-btn-switch--textRight">
+                                                                    <span class="sr-only">REWE Shop</span>
+                                                                    <input
+                                                                        id="borlabs-cookie-rewe"
+                                                                        tabindex="0"
+                                                                        type="checkbox" data-cookie-group="statistics"
+                                                                        name="cookies[statistics][]"
+                                                                        value="rewe"
+                                                                                                                                                data-borlabs-cookie-switch
+                                                                    />
+
+                                                                    <span class="_brlbs-slider"></span>
+
+                                                                    <span
+                                                                        class="_brlbs-btn-switch-status"
+                                                                        data-active="An"
+                                                                        data-inactive="Aus"
+                                                                        aria-hidden="true">
+                                                                    </span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                        
+                                                    <tr>
+                                                        <th scope="row">Name</th>
+                                                        <td>
+                                                            <label>
+                                                                REWE Shop                                                            </label>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th scope="row">Anbieter</th>
+                                                        <td>MMS E-Commerce GmbH (Eigentümer der Website)</td>
+                                                    </tr>
+
+                                                                                                            <tr>
+                                                            <th scope="row">Zweck</th>
+                                                            <td>Der Cookie wird benutzt, um Nutzer*innen die Möglichkeit zu geben, Zutaten bei REWE zu bestellen. Der Dienst selbst erhebt eigenständig keine Daten außer die technisch bedingt zur Auslieferung notwendig sind (ausschließlich die IP-Adresse) an einen Server von REWE übertragen und dort gespeichert werden.</td>
+                                                        </tr>
+                                                        
+                                                    
+                                                                                                            <tr>
+                                                            <th scope="row">Host(s)</th>
+                                                            <td>shop.rewe-static.de, shop.rewe.de</td>
+                                                        </tr>
+                                                        
+                                                                                                            <tr>
+                                                            <th scope="row">Cookie Name</th>
+                                                            <td>mmkk_rewe_shop</td>
+                                                        </tr>
+                                                        
+                                                                                                            <tr>
+                                                            <th scope="row">Cookie Laufzeit</th>
+                                                            <td>1 Jahr</td>
+                                                        </tr>
+                                                                                                        </table>
+                                                                                                <table>
+                                                                                                            <tr>
+                                                            <th scope="row">Akzeptieren</th>
+                                                            <td>
+                                                                <label class="_brlbs-btn-switch _brlbs-btn-switch--textRight">
+                                                                    <span class="sr-only">JOTFORM</span>
+                                                                    <input
+                                                                        id="borlabs-cookie-jotform"
+                                                                        tabindex="0"
+                                                                        type="checkbox" data-cookie-group="statistics"
+                                                                        name="cookies[statistics][]"
+                                                                        value="jotform"
+                                                                                                                                                data-borlabs-cookie-switch
+                                                                    />
+
+                                                                    <span class="_brlbs-slider"></span>
+
+                                                                    <span
+                                                                        class="_brlbs-btn-switch-status"
+                                                                        data-active="An"
+                                                                        data-inactive="Aus"
+                                                                        aria-hidden="true">
+                                                                    </span>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                        
+                                                    <tr>
+                                                        <th scope="row">Name</th>
+                                                        <td>
+                                                            <label>
+                                                                JOTFORM                                                            </label>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th scope="row">Anbieter</th>
+                                                        <td>JotForm Inc., 111 Pine St. Suite 1815, San Francisco, CA 94111, USA</td>
+                                                    </tr>
+
+                                                                                                            <tr>
+                                                            <th scope="row">Zweck</th>
+                                                            <td>Wir verwenden das Formulartool von JotForm zur Erstellung von Formularen wie Gewinnspielanmeldung, Umfragen etc. Hierfür nutzt unsere Webseite Plugins der Seite jotform.com, die von der JotForm Inc., 111 Pine St. Suite 1815, San Francisco, CA 94111, USA betrieben wird. Die über das Formular eingegebenen Daten werden ausschließlich auf in der EU liegenden Servern gespeichert und spätestens nach 90 Tagen nach Beendigung einer Aktion wie beispielsweise eines Gewinnspiels oder einer Umfrage unwiderruflich gelöscht. Die Nutzung von JotForm erfolgt im Interesse einer ansprechenden Darstellung unserer Online-Angebote. Dies stellt ein berechtigtes Interesse im Sinne von Art. 6 Abs. 1 lit. f DSGVO dar.</td>
+                                                        </tr>
+                                                        
+                                                                                                            <tr>
+                                                            <th scope="row">Datenschutzerklärung</th>
+                                                            <td class="_brlbs-pp-url">
+                                                                <a
+                                                                    href="https://www.jotform.com/privacy/"
+                                                                    target="_blank"
+                                                                    rel="nofollow noopener noreferrer"
+                                                                >
+                                                                    https://www.jotform.com/privacy/                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        
+                                                                                                            <tr>
+                                                            <th scope="row">Host(s)</th>
+                                                            <td>.jotform.com</td>
+                                                        </tr>
+                                                        
+                                                                                                            <tr>
+                                                            <th scope="row">Cookie Name</th>
+                                                            <td>language,guest,theme,userReferer,JOTFORM_SESSION,__cfduid</td>
+                                                        </tr>
+                                                        
+                                                                                                    </table>
+                                                                                        </div>
+                                    </div>
+                                                                                                                                                                </fieldset>
+                                        </div>
+
+                <div class="d-flex justify-content-between">
+                    <p class="_brlbs-branding flex-fill">
+                                            </p>
+
+                    <p class="_brlbs-legal flex-fill">
+                                                    <a href="https://www.koch-mit.de/datenschutz/">
+                                Datenschutzhinweise                            </a>
+                            
+                                                    <span class="_brlbs-separator"></span>
+                            
+                                                    <a href="https://www.koch-mit.de/impressum/">
+                                Impressum                            </a>
+                                                </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            </div>
+        </div>
+    </div>
+</div>
+</script><div id="BorlabsCookieBoxWidget"
+     class="bottom-left"
+>
+    <a
+        href="#"
+        class="borlabs-cookie-preference"
+        target="_blank"
+        title="Cookie Einstellungen öffnen"
+        rel="nofollow noopener noreferrer"
+    >
+            <svg>
+                <use xlink:href="https://www.koch-mit.de/app/plugins/wordpress-borlabs-cookie/assets/images/borlabs-cookie-icon-dynamic.svg#main" />
+            </svg>
+
+    </a>
+</div>
+</div><!--googleon: all--><link rel='stylesheet' id='shariffcss-css' href='https://www.koch-mit.de/app/plugins/shariff/css/shariff.min.css' type='text/css' media='all' />
+<script type="text/javascript" src="https://www.koch-mit.de/app/themes/kommkochen/lib/js/jquery-3.7.1.min.js" id="jquery-js"></script>
+<script type="text/javascript" id="toc-front-js-extra">
+/* <![CDATA[ */
+var tocplus = {"smooth_scroll":"1","visibility_show":"anzeigen","visibility_hide":"ausblenden","width":"Auto"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.koch-mit.de/app/plugins/table-of-contents-plus/front.min.js" id="toc-front-js"></script>
+<script type="text/javascript" src="https://www.koch-mit.de/app/themes/kommkochen/lib/js/kochmit.min.js?v=2024-03-15__01-36-38" id="mm-kk-js-js"></script>
+<script type="text/javascript" src="https://js-mw.mm-cmty.de/community-api-integration.min.js?v=2024-03-15__01-36-38" id="mm-cmty-js-js"></script>
+<script type="text/javascript" src="https://mmco-output.koch-mit.de/cmty-output-templates.min.js?v=2024-03-15__01-36-38" id="mm-cmty-output-template-js"></script>
+<script type="text/javascript" src="https://mmco-output.koch-mit.de/cmty-output-actions.min.js?v=2024-03-15__01-36-38" id="mm-cmty-output-action-js"></script>
+<script type="text/javascript" id="borlabs-cookie-js-extra">
+/* <![CDATA[ */
+var borlabsCookieConfig = {"ajaxURL":"https:\/\/www.koch-mit.de\/wp\/wp-admin\/admin-ajax.php","language":"de","animation":"1","animationDelay":"","animationIn":"_brlbs-fadeIn","animationOut":"_brlbs-fadeOut","blockContent":"1","boxLayout":"box","boxLayoutAdvanced":"1","automaticCookieDomainAndPath":"","cookieDomain":".koch-mit.de","cookiePath":"\/","cookieSameSite":"Lax","cookieSecure":"1","cookieLifetime":"365","cookieLifetimeEssentialOnly":"182","crossDomainCookie":[],"cookieBeforeConsent":"","cookiesForBots":"1","cookieVersion":"4","hideCookieBoxOnPages":["https:\/\/www.koch-mit.de\/impressum\/","https:\/\/www.koch-mit.de\/datenschutz\/"],"respectDoNotTrack":"","reloadAfterConsent":"","reloadAfterOptOut":"1","showCookieBox":"1","cookieBoxIntegration":"javascript","ignorePreSelectStatus":"1","cookies":{"essential":["borlabs-cookie","_laravel_session"],"statistics":["google-tag-manager","youtube","embedded_code","rewe","jotform"],"marketing":[]}};
+var borlabsCookieCookies = {"essential":{"borlabs-cookie":{"cookieNameList":{"borlabs-cookie":"borlabs-cookie"},"settings":{"prioritize":"0","asyncOptOutCode":"0"}},"_laravel_session":{"cookieNameList":{"_laravel_session":"_laravel_session"},"settings":{"blockCookiesBeforeConsent":"0","prioritize":"0","asyncOptOutCode":"0"}}},"statistics":{"google-tag-manager":{"cookieNameList":{"_ga":"_ga","_gat":"_gat","_gid":"_gid","IDE":"IDE","_dc_gtm_UA-88305217-1":"_dc_gtm_UA-88305217-1","_gcl_au":"_gcl_au"},"settings":{"blockCookiesBeforeConsent":"0","prioritize":"1","asyncOptOutCode":"0","gtmId":"GTM-PBHDKK","loadBeforeConsent":"0"},"optInJS":"","optOutJS":""},"youtube":{"cookieNameList":{"NID":"NID","CONSENT":"CONSENT","YSC":"YSC"},"settings":{"blockCookiesBeforeConsent":"0","prioritize":"0","asyncOptOutCode":"0"},"optInJS":"PHNjcmlwdD5pZih0eXBlb2Ygd2luZG93LkJvcmxhYnNDb29raWUgPT09ICJvYmplY3QiKSB7IHdpbmRvdy5Cb3JsYWJzQ29va2llLnVuYmxvY2tDb250ZW50SWQoInlvdXR1YmUiKTsgfTwvc2NyaXB0Pg==","optOutJS":""},"embedded_code":{"cookieNameList":{"embedded_code":"embedded_code"},"settings":{"blockCookiesBeforeConsent":"0","prioritize":"0","asyncOptOutCode":"0"},"optInJS":"PHNjcmlwdD5pZih0eXBlb2Ygd2luZG93LkJvcmxhYnNDb29raWUgPT09ICJvYmplY3QiKSB7IHdpbmRvdy5Cb3JsYWJzQ29va2llLnVuYmxvY2tDb250ZW50SWQoImVtYmVkZGVkX2NvZGUiKTsgfTwvc2NyaXB0Pg==","optOutJS":""},"rewe":{"cookieNameList":{"mmkk_rewe_shop":"mmkk_rewe_shop"},"settings":{"blockCookiesBeforeConsent":"0","prioritize":"0","asyncOptOutCode":"0"},"optInJS":"PHNjcmlwdD4NCgljb25zdCBleHBEYXRlID0gbmV3IERhdGUoKTsNCglleHBEYXRlLnNldERhdGUoZXhwRGF0ZS5nZXREYXRlKCkgKyAzNjUpOyAvLyBvbmUgeWVhcg0KCWRvY3VtZW50LmNvb2tpZSA9ICdtbWtrX3Nob3BfcmV3ZT0xOyBwYXRoPS87IGV4cGlyZXM9JyArIGV4cERhdGUudG9VVENTdHJpbmcoKSArICc7JzsNCjwvc2NyaXB0Pg0KDQo8c2NyaXB0PmlmKHR5cGVvZiB3aW5kb3cuQm9ybGFic0Nvb2tpZSA9PT0gIm9iamVjdCIpIHsgd2luZG93LkJvcmxhYnNDb29raWUudW5ibG9ja0NvbnRlbnRJZCgncmV3ZScpOyB9PC9zY3JpcHQ+","optOutJS":"PHNjcmlwdD5kb2N1bWVudC5jb29raWUgPSAnbW1ra19zaG9wX3Jld2U9MDsgcGF0aD0vOyBleHBpcmVzPVRodSwgMDEgSmFuIDE5NzAgMDA6MDA6MDAgVVRDOyc7PC9zY3JpcHQ+"},"jotform":{"cookieNameList":{"language":"language","guest":"guest","theme":"theme","userReferer":"userReferer","JOTFORM_SESSION":"JOTFORM_SESSION","__cfduid":"__cfduid"},"settings":{"blockCookiesBeforeConsent":"0","prioritize":"0","asyncOptOutCode":"0"},"optInJS":"PHNjcmlwdD5pZih0eXBlb2Ygd2luZG93LkJvcmxhYnNDb29raWUgPT09ICJvYmplY3QiKSB7IHdpbmRvdy5Cb3JsYWJzQ29va2llLnVuYmxvY2tDb250ZW50SWQoImpvdGZvcm0iKTsgfTwvc2NyaXB0Pg==","optOutJS":""}}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.koch-mit.de/app/plugins/wordpress-borlabs-cookie/assets/javascript/borlabs-cookie.min.js" id="borlabs-cookie-js"></script>
+<script type="text/javascript" id="borlabs-cookie-js-after">
+/* <![CDATA[ */
+document.addEventListener("DOMContentLoaded", function (e) {
+var borlabsCookieContentBlocker = {"facebook": {"id": "facebook","global": function (contentBlockerData) {  },"init": function (el, contentBlockerData) { if(typeof FB === "object") { FB.XFBML.parse(el.parentElement); } },"settings": {"executeGlobalCodeBeforeUnblocking":false}},"default": {"id": "default","global": function (contentBlockerData) {  },"init": function (el, contentBlockerData) {  },"settings": {"executeGlobalCodeBeforeUnblocking":"0"}},"googlemaps": {"id": "googlemaps","global": function (contentBlockerData) {  },"init": function (el, contentBlockerData) {  },"settings": {"executeGlobalCodeBeforeUnblocking":false}},"twitter": {"id": "twitter","global": function (contentBlockerData) {  },"init": function (el, contentBlockerData) {  },"settings": {"executeGlobalCodeBeforeUnblocking":false}},"vimeo": {"id": "vimeo","global": function (contentBlockerData) {  },"init": function (el, contentBlockerData) {  },"settings": {"executeGlobalCodeBeforeUnblocking":false,"saveThumbnails":false,"videoWrapper":false}},"youtube": {"id": "youtube","global": function (contentBlockerData) {  },"init": function (el, contentBlockerData) { if ($('.kk-show #kk-video').length > 0) {
+	window.kommkochen.cookingshow.init();
+} },"settings": {"unblockAll":"0","saveThumbnails":"1","thumbnailQuality":"maxresdefault","changeURLToNoCookie":"1","autoplay":"0","videoWrapper":"0","executeGlobalCodeBeforeUnblocking":"0"}},"embedded_code": {"id": "embedded_code","global": function (contentBlockerData) {  },"init": function (el, contentBlockerData) {  },"settings": {"unblockAll":"0","executeGlobalCodeBeforeUnblocking":"0"}},"rewe": {"id": "rewe","global": function (contentBlockerData) {  },"init": function (el, contentBlockerData) {  },"settings": {"unblockAll":"0","executeGlobalCodeBeforeUnblocking":"0"}},"jotform": {"id": "jotform","global": function (contentBlockerData) {  },"init": function (el, contentBlockerData) {  },"settings": {"unblockAll":"0","executeGlobalCodeBeforeUnblocking":"0"}}};
+    var BorlabsCookieInitCheck = function () {
+
+    if (typeof window.BorlabsCookie === "object" && typeof window.jQuery === "function") {
+
+        if (typeof borlabsCookiePrioritized !== "object") {
+            borlabsCookiePrioritized = { optInJS: {} };
+        }
+
+        window.BorlabsCookie.init(borlabsCookieConfig, borlabsCookieCookies, borlabsCookieContentBlocker, borlabsCookiePrioritized.optInJS);
+    } else {
+        window.setTimeout(BorlabsCookieInitCheck, 50);
+    }
+};
+
+BorlabsCookieInitCheck();});
+/* ]]> */
+</script>
+<script></script></body>
+</html>

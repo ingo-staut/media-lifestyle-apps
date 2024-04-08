@@ -1,0 +1,14 @@
+<div class="scrollbox no-scrollbar-on-mobile" [style.overflowX]="'auto'">
+  <div class="scrollbox-content" [style.padding.px]="0" [style.paddingBottom.px]="4">
+    <app-button-tristate
+      *ngFor="let button of buttons; index as index"
+      [state]="button.state"
+      [texts]="button.texts"
+      [tooltips]="button.tooltips"
+      [icons]="button.icons"
+      [twoStates]="twoStates"
+      [colors]="button.colors"
+      (stateChange)="onClick(index, $event)"
+    ></app-button-tristate>
+  </div>
+</div>

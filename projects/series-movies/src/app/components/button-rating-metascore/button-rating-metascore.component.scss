@@ -1,0 +1,18 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+.good {
+  background-color: $success !important;
+}
+
+.middle {
+  background-color: $warning !important;
+}
+
+.bad {
+  background-color: $error !important;
+}
+
+.disabled {
+  color: white;
+}

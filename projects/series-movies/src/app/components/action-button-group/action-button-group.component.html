@@ -1,0 +1,33 @@
+<div class="scrollbox no-scrollbar-on-mobile" [style.overflowX]="'auto'">
+  <div class="scrollbox-content" [style.padding.px]="0" [style.paddingBottom.px]="4">
+    <ng-container *ngFor="let action of buttons; index as index">
+      <mat-divider
+        *ngIf="index > 0 && action.action.groupKey !== buttons[index - 1].action.groupKey"
+        class="divider-vertical-20px"
+        [vertical]="true"
+      ></mat-divider>
+
+      <button
+        mat-flat-button
+        [ngClass]="{
+          'only-icon': (action.action.image || action.action.icon) && !action.action.text,
+          'with-image': !!action.action.image,
+          'with-text': action.action.text
+        }"
+        [matTooltip]="action.action.tooltip || action.action.text | translate"
+        [style.maxWidth]="action.maxWidth ?? 'unset'"
+        (click)="onActionButtonClick($event, action, index)"
+      >
+        <mat-icon *ngIf="action.action.icon" [svgIcon]="action.action.icon"></mat-icon>
+        <img
+          *ngIf="action.action.image"
+          height="16"
+          width="16"
+          loading="lazy"
+          [src]="action.action.image"
+        />
+        {{ action.action.text | translate }}
+      </button>
+    </ng-container>
+  </div>
+</div>

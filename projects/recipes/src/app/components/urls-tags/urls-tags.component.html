@@ -1,0 +1,171 @@
+<div
+  [ngClass]="{ 'scrollbox no-scrollbar-on-mobile touch-action': true, 'no-padding': !withPadding }"
+  [style.marginTop.px]="marginTop"
+>
+  <div [ngClass]="{ 'scrollbox-content touch-action': true, 'no-padding': !withPadding }">
+    <div [ngClass]="{ 'sticky-function-buttons touch-action': true, 'no-padding': !withPadding }">
+      <ng-container *ngIf="isSmallScreen.matches">
+        <app-menu
+          [icon]="icon"
+          [showBigButton]="!urls.length"
+          [textBigButton]="text | translate"
+          [tooltip]="text | translate"
+          [openMenuByRightClick]="false"
+          [menuItems]="[
+                        {
+                          text: text,
+                          value: 'add',
+                          icon,
+                        },
+                        {
+                          text: text,
+                          value: 'quick-add',
+                          icon: 'quick-add',
+                        },
+                        {
+                          text: 'CLIPBOARD.ADD.URL',
+                          value: 'clipboard',
+                          icon: 'clipboard',
+                        }
+                      ]"
+          (onItemClick)="onAddMenuItemClicked($event.value)"
+        ></app-menu>
+      </ng-container>
+
+      <ng-container *ngIf="!isSmallScreen.matches">
+        <app-add
+          class="touch-action"
+          [addIcon]="icon"
+          [addIconWhenBigButton]="icon"
+          [isNoContent]="!urls.length"
+          [placeholder]="text | translate"
+          [matTooltip]="text | translate"
+          [smallerWidth]="true"
+          [openDialogOnClick]="true"
+          (openDialog)="addWithDialog()"
+        >
+        </app-add>
+
+        <app-menu
+          icon="quick-add"
+          [descriptionsReplace]="QUICKADD_DESCRIPTION_REPLACE"
+          [tooltip]="text | translate"
+          [showFilterInput]="true"
+          [menuItems]="(menuItems$ | async) ?? []"
+          [showAddButton]="true"
+          [showDescriptions]="false"
+          [showShowDescriptionsButton]="true"
+          [filterFunction]="filterFunction"
+          [openMenuByRightClick]="false"
+          (onItemClick)="onSearchEngineClicked($event.value, $event.event)"
+          (updateMenuItems)="updateSearchEngineMenuItems($event)"
+          (addMenuItem)="addSearchEngineMenuItem($event)"
+          (editMenuItem)="addSearchEngineMenuItem($event.menuItems, $event.item)"
+        ></app-menu>
+
+        <button
+          class="only-icon"
+          mat-flat-button
+          [matTooltip]="'CLIPBOARD.ADD.URL' | translate"
+          (click)="onAddUrlFromClipboard()"
+        >
+          <mat-icon svgIcon="clipboard"></mat-icon>
+        </button>
+      </ng-container>
+
+      <button
+        *ngIf="urls.length"
+        class="only-icon"
+        mat-flat-button
+        [matBadge]="urls.length"
+        [matBadgeHidden]="urls.length < 1"
+        [matTooltip]="'REMOVE_ALL_VALUE' | translate : { value: urls.length }"
+        (click)="onRemoveAll()"
+      >
+        <mat-icon svgIcon="clear"></mat-icon>
+      </button>
+
+      <!-- QuickAdd -->
+      <div
+        [ngClass]="{ chip: true, 'blinking-white-slow-infinite': true }"
+        *ngFor="let quickAddUrl of quickAddUrls; index as index"
+      >
+        <button
+          mat-button
+          class="text"
+          [matTooltip]="quickAddUrl.name"
+          (click)="onAddQuickAddUrl(quickAddUrl)"
+          (contextmenu)="onRemoveQuickAddUrl($event, quickAddUrl)"
+        >
+          <img
+            height="16"
+            width="16"
+            loading="lazy"
+            [src]="quickAddUrl.image || URL_FAVICON + quickAddUrl.url"
+          />
+          {{ "ADD_TO" | translate : { value: quickAddUrl.url | urlTitle } }}
+        </button>
+        <button
+          mat-button
+          class="only-icon clear-button"
+          [matTooltip]="'ACTION.REMOVE' | translate"
+          (click)="onRemoveQuickAddUrl($event, quickAddUrl)"
+        >
+          <mat-icon svgIcon="clear"></mat-icon>
+        </button>
+      </div>
+    </div>
+    <div
+      cdkDropList
+      cdkDropListOrientation="horizontal"
+      [style.display]="'flex'"
+      [style.gap.px]="10"
+      [style.width.%]="100"
+      [cdkDropListData]="urls"
+      [cdkDropListDisabled]="isSmallScreen.matches"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <div cdkDrag *ngFor="let url of urls; index as index" class="with-background">
+        <app-menu
+          [showBigButton]="showText"
+          [textBigButton]="showText ? (url.url | urlTitle : url.note) : ''"
+          [descriptionsReplace]="QUICKADD_DESCRIPTION_REPLACE"
+          [tooltip]="url | urlWithTypeByUrl : (localeService.locale$ | async)!"
+          [showDescriptions]="true"
+          [icon]="(url.type | urlType)?.icon || ''"
+          [image]="URL_FAVICON + url.url"
+          [dragable]="true"
+          [blinking]="blinkingIndex === index"
+          [menuItems]="[
+                        {
+                          text: url.url | urlTitle : url.note,
+                          description: url.url,
+                          value: 'open',
+                          image: URL_FAVICON + url.url,
+                          groupKey: 'url'
+                        },
+                        {
+                          text: 'ACTION.EDIT',
+                          value: 'edit',
+                          icon: 'edit',
+                        },
+                        {
+                          text: 'QUICKADD.',
+                          value: 'quick-add',
+                          icon: 'quick-add',
+                        },
+                        {
+                          text: 'ACTION.DELETE',
+                          value: 'delete',
+                          icon: 'delete',
+                        }
+                      ]"
+          (onItemClick)="onUrlClicked($event, url)"
+          (onContextMenu)="onOpen(url, $event)"
+        >
+        </app-menu>
+        <div *cdkDragPlaceholder class="drag-placeholder"></div>
+      </div>
+    </div>
+  </div>
+</div>

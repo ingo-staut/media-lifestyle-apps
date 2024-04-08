@@ -1,0 +1,10 @@
+<header *ngIf="title" [style.marginLeft.px]="marginLeft">
+  <mat-icon svgIcon="preparation" [style.flexShrink]="0"></mat-icon>
+  <h3>{{ title }}</h3>
+  <mat-icon
+    *ngIf="optional"
+    svgIcon="optional"
+    class="step-optional medium without-button"
+    [matTooltip]="'OPTIONAL' | translate"
+  ></mat-icon>
+</header>

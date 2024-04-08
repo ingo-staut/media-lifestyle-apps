@@ -1,0 +1,97 @@
+<div [formGroup]="parentFormGroup">
+  <div [formGroupName]="formGroupName">
+    <div class="instructions-inputs">
+      <!-- Extra Zubereitungsdetails Button, nur in mobiler Ansicht -->
+      <ng-container
+        *ngIf="{
+          text:
+            instruction
+            | preparationDetails
+              : (localeService.locale$ | async)!
+              : 'Details hinzufügen'
+              : isMobileScreen.matches,
+          icon: instruction | preparationIcon,
+          hide:
+            (instruction | preparationDetails : (localeService.locale$ | async)! : '' : true) === ''
+        } as prepDetails"
+      >
+        <div
+          *ngIf="
+            isSmallScreen.matches &&
+            (!prepDetails.hide || instruction.ingredients.length || instruction.utensils.length)
+          "
+          class="instruction-details"
+        >
+          <button
+            *ngIf="!prepDetails.hide"
+            mat-flat-button
+            class="detail"
+            [style.flexShrink]="1"
+            [style.flexGrow]="1"
+            (click)="openAddOrEditInstructionDetails(instruction, prepDetails.hide)"
+          >
+            <mat-icon [svgIcon]="prepDetails.icon"> </mat-icon>
+            {{ prepDetails.text }}
+          </button>
+
+          <button
+            *ngIf="instruction.ingredients.length && hideIngredients"
+            mat-flat-button
+            class="detail"
+            (click)="hideIngredientsChange.emit(false)"
+          >
+            <mat-icon svgIcon="ingredient"></mat-icon>
+            {{ instruction.ingredients.length }}
+          </button>
+
+          <button
+            *ngIf="instruction.utensils.length && hideUtensils"
+            mat-flat-button
+            class="detail"
+            (click)="hideUtensilsChange.emit(false)"
+          >
+            <mat-icon svgIcon="utensil"></mat-icon>
+            {{ instruction.utensils.length }}
+          </button>
+        </div>
+      </ng-container>
+
+      <app-utensils-tags
+        *ngIf="!hideUtensils"
+        [parentFormGroup]="formGroup"
+        [tags]="instruction.utensils"
+        [utensilObjects]="utensilObjects"
+        [withPadding]="false"
+        [editInDialog]="settingsService.editUtensilInTagsWithDialog$ | async"
+        (tagsChange)="onUtensilsChanged($event)"
+      ></app-utensils-tags>
+
+      <app-ingredients-tags
+        *ngIf="!hideIngredients"
+        [parentFormGroup]="formGroup"
+        [tags]="instruction.ingredients"
+        [withPadding]="false"
+        [editInDialog]="settingsService.editIngredientInTagsWithDialog$ | async"
+        [ingredientsConversion]="ingredientApiService.ingredientsConversion$ | async"
+        [ingredientsAvailable]="ingredientApiService.ingredientsAvailable$ | async"
+        [hideIngredientNotes]="hideIngredientNotes"
+        (hideIngredientNotesChange)="hideIngredientNotesChange.emit($event)"
+        (tagsChange)="onIngredientsChanged($event)"
+      >
+      </app-ingredients-tags>
+    </div>
+
+    <div class="textarea">
+      <app-formfield
+        [parentFormGroup]="formGroup"
+        [isSmall]="true"
+        [formfieldType]="FormfieldType.TEXTAREA"
+        formfieldName="DESCRIPTION."
+        formfieldKey="text"
+        [value]="instruction.text"
+        (proofSavingAllowed)="checkSavingAllowed()"
+      >
+      </app-formfield>
+    </div>
+  </div>
+</div>

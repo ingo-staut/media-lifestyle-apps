@@ -1,0 +1,9 @@
+<button
+  *ngIf="show"
+  mat-button
+  class="medium only-icon"
+  [matTooltip]="'LOAD_MORE' | translate"
+  (click)="loadMore.emit()"
+>
+  <mat-icon svgIcon="more"></mat-icon>
+</button>

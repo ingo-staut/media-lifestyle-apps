@@ -1,0 +1,125 @@
+<div
+  [style.lineHeight]="0"
+  tabindex="0"
+  [ngClass]="{
+    background: withRemoveButton,
+    blinking: blinkWhenValueSet && selectedValue && withRemoveButton,
+    'with-value': blinkWhenValueSet && selectedValue && withRemoveButton
+  }"
+>
+  <mat-select
+    matRipple
+    multiple
+    id="dropwdown-multiple-with-groups"
+    tabIndex="-1"
+    [value]="value"
+    [matTooltip]="tooltipTranslated"
+    [ngClass]="{
+      'select multi': true,
+      'with-value': blinkWhenValueSet && selectedValue && !withRemoveButton,
+      blinking: blinkWhenValueSet && selectedValue,
+      'no-background-color': withRemoveButton,
+      'with-clear-button': withRemoveButton
+    }"
+    (valueChange)="onSelectChanged($event)"
+  >
+    <mat-select-trigger>
+      <div
+        *ngIf="!noOrNoneValueSet && extraIcons && !allSelected"
+        class="dropdown-multiple-chip"
+        [style.marginLeft.px]="5"
+      >
+        <mat-icon
+          *ngFor="let icon of extraIcons"
+          class="medium without-button"
+          [svgIcon]="icon"
+        ></mat-icon>
+      </div>
+
+      <div
+        *ngFor="let entry of selectedEntries"
+        class="dropdown-multiple-chip"
+        [style.background]="entry.color"
+        [style.borderRadius.px]="entry.color ? 4 : undefined"
+        [style.marginRight.px]="entry.color ? 5 : undefined"
+        [style.paddingLeft.px]="entry.color ? 5 : undefined"
+      >
+        <mat-icon
+          *ngIf="entry.icon"
+          [svgIcon]="entry.icon"
+          class="medium without-button"
+        ></mat-icon>
+        <img *ngIf="entry.image" height="16" width="16" loading="lazy" [src]="entry.image" />
+        <!-- Wenn nach x Einträgen ohne Text gesetzt ist, dann ... -->
+        <span
+          *ngIf="
+            (hideTextCompletlyAfterTotalCount !== undefined &&
+              selectedEntries.length < hideTextCompletlyAfterTotalCount) ||
+            hideTextCompletlyAfterTotalCount === undefined
+          "
+        >
+          {{
+            entry.name
+              | translate
+              | cutString : " " : cutLongOptionNames : selectedEntries.length : 2
+          }}
+        </span>
+        <button
+          *ngIf="entry.type !== noneValue || entry.isGroup"
+          mat-button
+          class="only-icon medium"
+          (click)="onRemoveFromSelection($event, entry)"
+        >
+          <mat-icon svgIcon="clear"></mat-icon>
+        </button>
+      </div>
+    </mat-select-trigger>
+    <mat-option [value]="noneValue ?? 0" (click)="onNoOptionClick()">
+      <mat-icon [svgIcon]="noneIcon || ''" class="medium without-button"></mat-icon>
+      {{ noneText | translate }}
+    </mat-option>
+    <mat-option *ngIf="noText" [value]="noValue ?? -1" (click)="onOptionClick()">
+      <mat-icon [svgIcon]="noIcon || ''" class="medium without-button"></mat-icon>
+      {{ noText | translate }}
+    </mat-option>
+    <mat-optgroup
+      #groups
+      *ngFor="let group of groups; index as index"
+      [attr.index]="index"
+      [label]="group.name | translate"
+      [disabled]="group.disabled"
+      [ngClass]="{ group: true, 'with-icons': group.icon }"
+    >
+      <mat-icon
+        *ngIf="group.icon"
+        [svgIcon]="group.icon"
+        class="medium without-button group-icon"
+      ></mat-icon>
+
+      <mat-option
+        *ngFor="let entry of group.entries"
+        [value]="entry.type"
+        (click)="onOptionClick(entry.type)"
+      >
+        <mat-icon
+          *ngIf="entry.icon"
+          [svgIcon]="entry.icon"
+          class="medium without-button"
+        ></mat-icon>
+        <img *ngIf="entry.image" height="16" width="16" loading="lazy" [src]="entry.image" />
+        {{ entry.name | translate }}
+      </mat-option>
+    </mat-optgroup>
+  </mat-select>
+
+  <button
+    *ngIf="withRemoveButton"
+    mat-button
+    class="only-icon"
+    tabindex="-1"
+    [matTooltip]="'ACTION.REMOVE' | translate"
+    (click)="onRemoveClick($event)"
+  >
+    <mat-icon svgIcon="clear"></mat-icon>
+  </button>
+</div>

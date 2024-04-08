@@ -1,0 +1,254 @@
+<div
+  *ngIf="this.items"
+  class="carousel-container"
+  [style]="'--height: ' + height + '; ' + '--min-height: ' + minHeight"
+  (swipeRight)="previous()"
+  (swipeLeft)="next()"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
+>
+  <!-- Inhalt -->
+  <mat-tab-group
+    *ngIf="localeService.locale$ | async as locale"
+    headerPosition="below"
+    mat-stretch-tabs="false"
+    mat-align-tabs="center"
+    class="carousel"
+    [animationDuration]="isMobileSreen.matches ? 1000 : 2000"
+    [(selectedIndex)]="selectedIndex"
+  >
+    <mat-tab *ngFor="let item of items">
+      <ng-template mat-tab-label>
+        <span
+          [matTooltip]="item.text | translate : { value: item.textReplace }"
+          [ngClass]="{
+            'not-selectable': true,
+            'symbol-cross': item.symbol === CarouselSymbol.CROSS,
+            'symbol-circle': item.symbol === CarouselSymbol.CIRCLE
+          }"
+          >{{ item.symbol ?? defaultCarouselSymbol }}</span
+        >
+      </ng-template>
+
+      <!-- Zurück -->
+      <button *ngIf="moreThanOneItem" class="previous" (click)="previous()">
+        <mat-icon class="icon-arrow" svgIcon="arrow-single-left"></mat-icon>
+      </button>
+
+      <!-- Vor -->
+      <button *ngIf="moreThanOneItem" class="next" (click)="next()">
+        <mat-icon class="icon-arrow" svgIcon="arrow-single-right"></mat-icon>
+      </button>
+
+      <!-- Text & Button -->
+      <div
+        *ngIf="{
+          text: item.text | translate : { value: item.textReplace },
+          episode:
+            item.media && item.episodeInTV && item.episodeInTV.episode.episode > 1
+              ? (item.media | episode : item.episodeInTV.episode : locale) + ' | '
+              : '',
+          time:
+            item.episodeInTV &&
+            !(item.episodeInTV.date.getHours() === 0 && item.episodeInTV.date.getMinutes() === 0)
+              ? (item.episodeInTV.date | date : 'shortTime' : undefined : locale) + ' '
+              : '',
+          channel: item.television | channel : (channelApiService.channels$ | async)!,
+          at: ('AT' | translate),
+          ratingImdb: item.media && item.media.isExplore ? item.media.ratingImdb : 0,
+          ratingMetascore: item.media && item.media.isExplore ? item.media.ratingMetascore : 0,
+          genres: item.media?.genreIds,
+          languages: item.media?.languages ?? [],
+          countries: item.media?.countries ?? [],
+        } as data"
+        class="content"
+      >
+        <!-- Titel -->
+        <h1 (click)="onOpenMedia($event, item.media)">
+          {{ item.title | translate }}
+        </h1>
+
+        <!-- Episode in extra Zeile in mobiler Ansicht -->
+        <div *ngIf="isMobileSreen.matches && data.episode" class="title" [style.paddinTop.px]="5">
+          {{ data.episode }}
+        </div>
+
+        <!-- Text -->
+        <div class="text-container">
+          <!-- Episode -->
+          <ng-container *ngIf="!isMobileSreen.matches && data.episode">
+            {{ data.episode }}
+          </ng-container>
+
+          <mat-icon
+            *ngIf="item.icon"
+            class="medium without-button shadow"
+            [svgIcon]="item.icon"
+          ></mat-icon>
+
+          <span
+            *ngIf="item.text | translate : { value: item.textReplace } as text"
+            class="title ellipsis"
+            [matTooltip]="
+              data.episode +
+              data.time +
+              text +
+              (data.channel ? ' ' + data.at + ' ' + (data.channel.name | translate) : '')
+            "
+          >
+            <!-- z.B.: 22:15 Live bei Pro7 -->
+            {{ data.time + text }}
+            <span *ngIf="data.channel" class="ellipsis">
+              {{ data.at }}&nbsp;
+              <img
+                height="14"
+                width="14"
+                loading="lazy"
+                [src]="data.channel.displayIcon"
+                [style.marginBottom.px]="-1"
+                [style.color]="'white'"
+              />
+              {{ data.channel.name | translate }}
+            </span>
+          </span>
+
+          <!-- Genres + Bewertung-->
+          <div
+            *ngIf="item.showMediaDetails"
+            class="flex"
+            [style.gap.px]="10"
+            [style.marginLeft.px]="4"
+          >
+            <mat-divider
+              *ngIf="data.ratingImdb || data.ratingMetascore"
+              class="divider-vertical-smaller-thicker shadow"
+              [vertical]="true"
+            ></mat-divider>
+
+            <!-- Bewertung -->
+            <div *ngIf="data.ratingImdb || data.ratingMetascore" class="flex" [style.gap.px]="8">
+              <app-button-rating-metascore
+                *ngIf="data.ratingMetascore"
+                [rating]="data.ratingMetascore"
+                [small]="true"
+                [disabled]="true"
+              />
+              <app-button-rating-imdb
+                *ngIf="data.ratingImdb"
+                class="rating shadow"
+                [rating]="data.ratingImdb"
+                [noPadding]="true"
+                [medium]="true"
+                [disabled]="true"
+              />
+            </div>
+
+            <mat-divider
+              *ngIf="data.languages.length || data.countries.length"
+              class="divider-vertical-smaller-thicker shadow"
+              [vertical]="true"
+            ></mat-divider>
+
+            <!-- Flaggen -->
+            <div
+              *ngIf="data.languages.length || data.countries.length"
+              class="flex"
+              [style.gap.px]="8"
+            >
+              <ng-container
+                *ngIf="
+                  data.languages
+                    | mostSignificantFlags
+                      : data.countries
+                      : (isMobileSreen.matches ? 1 : 2)
+                      : (localeService.locale$ | async)! as flags
+                "
+              >
+                <mat-icon
+                  *ngFor="let flag of flags"
+                  class="medium without-button"
+                  [svgIcon]="flag.icon"
+                  [matTooltip]="flag.tooltip"
+                ></mat-icon>
+              </ng-container>
+            </div>
+
+            <mat-divider
+              *ngIf="data.genres?.length"
+              class="divider-vertical-smaller-thicker shadow"
+              [vertical]="true"
+            ></mat-divider>
+
+            <!-- Genres -->
+            <div class="flex" [style.gap.px]="data.genres?.length === 1 ? 5 : 8">
+              <ng-container *ngFor="let id of data.genres">
+                <ng-container *ngIf="id | genre as genre">
+                  <mat-icon
+                    class="medium without-button shadow"
+                    [svgIcon]="genre.icon"
+                    [matTooltip]="genre.name | translate"
+                  ></mat-icon>
+                  <span *ngIf="data.genres?.length === 1" class="ellipsis">{{
+                    genre.name | translate
+                  }}</span>
+                </ng-container>
+              </ng-container>
+            </div>
+          </div>
+
+          <button
+            *ngIf="item.funcOpenSearch"
+            mat-button
+            class="only-icon medium"
+            [matTooltip]="'SEARCH.SHOW_IN' | translate"
+            (click)="onActionSearchClick($event)"
+          >
+            <mat-icon class="shadow" svgIcon="search-show-in"></mat-icon>
+          </button>
+        </div>
+
+        <!-- Aktion / Button -->
+        <div class="buttons">
+          <button
+            *ngFor="let button of item.buttons"
+            mat-flat-button
+            [color]="item.media?.isMovie ? 'accent' : 'primary'"
+            [ngClass]="{ 'only-icon': button.onlyIcon, 'with-image with-text': true }"
+            [matTooltip]="
+              button.tooltip
+                ? (button.tooltip
+                  | translate : { value: (button.tooltipReplace ?? '' | translate) })
+                : (button.text | translate : { value: (button.textReplace ?? '' | translate) })
+            "
+            (click)="onActionClick($event, button.id)"
+          >
+            <mat-icon *ngIf="button.icon" [svgIcon]="button.icon"></mat-icon>
+            <img *ngIf="button.image" height="16" width="16" loading="lazy" [src]="button.image" />
+            <span *ngIf="!button.onlyIcon">
+              {{ button.text | translate : { value: (button.textReplace ?? "" | translate) } }}
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Verlauf -->
+      <div class="gradient left"></div>
+      <div class="gradient right"></div>
+
+      <!-- Bild -->
+      <div class="image-container">
+        <div class="blur"></div>
+        <img
+          *ngIf="item.image || item.media?.images?.length; else noImage"
+          [src]="item.image || (item.media?.images ?? [] | headerImage : true | async)"
+          [ngClass]="{ image: true, 'vertical-animation': !item.noVerticalImageAnimation }"
+        />
+        <ng-template #noImage>
+          <div class="image"></div>
+        </ng-template>
+      </div>
+
+      <div class="progress" [style]="'--seconds: ' + secondsMax + 's'"></div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

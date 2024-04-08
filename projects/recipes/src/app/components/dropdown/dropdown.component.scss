@@ -1,0 +1,9 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+img {
+  border-radius: $border-radius;
+
+  margin-left: 1px;
+  margin-right: 17px;
+}

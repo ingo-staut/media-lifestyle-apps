@@ -1,0 +1,233 @@
+<app-sidenav class="container">
+  <section *ngIf="(mediaContinueWatching$ | async)?.length">
+    <div class="title only-text">
+      <mat-icon svgIcon="continue-watching" class="medium"></mat-icon>
+      {{ "CONTINUE_WATCHING" | translate }}
+
+      <div class="buttons">
+        <app-button-show-more
+          [show]="!(showStartedWithoutLastEdited$ | async)"
+          (loadMore)="onLoadStartedSeries()"
+        />
+      </div>
+    </div>
+
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <ng-container *ngFor="let media of mediaContinueWatching$ | async; index as index">
+          <mat-divider
+            *ngIf="media.showDivider"
+            class="divider-vertical-20px"
+            [vertical]="true"
+          ></mat-divider>
+
+          <app-media-chip
+            [media]="media.media"
+            [episodeInTV]="media.media._episodeInTelevision"
+            [showNextEpisodeDetails]="
+              media.continueWatchingNextEpisode &&
+              !media.episodeInTVWithWatchtime &&
+              !media.currentEpisodeHasWatchtime
+            "
+          ></app-media-chip>
+        </ng-container>
+
+        <app-button-show-more
+          [show]="!(showStartedWithoutLastEdited$ | async)"
+          (loadMore)="onLoadStartedSeries()"
+        />
+      </section>
+    </div>
+  </section>
+
+  <section *ngIf="(mediaEpisodesInTVAll$ | async)?.length">
+    <div class="title only-text">
+      <mat-icon svgIcon="series" class="medium"></mat-icon>
+      {{ "NEW_EPISODES" | translate }}
+
+      <div class="buttons">
+        <app-button-show-in-search key="EPISODES_IN_TELEVISION_MISSED" />
+      </div>
+    </div>
+
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <ng-container *ngFor="let media of mediaEpisodesInTVAll$ | async; index as mediaIndex">
+          <ng-container
+            *ngIf="
+              media.television?._episodesInTelevision
+                | filterEpisodesInTelevisionMissed as episodesInTV
+            "
+          >
+            <app-media-chip
+              *ngIf="episodesInTV.length"
+              [media]="media"
+              [episodesInTV]="episodesInTV.length === 1 ? undefined : episodesInTV"
+              [episodeInTV]="episodesInTV.at(0)"
+              [expanded]="mediaEpisodeIsExpandedIndexes[mediaIndex]"
+              [shadow]="true"
+              (onTelevisionExpand)="updateMarginInArray(mediaIndex)"
+            ></app-media-chip>
+
+            <!-- Container mit Episoden-Chips -->
+            <div *ngIf="episodesInTV.length > 1" [style.display]="'flex'" [style.gap]="'10px'">
+              <ng-container *ngFor="let episodeInTV of episodesInTV.slice(1); index as index">
+                <!-- Episoden-Chip -->
+                <app-media-chip
+                  class="animation"
+                  [media]="media"
+                  [episodeInTV]="episodeInTV"
+                  [style.marginLeft.px]="mediaEpisodeIsExpandedIndexes[mediaIndex] ? 0 : -140"
+                  [style.zIndex]="episodesInTV.length - index"
+                  [shadow]="true"
+                ></app-media-chip>
+              </ng-container>
+
+              <!-- Erweitern-Overlay -->
+              <button
+                *ngIf="!mediaEpisodeIsExpandedIndexes[mediaIndex]"
+                class="expand-overlay"
+                matTooltipPositionAtOrigin
+                [matTooltip]="'EXPAND_ALL' | translate"
+                [style.marginLeft.px]="(-episodesInTV.length + 1) * 10 - 10"
+                [style.width.px]="(episodesInTV.length - 1) * 10"
+                (click)="updateMarginInArray(mediaIndex, $event)"
+              ></button>
+
+              <!-- Zuklappen-Button am Ende der Episoden-Chips -->
+              <button
+                *ngIf="mediaEpisodeIsExpandedIndexes[mediaIndex]"
+                class="collapse"
+                matTooltipPositionAtOrigin
+                [matTooltip]="'COLLAPSE_ALL' | translate"
+                (click)="updateMarginInArray(mediaIndex, $event)"
+              >
+                <mat-icon svgIcon="arrow-multiple-left" class="medium without-button"></mat-icon>
+              </button>
+            </div>
+          </ng-container>
+        </ng-container>
+      </section>
+    </div>
+  </section>
+
+  <section
+    *ngIf="
+      ((mediaSeriesOrSeasonStart$ | async)?.length ?? 0) <=
+        splitMediaSeriesstartAndSeasonstartIfBiggerThan &&
+        (mediaSeriesStart$ | async)?.length !== 0 &&
+        (mediaSeasonStart$ | async)?.length !== 0;
+      else seasonAndSeriesStart
+    "
+  >
+    <div class="title only-text">
+      <mat-icon svgIcon="season-new" class="medium"></mat-icon>
+      {{ "START_OF_SERIES_AND_SEASONS" | translate }}
+    </div>
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <ng-container *ngFor="let media of mediaSeriesOrSeasonStart$ | async; index as index">
+          <mat-divider
+            *ngIf="media.showDivider"
+            class="divider-vertical-20px"
+            [vertical]="true"
+          ></mat-divider>
+
+          <app-media-chip [media]="media.media"></app-media-chip>
+        </ng-container>
+      </section>
+    </div>
+  </section>
+
+  <ng-template #seasonAndSeriesStart>
+    <section *ngIf="(mediaSeasonStart$ | async)?.length">
+      <div class="title only-text">
+        <mat-icon svgIcon="season-new" class="medium"></mat-icon>
+        {{ "START_OF_SEASON" | translate }}
+      </div>
+
+      <div class="scrollbox">
+        <section class="scrollbox-content">
+          <app-media-chip
+            *ngFor="let media of mediaSeasonStart$ | async; index as index"
+            [media]="media"
+          ></app-media-chip>
+        </section>
+      </div>
+    </section>
+
+    <section *ngIf="(mediaSeriesStart$ | async)?.length">
+      <div class="title only-text">
+        <mat-icon svgIcon="season-new" class="medium"></mat-icon>
+        {{ "START_OF_SERIES" | translate }}
+      </div>
+
+      <div class="scrollbox">
+        <section class="scrollbox-content">
+          <app-media-chip
+            *ngFor="let media of mediaSeriesStart$ | async; index as index"
+            [media]="media"
+          ></app-media-chip>
+        </section>
+      </div>
+    </section>
+  </ng-template>
+
+  <section *ngIf="(mediaAvailableUntil$ | async)?.length">
+    <div class="title only-text">
+      <mat-icon svgIcon="calendar-until" class="medium"></mat-icon>
+      {{ "SOON_NO_LONGER_AVAILABLE" | translate }}
+
+      <div class="buttons">
+        <app-button-show-in-search key="AVAILABLE_UNTIL" />
+      </div>
+    </div>
+
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <app-media-chip
+          *ngFor="let media of mediaAvailableUntil$ | async"
+          [media]="media"
+        ></app-media-chip>
+      </section>
+    </div>
+  </section>
+
+  <section *ngIf="!(noTabData$ | async)">
+    <div class="title only-text" [style.paddingLeft.px]="0">
+      <mat-tab-group
+        class="tabs-only-icons-in-mobile main-background-1 sticky with-show-in-search-button"
+        mat-stretch-tabs="false"
+        mat-align-tabs="center"
+        color="accent"
+        [selectedIndex]="selectedTabIndexMovies$ | async"
+        (selectedTabChange)="onTabChange($event.index)"
+      >
+        <mat-tab *ngFor="let tab of movieTabs" [disabled]="!(tab.data | async)!.length">
+          <ng-template mat-tab-label>
+            <mat-icon class="tab-icon" [svgIcon]="tab.icon"></mat-icon>
+            <span class="tab-text">{{ tab.name | translate }}</span>
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+
+      <div class="buttons">
+        <app-button-show-in-search
+          *ngIf="movieTabs[(selectedTabIndexMovies$ | async)!].showInSearch as showInSearch"
+          [key]="showInSearch"
+        />
+      </div>
+    </div>
+
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <app-media-chip
+          *ngFor="let media of selectedDataMovies$ | async"
+          [media]="media"
+          [episodeInTV]="media._episodeInTelevision"
+          [noEpisodeInTVActions]="true"
+        ></app-media-chip>
+      </section>
+    </div>
+  </section>
+</app-sidenav>

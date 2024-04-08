@@ -1,0 +1,40 @@
+<mat-card [ngClass]="{ 'recipe-card': true }" matRipple [formGroup]="formGroup" (click)="onEdit()">
+  <!-- Titel -->
+  <span
+    class="title"
+    [innerHTML]="
+      ingredient
+        | ingredient
+          : (localeService.locale$ | async)!
+          : (ingredientApiService.ingredientsConversion$ | async)
+    "
+  >
+  </span>
+
+  <div class="footer">
+    <app-button-contents
+      [show]="true"
+      [name]="ingredient.name"
+      [showAddConversionButton]="true"
+      [ingredientsConversion]="ingredientApiService.ingredientsConversion$ | async"
+    ></app-button-contents>
+
+    <div class="spacer"></div>
+
+    <!-- Button: Verwenden bis -->
+    <app-button-use-until
+      [ingredient]="ingredient"
+      (dateChange)="onUseUntilDateChange($event)"
+    ></app-button-use-until>
+
+    <!-- Button: Entfernen -->
+    <button
+      mat-flat-button
+      class="only-icon medium"
+      [matTooltip]="'ACTION.REMOVE' | translate"
+      (click)="onDelete()"
+    >
+      <mat-icon svgIcon="delete"></mat-icon>
+    </button>
+  </div>
+</mat-card>

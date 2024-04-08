@@ -1,0 +1,99 @@
+<div class="search">
+  <button
+    mat-flat-button
+    class="only-icon"
+    [matTooltip]="'SEARCH.CLOSE' | translate"
+    (click)="onClose()"
+  >
+    <mat-icon svgIcon="arrow-left"></mat-icon>
+  </button>
+
+  <!-- QuickAddFilter: ButtonTristate -->
+  <ng-container *ngIf="!isSmallScreen.matches || quickAddFilterFromSearch.length <= 1">
+    <button
+      *ngFor="let filter of quickAddFilterFromSearch; first as first"
+      matRipple
+      [matTooltip]="filter.text | translate"
+      [ngClass]="{ 'blinking-white': first, 'button-normal': true }"
+      (click)="filter.func()"
+    >
+      <mat-icon
+        *ngFor="let icon of filter.icons"
+        [svgIcon]="icon"
+        class="medium without-button"
+      ></mat-icon>
+
+      <img *ngIf="filter.image" height="16" width="16" loading="lazy" [src]="filter.image" />
+      {{ isSmallScreen.matches ? "" : (filter.text | translate) }}
+
+      <mat-icon *ngIf="filter.addFilter" svgIcon="add-to" class="medium without-button"></mat-icon>
+      <mat-icon
+        *ngIf="filter.removeFilter"
+        svgIcon="remove-from"
+        class="medium without-button"
+      ></mat-icon>
+    </button>
+  </ng-container>
+
+  <input
+    #searchInput
+    class="search-input"
+    [placeholder]="'SEARCH.INPUT' | translate"
+    autocomplete="off"
+    cdkFocusInitial
+    [ngModel]="searchValue"
+    (ngModelChange)="onChange($event)"
+    enterKeyHint="search"
+    (keyup.enter)="onEnter()"
+  />
+  <button
+    mat-button
+    class="only-icon"
+    [matTooltip]="'SEARCH.CLEAR_INPUT' | translate"
+    (click)="searchInput.focus(); onChange('')"
+    [disabled]="!searchValue"
+  >
+    <mat-icon svgIcon="clear"></mat-icon>
+  </button>
+
+  <!-- Media hinzufügen -->
+  <button
+    *ngIf="!isSmallScreen.matches"
+    mat-flat-button
+    class="only-icon"
+    [matTooltip]="'CREATE' | translate"
+    (click)="onOpenCreateDialog()"
+  >
+    <mat-icon svgIcon="add"></mat-icon>
+  </button>
+</div>
+
+<div
+  *ngIf="isSmallScreen.matches && quickAddFilterFromSearch.length > 1"
+  class="search"
+  [style.paddingTop.px]="0"
+>
+  <button
+    *ngFor="let filter of quickAddFilterFromSearch; first as first"
+    matRipple
+    [matTooltip]="filter.text | translate"
+    [ngClass]="{ 'blinking-white': first, 'button-normal': true }"
+    (click)="filter.func()"
+  >
+    <mat-icon
+      *ngFor="let icon of filter.icons"
+      [svgIcon]="icon"
+      class="medium without-button"
+    ></mat-icon>
+
+    <img *ngIf="filter.image" height="16" width="16" loading="lazy" [src]="filter.image" />
+    {{ isSmallScreen.matches ? "" : (filter.text | translate) }}
+
+    <mat-icon *ngIf="filter.addFilter" svgIcon="add-to" class="medium without-button"></mat-icon>
+    <mat-icon
+      *ngIf="filter.removeFilter"
+      svgIcon="remove-from"
+      class="medium without-button"
+    ></mat-icon>
+  </button>
+</div>

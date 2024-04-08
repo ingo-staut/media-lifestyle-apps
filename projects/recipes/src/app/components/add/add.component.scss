@@ -1,0 +1,120 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+:host {
+  display: flex;
+  gap: $padding-s;
+}
+
+.basic-input {
+  position: relative;
+  width: 100%;
+  transition: all 500ms ease-in-out;
+
+  input {
+    font-size: 16px;
+    color: $text-1;
+    height: 40px;
+    background-color: $background-1;
+    border-radius: $border-radius;
+    border: none;
+    outline: none;
+    position: relative;
+    width: 40px;
+    box-sizing: border-box;
+    transition: width 500ms ease-in-out;
+
+    &.mat-mdc-chip-input {
+      margin-left: 0px;
+    }
+  }
+
+  .input-open {
+    border-bottom: 2px solid $background-2;
+    padding: 10px 10px 10px 40px;
+  }
+
+  input:focus {
+    background-color: $background-2;
+    border-bottom: 2px solid $primary;
+  }
+
+  .add-button {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    bottom: 0px;
+    z-index: 2;
+  }
+}
+
+.input-info {
+  position: absolute;
+  right: 0px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  z-index: 2;
+
+  span {
+    color: $text-2;
+    padding: $padding-xs $padding-s;
+    backdrop-filter: blur(100px);
+  }
+}
+
+.child {
+  display: flex;
+
+  &.no-tags {
+    height: 0;
+  }
+
+  mat-chip-grid {
+    flex-grow: 1;
+    width: 0;
+  }
+}
+
+// ".completer img" funktioniert nicht
+// braucht eigene Klasse
+.completer-image {
+  vertical-align: middle;
+  max-width: 50px;
+  margin-right: $padding-s;
+}
+
+.completer .mat-icon {
+  margin-right: $padding-s;
+}
+
+.chip {
+  img,
+  mat-icon {
+    margin-right: $padding-xxs;
+  }
+}
+
+.drag-placeholder {
+  border-radius: $border-radius;
+  border: 2px dotted $background-2;
+  // Breite wird in Komponente berechnet
+  width: var(--drag-chip-width, 30px);
+  // Chip-Höhe
+  height: 30px;
+}
+
+.drag-handle {
+  width: 7px; // 12px - 5px (Gap)
+  height: 30px;
+  background: transparent;
+}
+
+.text-emoji {
+  font-size: 20px;
+  padding-right: 15px;
+  padding-bottom: 2px;
+  width: 25px;
+  display: flex;
+  justify-content: center;
+}

@@ -1,0 +1,62 @@
+<div [formGroup]="parentFormGroup" [style.lineHeight]="0">
+  <mat-select
+    (valueChange)="onSelectChanged($event)"
+    matRipple
+    [matTooltip]="formfieldName | translate | required : !!required"
+    [formControlName]="formfieldKey"
+    class="select normal"
+  >
+    <mat-select-trigger>
+      <mat-icon
+        *ngIf="selected.icon"
+        class="medium without-button"
+        [svgIcon]="selected.icon"
+      ></mat-icon>
+      <img *ngIf="selected.image" height="16" width="16" loading="lazy" [src]="selected.image" />
+      <span>
+        {{ selected.name | translate }}
+      </span>
+    </mat-select-trigger>
+
+    <mat-option *ngIf="noneText" [value]="noneValue ?? 0">
+      <mat-icon [svgIcon]="noneIcon" class="medium without-button"></mat-icon>
+      {{ noneText | translate }}
+    </mat-option>
+
+    <mat-optgroup
+      *ngFor="let group of groups"
+      [label]="group.name | translate"
+      [disabled]="group.disabled"
+      [ngClass]="{ group: true, 'with-icons': group.icon, hide: group.hide }"
+    >
+      <mat-icon
+        *ngIf="group.icon"
+        [svgIcon]="group.icon"
+        class="medium without-button group-icon"
+      ></mat-icon>
+
+      <mat-option
+        *ngFor="let entry of group.entries"
+        [value]="entry.type"
+        (contextmenu)="onContextMenu($event, entry)"
+      >
+        <mat-icon
+          *ngIf="entry.icon"
+          [svgIcon]="entry.icon"
+          class="medium without-button"
+        ></mat-icon>
+        <img *ngIf="entry.image" height="16" width="16" loading="lazy" [src]="entry.image" />
+        {{ entry.name | translate }}
+      </mat-option>
+    </mat-optgroup>
+  </mat-select>
+  <p
+    *ngIf="
+      parentFormGroup.controls[formfieldKey].hasError('pattern') &&
+      parentFormGroup.controls[formfieldKey].touched
+    "
+    class="error"
+  >
+    {{ "FIELD.ERROR_TEXT.MANDATORY" | translate : { formfieldName: formfieldName | translate } }}
+  </p>
+</div>

@@ -1,0 +1,144 @@
+@import "styles.theme";
+@import "../../../shared/styles/styles.theme.scss";
+@import "../../../shared/styles/styles.fixes.scss";
+
+// Entfernt das Padding im Akkordioninhalt
+.mat-expansion-panel-content .mat-expansion-panel-body {
+  padding: 0;
+}
+
+@mixin selection {
+  ::-moz-selection {
+    /* Code for Firefox */
+    color: $main-background;
+    background: white;
+  }
+
+  ::selection {
+    color: $main-background;
+    background: white;
+  }
+}
+
+@mixin selection-inverted {
+  ::-moz-selection {
+    /* Code for Firefox */
+    color: $primary;
+    background: white;
+  }
+
+  ::selection {
+    color: $primary;
+    background: white;
+  }
+}
+
+mat-snack-bar-container {
+  .mdc-snackbar__surface {
+    padding: 0;
+  }
+
+  &.info-snackbar > .mdc-snackbar__surface {
+    background-color: $info !important;
+    @include selection;
+  }
+
+  &.error-snackbar > .mdc-snackbar__surface {
+    background-color: $error !important;
+    @include selection;
+  }
+
+  &.warning-snackbar > .mdc-snackbar__surface {
+    background-color: $warning !important;
+    @include selection;
+  }
+
+  &.success-snackbar > .mdc-snackbar__surface {
+    background-color: $success !important;
+    @include selection;
+  }
+}
+
+.carousel {
+  .mat-mdc-tab-header {
+    margin-top: -40px;
+    z-index: 5;
+  }
+
+  .mdc-tab {
+    height: 40px !important;
+    min-width: unset !important;
+    // Abstand zwischen den Tabs, bzw. Größe der Tabs
+    padding: 0 $padding-xs !important;
+
+    background: transparent !important;
+  }
+
+  // Aktuell ausgewählter Tab (Grüner Strich)
+  .mdc-tab-indicator {
+    display: none !important;
+  }
+
+  // Hintergrundfarbe + Ripple
+  .mat-ripple,
+  .mdc-tab__ripple {
+    display: none !important;
+  }
+}
+
+// ----------------------------------------------------------------
+// Timepicker
+// ----------------------------------------------------------------
+ngx-material-timepicker-container {
+  // Bestimme Farben aus dem Theme
+  --body-background-color: #25282f !important; // $main-background-1
+  --dial-background-color: #25282f !important; // $main-background-1
+  --clock-face-background-color: #0d1118 !important; // $main-background
+  --clock-face-time-disabled-color: rgba(255, 255, 255, 0.1) !important; // $background-1
+  --clock-face-inner-time-inactive-color: rgba(255, 255, 255, 0.5) !important; // $text-2
+  --clock-face-time-inactive-color: rgba(255, 255, 255, 0.75) !important; // $text-1
+  --clock-hand-color: #0f91a5 !important; // $primary
+  // Gesetzt, aber aktuell nicht in Gebrauch
+  --button-color: #0f91a5 !important; // $primary
+  --dial-editable-active-color: #0f91a5 !important; // $primary
+
+  .timepicker-backdrop-overlay {
+    z-index: 2000 !important;
+  }
+
+  .timepicker-overlay {
+    z-index: 2000 !important;
+
+    background-color: rgba(#0d1118, 0.5) !important; // $main-background
+    backdrop-filter: blur(5px) !important;
+  }
+
+  .timepicker {
+    width: 330px !important;
+    border-radius: 4px !important;
+    overflow: hidden !important; // Für Border-Radius
+  }
+
+  .timepicker__header {
+    padding: 15px 55px !important;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .clock-face__number:hover > span:not(.active) {
+    cursor: pointer !important;
+    color: white !important;
+    background-color: #0f91a54d !important;
+  }
+
+  .clock-face__number:hover > span.active {
+    cursor: grab !important;
+    outline: 7px solid #0f91a54d !important;
+  }
+
+  .timepicker__actions {
+    gap: 10px !important; // $padding-s
+    // Damit "Ok"-Button links und "Cancel"-Button rechts ist
+    justify-content: flex-start !important;
+    flex-direction: row-reverse !important;
+  }
+}

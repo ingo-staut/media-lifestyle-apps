@@ -1,0 +1,118 @@
+<div
+  *ngIf="this.items"
+  class="carousel-container"
+  [style]="'--height: ' + height + '; ' + '--min-height: ' + minHeight"
+  (swipeRight)="previous()"
+  (swipeLeft)="next()"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
+>
+  <!-- Inhalt -->
+  <mat-tab-group
+    headerPosition="below"
+    mat-stretch-tabs="false"
+    mat-align-tabs="center"
+    class="carousel"
+    [animationDuration]="isMobileSreen.matches ? 1000 : 2000"
+    [(selectedIndex)]="selectedIndex"
+  >
+    <mat-tab *ngFor="let item of items">
+      <ng-template mat-tab-label>
+        <span
+          [matTooltip]="item.text | translate : { value: item.textReplace }"
+          [ngClass]="{
+            'not-selectable': true,
+            'symbol-cross': item.symbol === CarouselSymbol.CROSS,
+            'symbol-circle': item.symbol === CarouselSymbol.CIRCLE
+          }"
+          >{{ item.symbol ?? defaultCarouselSymbol }}</span
+        >
+      </ng-template>
+
+      <!-- Zurück -->
+      <button *ngIf="moreThanOneItem" class="previous" (click)="previous()">
+        <mat-icon class="icon-arrow" svgIcon="arrow-single-left"></mat-icon>
+      </button>
+
+      <!-- Vor -->
+      <button *ngIf="moreThanOneItem" class="next" (click)="next()">
+        <mat-icon class="icon-arrow" svgIcon="arrow-single-right"></mat-icon>
+      </button>
+
+      <!-- Text & Button -->
+      <div class="content">
+        <!-- Titel -->
+        <h1 (click)="onOpenRecipe($event, item.recipe)">
+          {{ item.title | translate }}
+        </h1>
+
+        <!-- Text -->
+        <div class="text-container">
+          <mat-icon
+            *ngIf="item.icon"
+            class="medium without-button shadow"
+            [svgIcon]="item.icon"
+          ></mat-icon>
+          <span
+            *ngIf="item.text | translate : { value: item.textReplace } as text"
+            class="title"
+            [matTooltip]="text"
+          >
+            {{ text }}
+          </span>
+          <button
+            *ngIf="item.funcOpenSearch"
+            mat-button
+            class="only-icon medium"
+            [matTooltip]="'SEARCH.SHOW_IN' | translate"
+            (click)="onActionSearchClick($event)"
+          >
+            <mat-icon class="shadow" svgIcon="search-show-in"></mat-icon>
+          </button>
+        </div>
+
+        <!-- Aktion / Button -->
+        <div class="buttons">
+          <button
+            *ngFor="let button of item.buttons"
+            mat-flat-button
+            color="primary"
+            [ngClass]="{ 'only-icon': button.onlyIcon }"
+            [matTooltip]="
+              button.tooltip
+                ? (button.tooltip
+                  | translate : { value: (button.tooltipReplace ?? '' | translate) })
+                : (button.text | translate : { value: (button.textReplace ?? '' | translate) })
+            "
+            (click)="onActionClick($event, button.id)"
+          >
+            <mat-icon *ngIf="button.icon" [svgIcon]="button.icon"></mat-icon>
+            <img *ngIf="button.image" height="16" width="16" loading="lazy" [src]="button.image" />
+            <span *ngIf="!button.onlyIcon">
+              {{ button.text | translate : { value: (button.textReplace ?? "" | translate) } }}
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Verlauf -->
+      <div class="gradient left"></div>
+      <div class="gradient right"></div>
+
+      <!-- Bild -->
+      <div class="image-container">
+        <div class="blur"></div>
+        <img
+          *ngIf="item.image || item.recipe?.images?.length; else noImage"
+          [src]="item.image || (item.recipe?.images ?? [] | headerImage : true | async)"
+          [ngClass]="{ image: true, 'vertical-animation': !item.noVerticalImageAnimation }"
+        />
+        <ng-template #noImage>
+          <div class="image"></div>
+        </ng-template>
+      </div>
+
+      <div class="progress" [style]="'--seconds: ' + secondsMax + 's'"></div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

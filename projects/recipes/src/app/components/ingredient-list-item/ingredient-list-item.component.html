@@ -1,0 +1,297 @@
+<div
+  *ngIf="
+    ingredient
+      | ingredient
+        : (localeService.locale$ | async)!
+        : ingredientsConversion
+        : { amountFactor, hideIngredientNotes } as ingredientText
+  "
+  cdkDrag
+  [ngClass]="{
+    'list-item': true,
+    'not-editable': !editable && !checkableIfNotEditable,
+    blinking,
+    checked: checkable && ingredient._checked,
+    checkable
+  }"
+  [cdkDragDisabled]="(isMobileScreen.matches && isEditMode) || !editable || !moveable"
+  [formGroup]="formGroup"
+>
+  <div class="list-item-line">
+    <ng-container *ngIf="editable">
+      <div class="drag-placeholder" *cdkDragPlaceholder></div>
+    </ng-container>
+
+    <!-- Verschieben: Nur am Symbol -->
+    <mat-icon
+      *ngIf="
+        ((isMobileScreen.matches && !isEditMode) || (!isMobileScreen.matches && isEditMode)) &&
+        editable &&
+        moveable
+      "
+      svgIcon="drag"
+      [matTooltip]="'MOVE' | translate"
+      class="grab medium"
+      cdkDragHandle
+    ></mat-icon>
+
+    <!-- Verschieben: Überall -->
+    <mat-icon
+      *ngIf="!isMobileScreen.matches && !isEditMode && moveable"
+      svgIcon="drag"
+      [matTooltip]="'MOVE' | translate"
+      class="grab medium"
+    ></mat-icon>
+
+    <!-- Icon: Gegenstand -->
+    <mat-icon
+      *ngIf="(ingredient | ingredientItemType : ingredientsConversion ?? []) === ItemType.THING"
+      svgIcon="thing"
+      [matTooltip]="'THING' | translate"
+      class="item-type medium without-button"
+    ></mat-icon>
+
+    <!-- Titel -->
+    <button
+      *ngIf="!isEditMode"
+      class="button-with-no-style"
+      [matTooltip]="ingredientText"
+      (click)="onEdit()"
+    >
+      <span
+        [innerHTML]="ingredientText | extendText : searchTextHighlight ?? '' : '<mark>' : '</mark>'"
+      ></span>
+
+      <button
+        *ngIf="hideIngredientNotes && ingredient.note"
+        mat-button
+        class="only-icon small"
+        [style.marginLeft.px]="5"
+        [matTooltip]="ingredient.note"
+        (click)="onNoteClick($event)"
+      >
+        <mat-icon class="small text-color-2" svgIcon="note-filled"></mat-icon>
+      </button>
+    </button>
+
+    <!-- Bearbeiten: Formularfelder -->
+    <div *ngIf="isEditMode" class="edit" lang="de" cdkTrapFocus [cdkTrapFocusAutoCapture]="true">
+      <app-formfield
+        #amount
+        [isSmall]="true"
+        [parentFormGroup]="formGroup"
+        formfieldKey="amount"
+        formfieldName="AMOUNT"
+        [formfieldType]="FormfieldType.NUMBER"
+        [value]="ingredient.amount"
+        class="item"
+        (submit)="onEdit()"
+        [min]="MIN_VALUE"
+        [id]="'amount-' + key"
+        cdkFocusInitial
+      >
+        <!-- WORKAROUND: cdkFocusInitial wirft eine Warning, macht aber genau was es soll -->
+      </app-formfield>
+      <app-formfield
+        [isSmall]="true"
+        [parentFormGroup]="formGroup"
+        formfieldKey="unit"
+        formfieldName="UNIT"
+        [formfieldType]="FormfieldType.TEXT"
+        [value]="ingredient.unit"
+        class="item"
+        (submit)="onEdit()"
+      >
+      </app-formfield>
+      <app-formfield
+        [isSmall]="true"
+        [parentFormGroup]="formGroup"
+        formfieldKey="name"
+        formfieldName="INGREDIENT.NAME"
+        [formfieldType]="FormfieldType.TEXT"
+        [required]="true"
+        [value]="ingredient.name"
+        class="item"
+        (submit)="onEdit()"
+      >
+      </app-formfield>
+    </div>
+
+    <!-- Button-Liste der Rezepte (ausgeklappt) in Desktopansicht -->
+    <ng-container
+      *ngIf="
+        ((ingredient.fromWithRecipe?.length && (ingredient | hasAtLeastOneRecipe)) ||
+          (ingredient.fromWithInstruction?.length && (ingredient | hasAtLeastOneInstruction))) &&
+        withRecipes === WithRecipesInList.WITH &&
+        !isMobileScreen.matches
+      "
+      [ngTemplateOutlet]="buttons"
+    ></ng-container>
+
+    <!-- Funktionsbuttons rechts -->
+    <div class="buttons">
+      <!-- Button: Zubereitungsschritt(e) -->
+      <app-append-button
+        tooltip="STEPS."
+        [fromWith]="ingredient.fromWithInstruction"
+        [(withInList)]="withRecipes"
+        [hasAtLeastOne]="ingredient | hasAtLeastOneInstruction"
+        [hasNotAtLeastOne]="ingredient | hasNotAtLeastOneInstruction"
+        icon="preparation"
+      >
+      </app-append-button>
+
+      <!-- Button: Rezept(e) -->
+      <app-append-button
+        tooltip="RECIPE.S"
+        [fromWith]="ingredient.fromWithRecipe"
+        [(withInList)]="withRecipes"
+        [hasAtLeastOne]="ingredient | hasAtLeastOneRecipe"
+        [hasNotAtLeastOne]="ingredient | hasNotAtLeastOneRecipe"
+        icon="recipe"
+      >
+      </app-append-button>
+
+      <!-- Button: Verwenden bis -->
+      <app-button-use-until
+        [ingredient]="ingredient"
+        [show]="isIngredientAvailable && showUseUntilButton && !!ingredient.useUntil"
+        [showDatePickerPopoutOnRightSide]="true"
+        (dateChange)="onUseUntilDateChange($event)"
+      ></app-button-use-until>
+
+      <mat-divider
+        *ngIf="isIngredientAvailable && showUseUntilButton && !!ingredient.useUntil"
+        class="divider-vertical-20px"
+        [vertical]="true"
+      ></mat-divider>
+
+      <!-- Button: Laden / Store -->
+      <ng-container *ngIf="additional && ingredient.store">
+        <button
+          *ngIf="
+            ingredient.store | store : (storeApiService.stores$ | async) as store;
+            else noStoreFound
+          "
+          mat-flat-button
+          class="with-image medium store"
+          [matTooltip]="store.name"
+        >
+          <img height="20" loading="lazy" class="store" [src]="store.icon" />
+        </button>
+
+        <ng-template #noStoreFound>
+          <button mat-flat-button class="only-icon medium" [matTooltip]="ingredient.store">
+            <mat-icon svgIcon="store"></mat-icon>
+          </button>
+        </ng-template>
+      </ng-container>
+
+      <!-- Button: Vorhanden -->
+      <app-button-available
+        *ngIf="!isEditMode && showAvailability"
+        [ingredient]="ingredient"
+        [showAddAvailabilityButton]="showAddAvailabilityButton"
+        [ingredientsAvailable]="ingredientsAvailable"
+        [ingredientsConversion]="ingredientsConversion"
+        [buttonTextWithIngredientAvailable]="!isMobileScreen.matches"
+      ></app-button-available>
+
+      <!-- Button: Inhaltsstoffe -->
+      <app-button-contents
+        [show]="!isEditMode"
+        [name]="ingredient.name"
+        [showAddConversionButton]="showAddConversionButton"
+        [ingredientsConversion]="ingredientsConversion"
+      ></app-button-contents>
+
+      <!-- Button: Checked / Gerade eingekauft -->
+      <button
+        *ngIf="checkable && showCheckBoxButton"
+        mat-flat-button
+        class="only-icon medium"
+        [matTooltip]="
+          (ingredient._checked ? 'CHECK.INGREDIENT' : 'CHECK.NOT.INGREDIENT') | translate
+        "
+        (click)="onCheck()"
+      >
+        <mat-icon [svgIcon]="'check-' + (ingredient._checked ? 'checked' : 'unchecked')"></mat-icon>
+      </button>
+
+      <!-- Button: Entfernen -->
+      <button
+        *ngIf="editable || _removeable"
+        mat-flat-button
+        class="only-icon medium"
+        [matTooltip]="'ACTION.REMOVE' | translate"
+        (click)="onDelete()"
+      >
+        <mat-icon svgIcon="delete"></mat-icon>
+      </button>
+
+      <!-- Button: Bearbeiten -->
+      <button
+        *ngIf="editable && showEditButton"
+        mat-flat-button
+        class="only-icon medium"
+        [disabled]="!formGroup.valid"
+        [matTooltip]="'ACTION.EDIT' | translate"
+        [color]="isEditMode ? 'primary' : ''"
+        (click)="onEdit()"
+      >
+        <mat-icon [svgIcon]="isEditMode ? 'check' : 'edit'"></mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- Button-Liste der Rezepte (ausgeklappt) in extra Zeile für mobile Ansicht -->
+  <div
+    *ngIf="
+      ((ingredient.fromWithRecipe?.length && (ingredient | hasAtLeastOneRecipe)) ||
+        (ingredient.fromWithInstruction?.length && (ingredient | hasAtLeastOneInstruction))) &&
+      withRecipes === WithRecipesInList.WITH &&
+      isMobileScreen.matches
+    "
+    class="scrollbox no-scrollbar-on-mobile"
+  >
+    <div class="scrollbox-content">
+      <ng-container [ngTemplateOutlet]="buttons"></ng-container>
+    </div>
+  </div>
+</div>
+
+<!-- Template: Button-Liste der Rezepte (ausgeklappt) -->
+<ng-template #buttons>
+  <!-- Rezepte -->
+  <ng-container *ngFor="let fromWithRecipe of ingredient.fromWithRecipe">
+    <app-from-button
+      [ingredient]="ingredient"
+      [fromWithItem]="fromWithRecipe"
+      [withInList]="withRecipes"
+      [hasAtLeastOne]="ingredient | hasAtLeastOneRecipe"
+      [hasNotAtLeastOne]="ingredient | hasNotAtLeastOneRecipe"
+      [name]="(fromWithRecipe.id ?? '' | recipeById : recipes)?.name ?? ''"
+      icon="recipe"
+      (openById)="openRecipe($event)"
+      (deleteById)="onRecipeDelete(fromWithRecipe.id ?? '')"
+      (ingredientChange)="ingredientChange.emit($event)"
+    >
+    </app-from-button>
+  </ng-container>
+
+  <!-- Zubereitungsschritt -->
+  <ng-container *ngFor="let fromWithInstruction of ingredient.fromWithInstruction">
+    <app-from-button
+      [ingredient]="ingredient"
+      [fromWithItem]="fromWithInstruction"
+      [withInList]="withRecipes"
+      [hasAtLeastOne]="ingredient | hasAtLeastOneInstruction"
+      [hasNotAtLeastOne]="ingredient | hasNotAtLeastOneInstruction"
+      [name]="(fromWithInstruction.id ?? '' | instructionById : instructions)?.name ?? ''"
+      icon="preparation"
+      (openById)="openById.emit($event)"
+      (ingredientChange)="ingredientChange.emit($event)"
+    >
+    </app-from-button>
+  </ng-container>
+</ng-template>

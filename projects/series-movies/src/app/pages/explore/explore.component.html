@@ -1,0 +1,557 @@
+<app-sidenav class="container">
+  <section *ngIf="(mediaWithGoodWatchability$ | async)?.length as count">
+    <div class="title only-text">
+      <mat-icon svgIcon="watch" class="medium"></mat-icon>
+      {{ "EAGERLY_AWAITED" | translate }}
+
+      <div class="buttons">
+        <app-button-show-more
+          [show]="mediaWithGoodWatchabilityCount < count"
+          (loadMore)="onLoadMoreWithGoodWatchability()"
+        />
+
+        <app-button-show-in-search key="SORT_RATING_WATCHABILITY" />
+      </div>
+    </div>
+
+    <app-section-banner
+      [textHTML]="'<strong>' + ('EAGERLY_AWAITED' | translate) + '</strong> '"
+      background="eagerly-awaited"
+      [textSmallHTML]="'EXPLORE.' | translate"
+      [id]="'eagerly-awaited-media'"
+      [width]="300"
+      [show]="!!count"
+    />
+
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <app-section-banner-spacer />
+
+        <app-media-chip
+          *ngFor="
+            let media of mediaWithGoodWatchability$
+              | async
+              | slice : 0 : mediaWithGoodWatchabilityCount
+          "
+          [media]="media"
+          [mediaToExplore]="true"
+          [showWatchability]="true"
+          [shadow]="true"
+          [outline]="false"
+        ></app-media-chip>
+
+        <app-button-show-more
+          [show]="mediaWithGoodWatchabilityCount < count"
+          (loadMore)="onLoadMoreWithGoodWatchability()"
+        />
+      </section>
+    </div>
+  </section>
+
+  <section *ngIf="(topSeriesInThisAndLastYear$ | async)?.length as count">
+    <div class="title only-text">
+      <mat-icon svgIcon="top" class="medium"></mat-icon>
+      {{ "SERIES.TOP_CURRENT" | translate }}
+
+      <div class="buttons">
+        <app-button-show-more
+          [show]="topSeriesInThisAndLastYearCount < count"
+          (loadMore)="onLoadMoreTopSeriesInThisAndLastYear()"
+        />
+
+        <app-button-show-in-search key="TOP_SERIES_SORT_IMDB" />
+      </div>
+    </div>
+
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <app-media-chip
+          *ngFor="
+            let media of topSeriesInThisAndLastYear$
+              | async
+              | slice : 0 : topSeriesInThisAndLastYearCount
+          "
+          [mediaToExplore]="true"
+          [media]="media"
+        ></app-media-chip>
+
+        <app-button-show-more
+          [show]="topSeriesInThisAndLastYearCount < count"
+          (loadMore)="onLoadMoreTopSeriesInThisAndLastYear()"
+        />
+      </section>
+    </div>
+  </section>
+
+  <section *ngIf="(mediaInternational$ | async)?.length as count">
+    <div class="title only-text">
+      <mat-icon svgIcon="globe" class="medium"></mat-icon>
+      Worldwide
+
+      <div class="buttons">
+        <app-button-show-more
+          [show]="mediaInternationalCount < count"
+          (loadMore)="onLoadMoreInternational()"
+        />
+
+        <app-button-show-in-search key="INTERNATIONAL" />
+      </div>
+    </div>
+
+    <app-section-banner
+      [textHTML]="'<strong>Worldwide</strong> ' + ('SERIES_AND_MOVIES' | translate)"
+      background="international"
+      backgroundFilter="hue-rotate(330deg)"
+      [textSmallHTML]="'INTERNATIONAL_DETAILS' | translate"
+      [id]="'international-movies'"
+      [width]="300"
+      [show]="!!count"
+    />
+
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <app-section-banner-spacer />
+
+        <app-media-chip
+          *ngFor="let media of mediaInternational$ | async | slice : 0 : mediaInternationalCount"
+          [mediaToExplore]="true"
+          [media]="media"
+          [shadow]="true"
+          [outline]="false"
+        ></app-media-chip>
+
+        <app-button-show-more
+          [show]="mediaInternationalCount < count"
+          (loadMore)="onLoadMoreInternational()"
+        />
+      </section>
+    </div>
+  </section>
+
+  <section *ngIf="(topMoviesInThisAndLastYear$ | async)?.length as count">
+    <div class="title only-text">
+      <mat-icon svgIcon="top" class="medium"></mat-icon>
+      {{ "MOVIE.TOP_CURRENT" | translate }}
+
+      <div class="buttons">
+        <app-button-show-more
+          [show]="topMoviesInThisAndLastYearCount < count"
+          (loadMore)="onLoadMoreTopMoviesInThisAndLastYear()"
+        />
+
+        <app-button-show-in-search key="TOP_MOVIES_SORT_IMDB" />
+      </div>
+    </div>
+
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <app-media-chip
+          *ngFor="
+            let media of topMoviesInThisAndLastYear$
+              | async
+              | slice : 0 : topMoviesInThisAndLastYearCount
+          "
+          [mediaToExplore]="true"
+          [media]="media"
+        ></app-media-chip>
+
+        <app-button-show-more
+          [show]="topMoviesInThisAndLastYearCount < count"
+          (loadMore)="onLoadMoreTopMoviesInThisAndLastYear()"
+        />
+      </section>
+    </div>
+  </section>
+
+  <section *ngIf="(germanMovies$ | async)?.length as count">
+    <div class="title only-text">
+      <mat-icon svgIcon="language-de" class="medium"></mat-icon>
+      Deutsche Filme
+
+      <div class="buttons">
+        <app-button-show-more
+          [show]="germanMoviesCount < count"
+          (loadMore)="onLoadMoreGermanMovies()"
+        />
+
+        <app-button-show-in-search key="GERMAN_NOT_WATCHED_MOVIES" />
+      </div>
+    </div>
+
+    <app-section-banner
+      textHTML="<strong>Deutsche</strong> Filme"
+      background="germany"
+      [textSmallHTML]="'EXPLORE.' | translate"
+      [id]="'deutschefilme'"
+      [width]="300"
+      [show]="!!count"
+    />
+
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <app-section-banner-spacer />
+
+        <app-media-chip
+          *ngFor="let media of germanMovies$ | async | slice : 0 : germanMoviesCount"
+          [mediaToExplore]="true"
+          [media]="media"
+          [shadow]="true"
+          [outline]="false"
+        ></app-media-chip>
+
+        <app-button-show-more
+          [show]="germanMoviesCount < count"
+          (loadMore)="onLoadMoreGermanMovies()"
+        />
+      </section>
+    </div>
+  </section>
+
+  <section *ngIf="(seriesOldButGold$ | async)?.length as count">
+    <div class="title only-text">
+      <mat-icon svgIcon="old-but-gold" class="medium"></mat-icon>
+      {{ "SERIES.OLD_BUT_GOLD" | translate }}
+
+      <div class="buttons">
+        <app-button-show-more
+          [show]="seriesOldButGoldCount < count"
+          (loadMore)="onLoadMoreSeriesOldButGold()"
+        />
+
+        <app-button-show-in-search key="OLD_SERIES_SORT_IMDB" />
+      </div>
+    </div>
+
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <app-media-chip
+          *ngFor="let media of seriesOldButGold$ | async | slice : 0 : seriesOldButGoldCount"
+          [mediaToExplore]="true"
+          [media]="media"
+        ></app-media-chip>
+
+        <app-button-show-more
+          [show]="seriesOldButGoldCount < count"
+          (loadMore)="onLoadMoreSeriesOldButGold()"
+        />
+      </section>
+    </div>
+  </section>
+
+  <section *ngIf="(germanSeries$ | async)?.length as count">
+    <div class="title only-text">
+      <mat-icon svgIcon="language-de" class="medium"></mat-icon>
+      Deutsche Serien
+
+      <div class="buttons">
+        <app-button-show-more
+          [show]="germanSeriesCount < count"
+          (loadMore)="onLoadMoreGermanSeries()"
+        />
+
+        <app-button-show-in-search key="GERMAN_NOT_WATCHED_SERIES" />
+      </div>
+    </div>
+
+    <app-section-banner
+      textHTML="<strong>Deutsche</strong> Serien"
+      background="germany"
+      [textSmallHTML]="'EXPLORE.' | translate"
+      [id]="'deutscheserien'"
+      [width]="300"
+      [show]="!!count"
+    />
+
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <app-section-banner-spacer />
+
+        <app-media-chip
+          *ngFor="let media of germanSeries$ | async | slice : 0 : germanSeriesCount"
+          [mediaToExplore]="true"
+          [media]="media"
+          [shadow]="true"
+          [outline]="false"
+        ></app-media-chip>
+
+        <app-button-show-more
+          [show]="germanSeriesCount < count"
+          (loadMore)="onLoadMoreGermanSeries()"
+        />
+      </section>
+    </div>
+  </section>
+
+  <section *ngIf="(mediaLGBTQ$ | async)?.length as count">
+    <div class="title only-text">
+      <mat-icon svgIcon="lgbtq" class="medium"></mat-icon>
+      LGBTQ+
+
+      <div class="buttons">
+        <app-button-show-more [show]="mediaLGBTQCount < count" (loadMore)="onLoadMoreLGBTQ()" />
+
+        <app-button-show-in-search key="LGBTQ_EXPLORE" />
+      </div>
+    </div>
+
+    <app-section-banner
+      [textHTML]="'<strong>LGBTQ+</strong> ' + ('SERIES_AND_MOVIES' | translate)"
+      background="lgbtq"
+      [textSmallHTML]="'EXPLORE.' | translate"
+      [id]="'lgbtq'"
+      [width]="300"
+      [show]="!!count"
+    />
+
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <app-section-banner-spacer />
+
+        <app-media-chip
+          *ngFor="let media of mediaLGBTQ$ | async | slice : 0 : mediaLGBTQCount"
+          [mediaToExplore]="true"
+          [media]="media"
+          [shadow]="true"
+          [outline]="false"
+        ></app-media-chip>
+
+        <app-button-show-more [show]="mediaLGBTQCount < count" (loadMore)="onLoadMoreLGBTQ()" />
+      </section>
+    </div>
+  </section>
+
+  <section *ngIf="(moviesOldButGold$ | async)?.length as count">
+    <div class="title only-text">
+      <mat-icon svgIcon="old-but-gold" class="medium"></mat-icon>
+      {{ "MOVIE.OLD_BUT_GOLD" | translate }}
+
+      <div class="buttons">
+        <app-button-show-more
+          [show]="moviesOldButGoldCount < count"
+          (loadMore)="onLoadMoreMoviesOldButGold()"
+        />
+
+        <app-button-show-in-search key="OLD_MOVIES_SORT_IMDB" />
+      </div>
+    </div>
+
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <app-media-chip
+          *ngFor="let media of moviesOldButGold$ | async | slice : 0 : moviesOldButGoldCount"
+          [mediaToExplore]="true"
+          [media]="media"
+        ></app-media-chip>
+
+        <app-button-show-more
+          [show]="moviesOldButGoldCount < count"
+          (loadMore)="onLoadMoreMoviesOldButGold()"
+        />
+      </section>
+    </div>
+  </section>
+
+  <section *ngIf="(kinoPlus$ | async)?.length as count">
+    <div class="title only-text">
+      <mat-icon svgIcon="kino-plus" class="medium"></mat-icon>
+      Kino+
+
+      <div class="buttons">
+        <app-button-show-more [show]="kinoPlusCount < count" (loadMore)="onLoadMoreKinoPlus()" />
+
+        <app-button-show-in-search key="KINO_PLUS" />
+      </div>
+    </div>
+
+    <!-- Vorhang in blau: backgroundFilter="hue-rotate(190deg) brightness(2)" -->
+    <app-section-banner
+      [textHTML]="'<strong>Kino+</strong> ' + ('SERIES_AND_MOVIES' | translate)"
+      background="kino-plus"
+      [textSmallHTML]="'DISCOVERY_SOURCE.FROM' | translate"
+      [id]="'kino-plus'"
+      [width]="300"
+      [show]="!!count"
+    />
+
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <app-section-banner-spacer />
+
+        <app-media-chip
+          *ngFor="let media of kinoPlus$ | async | slice : 0 : kinoPlusCount"
+          [mediaToExplore]="true"
+          [media]="media"
+          [shadow]="true"
+          [outline]="false"
+        ></app-media-chip>
+
+        <app-button-show-more [show]="kinoPlusCount < count" (loadMore)="onLoadMoreKinoPlus()" />
+      </section>
+    </div>
+  </section>
+
+  <section *ngIf="(topMetascoreRating$ | async)?.length as count">
+    <div class="title only-text">
+      <mat-icon svgIcon="metascore-color" class="medium"></mat-icon>
+      {{ "RATING.METASCORE." | translate }}
+
+      <div class="buttons">
+        <app-button-show-more
+          [show]="topMetascoreRatingCount < count"
+          (loadMore)="onLoadMoreTopMetascore()"
+        />
+
+        <app-button-show-in-search key="SORT_METASCORE" />
+      </div>
+    </div>
+
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <app-media-chip
+          *ngFor="let media of topMetascoreRating$ | async | slice : 0 : topMetascoreRatingCount"
+          [mediaToExplore]="true"
+          [media]="media"
+        ></app-media-chip>
+
+        <app-button-show-more
+          [show]="topMetascoreRatingCount < count"
+          (loadMore)="onLoadMoreTopMetascore()"
+        />
+      </section>
+    </div>
+  </section>
+
+  <section *ngIf="(reddit$ | async)?.length as count">
+    <div class="title only-text">
+      <mat-icon svgIcon="reddit" class="medium"></mat-icon>
+      Reddit
+
+      <div class="buttons">
+        <app-button-show-more [show]="redditCount < count" (loadMore)="onLoadMoreReddit()" />
+
+        <app-button-show-in-search key="REDDIT" />
+      </div>
+    </div>
+
+    <app-section-banner
+      background="reddit"
+      backgroundFilter="hue-rotate(10deg)"
+      [textHTML]="'<strong>Reddit</strong> ' + ('SERIES_AND_MOVIES' | translate)"
+      [textSmallHTML]="'DISCOVERY_SOURCE.FROM' | translate"
+      [id]="'reddit'"
+      [width]="300"
+      [show]="!!count"
+    />
+
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <app-section-banner-spacer />
+
+        <app-media-chip
+          *ngFor="let media of reddit$ | async | slice : 0 : redditCount"
+          [mediaToExplore]="true"
+          [media]="media"
+          [shadow]="true"
+          [outline]="false"
+        ></app-media-chip>
+
+        <app-button-show-more [show]="redditCount < count" (loadMore)="onLoadMoreReddit()" />
+      </section>
+    </div>
+  </section>
+
+  <section *ngIf="(otherSources$ | async)?.length as count">
+    <div class="title only-text">
+      <mat-icon svgIcon="explore" class="medium"></mat-icon>
+      <mat-icon
+        *ngFor="let icon of otherSourcesIcons$ | async"
+        [svgIcon]="icon"
+        class="medium"
+      ></mat-icon>
+
+      <ng-container *ngIf="otherSourcesNoIcon$ | async as sources">
+        <mat-icon
+          *ngIf="sources.length"
+          svgIcon="more"
+          class="medium without-button"
+          [matTooltip]="sources | joinTextWithComma : (localeService.locale$ | async)!"
+        ></mat-icon>
+      </ng-container>
+
+      {{ "DISCOVERY_SOURCE.FURTHER" | translate }}
+
+      <div class="buttons">
+        <app-button-show-in-search key="OTHER_DISCOVERY_SOURCES" />
+      </div>
+    </div>
+
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <ng-container *ngFor="let media of otherSources$ | async; index as index">
+          <mat-divider
+            *ngIf="media.showDivider && index !== 0"
+            class="divider-vertical-20px"
+            [vertical]="true"
+          ></mat-divider>
+
+          <div *ngIf="media.showDivider" class="details-container">
+            <div class="details">
+              <span class="details-title" [matTooltip]="media.text">
+                {{ media.text }}
+              </span>
+
+              <mat-icon *ngIf="media.icon" [svgIcon]="media.icon" class="medium"></mat-icon>
+
+              <app-button-show-in-search key="SOURCE_VALUE" [value]="media.searchValue" />
+            </div>
+          </div>
+
+          <app-media-chip
+            [mediaToExplore]="true"
+            [media]="media.media"
+            [shadow]="true"
+            [outline]="false"
+          ></app-media-chip>
+        </ng-container>
+      </section>
+    </div>
+  </section>
+
+  <section *ngIf="(csb$ | async)?.length as count">
+    <div class="title only-text">
+      <mat-icon svgIcon="csb" class="medium"></mat-icon>
+      Cinema Strikes Back
+
+      <div class="buttons">
+        <app-button-show-more [show]="csbCount < count" (loadMore)="onLoadMoreCSB()" />
+
+        <app-button-show-in-search key="CSB" />
+      </div>
+    </div>
+
+    <app-section-banner
+      [textHTML]="'<strong>Cinema Strikes Back</strong>'"
+      background="csb"
+      [textSmallHTML]="'DISCOVERY_SOURCE.FROM' | translate"
+      [id]="'csb'"
+      [width]="300"
+      [show]="!!count"
+    />
+
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <app-section-banner-spacer />
+
+        <app-media-chip
+          *ngFor="let media of csb$ | async | slice : 0 : csbCount"
+          [mediaToExplore]="true"
+          [media]="media"
+          [shadow]="true"
+          [outline]="false"
+        ></app-media-chip>
+
+        <app-button-show-more [show]="csbCount < count" (loadMore)="onLoadMoreCSB()" />
+      </section>
+    </div>
+  </section>
+</app-sidenav>

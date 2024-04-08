@@ -1,0 +1,1749 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  color: $text-1;
+  background-color: $main-background;
+}
+
+* {
+  font-family: "Roboto", sans-serif;
+  font-weight: normal;
+  line-height: normal;
+}
+
+.button,
+button,
+input,
+mat-select,
+mat-button-toggle,
+.touch-action {
+  touch-action: auto !important;
+}
+
+h2,
+p {
+  margin-block: 0 0;
+}
+
+strong {
+  line-height: inherit;
+  font-weight: 600;
+  color: white;
+}
+
+i {
+  font-style: normal;
+  letter-spacing: normal;
+  color: $text-2;
+}
+
+a {
+  text-decoration: none;
+  color: $primary;
+  font-weight: bold !important;
+}
+
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.border-left-primary {
+  border-left: 3px solid $primary !important;
+}
+
+.border-left-accent {
+  border-left: 3px solid $accent !important;
+}
+
+.text-color-white {
+  color: white;
+}
+
+.text-color-1 {
+  color: $text-1;
+}
+
+.text-color-2 {
+  color: $text-2;
+}
+
+.main-background {
+  background: $main-background;
+}
+
+.main-background-1 {
+  background: $main-background-1;
+}
+
+.sticky {
+  position: sticky;
+  top: -1px;
+  z-index: 3;
+}
+
+.sticky-header .mat-mdc-tab-header {
+  position: sticky;
+  top: -1px; // Nicht 0, da es in mobiler Ansicht nicht ganz passent
+  z-index: 3;
+  box-shadow: $shadow-toolbar;
+}
+
+.sticky.sticky-can-pin.sticky-is-pinned {
+  &.shadow-if-pinned {
+    box-shadow: $shadow-toolbar;
+  }
+  .shadow-if-pinned {
+    box-shadow: $shadow-toolbar;
+  }
+}
+
+.movie {
+  mark {
+    background-color: $accent;
+    color: white;
+    padding: 0px 2px;
+    border-radius: 2px;
+  }
+}
+
+mark {
+  background-color: $primary;
+  color: white;
+  padding: 0px 2px;
+  border-radius: 2px;
+}
+
+.border-color-white {
+  border-color: $text-2;
+}
+
+kbd {
+  background-color: $main-background-2;
+  border-radius: $border-radius;
+  border: 1px solid $main-background-3;
+  color: white;
+  display: inline-block;
+  outline: none;
+  font-size: 0.85em;
+  font-weight: 700;
+  line-height: 1;
+  padding: 2px 4px;
+  white-space: nowrap;
+}
+
+// ----------------------------------------------------------------
+// Button
+// ----------------------------------------------------------------
+
+button > mat-icon {
+  flex-shrink: 0;
+}
+
+.mat-mdc-button,
+.mat-mdc-unelevated-button,
+.mat-mdc-select {
+  font-size: $text-size-s !important;
+}
+
+// Button > Alle > disabled
+.mat-mdc-unelevated-button.mat-mdc-button-base:disabled {
+  background-color: $background-disabled;
+}
+
+// Button > Basic > disabled
+.mat-mdc-unelevated-button.mat-unthemed.mat-mdc-button-base:disabled {
+  background-color: $background-disabled;
+}
+
+// Button > Basic
+.mat-mdc-unelevated-button.mat-unthemed.mat-mdc-button-base {
+  background-color: $background-1;
+}
+
+.mdc-button:hover,
+.mdc-button:active {
+  background-color: $background-1;
+}
+
+.mdc-button:active:hover {
+  background-color: $background-2;
+}
+
+// mat-button
+.mat-mdc-button.only-icon > .mat-icon {
+  margin-right: 0px !important;
+}
+
+// mat-flat-button
+.mdc-button.only-icon > .mat-icon {
+  margin-right: 0px !important;
+}
+
+.mat-mdc-unelevated-button.only-icon > .mat-icon {
+  margin-right: 0px !important;
+  padding-left: 4px;
+}
+
+.mdc-button.only-icon {
+  padding: 0px;
+}
+
+.mdc-button {
+  line-height: normal !important;
+  font-size: $text-size-s;
+}
+
+.mdc-button,
+.mdc-unelevated-button,
+.mat-mdc-unelevated-button {
+  min-width: 40px !important;
+  max-height: 40px !important;
+  min-height: 40px !important;
+
+  &.medium {
+    min-width: 30px !important;
+    max-height: 30px !important;
+    min-height: 30px !important;
+
+    &.only-icon {
+      max-width: 30px !important;
+    }
+  }
+
+  &.big {
+    min-width: 50px !important;
+    max-height: 50px !important;
+    min-height: 50px !important;
+
+    &.only-icon {
+      max-width: 50px !important;
+    }
+  }
+
+  &.small {
+    min-width: 20px !important;
+    max-height: 20px !important;
+    min-height: 20px !important;
+
+    mat-icon {
+      font-size: 14px;
+      height: 14px;
+      width: 14px;
+      min-width: 14px;
+    }
+
+    &.only-icon {
+      max-width: 20px !important;
+    }
+  }
+
+  &.thin-on-big-screen {
+    @media (min-width: $media-query-breakpoint-small-screen) and (max-width: $media-query-breakpoint-mobile-screen) {
+      min-width: 26px !important;
+      max-width: 26px !important;
+    }
+  }
+}
+
+// Button-Text bricht nicht um,
+// vor allem dann nicht wenn
+// Button in einem Flex-Container
+.mdc-button__label {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+button.with-image .mdc-button__label {
+  display: flex !important;
+  align-items: center !important;
+}
+
+button.with-image.with-text .mdc-button__label {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+button.menu-button > span.mdc-button__label {
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  padding-right: 0px;
+}
+
+// Icons oben im Bild etwas kleiner als normal
+mat-icon.large {
+  font-size: 28px;
+  height: 28px;
+  width: 28px;
+  min-width: 28px;
+}
+
+mat-icon.medium {
+  font-size: 24px;
+  height: 24px;
+  width: 24px;
+  min-width: 24px;
+}
+
+mat-icon.medium.without-button {
+  font-size: 18px;
+  height: 18px;
+  width: 18px;
+  min-width: 18px;
+}
+
+mat-icon.small {
+  font-size: 14px;
+  height: 14px;
+  width: 14px;
+  min-width: 14px;
+}
+
+// Toolbar
+.mat-toolbar {
+  background-color: $main-background-1;
+}
+
+// Tooltip
+.mdc-tooltip__surface {
+  background-color: $main-background-3 !important;
+  box-shadow: 0 0 25px $main-background;
+  max-width: 300px !important; // Statt: 200px
+}
+
+.mat-drawer-backdrop.mat-drawer-shown {
+  background-color: rgba($main-background, 0.75) !important;
+  backdrop-filter: blur(5px);
+}
+
+// Kein Umrechen der Tooltips
+// .mat-mdc-tooltip-panel {
+//   white-space: pre;
+// }
+
+// ----------------------------------------------------------------
+// Akkordeon
+// ----------------------------------------------------------------
+mat-expansion-panel-header .mat-content {
+  height: 100%;
+}
+
+mat-expansion-panel-header {
+  height: 50px !important;
+}
+
+// Tabs im Akkordeontitel zentriert
+mat-expansion-panel-header.expansion-panel-header.tab-group.center .mat-content {
+  @media (max-width: $media-query-breakpoint-mobile-screen) {
+    justify-content: flex-start;
+  }
+  justify-content: center;
+}
+
+// ----------------------------------------------------------------
+// Benachrichtigungen/Snackbar
+// ----------------------------------------------------------------
+// ".mat-mdc-snack-bar-container" existiert nur bei kleinem Bildschirm
+.cdk-overlay-pane:has(.mat-mdc-snack-bar-container) {
+  margin-bottom: 10px !important;
+
+  @media (max-width: $media-query-breakpoint-mobile-screen) {
+    margin-bottom: 25px !important;
+
+    &:has(.with-bottom-nav-bar) {
+      margin-bottom: 80px !important;
+    }
+  }
+
+  animation: fly-in 500ms;
+  animation-timing-function: $jump-animation;
+
+  .mat-mdc-snack-bar-actions {
+    margin-right: $padding-m;
+    gap: $padding-s;
+  }
+}
+
+.mobile-long-button-or-buttons .mat-mdc-snack-bar-actions {
+  margin-left: 14px;
+  margin-bottom: 14px;
+
+  &.with-icon {
+    margin-left: 50px;
+  }
+}
+
+@keyframes fly-in {
+  0% {
+    transform: translateY(150px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+// ----------------------------------------------------------------
+// Tabs
+// ----------------------------------------------------------------
+.with-background > .mat-mdc-tab-header {
+  background-color: $main-background-1 !important;
+}
+
+// Im Karusell
+app-carousel {
+  // Wenn Tab aktiv, dann wirkt das Symbol etwas kleiner
+  // -> manuell größer machen
+  .mdc-tab--active .mdc-tab__text-label span {
+    -webkit-text-stroke: 0.5px currentColor;
+  }
+
+  .mdc-tab--active .mdc-tab__text-label span.symbol-cross {
+    -webkit-text-stroke: 0.8px currentColor;
+  }
+
+  // Tab-icons: Hover-Effekt
+  .mdc-tab__text-label:hover {
+    color: white;
+  }
+
+  .mdc-tab--active .mdc-tab__text-label:hover {
+    color: $primary-white-3 !important;
+  }
+}
+
+.mdc-tab {
+  height: 50px !important;
+}
+
+// ----------------------------------------------------------------
+// Scrollbar
+// ----------------------------------------------------------------
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+::-webkit-scrollbar {
+  height: 16px;
+  width: 16px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border: 5px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  border-radius: 10000px;
+  background-color: $background-1;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  border: 3px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  border-radius: 10000px;
+  background-color: $background-2;
+}
+.scrollbox {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.scrollbox:active::-webkit-scrollbar-thumb,
+.scrollbox:focus::-webkit-scrollbar-thumb,
+.scrollbox:hover::-webkit-scrollbar-thumb {
+  visibility: visible;
+}
+
+.scrollbox-content {
+  display: flex;
+  flex-direction: row;
+  padding: $padding-m $padding-m calc($padding-m - $scrollbar-height);
+  gap: $padding-s;
+  // Padding rechts sichtbar und scroll,
+  // wenn Seite kleiner als Inhalt
+  min-width: fit-content;
+
+  &.no-padding {
+    padding-top: 0;
+    padding-right: 0;
+  }
+
+  &.no-padding-left-right {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .right {
+    margin-left: auto;
+  }
+}
+
+// Sorgt dafür, dass auf Mobilen Geräten
+// die Scrollbar immer angezeigt wird
+@media (hover: hover) {
+  .scrollbox::-webkit-scrollbar-thumb {
+    visibility: hidden;
+  }
+}
+
+// Auf mobilen Geräten, wenn Klasse gesetzt,
+// gibt es zwar eine Scrollbar,
+// der Handle ist aber nicht sichtbar
+@media (hover: none) {
+  .scrollbox.no-scrollbar-on-mobile::-webkit-scrollbar-thumb {
+    visibility: hidden;
+  }
+
+  .no-scrollbar-on-mobile:not(.scrollbox)::-webkit-scrollbar {
+    height: 0px;
+    width: 0px;
+  }
+
+  .scrollbox.no-scrollbar-on-mobile.no-padding::-webkit-scrollbar {
+    height: 0px;
+    width: 0px;
+  }
+
+  mat-tab-group.no-scrollbar-on-mobile .mat-mdc-tab-body-content::-webkit-scrollbar {
+    height: 0px;
+    width: 0px;
+  }
+
+  // FYI: Die "width" und "height" müssen für
+  // "::-webkit-scrollbar" nicht auf 0px gesetzt werden,
+  // da somit der Platz der Scrollbar weg wäre
+  // und es andere Paddings geben würde.
+}
+
+.scrollbox.no-space-for-scrollbar:not(:hover)::-webkit-scrollbar {
+  height: 0px;
+  width: 0px;
+}
+
+// ----------------------------------------------------------------
+// FormField
+// ----------------------------------------------------------------
+// .mdc-text-field--filled.mdc-text-field--disabled {
+//   background-color: $background-disabled;
+// }
+
+// .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+//   background-color: $background-1;
+// }
+
+// .mdc-text-field--filled:not(.mdc-text-field--disabled):hover {
+//   background-color: $background-1;
+// }
+
+// .mdc-text-field--filled:not(.mdc-text-field--disabled):focus {
+//   background-color: $background-1;
+// }
+
+// .mat-mdc-form-field-focus-overlay {
+//   background-color: $background-1;
+// }
+
+// .mdc-text-field {
+//   border-bottom-right-radius: 4px !important;
+//   border-bottom-left-radius: 4px !important;
+// }
+
+// ----------------------------------------------------------------
+// Input Chrome Autofill
+// ----------------------------------------------------------------
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  // -webkit-box-shadow: 0 0 0 30px $main-background-3 inset !important;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: $text-1 !important;
+}
+
+// ----------------------------------------------------------------
+// Ausgewählter Text
+// ----------------------------------------------------------------
+::-moz-selection {
+  /* Code for Firefox */
+  color: white;
+  background: $primary;
+}
+
+::selection {
+  color: white;
+  background: $primary;
+}
+
+// ----------------------------------------------------------------
+// Autocomplete
+// ----------------------------------------------------------------
+.mat-mdc-autocomplete-panel.mdc-menu-surface {
+  background-color: $main-background-1;
+
+  .mdc-list-item__primary-text {
+    color: $text-1;
+  }
+}
+
+// ----------------------------------------------------------------
+// Dialog
+// ----------------------------------------------------------------
+mat-dialog-container .mat-mdc-dialog-surface.mdc-dialog__surface {
+  background-color: $main-background;
+}
+
+.light-background {
+  mat-dialog-container .mat-mdc-dialog-surface.mdc-dialog__surface {
+    background-color: $main-background-1;
+  }
+}
+
+// Unterschiedlicher Hintergrund wenn Mobil und Desktop
+// mat-dialog-container .mat-mdc-dialog-surface.mdc-dialog__surface {
+//   background-color: $main-background-1;
+// }
+
+// @media (max-width: $media-query-breakpoint-mobile-screen) {
+//   .dialog-fullscreen {
+//     mat-dialog-container .mat-mdc-dialog-surface.mdc-dialog__surface {
+//       background-color: $main-background;
+//     }
+//   }
+// }
+
+.cdk-overlay-dark-backdrop {
+  background: rgba($main-background, 0.5);
+  backdrop-filter: blur(5px);
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  box-shadow: $shadow-dialog !important;
+}
+
+//----------------------------------------------------------------
+// Input mit Zahl
+//----------------------------------------------------------------
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+// ----------------------------------------------------------------
+// Contextmenu
+// ----------------------------------------------------------------
+.mat-mdc-menu-panel {
+  background-color: $main-background-1 !important;
+  box-shadow: $shadow-dialog !important;
+}
+
+.mat-mdc-menu-item .mat-mdc-menu-item-text {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.without-padding {
+  &.mat-mdc-menu-content,
+  &.mdc-list {
+    padding-top: 0px !important;
+  }
+}
+
+.mat-mdc-menu-panel.mat-mdc-menu-panel {
+  max-width: 350px !important;
+}
+
+.cdk-overlay-pane:has(.mat-mdc-menu-panel) {
+  max-height: 90% !important;
+}
+
+// ----------------------------------------------------------------
+// Dropdown / Select
+// ----------------------------------------------------------------
+.mat-mdc-optgroup.hide > .mat-mdc-optgroup-label {
+  display: none;
+}
+
+.mat-mdc-select {
+  border-radius: $border-radius;
+  font-size: $text-size-s;
+  background-color: $background-1;
+
+  &.no-background {
+    background-color: transparent;
+  }
+
+  &:focus:not(.mat-mdc-select-disabled) {
+    background-color: $background-3;
+  }
+
+  &:hover:not(.mat-mdc-select-disabled) {
+    background-color: $background-2;
+  }
+
+  &.with-value {
+    background-color: $primary;
+  }
+
+  &.small .mat-mdc-select-trigger {
+    padding: 8px 8px 8px 1px;
+  }
+
+  // Ab hier die "normalen" Dropdowns
+  &.normal .mat-mdc-select-trigger {
+    padding: 8px 8px 8px 10px;
+  }
+
+  // Ab hier Dropdowns mit DateRange
+  &.with-date-picker .mat-mdc-select-trigger {
+    padding: 8px 8px 8px 0px;
+
+    .mat-date-range-input-wrapper {
+      max-width: 80px;
+      min-width: 80px;
+
+      .mat-date-range-input-inner {
+        position: unset;
+      }
+    }
+  }
+
+  &.normal {
+    height: 40px;
+  }
+
+  .mat-mdc-select-value {
+    // Abstand von Text zum Pfeil rechts
+    margin-right: $padding-s;
+
+    // Aktuell ausgewählte(r) Optionen
+    mat-select-trigger {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: center;
+      min-height: 20px;
+
+      mat-icon {
+        margin-top: -2px;
+        margin-right: $padding-s;
+      }
+
+      img {
+        margin-left: 1px;
+        margin-right: $padding-s;
+      }
+    }
+  }
+
+  &.with-date-picker .mat-mdc-select-value mat-select-trigger > mat-icon {
+    margin-left: $padding-s;
+    margin-right: 0px;
+  }
+
+  // Ab hier die "multi" Dropdowns
+  &.multi .mat-mdc-select-trigger {
+    padding: 0 8px;
+    height: 100%;
+
+    // Abstand von Text zum Pfeil rechts
+    .mat-mdc-select-value {
+      margin-right: $padding-s;
+
+      mat-select-trigger {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+      }
+    }
+  }
+
+  .mat-mdc-select-arrow {
+    transition: all 250ms ease-in-out;
+    transform: rotate(0deg);
+  }
+
+  &[aria-expanded="true"] {
+    .mat-mdc-select-arrow {
+      transform: rotate(180deg);
+    }
+  }
+
+  &.without-background {
+    background: none;
+
+    &:hover {
+      background-color: $background-1;
+    }
+  }
+}
+
+.small .mat-mdc-select-trigger {
+  height: 30px;
+}
+
+mat-option {
+  // Option bei Hover
+  &:not(.mdc-list-item--selected):hover .mdc-list-item__primary-text,
+  &:not(.mdc-list-item--selected):hover mat-icon {
+    color: white !important;
+  }
+
+  // Normale Option
+  &:not(.mdc-list-item--selected) {
+    .mdc-list-item__primary-text,
+    mat-icon {
+      color: $text-1 !important;
+    }
+  }
+
+  // Ausgewählte Option
+  &.mdc-list-item--selected {
+    .mdc-list-item__primary-text,
+    mat-icon {
+      color: $primary !important;
+    }
+  }
+}
+
+// Abschnittsmenü / Gruppentitel
+.mat-mdc-optgroup-label {
+  position: sticky !important;
+  top: -8px !important;
+  z-index: 1 !important;
+  background-color: $main-background-1 !important;
+  font-weight: 500 !important;
+  border-bottom: 2px solid rgb(255 255 255 / 10%) !important;
+  cursor: pointer !important;
+
+  &:hover {
+    background-color: $main-background-2 !important;
+  }
+
+  &.selected {
+    color: $primary !important;
+
+    .mdc-list-item__primary-text {
+      color: $primary !important;
+    }
+  }
+}
+
+.group.with-icons {
+  .mat-mdc-optgroup-label {
+    padding-left: 50px !important;
+
+    .group-icon {
+      position: absolute;
+      left: 15px;
+      top: 15px;
+    }
+  }
+}
+
+.mdc-list-item__primary-text {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.mdc-menu-surface.mat-mdc-select-panel {
+  background-color: $main-background-1;
+}
+
+.mat-mdc-optgroup .mat-mdc-option:not(.mat-mdc-option-multiple) {
+  padding-left: 16px !important;
+}
+
+// ----------------------------------------------------------------
+// Optionenliste
+// ----------------------------------------------------------------
+.option-chip-list {
+  margin: 0px $padding-m !important;
+
+  .mdc-evolution-chip__action {
+    flex-grow: 1;
+    justify-items: flex-start !important;
+    justify-content: unset !important;
+
+    .mdc-evolution-chip__graphic {
+      flex: unset;
+    }
+  }
+
+  .mdc-evolution-chip-set__chips {
+    display: flex;
+    flex-direction: column;
+    gap: $padding-s;
+    // margin: 0px $padding-m !important;
+    min-width: unset;
+    margin-left: 0px !important;
+  }
+
+  .mat-mdc-chip-option {
+    height: 40px !important;
+  }
+
+  // WORKAROUND: Eigentlich sollte wenn ausgewählt grün sein
+  .mat-mdc-chip-option:not(.mdc-evolution-chip--disabled).mat-mdc-chip-selected {
+    background-color: $primary !important;
+  }
+}
+
+// ----------------------------------------------------------------
+// Placeholder
+// ----------------------------------------------------------------
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: $text-2;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: $text-2;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: $text-2;
+}
+
+// ----------------------------------------------------------------
+// Bottom Sheet
+// ----------------------------------------------------------------
+.bottom-sheet-normal .mat-bottom-sheet-container {
+  padding: 0px !important;
+}
+
+.mat-bottom-sheet-container {
+  background-color: $main-background-1 !important;
+  padding: $padding-m !important;
+}
+
+.bottom-sheet {
+  background-color: $main-background-1 !important;
+  padding: $padding-m;
+}
+
+.mat-bottom-sheet-container:has(.without-padding) {
+  padding-top: 0px !important;
+}
+
+.button-clean {
+  background: transparent;
+  color: white;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  gap: $padding-s;
+  align-items: center;
+  font-size: $text-size-s;
+}
+
+button {
+  &.sorting {
+    padding-left: 12px;
+
+    &.sorting-only-icon {
+      padding-right: 0px;
+    }
+
+    span.mdc-button__label {
+      display: flex !important;
+      align-items: center !important;
+      gap: $padding-s !important;
+      height: 40px !important;
+    }
+
+    .button-in-button {
+      margin-left: -52px;
+      margin-right: 12px;
+      padding-left: 42px;
+    }
+  }
+}
+
+// ----------------------------------------------------------------
+// Seitenaufbau mit Inhalt, der gescrollt wird
+// ----------------------------------------------------------------
+// Seite mit allumgreifendem Container
+.page-container {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+
+  // Ausnahme für die Seitennavigation
+  &.mat-drawer-content {
+    display: flex !important;
+  }
+}
+
+// Header hat feste Höhe
+header.page-header,
+.page-header {
+  flex: 0 0 auto;
+}
+
+// Inhalt bekommt restlichen Platz und wird gescrollt
+.page-content {
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
+
+// Footer hat feste Höhe
+footer.page-footer {
+  flex: 0 0 auto;
+}
+
+// ----------------------------------------------------------------
+// Hervorhebung nach Hinzufügen
+// ----------------------------------------------------------------
+
+.blinking {
+  animation: blink 0.5s ease-in-out 2;
+
+  &.movie {
+    animation: blink-accent 0.5s ease-in-out 2;
+  }
+}
+
+.blinking-main-background-1 {
+  animation: blink-main-background-1 0.5s ease-in-out 2;
+
+  &.movie {
+    animation: blink-accent-main-background-1 0.5s ease-in-out 2;
+  }
+}
+
+.blinking-custom-color {
+  animation: blink-custom-color 1s ease-in-out 1;
+}
+
+.blinking-white-slow-infinite {
+  animation: blinkWhite 1s ease-in-out infinite;
+}
+
+.blinking-white {
+  animation: blinkWhite 0.5s ease-in-out 2;
+}
+
+.blinking-white-on-primary {
+  animation: blinking-white-on-primary 0.5s ease-in-out 2;
+}
+
+.blinking-white-text-2 {
+  animation: blinking-white-text-2 0.5s ease-in-out 2;
+}
+
+.blinking-white-text-2-infinite {
+  animation: blinking-white-text-2 0.5s ease-in-out infinite;
+}
+
+// ----------------------------------------------------------------
+// Animationen
+// ----------------------------------------------------------------
+
+@keyframes blink {
+  0% {
+    background-color: $background-1;
+  }
+  50% {
+    background-color: $primary;
+  }
+  100% {
+    background-color: $background-1;
+  }
+}
+
+@keyframes blink-accent {
+  0% {
+    background-color: $background-1;
+  }
+  50% {
+    background-color: $accent;
+  }
+  100% {
+    background-color: $background-1;
+  }
+}
+
+@keyframes blink-main-background-1 {
+  0% {
+    background-color: $main-background-1;
+  }
+  50% {
+    background-color: $primary;
+  }
+  100% {
+    background-color: $main-background-1;
+  }
+}
+
+@keyframes blink-accent-main-background-1 {
+  0% {
+    background-color: $main-background-1;
+  }
+  50% {
+    background-color: $accent;
+  }
+  100% {
+    background-color: $main-background-1;
+  }
+}
+
+@keyframes blink-custom-color {
+  0% {
+    background-color: $background-1;
+  }
+  33% {
+    background-color: var(--blinking-color, $primary);
+  }
+  66% {
+    background-color: $background-1;
+  }
+  100% {
+    background-color: var(--blinking-color, $primary);
+  }
+}
+
+@keyframes blinkWhite {
+  0% {
+    background-color: $background-1;
+  }
+  50% {
+    background-color: $background-3;
+  }
+  100% {
+    background-color: $background-1;
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes blinking-white-on-primary {
+  0% {
+    background-color: $primary;
+  }
+  50% {
+    background-color: $primary-white-2;
+  }
+  100% {
+    background-color: $primary;
+  }
+}
+
+@keyframes blinking-white-text-2 {
+  0% {
+    color: $text-2;
+  }
+  50% {
+    color: white;
+  }
+  100% {
+    color: $text-2;
+  }
+}
+
+@-webkit-keyframes wipe-background-animation {
+  0% {
+    background-position: 100% 52%;
+  }
+  100% {
+    background-position: 0% 49%;
+  }
+}
+
+@-moz-keyframes wipe-background-animation {
+  0% {
+    background-position: 100% 52%;
+  }
+  100% {
+    background-position: 0% 49%;
+  }
+}
+
+@keyframes wipe-background-animation {
+  0% {
+    background-position: 100% 52%;
+  }
+  100% {
+    background-position: 0% 49%;
+  }
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2); /* Adjust the scale factor as per your desired zoom level */
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes zoomDeepAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5); /* Adjust the scale factor as per your desired zoom level */
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes scrollThroughImage {
+  0% {
+    object-position: center;
+  }
+  50% {
+    object-position: top;
+  }
+  100% {
+    object-position: center;
+  }
+}
+
+// ----------------------------------------------------------------
+// Chip
+// ----------------------------------------------------------------
+.mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) {
+  background-color: $main-background-1 !important;
+}
+
+.mat-mdc-chip-set.mat-mdc-chip-grid {
+  margin-top: $padding-s;
+  margin-bottom: 0;
+
+  & > .mdc-evolution-chip-set__chips {
+    margin-left: 0px;
+    align-items: center;
+    gap: $padding-s;
+  }
+}
+
+.with-drag-handler
+  .mat-mdc-standard-chip.mdc-evolution-chip--with-trailing-action
+  .mdc-evolution-chip__action--primary {
+  padding-left: 0px;
+}
+
+.mat-mdc-standard-chip {
+  border-radius: $border-radius !important;
+}
+
+.mdc-evolution-chip-set .mdc-evolution-chip {
+  margin: 0px !important;
+}
+
+// Chip Inhalt
+.mat-mdc-chip-action-label {
+  display: flex;
+  align-items: center;
+  gap: $padding-xs;
+}
+
+// Eigener Button in Chip
+.mat-mdc-standard-chip.mdc-evolution-chip--with-trailing-action
+  .mdc-evolution-chip__action--trailing {
+  color: white !important;
+  padding: 0 !important;
+}
+
+// Dropdown in Tag
+.with-dropdown {
+  .mat-mdc-chip-action-label {
+    gap: 0;
+  }
+
+  .mdc-evolution-chip__action.mat-mdc-chip-action.mdc-evolution-chip__action--primary {
+    padding-left: 0px !important;
+  }
+}
+
+// ----------------------------------------------
+// Toggles in Gruppe
+// ----------------------------------------------
+
+// Höhe der Toggle-Buttons
+.mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+  line-height: 38px;
+
+  .mat-button-toggle-button {
+    margin-left: -1px !important;
+  }
+}
+
+.mat-button-toggle-appearance-standard {
+  color: $text-1 !important;
+  background-color: $background-1 !important;
+  background: $background-1 !important;
+}
+
+// ----------------------------------------------
+// Linie zwischen den Toggles in Gruppe
+// ----------------------------------------------
+
+// Alle initial eine Border davor, außer erstes Toggle
+.mat-button-toggle:not(:first-child)::before {
+  content: "";
+  border-left: 1px solid transparent;
+}
+
+// Nicht ausgewählt und nicht erstes Toggle
+.mat-button-toggle:not(.mat-button-toggle-checked):not(:first-child)::before {
+  content: "";
+  border-left: 1px solid $text-3;
+  padding-bottom: 3px;
+}
+
+// Toggle nach dem ausgewählten ohne Border
+.mat-button-toggle.mat-button-toggle-checked + :not(:first-child)::before {
+  content: "";
+  border-left: 1px solid transparent;
+}
+
+// ----------------------------------------------
+// Füllung der Toggles in Gruppe
+// ----------------------------------------------
+
+.mat-button-toggle-checked {
+  color: white !important;
+  background-color: $background-2 !important;
+  background: $background-2 !important;
+}
+
+.mat-button-toggle-group .mat-button-toggle-label-content {
+  line-height: 36px !important;
+}
+
+.mat-button-toggle-group-appearance-standard,
+.mat-button-toggle {
+  border: none !important;
+}
+
+// ----------------------------------------------------------------
+// Progress-Bar
+// ----------------------------------------------------------------
+.progress-color-white {
+  // Links rund; rechts rund funktioniert nicht
+  // (bzw. kommt mit der Zeit, da aufgespannt/-gebläht wird)
+  border-radius: $border-radius;
+
+  // Forschrittsbalken
+  .mdc-linear-progress__bar-inner {
+    border-color: white;
+    border-radius: $border-radius;
+  }
+
+  // Hintergrund
+  .mdc-linear-progress__buffer-bar {
+    background-color: unset;
+  }
+}
+
+.white .mdc-linear-progress__buffer-bar {
+  background-color: rgba(white, 0.1) !important;
+}
+
+.sidenav-content .mat-drawer-inner-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: $padding-m;
+}
+
+// ----------------------------------------------------------------
+// Datepicker / Calendar / Kalender
+// ----------------------------------------------------------------
+
+// Heute
+.mat-calendar-body-today:not(.mat-calendar-body-selected):not(
+    .mat-calendar-body-comparison-identical
+  ) {
+  border-color: white;
+  border-width: 2px;
+  background-color: $background-2;
+}
+
+.mat-datepicker-content-container {
+  background-color: $main-background-1 !important;
+  box-shadow: $shadow-dialog !important;
+  border-radius: $border-radius;
+}
+
+// Für den "Datepicker öffnen"-Button der links außerhalb des Textfelds liegt
+.mat-datepicker-content:has(.date-range-picker-transform) {
+  margin-left: -40px;
+  margin-top: $padding-s;
+}
+
+// Funktionen in BottomSheet als Liste
+.mat-mdc-list-item.mdc-list-item {
+  border-radius: $border-radius;
+}
+
+.mat-datepicker-content:has(.margin-top-right-10) {
+  margin-top: $padding-s !important;
+  margin-right: $padding-s !important;
+}
+
+.mat-datepicker-actions {
+  padding: $padding-s !important;
+  margin-top: $padding-s;
+  border-top: $border-divider;
+}
+
+// Ausgewählter Tag in "Warn"-Farbe
+.mat-calendar-body-cell-container {
+  // Warn
+  .mat-calendar-body-cell.warn .mat-calendar-body-selected.mat-calendar-body-cell-content {
+    background-color: $error;
+  }
+
+  // Warn: Hover
+  .mat-calendar-body-cell:hover.warn
+    .mat-calendar-body-cell-content:not(.mat-calendar-body-selected) {
+    background-color: rgba($error, 0.3) !important;
+  }
+}
+
+// ----------------------------------------------------------------
+// Badge
+// ----------------------------------------------------------------
+
+// Hintergrundfarbe von Badge mit Custom-Color
+// "badge-color-3" zu Button-CSS-Klassen hinzufügen
+button.badge-color-3 > span.mat-badge-content {
+  background: $main-background-3;
+}
+
+// Bei Hover wieder die Primary-Farbe
+button.badge-color-3:hover > span.mat-badge-content,
+button.badge-color-3 > span.mat-badge-content:hover {
+  background: $primary;
+}
+
+// ----------------------------------------------------------------
+// Divider
+// ----------------------------------------------------------------
+.divider-vertical-half {
+  height: 50%;
+  margin: 0 $padding-s !important;
+}
+
+.divider-vertical-20px {
+  height: $padding-m;
+  margin: auto 0px !important;
+}
+
+.divider-vertical-smaller-thicker {
+  border-right-color: $text-1 !important;
+  border-right-width: 1.5px !important;
+
+  height: 14px;
+  margin: auto 0px !important;
+}
+
+// ----------------------------------------------------------------
+// Timepicker-Field
+// ----------------------------------------------------------------
+ngx-timepicker-field.only-button {
+  .ngx-timepicker {
+    transform: translateX(2px);
+  }
+
+  .ngx-material-timepicker-toggle {
+    padding: 0;
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 4px;
+    background-color: $background-1;
+
+    cursor: pointer;
+
+    color: white;
+    font-size: $text-size-s;
+    white-space: nowrap;
+
+    transform: translateX(-2px);
+
+    &:hover {
+      background-color: $background-2;
+    }
+  }
+}
+
+ngx-timepicker-field.formfield {
+  background-color: $background-1;
+  outline: none;
+  border: none;
+  border-radius: $border-radius;
+  border-bottom: 2px solid $background-2;
+  // box-sizing: border-box;
+  display: block;
+  height: 40px;
+  cursor: text;
+  color: $text-1;
+  transition: all 250ms ease-in-out;
+
+  &:hover {
+    border-bottom: 2px solid white;
+  }
+
+  &:has(.ngx-timepicker-control__input:focus) {
+    border-bottom: 2px solid $primary;
+  }
+
+  &.disabled {
+    color: $text-2;
+    background-color: $background-disabled;
+    border-bottom: 2px solid $background-1;
+  }
+
+  .ngx-timepicker-control__input {
+    background: transparent !important;
+  }
+
+  .ngx-timepicker-control__arrows {
+    display: none !important;
+  }
+
+  .ngx-timepicker-control__arrow {
+    color: $text-2 !important;
+
+    &:hover {
+      color: white !important;
+    }
+  }
+
+  // Timepicker-Control: Textfeld für Uhrzeit (Stunde und Minute)
+  .ngx-timepicker-control--active::after {
+    background-color: transparent !important;
+  }
+
+  .ngx-timepicker-control__input {
+    padding: 0 !important;
+  }
+
+  .ngx-timepicker-control__input:focus::after {
+    color: white !important;
+  }
+
+  .ngx-material-timepicker-toggle {
+    padding: 0 !important;
+  }
+
+  .ngx-timepicker-control {
+    width: 25px !important;
+    padding: 0 !important;
+  }
+
+  // Time-Colon: Doppelpunkt zwischen Stunde und Minute
+  .ngx-timepicker__time-colon {
+    margin: 0px 3px !important;
+  }
+
+  // AM/PM
+  .period-control__button::after {
+    background-color: transparent !important;
+  }
+
+  .period-control__arrow {
+    display: none !important;
+  }
+
+  // AM/PM Dropdown
+  .period-selector {
+    background-color: $main-background-1 !important;
+    box-shadow: $shadow-dialog !important;
+
+    .period-selector__button:focus {
+      background-color: $background-1 !important;
+    }
+
+    .period-selector__button.period-selector__button--active {
+      background-color: $background-1 !important;
+      color: $primary !important;
+    }
+
+    .period-selector__button {
+      color: $text-1 !important;
+
+      &:not(.period-selector__button--active):hover {
+        color: white !important;
+        background-color: $background-1 !important;
+      }
+    }
+  }
+}
+
+// ----------------------------------------------------------------
+// Slider
+// ----------------------------------------------------------------
+.mat-mdc-slider {
+  --mdc-slider-label-container-color: #515459 !important; // $main-background-3
+  --mdc-slider-label-label-text-color: white !important;
+  max-height: 40px !important;
+}
+
+.mat-mdc-slider-visual-thumb {
+  bottom: -5px !important;
+}
+
+.mdc-slider__value-indicator-container {
+  height: 28px !important;
+}
+
+// Text beim ziehen
+.mdc-slider__value-indicator-text {
+  // text-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.mat-mdc-slider {
+  &.without {
+    .mdc-slider__thumb-knob::before {
+      position: absolute;
+      content: "✖";
+      font-size: $text-size-xs;
+      margin-left: -4px;
+      margin-top: -8px;
+      color: white;
+
+      @media (max-width: $media-query-breakpoint-small-screen) {
+        margin-left: -5px;
+        margin-top: -7px;
+      }
+
+      // Smartphone
+      @media (hover: none) {
+        margin-left: -5px;
+        margin-top: -10px;
+      }
+    }
+  }
+
+  &.with {
+    .mdc-slider__thumb-knob::before {
+      position: absolute;
+      content: "✔";
+      font-size: 12px;
+      margin-left: -4px;
+      margin-top: -8px;
+      color: white;
+
+      @media (max-width: $media-query-breakpoint-small-screen) {
+        margin-left: -5px;
+        margin-top: -7px;
+      }
+
+      // Smartphone
+      @media (hover: none) {
+        margin-left: -5px;
+        margin-top: -10px;
+      }
+    }
+  }
+}
+
+.extra-info {
+  color: $text-2;
+}
+
+.mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after {
+  color: $primary !important;
+}
+
+.mat-pseudo-checkbox-checked.mat-pseudo-checkbox-full {
+  background: $primary !important;
+}
+
+// ----------------------------------------------------------------
+// Verschieben / Drag&Drop
+// ----------------------------------------------------------------
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: $border-radius;
+  box-shadow: 0 5px 5px -3px rgba($main-background, 0.2),
+    0 8px 10px 1px rgba($main-background, 0.15), 0 3px 14px 2px rgba($main-background, 0.15);
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drop-list-dragging .cdk-drag:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+// WORKAROUND: Je Verschiebung kommt ein Element mit weißer Farbe dazu
+.cdk-drag .mat-ripple-element:not(:last-child) {
+  display: none;
+}
+
+.small-image {
+  box-shadow: $shadow-small-image;
+}
+
+// ----------------------------------------------------------------
+// Section-Banner
+// ----------------------------------------------------------------
+section.section-banner {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  .title {
+    grid-row-start: 1;
+    grid-column-start: 1;
+  }
+
+  .scrollbox {
+    grid-row-start: 2;
+    grid-column-start: 1;
+  }
+}

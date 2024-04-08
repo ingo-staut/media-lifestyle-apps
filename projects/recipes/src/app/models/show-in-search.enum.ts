@@ -1,0 +1,8 @@
+export type ShowInSearchKey =
+  | "VEGAN_DESSERTS"
+  | "VEGAN_MAIN_RECIPES"
+  | "QUICK_DESSERTS"
+  | "QUICK_PRE_OR_MAIN"
+  | "CHEAP_DESSERTS"
+  | "CHEAP_PRE_OR_MAIN"
+  | "LAST_EDITED_VALUE";

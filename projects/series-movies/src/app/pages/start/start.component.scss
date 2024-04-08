@@ -1,0 +1,77 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+.container {
+  display: flex;
+  align-items: stretch;
+}
+
+section {
+  .title {
+    background-color: $main-background-1;
+    height: 50px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: $shadow-toolbar;
+
+    &.with-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    &.only-text {
+      display: flex;
+      align-items: center;
+      gap: $padding-s;
+      padding: 0px $padding-m;
+    }
+
+    div.buttons {
+      margin-left: $padding-m;
+      margin-right: $padding-m;
+      display: flex;
+      align-items: center;
+      gap: $padding-s;
+
+      &.right {
+        margin-left: auto;
+        margin-right: 0px;
+      }
+    }
+  }
+}
+
+.details-container {
+  position: sticky;
+  left: 0;
+  background-color: $main-background;
+  z-index: 40;
+  display: flex;
+  box-shadow: $shadow-toolbar;
+
+  .details {
+    padding-left: $padding-xs;
+    padding-right: $padding-s;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+
+    .day {
+      font-size: $text-size-l;
+      color: $primary;
+      padding-left: 1px;
+
+      @media (max-width: $media-query-breakpoint-small-screen) {
+        font-size: $text-size-xxxl;
+      }
+    }
+
+    .in-x-days {
+      font-size: $text-size-s;
+      color: $text-1;
+      white-space: pre;
+    }
+  }
+}

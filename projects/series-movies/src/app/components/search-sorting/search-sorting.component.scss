@@ -1,0 +1,23 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+.highlight {
+  color: $primary !important;
+}
+
+.result-summary {
+  margin: auto $padding-s;
+  flex-grow: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.button-in-button-no-extra-button {
+  margin-left: -16px;
+  padding-left: 16px;
+}
+
+.button-sort-direction {
+  z-index: 5;
+}

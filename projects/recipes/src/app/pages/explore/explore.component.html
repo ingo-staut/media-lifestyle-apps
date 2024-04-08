@@ -1,0 +1,213 @@
+<app-sidenav class="container">
+  <!-- Vegane Desserts -->
+  <section *ngIf="(veganDesserts$ | async)?.length as count">
+    <div class="title only-text">
+      <mat-icon svgIcon="category-after" class="medium"></mat-icon>
+      {{ "CATEGORY.DESSERT" | translate }}
+
+      <div class="buttons">
+        <app-button-show-more
+          [show]="veganDessertsCount < count"
+          (loadMore)="onLoadMoreVeganDesserts()"
+        />
+
+        <app-button-show-in-search key="VEGAN_DESSERTS" />
+      </div>
+    </div>
+
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <app-recipe-chip
+          *ngFor="let recipe of veganDesserts$ | async | slice : 0 : veganDessertsCount"
+          [recipe]="recipe"
+        ></app-recipe-chip>
+
+        <app-button-show-more
+          [show]="veganDessertsCount < count"
+          (loadMore)="onLoadMoreVeganDesserts()"
+        />
+      </section>
+    </div>
+  </section>
+
+  <!-- Vegane Hautpgerichte -->
+  <section *ngIf="(veganMainRecipes$ | async)?.length as count">
+    <div class="title only-text">
+      <mat-icon svgIcon="category-main" class="medium"></mat-icon>
+      {{ "CATEGORY.MAIN" | translate }}
+
+      <div class="buttons">
+        <app-button-show-more
+          [show]="veganMainRecipesCount < count"
+          (loadMore)="onLoadMoreVeganMainRecipes()"
+        />
+
+        <app-button-show-in-search key="VEGAN_MAIN_RECIPES" />
+      </div>
+    </div>
+
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <app-recipe-chip
+          *ngFor="let recipe of veganMainRecipes$ | async | slice : 0 : veganMainRecipesCount"
+          [recipe]="recipe"
+        ></app-recipe-chip>
+
+        <app-button-show-more
+          [show]="veganMainRecipesCount < count"
+          (loadMore)="onLoadMoreVeganMainRecipes()"
+        />
+      </section>
+    </div>
+  </section>
+
+  <!-- Schnelle Nachtische -->
+  <section *ngIf="(quickDesserts$ | async)?.length as count">
+    <div class="title only-text">
+      <mat-icon svgIcon="time" class="medium"></mat-icon>
+      {{
+        "SUGGESTION.QUICK_VALUE"
+          | translate
+            : {
+                value:
+                  "CATEGORY.DESSERT" | translate | toLowercase : (localeService.locale$ | async)!
+              }
+      }}
+
+      <div class="buttons">
+        <app-button-show-more
+          [show]="quickDessertsCount < count"
+          (loadMore)="onLoadMoreQuickDesserts()"
+        />
+
+        <app-button-show-in-search key="QUICK_DESSERTS" />
+      </div>
+    </div>
+
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <app-recipe-chip
+          *ngFor="let recipe of quickDesserts$ | async | slice : 0 : quickDessertsCount"
+          [recipe]="recipe"
+        ></app-recipe-chip>
+
+        <app-button-show-more
+          [show]="quickDessertsCount < count"
+          (loadMore)="onLoadMoreQuickDesserts()"
+        />
+      </section>
+    </div>
+  </section>
+
+  <!-- Schnelle Rezepte -->
+  <section *ngIf="(quickRecipes$ | async)?.length as count">
+    <div class="title only-text">
+      <mat-icon svgIcon="time" class="medium"></mat-icon>
+      {{
+        "SUGGESTION.QUICK_VALUE"
+          | translate
+            : {
+                value: "RECIPE.S" | translate | toLowercase : (localeService.locale$ | async)!
+              }
+      }}
+
+      <div class="buttons">
+        <app-button-show-more
+          [show]="quickRecipesCount < count"
+          (loadMore)="onLoadMoreQuickDesserts()"
+        />
+
+        <app-button-show-in-search key="QUICK_PRE_OR_MAIN" />
+      </div>
+    </div>
+
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <app-recipe-chip
+          *ngFor="let recipe of quickRecipes$ | async | slice : 0 : quickRecipesCount"
+          [recipe]="recipe"
+        ></app-recipe-chip>
+
+        <app-button-show-more
+          [show]="quickRecipesCount < count"
+          (loadMore)="onLoadMoreQuickRecipes()"
+        />
+      </section>
+    </div>
+  </section>
+
+  <!-- Günstige Nachtische -->
+  <section *ngIf="(cheapDesserts$ | async)?.length as count">
+    <div class="title only-text">
+      <mat-icon svgIcon="money" class="medium"></mat-icon>
+      {{
+        "SUGGESTION.CHEAP_VALUE"
+          | translate
+            : {
+                value:
+                  "CATEGORY.DESSERT" | translate | toLowercase : (localeService.locale$ | async)!
+              }
+      }}
+
+      <div class="buttons">
+        <app-button-show-more
+          [show]="cheapDessertsCount < count"
+          (loadMore)="onLoadMoreCheapDesserts()"
+        />
+
+        <app-button-show-in-search key="CHEAP_DESSERTS" />
+      </div>
+    </div>
+
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <app-recipe-chip
+          *ngFor="let recipe of cheapDesserts$ | async | slice : 0 : cheapDessertsCount"
+          [recipe]="recipe"
+        ></app-recipe-chip>
+
+        <app-button-show-more
+          [show]="cheapDessertsCount < count"
+          (loadMore)="onLoadMoreCheapDesserts()"
+        />
+      </section>
+    </div>
+  </section>
+
+  <!-- Günstige Rezepte -->
+  <section *ngIf="(cheapRecipes$ | async)?.length as count">
+    <div class="title only-text">
+      <mat-icon svgIcon="money" class="medium"></mat-icon>
+      {{
+        "SUGGESTION.CHEAP_VALUE"
+          | translate
+            : {
+                value: "RECIPE.S" | translate | toLowercase : (localeService.locale$ | async)!
+              }
+      }}
+
+      <div class="buttons">
+        <app-button-show-more
+          [show]="cheapRecipesCount < count"
+          (loadMore)="onLoadMoreCheapRecipes()"
+        />
+
+        <app-button-show-in-search key="CHEAP_PRE_OR_MAIN" />
+      </div>
+    </div>
+
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <app-recipe-chip
+          *ngFor="let recipe of cheapRecipes$ | async | slice : 0 : cheapRecipesCount"
+          [recipe]="recipe"
+        ></app-recipe-chip>
+
+        <app-button-show-more
+          [show]="cheapRecipesCount < count"
+          (loadMore)="onLoadMoreCheapDesserts()"
+        />
+      </section>
+    </div>
+  </section>
+</app-sidenav>

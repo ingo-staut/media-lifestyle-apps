@@ -1,0 +1,26 @@
+<div class="fabs" [style.bottom.px]="styleBottomPosition">
+  <ng-container *ngIf="openAddMenu">
+    <button
+      *ngFor="let item of menuItems"
+      mat-mini-fab
+      [class]="'fab ' + item.value"
+      [color]="item.color ?? 'primary'"
+      matTooltipPosition="before"
+      [matTooltip]="item.text | translate"
+      (click)="onActionClicked(item.key)"
+    >
+      <mat-icon class="medium without-button" [svgIcon]="item.icon"></mat-icon>
+    </button>
+  </ng-container>
+
+  <button
+    mat-fab
+    [ngClass]="{ fab: true, clear: openAddMenu, add: !openAddMenu }"
+    color="primary"
+    matTooltipPosition="before"
+    [matTooltip]="'CREATE' | translate"
+    (click)="openAddMenu = !openAddMenu"
+  >
+    <mat-icon [svgIcon]="openAddMenu ? 'clear' : 'add'"></mat-icon>
+  </button>
+</div>

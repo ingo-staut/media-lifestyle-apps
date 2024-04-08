@@ -1,0 +1,80 @@
+<div class="notification">
+  <!-- Nachricht sieht mehr gebalenced aus -->
+  <div *ngIf="data.duration" [style.height.px]="2"></div>
+
+  <div
+    [ngClass]="{
+      content: true,
+      'with-icon': data.icon,
+      'mobile-long-button-or-buttons':
+        isSmallScreen.matches && ((data.action && data.action.name.length > 10) || data.actionOpen)
+    }"
+  >
+    <!-- Text -->
+    <div class="label-text" matSnackBarLabel>
+      <mat-icon [svgIcon]="data.icon ?? 'notification'" [style.flexShrink]="0"></mat-icon>
+      <img
+        *ngIf="data.extraImage"
+        height="16"
+        width="16"
+        loading="lazy"
+        [src]="data.extraImage"
+        [style.marginRight.px]="-5"
+      />
+      {{
+        data.message
+          | translate
+            : ((data.messageReplace | messageReplaceIsString)
+                ? { value: (data.messageReplace | translate) }
+                : data.messageReplace)
+      }}
+      {{
+        data.additionalMessage
+          ? ("NOTIFICATION.DETAILS" | translate : { details: data.additionalMessage })
+          : ""
+      }}
+    </div>
+
+    <!-- Aktionsbutton -->
+    <div matSnackBarActions>
+      <button
+        *ngIf="data.action"
+        mat-flat-button
+        matSnackBarAction
+        [ngClass]="{ 'only-icon': !data.action.name }"
+        [matTooltip]="data.action.name | translate"
+        (click)="snackBarRef.dismissWithAction()"
+      >
+        <mat-icon *ngIf="data.action.icon" [svgIcon]="data.action.icon"></mat-icon>
+        {{ data.action.name | translate }}
+      </button>
+
+      <button
+        *ngIf="data.actionCancel"
+        mat-flat-button
+        class="only-icon"
+        [matTooltip]="'ACTION.CANCEL' | translate"
+        (click)="snackBarRef.dismiss()"
+      >
+        <mat-icon svgIcon="clear"></mat-icon>
+      </button>
+
+      <button
+        *ngIf="data.actionOpen"
+        mat-flat-button
+        [matTooltip]="'RECIPE.OPEN' | translate"
+        (click)="openById(); snackBarRef.dismiss()"
+      >
+        <mat-icon svgIcon="open"></mat-icon>
+        {{ "RECIPE.OPEN" | translate }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Fortschrittsbalken -->
+  <mat-progress-bar
+    *ngIf="data.duration"
+    class="progress-color-white"
+    [value]="progressValue"
+  ></mat-progress-bar>
+</div>

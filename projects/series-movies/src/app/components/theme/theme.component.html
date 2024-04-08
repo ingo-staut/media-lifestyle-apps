@@ -1,0 +1,12 @@
+<mat-icon
+  *ngIf="theme && theme.icon"
+  [svgIcon]="'theme-' + theme.icon"
+  class="theme"
+  [matTooltip]="theme.emoji + ' ' + ('THEME.' + theme.name | translate)"
+></mat-icon>
+<h3
+  *ngIf="theme && theme.emoji && !theme.icon"
+  [matTooltip]="theme.emoji + ' ' + ('THEME.' + theme.name | translate)"
+>
+  {{ theme.emoji }}
+</h3>

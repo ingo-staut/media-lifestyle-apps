@@ -1,0 +1,62 @@
+@import "styles.fixes";
+
+.tabs-only-icons-in-mobile .mdc-tab {
+  @media (max-width: $media-query-breakpoint-mobile-screen) {
+    min-width: 50px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
+.first-only-icons .mat-mdc-tab-labels .mdc-tab[aria-posinset="1"],
+.first-only-icons .mat-mdc-tab-labels .mdc-tab[aria-posinset="2"] {
+  @media (max-width: $media-query-breakpoint-small-screen) {
+    min-width: 50px;
+    padding-left: $padding-m;
+    padding-right: $padding-m;
+  }
+}
+
+// Icon in Tabs
+.tab-icon {
+  height: 1.2em;
+  width: 1.2em;
+  margin-right: 0.5em;
+
+  &.only-icon-in-small-screen {
+    @media (max-width: $media-query-breakpoint-small-screen) {
+      margin-right: 0;
+    }
+  }
+}
+
+// Den Margin von oben bei Mobile wieder rückgäqngig machen
+@media (max-width: $media-query-breakpoint-mobile-screen) {
+  .tabs-only-icons-in-mobile .tab-icon {
+    margin-right: 0em;
+  }
+}
+
+.tab-text {
+  @media (max-width: $media-query-breakpoint-mobile-screen) {
+    display: none;
+  }
+}
+
+pre {
+  .string {
+    color: darkorange;
+  }
+  .number {
+    color: cyan;
+  }
+  .boolean {
+    color: yellow;
+  }
+  .null {
+    color: red;
+  }
+  .key {
+    color: greenyellow;
+  }
+}

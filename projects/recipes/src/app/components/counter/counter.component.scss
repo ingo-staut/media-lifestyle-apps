@@ -1,0 +1,45 @@
+$duration: 1s;
+
+@property --num {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
+.count-up {
+  animation: counter $duration ease-in-out forwards;
+  counter-reset: num var(--num);
+}
+
+.count-up::before {
+  content: counter(num);
+}
+
+.count-up-decimal {
+  animation: counter calc($duration / 2) ease-in-out forwards;
+  animation-iteration-count: 2;
+  counter-reset: num var(--num);
+}
+
+.count-up-decimal::before {
+  content: counter(num);
+}
+
+.counter {
+  display: flex;
+}
+
+@keyframes counter {
+  from {
+    --num: 0;
+  }
+  to {
+    --num: var(--value);
+  }
+}
+
+.text,
+.counter {
+  font-weight: inherit;
+  font-size: inherit;
+}

@@ -1,0 +1,157 @@
+<mat-card
+  [ngClass]="{
+    'result-card': true,
+    blinking: media.editHistory | mediaLastEdited,
+    movie: media.isMovie,
+    'no-columns': columns.length === 0
+  }"
+  matRipple
+  (click)="onOpen($event)"
+  style="--columnsCount: {{ columns.length }}"
+>
+  <!-- Titel -->
+  <div class="title">
+    <span
+      [ngClass]="{ movie: media.isMovie }"
+      [innerHTML]="media.name | extendText : searchTextHighlight ?? '' : '<mark>' : '</mark>'"
+    >
+    </span>
+  </div>
+
+  <!-- Suche: MatchScore -->
+  <app-search-result-column
+    icon="search"
+    [columns]="columns"
+    [sortKey]="SortKey.SORT_SEARCH_RESULTS"
+    [show]="!!media._searchMatchScore"
+    [text]="media._searchMatchScore | number : '1.0-0' : (localeService.locale$ | async)!"
+    [tooltip]="media._searchMatchScore | number : '1.0-2' : (localeService.locale$ | async)!"
+  >
+  </app-search-result-column>
+
+  <!-- Bewertung -->
+  <app-search-result-column
+    [columns]="columns"
+    [sortKey]="SortKey.SORT_RATING"
+    [show]="media.rating !== 0"
+    [icon]="(media.rating | ratingByType).icon"
+    [text]="media.rating.toString()"
+  >
+  </app-search-result-column>
+
+  <!-- Sehenswertigkeit -->
+  <app-search-result-column
+    [columns]="columns"
+    [sortKey]="SortKey.SORT_RATING_WATCHABILITY"
+    [show]="!!media.ratingWatchability"
+    [icon]="media.ratingWatchability || 0 | ratingSection : RatingIndex.WATCHABILITY"
+    [text]="(media.ratingWatchability || 0).toString()"
+  >
+  </app-search-result-column>
+
+  <!-- IMDb-Bewertung -->
+  <div *ngIf="SortKey.SORT_RATING_IMDB | showColumn : columns">
+    <app-button-rating-imdb [rating]="media.ratingImdb" [medium]="true" />
+  </div>
+
+  <!-- Metascore-Bewertung -->
+  <div *ngIf="SortKey.SORT_RATING_METASCORE | showColumn : columns">
+    <app-button-rating-metascore [rating]="media.ratingMetascore" [small]="true" />
+  </div>
+
+  <!-- Zuletzt bearbeitet-->
+  <app-search-result-column
+    [columns]="columns"
+    [sortKey]="SortKey.SORT_LAST_EDITED_DATE"
+    [show]="!!lastEditedDate"
+    [icon]="lastEditedDate && (lastEditedDate | isSameDate : today) ? 'calendar-today' : 'calendar'"
+    [text]="lastEditedDate | formatDate : (localeService.locale$ | async)!"
+    [tooltip]="lastEditedDate | date : 'fullDate' : '' : (localeService.locale$ | async)!"
+  >
+  </app-search-result-column>
+
+  <!-- Erstellt -->
+  <app-search-result-column
+    [columns]="columns"
+    [sortKey]="SortKey.SORT_CREATED_DATE"
+    [show]="true"
+    icon="added"
+    [text]="media.creationDate | formatDate : (localeService.locale$ | async)!"
+    [tooltip]="media.creationDate | date : 'fullDate' : '' : (localeService.locale$ | async)!"
+  >
+  </app-search-result-column>
+
+  <!-- Jahr -->
+  <app-search-result-column
+    *ngIf="media.yearStart"
+    [columns]="columns"
+    [sortKey]="SortKey.SORT_YEAR"
+    [show]="true"
+    icon="calendar"
+    [text]="media | years"
+    [tooltip]="media | years"
+  >
+  </app-search-result-column>
+
+  <!-- Verfügbar bis -->
+  <app-search-result-column
+    *ngIf="media.availableUntil"
+    [columns]="columns"
+    [sortKey]="SortKey.SORT_AVAILABLE_UNTIL"
+    [show]="true"
+    icon="calendar-until"
+    [text]="media.availableUntil | formatDate : (localeService.locale$ | async)!"
+    [tooltip]="media.availableUntil | date : 'fullDate' : '' : (localeService.locale$ | async)!"
+  >
+  </app-search-result-column>
+
+  <!-- Laufzeit -->
+  <app-search-result-column
+    *ngIf="media.runtime"
+    [columns]="columns"
+    [sortKey]="SortKey.SORT_RUNTIME"
+    [show]="true"
+    icon="time"
+    [text]="media.runtime | formatDuration : false : (localeService.locale$ | async)!"
+    [tooltip]="media.runtime | formatDuration : false : (localeService.locale$ | async)!"
+  >
+  </app-search-result-column>
+
+  <!-- Notiz -->
+  <app-search-result-column
+    *ngIf="media.note"
+    [columns]="columns"
+    [sortKey]="SortKey.SORT_NOTE"
+    [show]="true"
+    icon="note"
+    [text]="media.note"
+    [tooltip]="media.note"
+  >
+  </app-search-result-column>
+
+  <!-- Entdeckungsquelle -->
+  <app-search-result-column
+    *ngIf="
+      media.sources | firstDiscoverySourceAllTexts : (localeService.locale$ | async)! as source
+    "
+    [columns]="columns"
+    [sortKey]="SortKey.SORT_DISCOVERY_SOURCES"
+    [show]="true"
+    [icon]="source.icon"
+    [text]="source.tooltip"
+    [tooltip]="source.tooltip"
+  >
+  </app-search-result-column>
+
+  <!-- Tagline -->
+  <app-search-result-column
+    *ngIf="media.tagline"
+    [columns]="columns"
+    [sortKey]="SortKey.SORT_TAGLINE"
+    [show]="true"
+    icon="tagline"
+    [text]="media.tagline"
+    [tooltip]="media.tagline"
+  >
+  </app-search-result-column>
+</mat-card>

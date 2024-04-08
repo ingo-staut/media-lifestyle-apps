@@ -1,0 +1,66 @@
+<button
+  *ngIf="!isSmallScreen.matches && media.id"
+  type="button"
+  class="only-icon"
+  mat-flat-button
+  [matTooltip]="'INFORMATION.S' | translate"
+  (click)="onOpenInformationDialog()"
+>
+  <mat-icon svgIcon="info"></mat-icon>
+</button>
+
+<button
+  *ngIf="showMoreButtons && media.id"
+  type="button"
+  class="only-icon"
+  mat-button
+  [matTooltip]="'SHOW_MORE' | translate"
+  (click)="showMoreButtons = false"
+>
+  <mat-icon svgIcon="more"></mat-icon>
+</button>
+
+<ng-container *ngIf="!showMoreButtons && media.id">
+  <button
+    *ngIf="isSmallScreen.matches"
+    type="button"
+    class="only-icon"
+    mat-flat-button
+    [matTooltip]="'INFORMATION.S' | translate"
+    (click)="onOpenInformationDialog()"
+  >
+    <mat-icon svgIcon="info"></mat-icon>
+  </button>
+
+  <button
+    type="button"
+    class="only-icon"
+    mat-flat-button
+    [matTooltip]="'SETTINGS.DB_OPEN_IN' | translate"
+    (click)="onOpenInDatabase()"
+  >
+    <mat-icon svgIcon="database"></mat-icon>
+  </button>
+
+  <button
+    type="button"
+    class="only-icon"
+    mat-flat-button
+    [matTooltip]="'CLIPBOARD.COPY.ID' | translate"
+    (click)="onCopyId()"
+  >
+    <mat-icon svgIcon="copy"></mat-icon>
+  </button>
+
+  <button
+    type="button"
+    class="only-icon"
+    mat-flat-button
+    [matTooltip]="
+      (isProduction ? 'SETTINGS.DB_COPY_TO_DEV' : 'SETTINGS.DB_COPY_TO_PROD') | translate
+    "
+    (click)="onCopyToOppositeEnvironment()"
+  >
+    <mat-icon svgIcon="database"></mat-icon>
+  </button>
+</ng-container>

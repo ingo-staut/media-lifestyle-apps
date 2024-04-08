@@ -1,0 +1,19 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+:host {
+  display: contents;
+}
+
+.highlight {
+  color: $primary !important;
+}
+
+.button-in-button-no-extra-button {
+  margin-left: -16px;
+  padding-left: 16px;
+}
+
+.button-sort-direction {
+  z-index: 5;
+}

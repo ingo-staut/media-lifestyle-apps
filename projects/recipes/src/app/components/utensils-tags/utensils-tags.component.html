@@ -1,0 +1,73 @@
+<div
+  [formGroup]="parentFormGroup"
+  [ngClass]="{
+    'scrollbox no-scrollbar-on-mobile': true,
+    'no-padding': !withPadding,
+    'no-space-for-scrollbar': withSpaceForScrollbar
+  }"
+  [style.paddingTop.px]="10"
+>
+  <div
+    [ngClass]="{
+      'scrollbox-content': true,
+      'no-padding': !withPadding,
+      'padding-if-not-editable': !editable && withPadding,
+      wrap
+    }"
+  >
+    <div
+      *ngIf="editable"
+      [ngClass]="{
+        'sticky-function-buttons': true,
+        'no-padding': !withPadding
+      }"
+    >
+      <app-add
+        placeholder="UTENSIL.ADD"
+        addIconWhenBigButton="utensil"
+        [isNoContent]="!tags.length"
+        [value]="addValue"
+        [smallerWidth]="true"
+        [doNotCloseAfterReturn]="true"
+        [openDialogOnClick]="isMobileScreen.matches"
+        [completerList]="utensilObjectService.completerUtensilObjects$ | async"
+        (add)="add($event)"
+        (openDialog)="onOpenAddUtensilDialog()"
+      ></app-add>
+      <button
+        *ngIf="tags.length"
+        class="only-icon"
+        mat-flat-button
+        [matBadge]="tags.length"
+        [matBadgeHidden]="tags.length < 1"
+        [matTooltip]="'REMOVE_ALL_VALUE' | translate : { value: tags.length }"
+        (click)="onRemoveAll()"
+      >
+        <mat-icon svgIcon="clear"></mat-icon>
+      </button>
+    </div>
+    <div class="chip" *ngFor="let tag of tags; index as index">
+      <button
+        *ngIf="tag | utensilText : (utensilObjectApiService.utensilObjects$ | async) as utensilText"
+        mat-button
+        [ngClass]="{ text: true, editable: editable }"
+        [disabled]="!editable"
+        [matTooltip]="utensilText"
+        (click)="edit(tag, index)"
+        (contextmenu)="edit(tag, index, $event)"
+      >
+        <mat-icon *ngIf="tag | utensilIcon : utensilObjects as icon" [svgIcon]="icon"></mat-icon>
+        {{ utensilText }}
+      </button>
+      <button
+        *ngIf="editable"
+        mat-button
+        class="only-icon clear-button"
+        [matTooltip]="'ACTION.REMOVE' | translate"
+        (click)="remove(tag)"
+      >
+        <mat-icon svgIcon="clear"></mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

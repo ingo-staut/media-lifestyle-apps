@@ -1,0 +1,76 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+.select {
+  display: flex;
+  align-items: center;
+  height: 40px;
+
+  &.mat-mdc-select-invalid {
+    margin-bottom: -2px;
+    border-bottom: 2px solid $error;
+  }
+}
+
+.error {
+  color: $error;
+  line-height: 110%;
+  margin-block-start: 4px;
+  margin-block-end: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-size: $text-size;
+}
+
+.dropdown-multiple-chip {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+}
+
+.background {
+  outline: none;
+  display: flex;
+  background-color: $background-1;
+  border-radius: $border-radius;
+
+  &:hover {
+    background-color: $background-2;
+  }
+
+  &:focus {
+    background-color: $background-3;
+  }
+
+  &.with-value {
+    background-color: $primary;
+
+    &:hover {
+      filter: brightness(110%);
+    }
+  }
+}
+
+.no-background-color {
+  background-color: transparent !important;
+
+  &:hover {
+    background-color: transparent !important;
+  }
+
+  &:focus {
+    background-color: transparent !important;
+  }
+}
+
+img {
+  border-radius: $border-radius;
+
+  margin-left: 1px;
+  margin-right: 17px;
+}
+
+.with-clear-button {
+  margin-right: -40px;
+  padding-right: 40px;
+}

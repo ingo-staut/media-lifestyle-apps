@@ -1,0 +1,18 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../../styles.theme.scss";
+
+:host {
+  display: contents;
+}
+
+.recipe-icon {
+  flex-shrink: 0;
+}
+
+.recipe-button {
+  padding: 0px $padding-s;
+
+  // .mdc-button__label {
+  //   margin-right: -$padding-s !important;
+  // }
+}

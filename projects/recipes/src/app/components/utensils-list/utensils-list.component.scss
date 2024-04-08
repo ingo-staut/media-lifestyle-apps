@@ -1,0 +1,33 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+.container.optional {
+  opacity: 0.5;
+  transition: all 250ms ease-in-out;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: $padding-s;
+  padding: $padding-m;
+  padding-top: 0;
+}
+
+.function-buttons {
+  display: flex;
+  gap: $padding-s;
+  margin: $padding-m $padding-m 0;
+}
+
+.function-buttons + .list {
+  margin-top: $padding-m;
+}
+
+.not-editable {
+  margin-top: $padding-m;
+}

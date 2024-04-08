@@ -1,0 +1,23 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+:host {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $padding-l;
+
+  h1,
+  h3,
+  p {
+    text-align: center;
+  }
+}

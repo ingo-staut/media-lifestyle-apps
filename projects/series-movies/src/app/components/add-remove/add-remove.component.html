@@ -1,0 +1,42 @@
+<div [ngClass]="['scrollbox no-scrollbar-on-mobile shadow-if-pinned', withBackground]">
+  <!-- ! 'Stretch' für eine Swipe-Region auf der Einkaufsliste -->
+  <div
+    [ngClass]="{ 'scrollbox-content': true, 'no-padding-left-right': noPaddingLeftRight }"
+    [style.alignItems]="'stretch'"
+  >
+    <app-add
+      [value]="value"
+      [placeholder]="addText | translate"
+      [completerList]="completerList"
+      [isNoContent]="isNoContent"
+      [addIcon]="addIcon"
+      [addIconWhenBigButton]="addIconWhenBigButton"
+      [buttonId]="addButtonId"
+      [smallerWidth]="smallerWidth"
+      [chipSeparators]="chipSeparators"
+      [askIfCloseIfDiscard]="askIfCloseIfDiscard"
+      [scrollToElementIdAfterAdd]="scrollToElementIdAfterAdd"
+      [doNotCloseAfterReturn]="doNotCloseAfterReturn"
+      [openDialogOnClick]="openDialogOnClick"
+      [inputInfoText]="inputInfoText"
+      [firstCharToTitleCase]="firstCharToTitleCase"
+      (add)="add.emit($event)"
+      (openDialog)="onOpenDialog()"
+      (valueChange)="valueChange.emit($event)"
+    ></app-add>
+    <!-- Element mit "quickAdd" innerhalb von "<app-add-remove>"-Tags werden hier abgebildet -->
+    <ng-content select="[quickAdd]"></ng-content>
+    <button
+      *ngIf="!isNoContent"
+      class="only-icon"
+      mat-flat-button
+      [matBadge]="badge"
+      [matBadgeHidden]="!badge"
+      [matTooltip]="removeText | translate : { value: badge }"
+      (click)="removeAll.emit()"
+    >
+      <mat-icon [svgIcon]="removeIcon"></mat-icon>
+    </button>
+    <ng-content></ng-content>
+  </div>
+</div>

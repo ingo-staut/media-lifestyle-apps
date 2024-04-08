@@ -1,0 +1,129 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+.container {
+  display: flex;
+  align-items: stretch;
+}
+
+section {
+  .title {
+    background-color: $main-background-1;
+    height: 50px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: $shadow-toolbar;
+
+    &.only-text {
+      display: flex;
+      align-items: center;
+      gap: $padding-s;
+      padding: 0px $padding-m;
+    }
+
+    > mat-tab-group {
+      margin-left: auto;
+    }
+
+    div.buttons {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: $padding-s;
+    }
+  }
+}
+
+.animation {
+  transition: margin 1s ease-in-out;
+}
+
+button.collapse {
+  position: relative;
+  cursor: pointer;
+  border: none;
+  color: white;
+  background: $main-background-1;
+  border-radius: $border-radius;
+  animation: expand 1s ease-in-out;
+  animation-fill-mode: forwards;
+  margin-left: -20px;
+  width: 0;
+
+  transition: background 250ms ease-in-out;
+
+  mat-icon {
+    opacity: 0;
+    animation: opacity 1s ease-in-out;
+    animation-fill-mode: forwards;
+    animation-delay: 0.5s;
+  }
+
+  &:hover {
+    background: $background-2;
+  }
+
+  &:focus {
+    background: $background-3;
+  }
+}
+
+@keyframes expand {
+  0% {
+    margin-left: -20px;
+    width: 0;
+  }
+  100% {
+    margin-left: 0px;
+    width: 30px;
+  }
+}
+
+button.expand-overlay {
+  position: relative;
+  cursor: pointer;
+  z-index: 30;
+  border: none;
+  background: rgba($main-background, 0.5);
+  opacity: 0;
+  animation: opacity 1s ease-in-out 500ms;
+  animation-fill-mode: forwards;
+  transition: background 250ms ease-in-out;
+
+  &:hover {
+    background: transparent;
+  }
+}
+
+.details-container {
+  position: sticky;
+  left: 0;
+  background-color: $main-background;
+  z-index: 40;
+  display: flex;
+  box-shadow: $shadow-toolbar;
+
+  .details {
+    padding-left: $padding-m;
+    padding-right: $padding-m;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $padding-m;
+
+    .details-title {
+      font-size: $text-size-m;
+      transform: rotate(180deg);
+      writing-mode: vertical-rl;
+      margin-right: 2px;
+    }
+
+    .details-title-sub {
+      font-size: $text-size-s;
+      color: $text-1;
+      white-space: pre;
+    }
+  }
+}

@@ -1,0 +1,124 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+$image-height: 160px;
+
+:host {
+  flex-shrink: 0;
+}
+
+.recipe-card {
+  max-width: 240px;
+  min-width: 140px;
+  height: 100%;
+  background-color: $background-1;
+  transition: all 250ms ease-in-out;
+
+  display: flex;
+  gap: $padding-s;
+}
+
+.recipe-card:hover {
+  cursor: pointer;
+  background-color: $background-2;
+
+  .recipe-image > img {
+    transform: scale(1.1, 1.1);
+  }
+}
+
+.title {
+  @include ellipsis-lines(2);
+  margin: $padding-s;
+  color: white;
+  line-height: normal;
+}
+
+.recipe-image {
+  height: $image-height;
+  overflow: hidden;
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: all 250ms ease-in-out;
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: $padding-s $padding-xs;
+  flex-wrap: wrap;
+  padding: 0 $padding-s $padding-s $padding-s;
+  margin-top: auto;
+}
+
+.flex-gap-5 {
+  display: flex;
+  align-items: center;
+  gap: $padding-xs;
+}
+
+.button-chip {
+  // float: right;
+  // min-width: 0px;
+  padding: 0px $padding-s;
+  height: 20px !important;
+
+  mat-icon {
+    margin-right: $padding-xs;
+    font-size: 16px;
+  }
+}
+
+.header-icons {
+  display: flex;
+  justify-content: space-between;
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  right: 0;
+
+  &.with-gradient {
+    background: linear-gradient(180deg, rgba($main-background, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
+  }
+}
+
+.banner {
+  $banner-height: 26px;
+
+  z-index: 1;
+  position: absolute;
+  background-color: $primary;
+  height: $banner-height;
+  top: calc($image-height - $banner-height);
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 14px;
+
+  color: white;
+  line-height: normal;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: $shadow-banner;
+}
+
+.icon-in-text {
+  margin-right: 3px;
+}
+
+.divider-vertical-chip-icons {
+  height: 20px;
+  margin: 0 5px !important;
+}
+
+.more-item {
+  color: $text-2;
+}

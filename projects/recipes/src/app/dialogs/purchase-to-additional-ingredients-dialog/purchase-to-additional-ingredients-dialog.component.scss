@@ -1,0 +1,85 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+// ----------------------------------------------------------------
+// Text
+// ----------------------------------------------------------------
+header {
+  display: flex;
+  gap: $padding-s;
+  padding: $padding-m;
+
+  h1 {
+    margin-block: 0 0;
+    margin-top: 2px;
+    font-size: $text-size-m;
+    width: 100%;
+  }
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  color: $text-1;
+
+  td {
+    padding: $padding-xs;
+  }
+
+  tr:first-of-type {
+    position: sticky;
+    top: 0;
+    background: $main-background-1;
+    z-index: 10;
+    color: white;
+    outline: $border-divider;
+  }
+
+  tr {
+    border-bottom: $border-divider;
+  }
+
+  th {
+    text-align: left;
+    padding: $padding-s $padding-xs;
+
+    div {
+      display: flex;
+      align-items: center;
+      gap: $padding-s;
+
+      span {
+        margin-bottom: -2px;
+      }
+    }
+  }
+
+  td,
+  th {
+    &:first-of-type {
+      padding-left: $padding-m;
+    }
+  }
+
+  td,
+  th {
+    &:last-of-type {
+      padding-right: $padding-m;
+      min-width: 140px;
+    }
+  }
+}
+
+.mat-mdc-dialog-content {
+  padding: 0px !important;
+}
+
+// ----------------------------------------------------------------
+// Footer
+// ----------------------------------------------------------------
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin: $padding-l $padding-m $padding-m $padding-m;
+  gap: $padding-s;
+}

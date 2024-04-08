@@ -1,0 +1,147 @@
+<div
+  [style.lineHeight]="0"
+  tabindex="0"
+  [ngClass]="{
+    background: withRemoveButton,
+    blinking: blinkWhenValueSet && selectedValue >= 0 && withRemoveButton,
+    'with-value': blinkWhenValueSet && selectedValue >= 0 && withRemoveButton
+  }"
+>
+  <mat-select
+    matRipple
+    tabIndex="-1"
+    [value]="selectedKey"
+    [matTooltip]="tooltip ?? '' | translate"
+    [ngClass]="{
+      normal: !isSmall,
+      small: isSmall,
+      select: true,
+      'with-value': blinkWhenValueSet && selectedValue >= 0 && !withRemoveButton,
+      blinking: blinkWhenValueSet && selectedValue >= 0,
+      'no-background-color': withRemoveButton,
+      'with-clear-button': withRemoveButton,
+      'with-date-picker': selected.value?.showDateInputs
+    }"
+    (valueChange)="onSelectChanged($event)"
+  >
+    <mat-select-trigger [ngClass]="{ small: isSmall }">
+      <!-- Extra-Icon -->
+      <mat-icon *ngIf="extraIcon" class="medium without-button" [svgIcon]="extraIcon"></mat-icon>
+
+      <!-- Icon -->
+      <mat-icon
+        *ngIf="selected.icon && !selected.value?.showDateInputs"
+        [svgIcon]="selected.icon"
+        class="medium without-button"
+      ></mat-icon>
+
+      <!-- Text -->
+      <span *ngIf="!selected.value?.showDateInputs">
+        {{ (selected.name | translate : { days: "|" }).split("|")[0] }}
+      </span>
+
+      <!-- Eingabefeld -->
+      <ng-container *ngIf="selected.value?.showDayInput">
+        <input
+          #myInput
+          [value]="selectedValue"
+          [size]="myInput.value.length === 0 ? 1 : myInput.value.length"
+          class="dropdown-input"
+          (click)="onInputClicked($event)"
+          (change)="onInputChange($event)"
+        />
+        <span>
+          {{ (selected.name | translate : { days: "|" }).split("|")[1] }}
+        </span>
+      </ng-container>
+
+      <div *ngIf="selected.value?.showDateInputs" class="date-range-inputs-container">
+        <!-- Kalender Picker Button -->
+        <button
+          *ngIf="withRemoveButton"
+          mat-button
+          class="medium only-icon date-range-picker-button"
+          tabindex="-1"
+          [matTooltip]="'DATE.CHOOSE_RANGE' | translate"
+          (click)="$event.stopPropagation(); picker.open()"
+        >
+          <mat-icon svgIcon="calendar-choose"></mat-icon>
+        </button>
+
+        <!-- Zeitraum Eingabefelder -->
+        <mat-date-range-input
+          *ngIf="selected.value?.showDateInputs"
+          [formGroup]="range"
+          [rangePicker]="picker"
+          class="date-range-input"
+        >
+          <input
+            matStartDate
+            formControlName="start"
+            class="dropdown-input date"
+            [size]="1"
+            [placeholder]="'DATE.START' | translate"
+            [min]="DateFns.firstDate"
+            [max]="DateFns.lastDate"
+            (click)="
+              $event.preventDefault();
+              $event.stopPropagation();
+              isSmallScreen.matches ? picker.open() : ''
+            "
+            (change)="onInputChange($event)"
+          />
+          <input
+            matEndDate
+            formControlName="end"
+            class="dropdown-input date"
+            [size]="1"
+            [placeholder]="'DATE.END' | translate"
+            [min]="DateFns.firstDate"
+            [max]="DateFns.lastDate"
+            (click)="
+              $event.preventDefault();
+              $event.stopPropagation();
+              isSmallScreen.matches ? picker.open() : ''
+            "
+            (change)="onInputChange($event)"
+          />
+        </mat-date-range-input>
+        <mat-date-range-picker
+          #picker
+          [touchUi]="isMobileScreen.matches"
+          [panelClass]="isSmallScreen.matches ? '' : 'date-range-picker-transform'"
+        ></mat-date-range-picker>
+      </div>
+    </mat-select-trigger>
+
+    <!-- Optionen -->
+    <ng-container *ngFor="let menuEntry of data; index as index">
+      <mat-divider
+        *ngIf="index > 0 && menuEntry.groupKey !== data[index - 1].groupKey"
+        [style.flexGrow]="1"
+        [style.marginTop.px]="5"
+        [style.marginBottom.px]="5"
+      ></mat-divider>
+
+      <mat-option [value]="menuEntry.key" (click)="onMenuItemClicked(menuEntry)">
+        <mat-icon
+          *ngIf="menuEntry.icon"
+          class="medium without-button"
+          [svgIcon]="menuEntry.icon"
+        ></mat-icon>
+        {{ (menuEntry.name | translate : { days: "|" }).replace("|", " ... ") }}
+      </mat-option>
+    </ng-container>
+  </mat-select>
+
+  <button
+    *ngIf="withRemoveButton"
+    mat-button
+    class="only-icon"
+    tabindex="-1"
+    [matTooltip]="'ACTION.REMOVE' | translate"
+    (click)="onRemoveClick($event)"
+  >
+    <mat-icon svgIcon="clear"></mat-icon>
+  </button>
+</div>

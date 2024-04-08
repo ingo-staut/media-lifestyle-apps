@@ -1,0 +1,16 @@
+<div class="timer-container">
+  <button mat-flat-button class="timer" (click)="runProgressBar()">
+    <mat-icon [svgIcon]="time ? (isTimerRunning ? 'pause' : 'timer') : ''"> </mat-icon>
+    {{ text }}
+  </button>
+  <button
+    *ngIf="this.progress !== this.time && this.progress !== 0"
+    mat-flat-button
+    (click)="onReset($event)"
+    class="only-icon"
+    [matTooltip]="'RESET_TIMER' | translate"
+  >
+    <mat-icon svgIcon="reset"></mat-icon>
+  </button>
+</div>
+<progress [value]="progress" [max]="time"></progress>

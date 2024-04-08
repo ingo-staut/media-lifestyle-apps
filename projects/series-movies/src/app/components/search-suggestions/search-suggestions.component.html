@@ -1,0 +1,14 @@
+<div
+  *ngIf="results?.length === 0 && !filtersSetOrSearchText"
+  class="start-search start-search-text"
+>
+  {{ "FILTER.SUGGESTION_SENTENCE.SET_FILTER_AS" | translate }} &nbsp;
+
+  <ng-container *ngFor="let suggestion of suggestions; index as index">
+    <span *ngIf="index !== 0">&nbsp; {{ "FILTER.SUGGESTION_SENTENCE.OR" | translate }} &nbsp;</span>
+
+    <app-search-action-button [action]="suggestion"> </app-search-action-button>
+  </ng-container>
+
+  &nbsp; {{ "FILTER.SUGGESTION_SENTENCE.TO_FIND_MEDIA" | translate }}
+</div>

@@ -1,0 +1,681 @@
+<div
+  mat-dialog-content
+  [ngClass]="{ 'no-scrollbar-on-mobile': true, 'only-mobile-device': isMobileDevice }"
+>
+  <!-- Menübar: Desktop -->
+  <div
+    *ngIf="!isSmallScreen.matches"
+    cdkDrag
+    cdkDragRootElement=".cdk-overlay-pane"
+    cdkDragBoundary=".cdk-overlay-container"
+    cdkDragHandle
+    (cdkDragStarted)="onDragStarted()"
+    [cdkDragFreeDragPosition]="dragPosition"
+    [cdkDragDisabled]="lockDragging"
+  >
+    <mat-toolbar class="toolbar">
+      <button class="only-icon margin-right" mat-button (click)="toggle()">
+        <mat-icon svgIcon="menu"></mat-icon>
+      </button>
+
+      <span class="spacer"></span>
+
+      <button
+        mat-flat-button
+        onlyIconSmallScreen
+        [text]="'ACTION.SAVE' | translate"
+        [mat-dialog-close]="newData()"
+      >
+        <mat-icon svgIcon="check"></mat-icon>
+      </button>
+      <button class="only-icon" mat-button (click)="close()">
+        <mat-icon svgIcon="clear"></mat-icon>
+      </button>
+    </mat-toolbar>
+  </div>
+
+  <mat-sidenav-container class="sidenav-container" (backdropClick)="closeSidebar()">
+    <!-- Sidenav -->
+    <mat-sidenav
+      #sidenav
+      (keydown.escape)="closeSidebar()"
+      class="sidenav-content"
+      [mode]="isSmallScreen.matches ? 'over' : 'side'"
+      [opened]="isSmallScreen.matches ? false : true"
+    >
+      <div class="sidenav-buttons">
+        <ng-container *ngFor="let menuItem of menu">
+          <mat-divider
+            *ngIf="menuItem.name === SettingsMenu.SEPARATOR; else menuEntry"
+          ></mat-divider>
+          <ng-template #menuEntry>
+            <button
+              mat-button
+              class="sidenav-button"
+              [color]="selectedSubmenu === menuItem.key ? 'primary' : ''"
+              (click)="setActive(menuItem.key!)"
+            >
+              <mat-icon *ngIf="menuItem.icon" [svgIcon]="menuItem.icon"></mat-icon
+              >{{ menuItem.name | translate }}
+            </button>
+          </ng-template>
+        </ng-container>
+      </div>
+
+      <div [style.flexGrow]="1"></div>
+
+      <!-- Aktuelles Theme -->
+      <app-theme [style.marginBottom.px]="40"></app-theme>
+    </mat-sidenav>
+
+    <!-- Hauptinhalt -->
+    <mat-sidenav-content class="page-container">
+      <!-- Menübar: Mobile -->
+      <mat-toolbar *ngIf="isSmallScreen.matches" class="toolbar page-header">
+        <button class="only-icon" mat-button (click)="toggle()">
+          <mat-icon svgIcon="menu"></mat-icon>
+        </button>
+
+        <!-- Im Mobile-Modus erstmal nicht anzeigen -->
+        <!-- <mat-slide-toggle [(ngModel)]="showRawData">Rohdaten</mat-slide-toggle> -->
+
+        <!-- Spacer -->
+        <span class="spacer"></span>
+
+        <button
+          mat-flat-button
+          onlyIconSmallScreen
+          [text]="'ACTION.SAVE' | translate"
+          [mat-dialog-close]="newData()"
+        >
+          <mat-icon svgIcon="check"></mat-icon>
+        </button>
+        <button class="only-icon" mat-button (click)="close()">
+          <mat-icon svgIcon="clear"></mat-icon>
+        </button>
+      </mat-toolbar>
+
+      <!-- Inhalt -->
+      <form [formGroup]="formGroup" class="page-content">
+        <div class="content">
+          <!-- Hilfe -->
+          <div *ngIf="selectedSubmenu === SettingsMenuKey.KEYMAP">
+            <section>
+              <!-- Shortcuts nicht im Mobile-Modus anzeigen -->
+              <h1><mat-icon svgIcon="keymap"></mat-icon> {{ "SETTINGS.KEYMAP" | translate }}</h1>
+              <div class="subsection">
+                <p class="text">Speichern: <kbd>Strg</kbd> + <kbd>S</kbd></p>
+                <p class="text">Suchen: <kbd>Strg</kbd> + <kbd>K</kbd></p>
+                <p class="text">Fenster schließen: <kbd>Esc</kbd></p>
+                <p class="text">Seite neu laden: <kbd>F5</kbd></p>
+              </div>
+            </section>
+          </div>
+
+          <!-- Datenbank -->
+          <div *ngIf="selectedSubmenu === SettingsMenuKey.DB">
+            <section>
+              <h1>
+                <mat-icon svgIcon="replace"></mat-icon>
+                {{ "SETTINGS.DB_CHANGES" | translate }}
+              </h1>
+
+              <!-- DB-Änderung -->
+              <div class="subsection">
+                <button mat-flat-button (click)="settingsApiService.performDBChange()">
+                  {{ "SETTINGS.DB_CHANGES_APPLY" | translate }}
+                </button>
+              </div>
+            </section>
+          </div>
+
+          <div *ngIf="selectedSubmenu === SettingsMenuKey.IMPORT">
+            <section>
+              <h1>
+                <mat-icon svgIcon="import"></mat-icon>
+                {{ SettingsMenu.IMPORT | translate }}
+              </h1>
+
+              <!-- Serie -->
+              <div class="subsection">
+                <h3><mat-icon svgIcon="media"></mat-icon>{{ "SERIES." | translate }}</h3>
+                <form>
+                  <input
+                    [(ngModel)]="performDBChange_series_input"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </form>
+                <div class="buttons">
+                  <button
+                    mat-flat-button
+                    [matTooltip]="'CLIPBOARD.ADD.' | translate"
+                    (click)="onPastFromClipboardToSeries()"
+                  >
+                    <mat-icon svgIcon="clipboard"></mat-icon>
+                    {{ "SETTINGS.IMPORT_ACTION_AND_SAVE" | translate }}
+                  </button>
+
+                  <button
+                    mat-flat-button
+                    (click)="
+                      performDBChange_series_output =
+                        settingsApiService.performDBChangeImportSeries(performDBChange_series_input)
+                    "
+                  >
+                    <mat-icon svgIcon="import"></mat-icon>
+                    {{ "SETTINGS.IMPORT_ACTION" | translate }}
+                  </button>
+
+                  <button
+                    mat-flat-button
+                    (click)="
+                      performDBChange_series_output =
+                        settingsApiService.performDBChangeImportSeriesAndSave(
+                          performDBChange_series_input
+                        )
+                    "
+                  >
+                    <mat-icon svgIcon="upload"></mat-icon>
+                    {{ "SETTINGS.IMPORT_ACTION_AND_SAVE" | translate }}
+                  </button>
+                </div>
+                <pre [innerHTML]="performDBChange_series_output | json | syntaxHighlight"></pre>
+              </div>
+
+              <!-- Film -->
+              <div class="subsection">
+                <h3><mat-icon svgIcon="movie"></mat-icon>{{ "MOVIE." | translate }}</h3>
+                <form>
+                  <input
+                    [(ngModel)]="performDBChange_movie_input"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </form>
+                <div class="buttons">
+                  <button
+                    mat-flat-button
+                    [matTooltip]="'CLIPBOARD.ADD.' | translate"
+                    (click)="onPastFromClipboardToMovie()"
+                  >
+                    <mat-icon svgIcon="clipboard"></mat-icon>
+                    {{ "SETTINGS.IMPORT_ACTION_AND_SAVE" | translate }}
+                  </button>
+
+                  <button
+                    mat-flat-button
+                    (click)="
+                      performDBChange_movie_output = settingsApiService.performDBChangeImportMovie(
+                        performDBChange_movie_input
+                      )
+                    "
+                  >
+                    <mat-icon svgIcon="import"></mat-icon>
+                    {{ "SETTINGS.IMPORT_ACTION" | translate }}
+                  </button>
+
+                  <button
+                    mat-flat-button
+                    (click)="
+                      performDBChange_movie_output =
+                        settingsApiService.performDBChangeImportMovieAndSave(
+                          performDBChange_movie_input
+                        )
+                    "
+                  >
+                    <mat-icon svgIcon="upload"></mat-icon>
+                    {{ "SETTINGS.IMPORT_ACTION_AND_SAVE" | translate }}
+                  </button>
+                </div>
+                <pre [innerHTML]="performDBChange_movie_output | json | syntaxHighlight"></pre>
+              </div>
+            </section>
+          </div>
+
+          <div *ngIf="selectedSubmenu === SettingsMenuKey.TESTING">
+            <section>
+              <h1>
+                <mat-icon svgIcon="testing"></mat-icon>
+                {{ SettingsMenu.TESTING | translate }}
+              </h1>
+
+              <div class="subsection">
+                <h3>
+                  <mat-icon svgIcon="notification"></mat-icon
+                  >{{ "SETTINGS.TEST_MESSAGE" | translate }}
+                </h3>
+                <div class="buttons">
+                  <button mat-flat-button (click)="showTestNotification()">
+                    <mat-icon svgIcon="note"></mat-icon>{{ "SETTINGS.TEST_MESSAGE" | translate }}
+                  </button>
+                  <button mat-flat-button (click)="showTestNotificationWithDuration()">
+                    <mat-icon svgIcon="timer"></mat-icon>
+                    {{ "SETTINGS.TEST_MESSAGE_WITH_DURATION" | translate }}
+                  </button>
+                </div>
+              </div>
+
+              <div class="subsection">
+                <h3>
+                  <mat-icon svgIcon="open-url-on-device"></mat-icon
+                  >{{ "URL.OPEN_ON_DEVICE" | translate }}
+                </h3>
+
+                <form>
+                  <input [(ngModel)]="testUrl" [ngModelOptions]="{ standalone: true }" />
+                </form>
+
+                <div class="buttons">
+                  <button mat-flat-button (click)="testOpenUrl()">
+                    <mat-icon svgIcon="open-url-on-device"></mat-icon
+                    >{{ "URL.OPEN_ON_OTHER_DEVICE" | translate }}
+                  </button>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div *ngIf="selectedSubmenu === SettingsMenuKey.REQUESTS">
+            <section>
+              <h1>
+                <mat-icon svgIcon="api"></mat-icon>
+                {{ SettingsMenu.REQUESTS | translate }}
+              </h1>
+
+              <div class="subsection">
+                <h3>
+                  <mat-icon svgIcon="url"></mat-icon>
+                  {{ "SETTINGS.REQUEST_VALUE" | translate : { value: "OMDb API" } }}
+                </h3>
+                <form>
+                  <input
+                    [placeholder]="'TITLE' | translate"
+                    [(ngModel)]="requestApiServiceUrlTitle"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                  <input
+                    [placeholder]="'YEAR.' | translate"
+                    [(ngModel)]="requestApiServiceUrlYear"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                  <input
+                    [placeholder]="OMDBApiTypes"
+                    [(ngModel)]="requestApiServiceUrlType"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                  <input
+                    [placeholder]="OMDBApiSearchKeys"
+                    [(ngModel)]="requestApiServiceUrlSearchKey"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </form>
+                <div class="buttons">
+                  <button mat-flat-button (click)="requestSearchTitle()">
+                    <mat-icon svgIcon="search"></mat-icon>
+                    {{ "SETTINGS.REQUEST_DATA" | translate }}
+                  </button>
+                </div>
+                <h3>JSON</h3>
+                <pre
+                  [innerHTML]="responseJsonApiServiceUrl$ | async | json | syntaxHighlight"
+                ></pre>
+                <h3>{{ "CHANGED_DATA" | translate }}</h3>
+                <pre
+                  [innerHTML]="responseInterpretedApiServiceUrl$ | async | json | syntaxHighlight"
+                ></pre>
+              </div>
+
+              <div class="subsection">
+                <h3>
+                  <mat-icon svgIcon="url"></mat-icon>
+                  {{ "SETTINGS.REQUEST_VALUE" | translate : { value: "Youtube" } }}
+                </h3>
+                <form>
+                  <input [(ngModel)]="requestYoutubeID" [ngModelOptions]="{ standalone: true }" />
+                </form>
+                <div class="buttons">
+                  <button mat-flat-button (click)="requestYoutubeAPI(requestYoutubeID)">
+                    <mat-icon svgIcon="search"></mat-icon>
+                    {{ "SETTINGS.REQUEST_DATA" | translate }}
+                  </button>
+                </div>
+                <pre [innerHTML]="responseYoutubeAPI | json | syntaxHighlight"></pre>
+              </div>
+
+              <div class="subsection">
+                <h3>
+                  <mat-icon svgIcon="url"></mat-icon>
+                  {{ "SETTINGS.REQUEST_VALUE" | translate : { value: "URL" } }}
+                </h3>
+                <form>
+                  <input [(ngModel)]="requestUrl" [ngModelOptions]="{ standalone: true }" />
+                </form>
+                <div class="buttons">
+                  <button mat-flat-button (click)="requestURLWithSpecial(requestUrl)">
+                    <mat-icon svgIcon="search"></mat-icon>
+
+                    {{ "SETTINGS.REQUEST_DATA" | translate }}
+                  </button>
+                </div>
+                <pre [innerHTML]="responseUrlData | json | syntaxHighlight"></pre>
+              </div>
+
+              <div class="subsection">
+                <h3>
+                  <mat-icon svgIcon="url"></mat-icon>
+                  {{ "SETTINGS.REQUEST_VALUE" | translate : { value: "URL" } }}: RapidHeaders
+                </h3>
+                <form>
+                  <input
+                    [(ngModel)]="requestUrlWithHeadersValues"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                  <input
+                    [(ngModel)]="requestUrlWithHeadersUrl"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                  <input
+                    [(ngModel)]="requestUrlWithHeadersHost"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </form>
+                <div class="buttons">
+                  <button
+                    mat-flat-button
+                    (click)="
+                      requestRapidAPI(
+                        requestUrlWithHeadersValues,
+                        requestUrlWithHeadersUrl,
+                        requestUrlWithHeadersHost
+                      )
+                    "
+                  >
+                    <mat-icon svgIcon="search"></mat-icon>
+                    {{ "SETTINGS.REQUEST_DATA" | translate }}
+                  </button>
+                </div>
+                <pre [innerHTML]="responseUrlWithHeadersData | json | syntaxHighlight"></pre>
+              </div>
+
+              <div class="subsection">
+                <h3>
+                  <mat-icon svgIcon="url"></mat-icon>
+                  {{ "SETTINGS.REQUEST_VALUE" | translate : { value: "URL" } }}: RapidHeaders + Body
+                </h3>
+                <form>
+                  <input
+                    [(ngModel)]="rapidApiRequestUrlWithHeadersBody"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                  <input
+                    [(ngModel)]="rapidApiRequestUrlWithHeadersUrl"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                  <input
+                    [(ngModel)]="rapidApiRequestUrlWithHeadersHost"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </form>
+                <div class="buttons">
+                  <button
+                    mat-flat-button
+                    (click)="
+                      requestRapidAPIWithBody(
+                        rapidApiRequestUrlWithHeadersBody,
+                        rapidApiRequestUrlWithHeadersUrl,
+                        rapidApiRequestUrlWithHeadersHost
+                      )
+                    "
+                  >
+                    <mat-icon svgIcon="search"></mat-icon>
+                    {{ "SETTINGS.REQUEST_DATA" | translate }}
+                  </button>
+                </div>
+                <pre
+                  [innerHTML]="rapidApiResponseUrlWithHeadersData | json | syntaxHighlight"
+                ></pre>
+              </div>
+
+              <div class="subsection">
+                <h3>
+                  <mat-icon svgIcon="url"></mat-icon>
+                  {{ "SETTINGS.REQUEST_VALUE" | translate : { value: "URL" } }}: XML URLs
+                </h3>
+                <form>
+                  <input [(ngModel)]="requestXMLUrlData" [ngModelOptions]="{ standalone: true }" />
+                </form>
+                <div class="buttons">
+                  <button mat-flat-button (click)="requestXMLData(requestXMLUrlData)">
+                    <mat-icon svgIcon="search"></mat-icon>
+                    {{ "SETTINGS.REQUEST_DATA" | translate }}
+                  </button>
+                </div>
+                <pre [innerHTML]="responseXMLAsJSONUrlData | json | syntaxHighlight"></pre>
+              </div>
+            </section>
+
+            <section>
+              <h1>
+                <mat-icon svgIcon="share"></mat-icon>
+                Share
+              </h1>
+
+              <div class="subsection">
+                <form>
+                  <input [(ngModel)]="shareUrl" [ngModelOptions]="{ standalone: true }" />
+                </form>
+
+                <div class="buttons">
+                  <button mat-flat-button (click)="shareViaLinkToWindows(shareUrl)">
+                    <mat-icon svgIcon="share"></mat-icon>
+                    Share
+                  </button>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div *ngIf="selectedSubmenu === SettingsMenuKey.DOWNLOAD">
+            <section>
+              <h1>
+                <mat-icon svgIcon="download"></mat-icon>
+                {{ "SETTINGS.DOWNLOAD_DATA" | translate }}
+              </h1>
+
+              <!-- Alle herunterladen -->
+              <div class="subsection">
+                <button mat-flat-button (click)="downloadAllJSON()">
+                  <mat-icon svgIcon="download"></mat-icon>
+                  {{ "SETTINGS.DOWNLOAD_ALL" | translate }}
+                </button>
+                <br />
+                <mat-checkbox
+                  #checkBox
+                  color="primary"
+                  [style.marginRight.px]="20"
+                  [(ngModel)]="downloadWithZipFolder"
+                  [ngModelOptions]="{ standalone: true }"
+                >
+                  {{ "WITH_ZIP_FOLDER" | translate }}
+                </mat-checkbox>
+                <mat-checkbox
+                  color="primary"
+                  [disabled]="!checkBox.checked"
+                  [(ngModel)]="downloadWithCurrentDate"
+                  [ngModelOptions]="{ standalone: true }"
+                >
+                  {{ "DATE.WITH_TODAY" | translate }}
+                </mat-checkbox>
+              </div>
+
+              <!-- Objekte -->
+              <div
+                class="subsection"
+                [ngStyle]="{
+                  display: 'flex',
+                  'flex-direction': 'column',
+                  gap: '10px',
+                  'align-items': 'start'
+                }"
+              >
+                <button mat-flat-button (click)="downloadMediaJSON()">
+                  <mat-icon svgIcon="download"></mat-icon>
+                  <mat-icon svgIcon="media"></mat-icon>
+                  {{
+                    "SETTINGS.DOWNLOAD_ALL_VALUE"
+                      | translate
+                        : {
+                            value:
+                              ("SERIES_AND_MOVIES"
+                              | translate
+                              | firstCharToLowercase : (localeService.locale$ | async)!)
+                          }
+                  }}
+                </button>
+                <button mat-flat-button (click)="downloadChannelsJSON()">
+                  <mat-icon svgIcon="download"></mat-icon>
+                  <mat-icon svgIcon="television"></mat-icon>
+                  {{
+                    "SETTINGS.DOWNLOAD_ALL_VALUE"
+                      | translate
+                        : {
+                            value:
+                              ("CHANNEL.S"
+                              | translate
+                              | firstCharToLowercase : (localeService.locale$ | async)!)
+                          }
+                  }}
+                </button>
+                <button mat-flat-button (click)="downloadSearchEnginesJSON()">
+                  <mat-icon svgIcon="download"></mat-icon>
+                  <mat-icon svgIcon="search-engine"></mat-icon>
+                  {{
+                    "SETTINGS.DOWNLOAD_ALL_VALUE"
+                      | translate
+                        : {
+                            value:
+                              ("SEARCHENGINE.S"
+                              | translate
+                              | firstCharToLowercase : (localeService.locale$ | async)!)
+                          }
+                  }}
+                </button>
+                <button mat-flat-button (click)="downloadReadNewsJSON()">
+                  <mat-icon svgIcon="download"></mat-icon>
+                  <mat-icon svgIcon="news"></mat-icon>
+                  <mat-icon svgIcon="watched"></mat-icon>
+                  {{
+                    "SETTINGS.DOWNLOAD_ALL_VALUE"
+                      | translate
+                        : {
+                            value:
+                              ("NEWS.S"
+                                | translate
+                                | firstCharToLowercase : (localeService.locale$ | async)!) +
+                              " " +
+                              ("WATCHED" | translate | lowercase)
+                          }
+                  }}
+                </button>
+                <button mat-flat-button (click)="downloadTermsHideNewsJSON()">
+                  <mat-icon svgIcon="download"></mat-icon>
+                  <mat-icon svgIcon="news"></mat-icon>
+                  <mat-icon svgIcon="hide"></mat-icon>
+                  {{
+                    "SETTINGS.DOWNLOAD_ALL_VALUE"
+                      | translate
+                        : {
+                            value:
+                              ("NEWS.S"
+                                | translate
+                                | firstCharToLowercase : (localeService.locale$ | async)!) +
+                              " " +
+                              ("TERM.S" | translate | lowercase)
+                          }
+                  }}
+                </button>
+              </div>
+
+              <!-- Einstellungen -->
+              <div class="subsection">
+                <button mat-flat-button (click)="downloadSettingsJSON()">
+                  <mat-icon svgIcon="download"></mat-icon>
+                  {{
+                    "SETTINGS.DOWNLOAD_ALL_VALUE"
+                      | translate
+                        : {
+                            value:
+                              "SETTINGS."
+                              | translate
+                              | firstCharToLowercase : (localeService.locale$ | async)!
+                          }
+                  }}
+                </button>
+              </div>
+            </section>
+          </div>
+
+          <!-- Sprache & Region -->
+          <div *ngIf="selectedSubmenu === SettingsMenuKey.LANGUAGE_AND_REGION">
+            <section>
+              <h1>
+                <mat-icon svgIcon="language"></mat-icon>
+                {{ "LANGUAGE." | translate }}
+              </h1>
+              <app-dropdown
+                [data]="LANGUAGES_SYSTEM"
+                [selectedKey]="settings.language"
+                (selectedChange)="languageChange($event)"
+              >
+              </app-dropdown>
+            </section>
+          </div>
+
+          <!-- Über -->
+          <div *ngIf="selectedSubmenu === SettingsMenuKey.ABOUT">
+            <section class="version">
+              <h1>
+                <mat-icon svgIcon="info"></mat-icon>
+                {{ "SETTINGS.VERSION_CURRENT" | translate }}
+              </h1>
+              <div class="subsection">
+                <app-version-entry [version]="versionService.currentVersion"> </app-version-entry>
+              </div>
+            </section>
+            <section class="version">
+              <h1>
+                <mat-icon svgIcon="history"></mat-icon>
+                {{ "SETTINGS.VERSION_HISTORY" | translate }}
+              </h1>
+              <div
+                class="subsection"
+                *ngFor="
+                  let v of showAllVersionsEntry
+                    ? versionService.versions
+                    : versionService.versions.slice(0, 15)
+                "
+              >
+                <app-version-entry [version]="v"> </app-version-entry>
+              </div>
+
+              <!-- Alle Einträge laden -->
+              <button
+                *ngIf="!showAllVersionsEntry"
+                mat-flat-button
+                (click)="showAllVersionsEntry = true"
+              >
+                {{ "LOAD_ALL" | translate }}
+              </button>
+            </section>
+            <section>
+              <h1>
+                <mat-icon svgIcon="copyright"></mat-icon>
+                {{ "SETTINGS.COPYRIGHT" | translate }}
+              </h1>
+              <div class="subsection">{{ versionService.getCopyrightText() }}</div>
+            </section>
+          </div>
+        </div>
+      </form>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

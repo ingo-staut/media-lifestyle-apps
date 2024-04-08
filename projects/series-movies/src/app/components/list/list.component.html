@@ -1,0 +1,122 @@
+<app-add-remove
+  *ngIf="editable"
+  addText="ACTION.ADD"
+  removeText="REMOVE_ALL_VALUE"
+  class="sticky sticky-can-pin"
+  [addIconWhenBigButton]="addIconWhenBigButton"
+  [badge]="items.length"
+  [isNoContent]="!items.length"
+  [doNotCloseAfterReturn]="true"
+  [value]="value"
+  withBackground="main-background-1"
+  [noPaddingLeftRight]="true"
+  [completerList]="completerList"
+  [firstCharToTitleCase]="firstCharToTitleCase"
+  [smallerWidth]="smallerAddInputWidth"
+  (add)="onAdd($event)"
+  (removeAll)="onRemoveAll()"
+>
+  <button
+    *ngIf="showAddFromClipboardButton"
+    quickAdd
+    class="only-icon"
+    mat-flat-button
+    [matTooltip]="'CLIPBOARD.ADD.' | translate"
+    (click)="onAddFromClipboard()"
+  >
+    <mat-icon svgIcon="clipboard"></mat-icon>
+  </button>
+  <ng-content afterAddAndRemove></ng-content>
+</app-add-remove>
+
+<div *ngIf="addValue" class="button add-value blinking-white-on-primary appear">
+  <span [style.marginTop.px]="1">{{
+    "COUNT_UP_OR_ADD_VALUE" | translate : { value: addValueString }
+  }}</span>
+
+  <div class="spacer"></div>
+
+  <button
+    mat-flat-button
+    class="only-icon medium"
+    [matTooltip]="'COUNT.UP' | translate"
+    (click)="onReplaceValue()"
+  >
+    <mat-icon svgIcon="count-up"></mat-icon>
+  </button>
+
+  <button
+    mat-flat-button
+    class="only-icon medium"
+    [matTooltip]="'ACTION.ADD' | translate"
+    (click)="onAddValue()"
+  >
+    <mat-icon svgIcon="add"></mat-icon>
+  </button>
+
+  <mat-divider class="divider-vertical-20px" [vertical]="true"></mat-divider>
+
+  <button
+    mat-flat-button
+    class="only-icon medium"
+    [matTooltip]="'ACTION.CLOSE' | translate"
+    (click)="onClearAddValue()"
+  >
+    <mat-icon svgIcon="clear"></mat-icon>
+  </button>
+</div>
+
+<div
+  cdkDropList
+  [ngClass]="{ list: true, 'not-editable': !editable }"
+  [style.maxHeight.px]="maxHeight ?? 'unset'"
+  [cdkDropListData]="items"
+  (cdkDropListDropped)="drop($event)"
+>
+  <div
+    cdkDrag
+    *ngFor="let item of items; index as index"
+    matRipple
+    class="button"
+    (click)="onEdit(item, index)"
+  >
+    <div *cdkDragPlaceholder class="drag-placeholder"></div>
+
+    <mat-icon cdkDragHandle svgIcon="drag" class="drag"></mat-icon>
+
+    <img *ngIf="item | isImageFile as image" loading="lazy" [src]="image" />
+
+    <ng-container *ngIf="findIconFunction">
+      <mat-icon
+        *ngIf="item | iconByFunction : findIconFunction as icon"
+        [svgIcon]="icon"
+      ></mat-icon>
+    </ng-container>
+
+    <div class="button-with-no-style">
+      <span *ngIf="item as text" class="text" [matTooltip]="text">
+        {{ text }}
+      </span>
+    </div>
+
+    <button
+      *ngIf="item | isValidUrl"
+      mat-flat-button
+      class="only-icon medium"
+      [matTooltip]="'URL.OPEN' | translate"
+      (click)="onOpenURL($event, item)"
+    >
+      <mat-icon svgIcon="open"></mat-icon>
+    </button>
+
+    <button
+      *ngIf="showDeleteButton"
+      mat-flat-button
+      class="only-icon medium"
+      [matTooltip]="'ACTION.DELETE' | translate"
+      (click)="onRemove(index)"
+    >
+      <mat-icon svgIcon="delete"></mat-icon>
+    </button>
+  </div>
+</div>

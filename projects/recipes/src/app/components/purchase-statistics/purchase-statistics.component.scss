@@ -1,0 +1,44 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+.container {
+  padding: $padding-m;
+  background-color: $main-background-1-disabled;
+  display: flex;
+  flex-direction: column;
+  gap: $padding-xs;
+}
+
+.entry {
+  display: flex;
+  align-items: center;
+
+  &.last-entry {
+    flex-wrap: wrap;
+    row-gap: $padding-xs;
+  }
+}
+
+.button-text {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.chip {
+  background-color: $primary;
+  border-radius: $border-radius;
+  padding: $padding-xs;
+  padding-bottom: 3px;
+  margin-right: $padding-s;
+  font-size: $text-size-s;
+  margin-bottom: 2px;
+}
+
+span.text {
+  font-size: $text-size-s;
+}
+
+img {
+  object-fit: contain;
+}

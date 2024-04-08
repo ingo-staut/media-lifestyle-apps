@@ -1,0 +1,40 @@
+<!-- Button: Zusätzliche Zutat -->
+<button
+  *ngIf="!fromWithItem.id && hasAtLeastOne"
+  mat-flat-button
+  [matTooltip]="('INGREDIENT.ADDITIONAL' | translate) + ': ' + fromWithItem.notes.join(', ')"
+  class="recipe-button medium"
+>
+  <mat-icon class="recipe-icon" svgIcon="shopping-list"></mat-icon>
+  {{ fromWithItem.notes.join(", ") }}
+
+  <!-- Löschen-Button -->
+  <button mat-button (click)="onDelete($event)" class="only-icon medium">
+    <mat-icon svgIcon="clear"></mat-icon>
+  </button>
+</button>
+
+<!-- Button: Zutat aus Rezept -->
+<button
+  *ngIf="fromWithItem.id"
+  mat-flat-button
+  [matTooltip]="name + ' (' + fromWithItem.notes.join(', ') + ')'"
+  class="recipe-button medium"
+  (click)="openById.emit(fromWithItem.id)"
+>
+  <mat-icon class="recipe-icon" [svgIcon]="icon"></mat-icon>
+  <!-- Löschen-Button -->
+  <button mat-button (click)="onDeleteById($event)" class="only-icon medium" style="float: right">
+    <mat-icon svgIcon="clear"></mat-icon>
+  </button>
+  <div class="recipe-text">
+    <span class="recipe-name"> {{ name }} </span>
+    <ng-container *ngIf="fromWithItem.notes.length > 0">
+      <span class="recipe-bracket">(</span>
+      <span class="recipe-note">
+        {{ fromWithItem.notes.join(", ") }}
+      </span>
+      <span class="recipe-bracket">)</span>
+    </ng-container>
+  </div>
+</button>

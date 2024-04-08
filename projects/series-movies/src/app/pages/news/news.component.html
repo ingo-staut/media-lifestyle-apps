@@ -1,0 +1,54 @@
+<!-- Alle News als gelesen markieren -->
+<ng-template #read let-data$="data$">
+  <button
+    mat-button
+    class="medium only-icon"
+    [matTooltip]="'READ.MARK_ALL' | translate"
+    (click)="onMarkAllAsRead(data$)"
+  >
+    <mat-icon svgIcon="watched"></mat-icon>
+  </button>
+</ng-template>
+
+<!-- Sektionen -->
+<ng-template #section let-data$="data$" let-categoryId="categoryId">
+  <section *ngIf="[data$ | async]?.flat()?.length">
+    <div *ngIf="categoryId | newsCategoryById as category" class="title only-text">
+      <mat-icon [svgIcon]="category.icon" class="medium"></mat-icon>
+      {{ category.name | translate }}
+
+      <ng-container *ngTemplateOutlet="read; context: { data$ }"></ng-container>
+    </div>
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <ng-container *ngFor="let news of data$ | async; index as index">
+          <app-news-chip [news]="news"></app-news-chip>
+        </ng-container>
+      </section>
+    </div>
+  </section>
+</ng-template>
+
+<app-sidenav class="container">
+  <app-loading />
+
+  <ng-container *ngFor="let data of NEWS_CATEGORIES_TO_DISPLAY; index as index">
+    <ng-container
+      *ngTemplateOutlet="
+        section;
+        context: {
+          data$: dataList[index],
+          categoryId: data.type
+        }
+      "
+    ></ng-container>
+  </ng-container>
+
+  <!-- Keine News -->
+  <div *ngIf="(newsApiService.news$ | async)?.length === 0" class="no-news-container">
+    <img class="no-news-drawing" src="assets/drawings/news.svg" width="400" />
+    <span class="no-news-text">
+      {{ "NEWS.NO" | translate }}
+    </span>
+  </div>
+</app-sidenav>

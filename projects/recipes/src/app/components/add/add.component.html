@@ -1,0 +1,148 @@
+<!-- Großer Button -->
+<button
+  *ngIf="showBigButton"
+  mat-flat-button
+  [matTooltip]="text || placeholder | translate"
+  (click)="onClick()"
+  (contextmenu)="onContextMenuClick($event)"
+>
+  <mat-icon *ngIf="!addIconWhenBigButton" [svgIcon]="addIcon"></mat-icon>
+  <mat-icon *ngIf="addIconWhenBigButton" [svgIcon]="addIconWhenBigButton"></mat-icon>
+  {{ placeholder | translate }}
+</button>
+
+<!-- Normaler Button -->
+<div *ngIf="!showBigButton" class="basic-input" #basicInput>
+  <button
+    class="add-button only-icon"
+    mat-button
+    [id]="buttonId"
+    [matTooltip]="text || placeholder | translate"
+    (click)="onClick()"
+    (contextmenu)="onContextMenuClick($event)"
+  >
+    <mat-icon #icon [svgIcon]="addIcon"></mat-icon>
+  </button>
+  <div>
+    <div *ngIf="showPlaceholder && inputInfoText" class="input-info">
+      <span class="blinking-white-text-2-infinite">
+        <mat-icon svgIcon="arrow-down" class="small" [style.marginRight.px]="5"></mat-icon
+        >{{ inputInfoText }}</span
+      >
+    </div>
+
+    <input
+      #input
+      #trigger="matAutocompleteTrigger"
+      type="text"
+      enterKeyHint="done"
+      tabindex="-1"
+      [formControl]="control"
+      [matAutocomplete]="autoComplete"
+      [placeholder]="showPlaceholder ? (placeholder | translate) : ''"
+      [matChipInputFor]="chipGrid"
+      (blur)="onBlur(doNotBlurIfTextInInput && !!control.value)"
+      (keydown.enter)="onReturn()"
+      (paste)="onPaste($event)"
+    />
+
+    <div [ngClass]="{ child: true, 'no-tags': tags.length == 0 }">
+      <mat-chip-grid
+        #chipGrid
+        cdkDropList
+        cdkDropListOrientation="horizontal"
+        [ngClass]="{ 'with-drag-handler': !isSmallScreen.matches }"
+        [cdkDropListDisabled]="isSmallScreen.matches"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <!-- Alle Tags löschen -->
+        <button
+          *ngIf="tags.length > 1"
+          mat-flat-button
+          class="only-icon medium"
+          [matBadge]="tags.length"
+          [matTooltip]="'REMOVE_ALL_VALUE' | translate : { value: tags.length }"
+          (click)="onRemoveAllTags()"
+        >
+          <mat-icon svgIcon="clear"></mat-icon>
+        </button>
+
+        <ng-container *ngFor="let tag of tags; index as index">
+          <mat-chip-row
+            *ngIf="
+              tag
+                | chip
+                  : (storeApiService.stores$ | async)
+                  : (ingredientApiService.ingredientsConversion$ | async) as t
+            "
+            cdkDrag
+            [id]="'add-chip-in-row-' + index"
+            [editable]="true"
+            [ngClass]="{ chip: true, 'with-dropdown': t.dropdown }"
+            (removed)="onRemoveTag(tag)"
+            (edited)="onChipEdit(tag, $event)"
+            (cdkDragStarted)="onDragStart(index)"
+          >
+            <div *cdkDragPlaceholder class="drag-placeholder"></div>
+            <div *ngIf="!isSmallScreen.matches" cdkDragHandle class="drag-handle"></div>
+            <app-dropdown
+              *ngIf="t.dropdown"
+              [data]="t.dropdown"
+              [selectedKey]="t.selectedKey"
+              [isSmall]="true"
+              [style.maxHeight.px]="30"
+              [withBackground]="false"
+              (selectedChange)="onDropdownChange($event, tag)"
+            ></app-dropdown>
+            <img
+              *ngIf="t.image"
+              loading="lazy"
+              [src]="t.image"
+              [alt]="t.text"
+              [height]="20"
+              [style.maxWidth.px]="50"
+            />
+            <mat-icon *ngIf="t.icon" [svgIcon]="t.icon" class="medium without-button"></mat-icon>
+            <span *ngIf="t.emoji">{{ t.emoji }}</span>
+            <span>{{ t.text }}</span>
+            <button mat-button matChipRemove class="medium only-icon">
+              <mat-icon svgIcon="clear"></mat-icon>
+            </button>
+          </mat-chip-row>
+        </ng-container>
+      </mat-chip-grid>
+    </div>
+  </div>
+
+  <mat-autocomplete autoActiveFirstOption #autoComplete="matAutocomplete" class="completer">
+    <mat-option
+      *ngFor="let option of filteredOptions | async"
+      [value]="option.text | translate"
+      class="autocompleter-option-in-dropdown"
+      (click)="onOptionClick(option, $event, trigger)"
+    >
+      <img
+        *ngIf="option.image"
+        class="completer-image"
+        loading="lazy"
+        height="25"
+        [src]="option.image"
+        [alt]="option.text"
+      />
+
+      <ng-container *ngIf="!option.emoji">
+        <mat-icon *ngFor="let icon of option.icons" [svgIcon]="icon"></mat-icon>
+      </ng-container>
+
+      <span *ngIf="option.emoji" class="text-emoji"> {{ option.emoji }} </span>
+      <span
+        class="text"
+        [style.color]="option.color ?? 'unset'"
+        [innerHTML]="
+          option.text | translate | extendText : control.value ?? '' : '<mark>' : '</mark>'
+        "
+      >
+      </span>
+    </mat-option>
+  </mat-autocomplete>
+</div>

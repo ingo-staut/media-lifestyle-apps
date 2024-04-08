@@ -1,0 +1,338 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+$z-index-text: 10;
+$z-index-buttons: 5;
+$z-index-gradient: 3;
+$z-index-filter: 2;
+$z-index-image: 1;
+
+.carousel-container {
+  height: var(--height, 0);
+  min-height: var(--min-height, 0);
+  display: grid;
+}
+
+.carousel {
+  height: var(--height, 0);
+  min-height: var(--min-height, 0);
+  grid-area: 1/1;
+  z-index: 100;
+}
+
+// ----------------------------------------------------------------
+// Vor- und Zurück Button
+// ----------------------------------------------------------------
+
+.previous,
+.next {
+  z-index: $z-index-buttons;
+  background: transparent;
+  width: 50%;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  position: absolute;
+
+  visibility: hidden;
+
+  top: 0px;
+  bottom: 0px;
+
+  > mat-icon {
+    color: white;
+  }
+
+  &:hover {
+    background-image: linear-gradient(to right, rgba($main-background, 50%), transparent);
+  }
+
+  .icon-arrow {
+    filter: drop-shadow(0px 0px 5px $main-background);
+  }
+}
+
+.previous {
+  left: 0px;
+
+  // Inhalt: Pfeil links
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.next {
+  right: 0px;
+
+  // Inhalt: Pfeil rechts
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 20px;
+
+  &:hover {
+    background-image: linear-gradient(to left, rgba($main-background, 50%), transparent);
+  }
+}
+
+// ----------------------------------------------------------------
+// Bild
+// ----------------------------------------------------------------
+
+.image-container {
+  width: 100%;
+  height: var(--height, 0);
+  min-height: var(--min-height, 0);
+  overflow: hidden;
+  z-index: $z-index-image;
+
+  .image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+
+    transform-origin: bottom center;
+
+    animation: zoomAnimation 20s linear infinite;
+    -webkit-animation: zoomAnimation 20s linear infinite;
+
+    &.vertical-animation {
+      animation: zoomAnimation 20s linear infinite, scrollThroughImage 60s linear infinite;
+      -webkit-animation: zoomAnimation 20s linear infinite, scrollThroughImage 60s linear infinite;
+    }
+  }
+
+  .blur {
+    z-index: $z-index-filter;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+    -webkit-mask: radial-gradient(
+      ellipse at center,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0) 50%,
+      rgba(255, 255, 255, 1) 80%,
+      rgba(255, 255, 255, 1) 100%
+    );
+    mask: radial-gradient(
+      ellipse at center,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0) 50%,
+      rgba(255, 255, 255, 1) 80%,
+      rgba(255, 255, 255, 1) 100%
+    );
+  }
+}
+
+// ----------------------------------------------------------------
+// Hover über Karussell
+// ----------------------------------------------------------------
+
+// Vor- und Zurück-Pfeile
+.carousel-container:hover {
+  .previous,
+  .next {
+    visibility: visible;
+    animation: 250ms ease-out 0s 1 appear;
+  }
+}
+
+// Bild-Animation pausieren
+.carousel-container:hover .image-container .image {
+  animation-play-state: paused;
+}
+
+// ----------------------------------------------------------------
+// Inhalt
+// ----------------------------------------------------------------
+
+.content {
+  z-index: $z-index-text;
+
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+  max-width: calc(100% - 100px);
+  // Silbentrennung
+  hyphens: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  h1 {
+    cursor: pointer;
+
+    margin-block-end: 0;
+    margin-block-start: 0;
+    line-height: 110%;
+    width: 100%;
+
+    @include ellipsis-lines(2);
+
+    @media (max-width: $media-query-breakpoint-small-screen) {
+      font-size: 26px;
+    }
+  }
+
+  // Textschatten
+  .title,
+  h1 {
+    text-shadow: 0px 0px 10px $main-background;
+    // Da `overflow: hidden` verwendet werden muss,
+    // Wird somit der Schatten auch außerhalb des Textes
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+
+  .text-container {
+    display: flex;
+    align-items: center;
+    gap: $padding-xs;
+    margin-bottom: $padding-xs;
+    max-width: 100%;
+    height: 30px;
+
+    .title {
+      padding-top: 1px;
+    }
+
+    mat-icon.shadow {
+      filter: drop-shadow(0px 1px 3px rgba(13, 17, 24, 1));
+    }
+  }
+}
+
+// Verlauf über Bild
+.gradient {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: $z-index-gradient;
+
+  &.left {
+    background: linear-gradient(
+      to top right,
+      rgba($main-background, 75%),
+      rgba($main-background, 50%),
+      transparent,
+      transparent
+    );
+  }
+
+  &.right {
+    background: linear-gradient(
+      290deg,
+      rgba($main-background, 25%) 0%,
+      rgba($main-background, 0%) 15%
+    );
+  }
+}
+
+// Fortschrittsanzeige
+.spinner {
+  --mdc-circular-progress-active-indicator-color: white !important;
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+  height: 20px !important;
+  width: 20px !important;
+  z-index: $z-index-buttons;
+  filter: drop-shadow(0px 0px 5px $main-background);
+}
+
+// Pause Icon
+.pause {
+  width: 20px;
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+  z-index: $z-index-buttons;
+
+  color: white;
+  filter: drop-shadow(0px 0px 5px $main-background);
+
+  // Erscheinen-Animation
+  animation: 1s ease-out 0s 1 appear;
+}
+
+.buttons {
+  display: flex;
+  gap: $padding-s;
+
+  button {
+    box-shadow: 0px 2px 3px rgba($main-background, 50%);
+  }
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+mat-divider.shadow {
+  box-shadow: $shadow-divider;
+}
+
+.rating.shadow {
+  filter: drop-shadow(0px 0px 2px rgba($main-background, 0.75));
+}
+
+.ellipsis {
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.symbol-circle {
+  margin-top: -1.5px;
+}
+
+.symbol-cross {
+  font-size: 12px;
+  margin: 0px 2px;
+  -webkit-text-stroke: 0.2px currentColor;
+}
+
+.progress {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  height: 3px;
+  z-index: $z-index-text;
+
+  background-color: rgba(white, 0.5);
+  animation: progress var(--seconds, 4s) linear;
+  animation-fill-mode: forwards;
+}
+
+.carousel-container:hover .progress {
+  animation-play-state: paused;
+}
+
+@keyframes progress {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.not-selectable {
+  user-select: none;
+}

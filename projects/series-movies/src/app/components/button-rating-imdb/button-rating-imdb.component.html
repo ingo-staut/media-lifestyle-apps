@@ -1,0 +1,37 @@
+<button
+  *ngIf="rating; else imdb"
+  mat-button
+  [ngClass]="{ 'only-icon': !rating, medium, disabled }"
+  [matTooltip]="
+    ('RATING.IMDB.' | translate) +
+    ': ' +
+    (rating | number : '1.0-1' : (localeService.locale$ | async)!)! +
+    '/10'
+  "
+  [disabled]="disabled"
+  [style.paddingLeft.px]="noPadding ? 0 : 5"
+  [style.paddingRight.px]="noPadding ? 0 : 5"
+  (click)="onOpen($event, false)"
+>
+  <mat-icon
+    [style.color]="'#F6C700'"
+    [svgIcon]="rating | ratingSection : RatingIndex.IMDB"
+    [style.marginRight.px]="5"
+  ></mat-icon>
+  <span *ngIf="rating"
+    >{{ rating | number : "1.0-1" : (localeService.locale$ | async)!
+    }}<span *ngIf="showTotal" class="text-color-2">/10</span>
+  </span>
+</button>
+
+<ng-template #imdb>
+  <button
+    *ngIf="showAddButton"
+    mat-button
+    class="only-icon"
+    [matTooltip]="'RATING.IMDB.NO' | translate"
+    (click)="onOpen($event, true)"
+  >
+    <mat-icon svgIcon="imdb"></mat-icon>
+  </button>
+</ng-template>

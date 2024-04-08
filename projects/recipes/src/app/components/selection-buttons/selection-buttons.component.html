@@ -1,0 +1,50 @@
+<!-- Auswahl öffnen -->
+<button
+  *ngIf="!isSelectionMode"
+  afterAddAndRemove
+  mat-flat-button
+  class="only-icon"
+  [matTooltip]="buttonText | translate"
+  (click)="onStartSelection()"
+>
+  <mat-icon [svgIcon]="buttonIcon"></mat-icon>
+</button>
+
+<!-- Auswahl abschicken -->
+<button
+  *ngIf="isSelectionMode"
+  afterAddAndRemove
+  mat-flat-button
+  color="primary"
+  onlyIconSmallScreen
+  [text]="buttonApplyText | translate : { value: buttonApplyTextReplace }"
+  [disabled]="!selected.length"
+  [matTooltip]="buttonApplyText | translate : { value: buttonApplyTextReplace }"
+  (click)="apply.emit()"
+>
+  <mat-icon [svgIcon]="buttonApplyIcon"></mat-icon>
+</button>
+
+<app-menu
+  *ngIf="isSelectionMode"
+  icon="select-all"
+  text="SELECT."
+  class="right"
+  [textBigButton]="selected.length ? selected.length + '/' + list.length : ''"
+  [showBigButton]="!!selected.length"
+  [menuItems]="MENU_SELECT_ITEMS"
+  [openMenuByRightClick]="false"
+  (onItemClick)="onCheckMenuItemClick($event.value)"
+></app-menu>
+
+<!-- Auswahl abbrechen -->
+<button
+  *ngIf="isSelectionMode"
+  afterAddAndRemove
+  mat-flat-button
+  class="only-icon"
+  [matTooltip]="'ACTION.CANCEL' | translate"
+  (click)="onStopSelection()"
+>
+  <mat-icon svgIcon="clear"></mat-icon>
+</button>

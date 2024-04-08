@@ -1,0 +1,40 @@
+<button
+  mat-button
+  class="medium only-icon"
+  [matTooltip]="'NOTE.ADD' | translate"
+  (click)="openEditEpisodeDetail($event)"
+>
+  <mat-icon svgIcon="note"></mat-icon>
+</button>
+
+<mat-divider class="divider-vertical-20px" [vertical]="true"></mat-divider>
+
+<button
+  mat-button
+  class="medium only-icon"
+  [matTooltip]="'WATCHED' | translate"
+  [style.marginRight.px]="-5"
+  (click)="onNext($event)"
+>
+  <mat-icon svgIcon="check"></mat-icon>
+</button>
+
+<button
+  mat-button
+  class="medium only-icon"
+  [matTooltip]="'NOT_WATCHED' | translate"
+  [style.marginRight.px]="-5"
+  (click)="onNotWatched($event)"
+>
+  <mat-icon svgIcon="clear"></mat-icon>
+</button>
+
+<button
+  *ngIf="!media.isMovie"
+  mat-button
+  class="medium only-icon"
+  [matTooltip]="'DID_NOT_TAKE_PLACE' | translate"
+  (click)="onMoveToNext($event)"
+>
+  <mat-icon svgIcon="arrow-right"></mat-icon>
+</button>

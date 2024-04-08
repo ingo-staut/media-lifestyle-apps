@@ -1,0 +1,83 @@
+<button
+  mat-flat-button
+  class="only-icon"
+  [matTooltip]="'LESS' | translate"
+  (click)="onAmountDown()"
+>
+  <mat-icon svgIcon="arrow-single-down"></mat-icon>
+</button>
+
+<button
+  *ngIf="{
+    text:
+      (amount | decimalWithFraction : (localeService.locale$ | async)!) +
+      ' ' +
+      amountTextFromRecipe,
+    details:
+      '(' +
+      (portions * amountFactor
+        | closestFraction
+        | fractionAsString : (localeService.locale$ | async)!) +
+      ' ' +
+      ('PORTION.S' | translate) +
+      ')'
+  } as portion"
+  mat-flat-button
+  [matTooltip]="portion.text + ' ' + portion.details"
+  [style.flexShrink]="1"
+  (click)="onPortionMenu(portion.text + ' ' + portion.details)"
+>
+  <mat-icon svgIcon="portion"></mat-icon>
+  <span>
+    {{ portion.text }}
+    <span class="text-color-2">
+      {{ portion.details }}
+    </span>
+  </span>
+</button>
+
+<button mat-flat-button class="only-icon" [matTooltip]="'MORE' | translate" (click)="onAmountUp()">
+  <mat-icon svgIcon="arrow-single-up"></mat-icon>
+</button>
+
+<button
+  *ngIf="amountFactor !== 1"
+  mat-flat-button
+  class="only-icon"
+  [matTooltip]="'RESET' | translate"
+  (click)="onAmountReset()"
+>
+  <mat-icon svgIcon="reset"></mat-icon>
+</button>
+
+<ng-container *ngIf="!isSmallScreen.matches">
+  <button
+    mat-flat-button
+    class="only-icon text-with-fraction"
+    [color]="amountFactor === 0.25 ? 'primary' : undefined"
+    [matTooltip]="'¼ ' + ('PORTION.' | translate)"
+    (click)="onAmountValue(0.25)"
+  >
+    ¼
+  </button>
+
+  <button
+    mat-flat-button
+    class="only-icon text-with-fraction"
+    [color]="amountFactor === 0.5 ? 'primary' : undefined"
+    [matTooltip]="'½ ' + ('PORTION.' | translate)"
+    (click)="onAmountValue(0.5)"
+  >
+    ½
+  </button>
+
+  <button
+    mat-flat-button
+    class="only-icon"
+    [color]="amountFactor === 2 ? 'primary' : undefined"
+    [matTooltip]="'x2 ' + ('PORTION.' | translate)"
+    (click)="onAmountValue(2)"
+  >
+    x2
+  </button>
+</ng-container>

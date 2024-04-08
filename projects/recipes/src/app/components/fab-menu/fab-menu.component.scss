@@ -1,0 +1,112 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+.fabs {
+  position: absolute;
+  z-index: 1000;
+  bottom: 100px;
+  right: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+
+  animation: fly-in 500ms;
+  animation-timing-function: $jump-animation;
+}
+
+.fab {
+  box-shadow: 0px 10px 20px 10px rgba($main-background, 0.5);
+
+  &.clear {
+    animation: rotate 250ms ease-in-out 1;
+  }
+
+  &.add {
+    animation: rotate-x 250ms ease-in-out 1;
+  }
+
+  &:nth-last-child(5) {
+    animation: fly-in-top-most 325ms ease-in-out 1;
+  }
+
+  &:nth-last-child(4) {
+    animation: fly-in-top 300ms ease-in-out 1;
+  }
+
+  &:nth-last-child(3) {
+    animation: fly-in-middle 275ms ease-in-out 1;
+  }
+
+  &:nth-last-child(2) {
+    animation: fly-in-bottom 250ms ease-in-out 1;
+  }
+
+  &.gray-background {
+    background-color: $main-background-3;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    rotate: -45deg;
+  }
+  100% {
+    rotate: 0deg;
+  }
+}
+
+@keyframes rotate-x {
+  0% {
+    rotate: 45deg;
+  }
+  100% {
+    rotate: 0deg;
+  }
+}
+
+@keyframes fly-in {
+  0% {
+    transform: translateY(85px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes fly-in-top-most {
+  0% {
+    transform: translateY(230px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes fly-in-top {
+  0% {
+    transform: translateY(170px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes fly-in-middle {
+  0% {
+    transform: translateY(115px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes fly-in-bottom {
+  0% {
+    transform: translateY(60px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}

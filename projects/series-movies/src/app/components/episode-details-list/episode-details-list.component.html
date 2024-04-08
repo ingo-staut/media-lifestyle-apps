@@ -1,0 +1,76 @@
+<ng-container
+  *ngIf="{
+    episodeDetails: showNextEpisodeDetails
+      ? (media.episodeDetails | episodeDetailsByEpisode : nextEpisode : EpisodeDetailNoteTypes) ||
+        (media.episodeDetails | episodeDetailsByEpisode : episode : EpisodeDetailNoteTypes)
+      : (media.episodeDetails | episodeDetailsByEpisode : episode : EpisodeDetailNoteTypes),
+    hasEpisodeDetailsAtNextEpisode:
+      showNextEpisodeDetails &&
+      (media | hasEpisodeDetailsByEpisode : nextEpisode : EpisodeDetailNoteTypes)
+  } as data"
+>
+  <div *ngIf="!data.episodeDetails?.length"></div>
+
+  <div
+    *ngIf="data.episodeDetails?.length"
+    [ngClass]="{ container: true, 'next-episode': data.hasEpisodeDetailsAtNextEpisode }"
+  >
+    <button
+      *ngFor="let detail of data.episodeDetails; index as index"
+      mat-flat-button
+      matRipple
+      [ngClass]="{
+        'button-chip button medium with-image': true,
+        watching: (detail | episodeDetailIsWatching)
+      }"
+      [color]="showNextEpisodeDetails && data.hasEpisodeDetailsAtNextEpisode ? 'primary' : null"
+      [matTooltip]="
+        (media
+          | episode
+            : (data.hasEpisodeDetailsAtNextEpisode ? nextEpisode : episode)
+            : (localeService.locale$ | async)!
+            : false) + (detail.note ? ': ' + detail.note : '')
+      "
+      [matTooltipDisabled]="subButtonHover"
+      [style.paddingRight.px]="detail.url ? 0 : 8"
+      [style.paddingLeft.px]="0"
+      (click)="openEditEpisodeDetail($event, detail.id)"
+    >
+      <mat-icon
+        *ngIf="data.hasEpisodeDetailsAtNextEpisode"
+        svgIcon="episode-next"
+        class="medium without-button next-episode-icon"
+      ></mat-icon>
+
+      <mat-icon
+        *ngIf="detail | episodeDetail : { returnUrlIfUrl: false } as d"
+        class="medium without-button"
+        [style.margin]="'0 5px'"
+        [svgIcon]="d.icon"
+        [matTooltip]="d.name | translate"
+      ></mat-icon>
+
+      <span class="special-button-text">
+        {{ detail.note }}
+      </span>
+
+      <button
+        *ngIf="detail.url"
+        mat-button
+        class="medium without-button only-icon"
+        [matTooltip]="(detail.url | urlTitle) + ': ' + detail.url"
+        (mouseenter)="subButtonHover = true"
+        (mouseleave)="subButtonHover = false"
+        (click)="openUrl(detail.url, $event)"
+      >
+        <img
+          height="16"
+          width="16"
+          loading="lazy"
+          [src]="URL_FAVICON + detail.url"
+          [style.marginTop.px]="2"
+        />
+      </button>
+    </button>
+  </div>
+</ng-container>

@@ -1,0 +1,181 @@
+<app-sidenav>
+  <app-carousel
+    [items]="(recipeSuggestionService.recipeSuggestionsForCarousel$ | async)!"
+    height="40vh"
+    minHeight="200px"
+    (actionClick)="onActionClickInCarousel($event)"
+    (actionSearchClick)="onActionSearchClickInCarousel($event)"
+  ></app-carousel>
+
+  <!-- Geplante Rezepte -->
+  <section *ngIf="!(noTabData$ | async)">
+    <div class="title only-text">
+      <mat-tab-group
+        class="tabs-only-icons-in-mobile main-background-1 sticky"
+        mat-stretch-tabs="false"
+        [style.zIndex]="50"
+        [selectedIndex]="selectedTabIndex$ | async"
+        (selectedTabChange)="onTabChange($event.index)"
+      >
+        <mat-tab *ngFor="let tab of tabs" [disabled]="!(tab.data | async)!.length">
+          <ng-template mat-tab-label>
+            <mat-icon class="tab-icon" [svgIcon]="tab.icon"></mat-icon>
+            <span class="tab-text">{{ tab.name | translate }}</span>
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+
+      <button
+        mat-button
+        class="only-icon medium"
+        [matTooltip]="'SEARCH.SHOW_IN' | translate"
+        (click)="onPlannedActionClicked('search')"
+      >
+        <mat-icon svgIcon="search-show-in"></mat-icon>
+      </button>
+    </div>
+
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <app-recipe-chip
+          *ngFor="let recipe of tabData$ | async"
+          [recipe]="recipe"
+        ></app-recipe-chip>
+      </section>
+    </div>
+  </section>
+
+  <!-- Verfügbar bis Zutaten -->
+  <ng-container *ngIf="ingredientsAvailable$ | async | ingredientsAvailableCatgoryLists as details">
+    <section *ngIf="!details.hideSection">
+      <div class="title only-text">
+        <button
+          mat-button
+          class="only-icon medium"
+          [matTooltip]="'AVAILABLE.INGREDIENTS_ADD' | translate"
+          [style.marginLeft.px]="0"
+          (click)="onAddToAvailableIngredients()"
+        >
+          <mat-icon svgIcon="add"></mat-icon>
+        </button>
+
+        <mat-tab-group
+          class="tabs-only-icons-in-mobile main-background-1 sticky"
+          mat-stretch-tabs="false"
+          [style.zIndex]="50"
+          [selectedIndex]="details.initialIndex"
+          (selectedTabChange)="onUseUntilIngredientsTabChange($event.index)"
+        >
+          <mat-tab *ngFor="let list of details.lists" [disabled]="!list.ingredients.length">
+            <ng-template mat-tab-label>
+              <mat-icon class="tab-icon" [svgIcon]="list.icon"></mat-icon>
+              <span class="tab-text">{{ list.name | translate }}</span>
+            </ng-template>
+          </mat-tab>
+        </mat-tab-group>
+
+        <button
+          mat-button
+          class="only-icon medium"
+          [matTooltip]="'AVAILABLE.INGREDIENTS' | translate"
+          (click)="onNavigateToAvailableIngredients()"
+        >
+          <mat-icon svgIcon="available"></mat-icon>
+        </button>
+      </div>
+
+      <div class="scrollbox">
+        <section class="scrollbox-content">
+          <app-ingredient-chip
+            *ngFor="
+              let ingredient of details.lists[useUntilIngredientIndex ?? details.initialIndex]
+                .ingredients
+            "
+            [ingredient]="ingredient"
+          />
+        </section>
+      </div>
+    </section>
+  </ng-container>
+
+  <!-- Portionen übrig -->
+  <section *ngIf="(recipesWithPortionsLeft$ | async)?.length">
+    <div class="title only-text">
+      <mat-icon svgIcon="portion-eat" class="medium"></mat-icon>
+      {{ "PORTION.LEFT." | translate }}
+
+      <button
+        mat-button
+        class="only-icon medium"
+        [matTooltip]="'SEARCH.SHOW_IN' | translate"
+        (click)="onPortionsLeftActionClicked('search')"
+      >
+        <mat-icon svgIcon="search-show-in"></mat-icon>
+      </button>
+    </div>
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <app-recipe-chip
+          *ngFor="let recipe of recipesWithPortionsLeft$ | async"
+          [recipe]="recipe"
+        ></app-recipe-chip>
+      </section>
+    </div>
+  </section>
+
+  <!-- Favoriten -->
+  <section *ngIf="(favoriteRecipes$ | async)?.length">
+    <div class="title only-text">
+      <mat-icon svgIcon="favorite" class="medium"></mat-icon>
+      {{ "FAVORITE.S" | translate }}
+
+      <button
+        mat-button
+        class="only-icon medium"
+        [matTooltip]="'SEARCH.SHOW_IN' | translate"
+        (click)="onFavoriteActionClicked('search')"
+      >
+        <mat-icon svgIcon="search-show-in"></mat-icon>
+      </button>
+    </div>
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <app-recipe-chip
+          *ngFor="let recipe of favoriteRecipes$ | async"
+          [recipe]="recipe"
+        ></app-recipe-chip>
+      </section>
+    </div>
+  </section>
+
+  <!-- Heute bearbeitet -->
+  <section *ngIf="(lastEditedRecipes$ | async)?.length">
+    <div class="title only-text">
+      <mat-icon svgIcon="last-edited" class="medium"></mat-icon>
+      {{ "LAST_EDITED" | translate
+      }}{{
+        ((lastEditedRecipes$ | async)![0].lastEditedDate | isToday)
+          ? ""
+          : ": " +
+            ((lastEditedRecipes$ | async)![0].lastEditedDate
+              | formatDate : (localeService.locale$ | async)! : { onlyDate: true })
+      }}
+
+      <div class="buttons">
+        <app-button-show-in-search
+          *ngIf="(lastEditedRecipes$ | async)![0].lastEditedDate as date"
+          key="LAST_EDITED_VALUE"
+          [valueReplace]="(date | daysBetweenDates : today).toString()"
+        />
+      </div>
+    </div>
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <app-recipe-chip
+          *ngFor="let recipe of lastEditedRecipes$ | async"
+          [recipe]="recipe"
+        ></app-recipe-chip>
+      </section>
+    </div>
+  </section>
+</app-sidenav>

@@ -1,0 +1,40 @@
+<!-- Keine Ergebnisse -->
+<div *ngIf="results?.length === 0 && (filtersSet || setSearchText)" class="error">
+  {{ "ERROR.NO_RESULTS" | translate }}
+</div>
+
+<!-- Keine Ergebnisse aber Filter oder Suchtext -->
+<div
+  *ngIf="results?.length === 0 && (filtersSet || setSearchText)"
+  class="start-search start-search-text"
+>
+  <app-search-action-button
+    *ngIf="setSearchText"
+    [action]="{
+      text: 'FILTER.REMOVE_SEARCH_TEXT',
+      tooltip: 'FILTER.REMOVE_SEARCH_TEXT',
+      icon: 'clear',
+      id: 'noFunc'
+    }"
+    (buttonClick)="onClickSearchText('')"
+  >
+  </app-search-action-button>
+
+  <ng-container *ngIf="setSearchText && filtersSet">
+    &nbsp; {{ "FILTER.SUGGESTION_SENTENCE.OR" | translate }} &nbsp;
+  </ng-container>
+
+  <app-search-action-button
+    *ngIf="filtersSet"
+    [action]="{
+      text: 'FILTER.REMOVE_ALL_VALUE',
+      textReplace: filtersSet.toString(),
+      tooltip: 'FILTER.REMOVE_ALL_VALUE',
+      tooltipReplace: filtersSet.toString(),
+      icon: 'clear',
+      id: 'noFunc',
+    }"
+    (buttonClick)="onRemoveAllFilters()"
+  >
+  </app-search-action-button>
+</div>

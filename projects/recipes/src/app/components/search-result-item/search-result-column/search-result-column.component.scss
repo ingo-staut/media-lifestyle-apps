@@ -1,0 +1,23 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../../styles.theme.scss";
+
+:host {
+  display: contents;
+}
+
+.column-content {
+  height: 100%;
+  display: flex;
+  justify-content: start;
+
+  .value {
+    display: flex;
+    align-items: center;
+    gap: $padding-s;
+    height: 100%;
+
+    span {
+      @include ellipsis-lines(2);
+    }
+  }
+}

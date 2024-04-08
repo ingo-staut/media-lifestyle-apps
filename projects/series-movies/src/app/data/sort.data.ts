@@ -1,0 +1,103 @@
+import { SortKey, SortType } from "../models/enum/sort.enum";
+import { Sort } from "../models/sort.type";
+
+export const SEARCH_SORT_TYPES_DATA: ReadonlyArray<Sort> = [
+  {
+    type: SortType.SORT_SEARCH_RESULTS,
+    key: SortKey.SORT_SEARCH_RESULTS,
+    text: "SORT.SEARCH_RESULTS",
+    icon: "search",
+    extraIcon: "sort-search-result",
+  },
+  {
+    type: SortType.SORT_ALPHABET,
+    key: SortKey.SORT_ALPHABET,
+    text: "ALPHABET",
+    icon: "alphabet",
+    sortDirection: true,
+  },
+  {
+    type: SortType.SORT_RATING,
+    key: SortKey.SORT_RATING,
+    text: "RATING.",
+    icon: "rating",
+    sortDirection: true,
+  },
+  {
+    type: SortType.SORT_RATING_IMDB,
+    key: SortKey.SORT_RATING_IMDB,
+    text: "RATING.IMDB.",
+    icon: "imdb",
+    sortDirection: true,
+  },
+  {
+    type: SortType.SORT_RATING_METASCORE,
+    key: SortKey.SORT_RATING_METASCORE,
+    text: "RATING.METASCORE.",
+    icon: "metascore",
+    sortDirection: true,
+  },
+  {
+    type: SortType.SORT_RATING_WATCHABILITY,
+    key: SortKey.SORT_RATING_WATCHABILITY,
+    text: "RATING.WATCHABILITY.",
+    icon: "watch",
+    sortDirection: true,
+  },
+  {
+    type: SortType.SORT_LAST_EDITED_DATE,
+    key: SortKey.SORT_LAST_EDITED_DATE,
+    text: "LAST_EDITED",
+    icon: "last-edited",
+    sortDirection: true,
+  },
+  {
+    type: SortType.SORT_CREATED_DATE,
+    key: SortKey.SORT_CREATED_DATE,
+    text: "CREATED",
+    icon: "added",
+    sortDirection: true,
+  },
+  {
+    type: SortType.SORT_YEAR,
+    key: SortKey.SORT_YEAR,
+    text: "YEAR.PUBLICATION",
+    icon: "calendar",
+    sortDirection: true,
+  },
+  {
+    type: SortType.SORT_AVAILABLE_UNTIL,
+    key: SortKey.SORT_AVAILABLE_UNTIL,
+    text: "AVAILABLE_UNTIL",
+    icon: "calendar-until",
+    sortDirection: true,
+  },
+  {
+    type: SortType.SORT_RUNTIME,
+    key: SortKey.SORT_RUNTIME,
+    text: "RUNTIME.",
+    icon: "time",
+    sortDirection: true,
+  },
+  {
+    type: SortType.SORT_NOTE,
+    key: SortKey.SORT_NOTE,
+    text: "NOTE.",
+    icon: "note",
+    sortDirection: true,
+  },
+  {
+    type: SortType.SORT_DISCOVERY_SOURCES,
+    key: SortKey.SORT_DISCOVERY_SOURCES,
+    text: "DISCOVERY_SOURCE.",
+    icon: "explore",
+    sortDirection: true,
+  },
+  {
+    type: SortType.SORT_TAGLINE,
+    key: SortKey.SORT_TAGLINE,
+    text: "TAGLINE.",
+    icon: "tagline",
+    sortDirection: true,
+  },
+];

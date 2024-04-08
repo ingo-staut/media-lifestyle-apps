@@ -1,0 +1,38 @@
+<div class="container">
+  <app-loading />
+
+  <img src="assets/icons/app-icon.svg" width="70" height="70" />
+  <h1>{{ "RECIPE.ADD" | translate }}</h1>
+
+  <p *ngIf="title">
+    <strong>{{ "TITLE" | translate }}: </strong>{{ title }}
+  </p>
+  <p *ngIf="text"><strong>Text: </strong>{{ text }}</p>
+  <p *ngIf="url">
+    <strong>{{ "URL." | translate }}: </strong>{{ url }}
+  </p>
+
+  <button
+    mat-flat-button
+    [matTooltip]="
+      'NAVIGATE.TO_LONG_VALUE'
+        | translate
+          : {
+              value:
+                'RECIPE.S' | translate | firstCharToLowercase : (localeService.locale$ | async)!
+            }
+    "
+    [style.marginTop.px]="20"
+    (click)="onNavigateToStart()"
+  >
+    <mat-icon svgIcon="arrow-right"></mat-icon>
+    {{
+      "NAVIGATE.TO_VALUE"
+        | translate
+          : {
+              value:
+                "RECIPE.S" | translate | firstCharToLowercase : (localeService.locale$ | async)!
+            }
+    }}
+  </button>
+</div>

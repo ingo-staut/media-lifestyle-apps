@@ -1,0 +1,60 @@
+<div
+  *ngIf="filterButton.show"
+  class="button blinking with-value"
+  tabindex="0"
+  matRipple
+  (click)="onOpen()"
+>
+  <div [matTooltip]="filterButton.texts[filterButton.value === 0 ? 2 : 1] | translate">
+    <mat-icon
+      *ngIf="filterButton.value === 0"
+      [svgIcon]="filterButton.icons[2]"
+      class="medium without-button icon"
+    ></mat-icon>
+    <mat-icon
+      *ngIf="filterButton.value === 1"
+      [svgIcon]="filterButton.icons[3]"
+      class="medium without-button icon"
+    ></mat-icon>
+    <mat-icon
+      *ngIf="filterButton.value > 1"
+      [svgIcon]="filterButton.icons[0]"
+      class="medium without-button icon"
+    ></mat-icon>
+
+    <!-- Keine/Ohne ... -->
+    <span *ngIf="filterButton.value === 0">
+      {{ filterButton.texts[2] | translate }}
+    </span>
+
+    <!-- Mit ... -->
+    <span *ngIf="filterButton.value === 1">
+      {{ filterButton.texts[3] | translate }}
+    </span>
+
+    <!-- Spezieller Wert -->
+    <span *ngIf="filterButton.value > 1">
+      {{ (filterButton.min ? "MIN_SHORT" : "MAX_SHORT") | translate }}
+      {{ (filterButton.texts[1] | translate) + ": " + filterButton.value }}
+      {{ filterButton.suffixShort ?? "" | translate }}
+    </span>
+
+    <!-- HideNullValues nur anzeigen wenn "Mit ..." und nicht "Mindestens",
+      da hier so oder so keine Null-Values angezeigt werden -->
+    <mat-icon
+      *ngIf="filterButton.value > 1 && !filterButton.min"
+      [svgIcon]="filterButton.hideNullValues ? 'hide' : 'show'"
+      class="small"
+    ></mat-icon>
+  </div>
+
+  <button
+    mat-button
+    class="only-icon clear-button"
+    [matTooltip]="'ACTION.REMOVE' | translate"
+    tabindex="-1"
+    (click)="onRemove($event)"
+  >
+    <mat-icon svgIcon="clear"></mat-icon>
+  </button>
+</div>

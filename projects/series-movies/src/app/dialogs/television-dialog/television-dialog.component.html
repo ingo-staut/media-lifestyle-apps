@@ -1,0 +1,454 @@
+<!-- Sticky Titel -->
+<header class="page-header">
+  <mat-icon class="large" svgIcon="television"></mat-icon>
+
+  <h1 [innerHTML]="(add ? 'TELEVISION.ADD' : 'TELEVISION.EDIT') | translate"></h1>
+</header>
+
+<form [formGroup]="formGroup" mat-dialog-content>
+  <!-- Text -->
+  <!-- <p
+    *ngIf="data.text"
+    [innerHTML]="data.text | translate : data.textReplace | highlightQuotesInText"
+  ></p> -->
+
+  <!-- Optionales Textfeld -->
+  <div class="list" [style.marginBottom.px]="onlyChannel ? 5 : 20">
+    <!-- Dropdown -->
+    <div>
+      <span class="title">
+        {{ "CHANNEL." | translate | required : true }}
+      </span>
+
+      <div class="channel-function-buttons">
+        <app-dropdown-with-groups
+          [parentFormGroup]="formGroup"
+          formfieldKey="channelId"
+          formfieldName="CHANNEL."
+          noneText="CHANNEL.NONE"
+          noneIcon="channel-not"
+          defaultText="CHANNEL.CHOOSE"
+          noneValue="none"
+          [required]="true"
+          [groups]="(channelCompleterService.channelDropdownData$ | async) ?? []"
+          (onContextMenuClick)="onEditChannelById($event)"
+        >
+        </app-dropdown-with-groups>
+
+        <button
+          mat-flat-button
+          class="only-icon"
+          [disabled]="disableEditChannel"
+          [matTooltip]="'ACTION.EDIT' | translate"
+          (click)="onEditChannel()"
+        >
+          <mat-icon svgIcon="edit"></mat-icon>
+        </button>
+
+        <button
+          mat-flat-button
+          class="only-icon"
+          [matTooltip]="'ACTION.ADD' | translate"
+          (click)="onAddChannel()"
+        >
+          <mat-icon svgIcon="add"></mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <!-- Notiz -->
+    <div>
+      <span class="title">
+        {{ "NOTE." | translate }}
+      </span>
+
+      <app-formfield
+        [parentFormGroup]="formGroup"
+        [formfieldType]="FormfieldType.TEXT"
+        formfieldKey="note"
+        formfieldName="NOTE."
+        formfieldIcon="note"
+        (submit)="onEnter()"
+      >
+      </app-formfield>
+    </div>
+
+    <mat-slide-toggle
+      color="primary"
+      [checked]="onlyChannel"
+      (change)="onlyChannel = $event.checked; onOnlyChannelChange()"
+    >
+      <span>
+        {{ "CHANNEL.ONLY" | translate }}
+      </span>
+    </mat-slide-toggle>
+
+    <mat-divider *ngIf="!onlyChannel" class="divider-full-width"></mat-divider>
+
+    <div [ngClass]="{ expandable: true, open: !onlyChannel }">
+      <div class="list padding-margin-fixed">
+        <mat-slide-toggle
+          color="primary"
+          [disabled]="onlyChannel"
+          [checked]="live"
+          (change)="live = $event.checked"
+        >
+          <mat-icon svgIcon="live" class="medium without-button"></mat-icon>
+          <span>
+            {{ "LIVE." | translate }}
+          </span>
+        </mat-slide-toggle>
+
+        <mat-slide-toggle
+          *ngIf="!data.media.isMovie"
+          color="primary"
+          [disabled]="onlyChannel"
+          [checked]="onlyStart"
+          (change)="onlyStart = $event.checked"
+        >
+          <mat-icon svgIcon="once" class="medium without-button"></mat-icon>
+          <span>
+            {{ "EVENT.ONLY_ONE" | translate }}
+          </span>
+        </mat-slide-toggle>
+
+        <!-- Staffel -->
+        <div *ngIf="!data.media.isMovie">
+          <span class="title">
+            {{ "SEASON." | translate | required : true }}
+          </span>
+
+          <app-formfield
+            [parentFormGroup]="formGroup"
+            [formfieldType]="FormfieldType.NUMBER"
+            formfieldKey="season"
+            formfieldName="SEASON."
+            formfieldIcon="season"
+            [required]="true"
+            [min]="seasonMin"
+            [max]="seasonMax"
+            [sliderSteps]="1"
+            [sliderMin]="seasonMin"
+            [sliderMax]="seasonMax"
+            [showSlider]="seasonMax > 1"
+            [suffixLong]="'SEASON.' | translate"
+            [suffixShort]="'SEASON.SHORT' | translate"
+            [disabled]="onlyChannel"
+            (submit)="onEnter()"
+          >
+          </app-formfield>
+        </div>
+
+        <!-- Episode -->
+        <div *ngIf="!data.media.isMovie">
+          <span class="title">
+            {{ "EPISODE." | translate | required : true }}
+          </span>
+
+          <app-formfield
+            [parentFormGroup]="formGroup"
+            [formfieldType]="FormfieldType.NUMBER"
+            formfieldKey="episode"
+            formfieldName="EPISODE."
+            formfieldIcon="season"
+            [required]="true"
+            [min]="episodeMin"
+            [max]="episodeMax"
+            [sliderSteps]="1"
+            [sliderMin]="episodeMin"
+            [sliderMax]="episodeMax"
+            [showSlider]="episodeMax > 1"
+            [suffixLong]="'EPISODE.' | translate"
+            [suffixShort]="'EPISODE.SHORT' | translate"
+            [disabled]="onlyChannel"
+            (submit)="onEnter()"
+          >
+          </app-formfield>
+        </div>
+
+        <!-- Wöchentlich -->
+        <div *ngIf="!data.media.isMovie">
+          <span class="title">
+            {{ "DATE.WEEK_RHYTHM" | translate | required : true }}
+          </span>
+
+          <app-formfield
+            [parentFormGroup]="formGroup"
+            [formfieldType]="FormfieldType.NUMBER"
+            formfieldKey="weekly"
+            formfieldName="DATE.WEEK_RHYTHM"
+            formfieldIcon="calendar"
+            [required]="true"
+            [min]="1"
+            [sliderSteps]="1"
+            [sliderMin]="1"
+            [sliderMax]="3"
+            [showSlider]="true"
+            [suffixLong]="'DATE.WEEKS' | translate"
+            [suffixShort]="'DATE.WEEKS_SHORT' | translate"
+            [disabled]="onlyChannel || onlyStart"
+            (submit)="onEnter()"
+          >
+          </app-formfield>
+        </div>
+
+        <!-- Episoden pro Zeiteintrag -->
+        <div *ngIf="!data.media.isMovie">
+          <span class="title">
+            {{ "EPISODE.S.PER_TIME" | translate | required : true }}
+          </span>
+
+          <app-formfield
+            [parentFormGroup]="formGroup"
+            [formfieldType]="FormfieldType.NUMBER"
+            formfieldKey="episodesPerTime"
+            formfieldName="EPISODE.S.PER_TIME"
+            formfieldIcon="season"
+            [required]="true"
+            [min]="1"
+            [sliderSteps]="1"
+            [sliderMin]="1"
+            [sliderMax]="3"
+            [showSlider]="true"
+            [suffixLong]="'EPISODE.' | translate"
+            [suffixShort]="'EPISODE.SHORT' | translate"
+            (submit)="onEnter()"
+          >
+          </app-formfield>
+        </div>
+
+        <!-- Startdatum -->
+        <div>
+          <span class="title">
+            {{ "DATE.START" | translate | required : true }}
+          </span>
+
+          <app-formfield
+            [parentFormGroup]="formGroup"
+            [formfieldType]="FormfieldType.DATE"
+            formfieldKey="date"
+            formfieldName="DATE.START"
+            formfieldIcon="calendar"
+            [required]="true"
+            [disabled]="onlyChannel"
+            (submit)="onEnter()"
+          >
+          </app-formfield>
+        </div>
+
+        <!-- Startzeit -->
+        <div>
+          <span class="title">
+            {{ "TIME.START" | translate | required : true }}
+          </span>
+
+          <app-formfield
+            [parentFormGroup]="formGroup"
+            [formfieldType]="FormfieldType.TIME"
+            formfieldKey="startTime"
+            formfieldName="TIME.START"
+            [value]="startTime"
+            formfieldIcon="time"
+            [required]="true"
+            [disabled]="onlyChannel"
+            [minutesSteps]="5"
+            (submit)="onEnter()"
+          >
+          </app-formfield>
+        </div>
+
+        <div *ngIf="!data.media.isMovie">
+          <span class="title">
+            {{ "EVENT.S" | translate | required : true }}
+          </span>
+
+          <div
+            *ngIf="localeService.locale$ | async as locale"
+            class="table-container"
+            formControlName="events"
+          >
+            <table [style.lineHeight]="'normal'">
+              <tr
+                *ngFor="
+                  let timeRange of this.formGroup.controls.events.value ??
+                    [[], [], [], [], [], [], []];
+                  index as weekdayIndex
+                "
+                [style.display]="weekdayIndex === 0 && locale !== 'en' ? 'table-footer-group' : ''"
+              >
+                <td
+                  class="header"
+                  (click)="onDayClicked(weekdayIndex, locale)"
+                  (contextmenu)="$event.preventDefault(); onDayClicked(weekdayIndex, locale)"
+                >
+                  <div
+                    [ngClass]="{
+                      current: weekdayIndex === formGroup.controls.date.value?.day(),
+                      error:
+                        weekdayIndex === formGroup.controls.date.value?.day() &&
+                        (timeRange
+                          | televisionEventsDayHasError : formGroup.controls.startTime.value!),
+                      disabled: !formGroup.controls.events.value?.at(weekdayIndex)?.length
+                    }"
+                    [matTooltip]="
+                      weekdayIndex
+                        | weekdayNameByDayIndex
+                          : formGroup.controls.date.value?.toDate()
+                          : locale!
+                          : true
+                    "
+                    [innerHTML]="
+                      weekdayIndex
+                        | weekdayNameByDayIndex
+                          : formGroup.controls.date.value?.toDate()
+                          : locale!
+                          : false
+                          : true
+                    "
+                  ></div>
+                </td>
+
+                <td *ngFor="let time of timeRange; index as timeIndex" class="event">
+                  <app-menu
+                    width="100%"
+                    [text]="time | formatTimeRange : locale!"
+                    [tooltip]="time | formatTimeRange : locale! : true"
+                    [showBigButton]="true"
+                    [textSize]="14"
+                    [padding]="10"
+                    [iconPaddingLeft]="4"
+                    [switchOnMobile]="true"
+                    [selected]="
+                      (time.start | sameTime : formGroup.controls.startTime.value ?? '00:00') &&
+                      weekdayIndex === formGroup.controls.date.value?.day()
+                    "
+                    [menuItems]="[
+                                  {
+                                    text: (time | formatTimeRange : locale! : true),
+                                    value: 'edit',
+                                    icon: 'edit',
+                                    groupKey: 'edit'
+                                  },
+                                  {
+                                    text: 'SELECT.',
+                                    value: 'select',
+                                    icon: 'check',
+                                  },
+                                  {
+                                    text: 'Zu allen hinzufügen',
+                                    value: 'add-to-all',
+                                    icon: 'add-to-text',
+                                  },
+                                  {
+                                    text: 'ACTION.DELETE',
+                                    value: 'delete',
+                                    icon: 'delete',
+                                  },
+                                  {
+                                    text: 'ACTION.DELETE_ALL',
+                                    value: 'delete-all',
+                                    icon: 'delete',
+                                  },
+                                ]"
+                    (onItemClick)="
+                      onEventMenuItemClicked($event.value, weekdayIndex, timeIndex, time, locale)
+                    "
+                    (onContextMenu)="onTimeClicked(weekdayIndex, time, locale)"
+                  >
+                  </app-menu>
+                </td>
+
+                <td class="add">
+                  <div class="add-button">
+                    <ng-template #icon>
+                      <button mat-button class="only-icon" [matTooltip]="'TIME.CHOOSE' | translate">
+                        <mat-icon svgIcon="add"></mat-icon>
+                      </button>
+                    </ng-template>
+
+                    <ngx-timepicker-field
+                      class="only-button"
+                      defaultTime="00:00"
+                      [format]="(localeService.hourFormat$ | async)!"
+                      [minutesGap]="5"
+                      [cancelBtnTmpl]="cancel"
+                      [confirmBtnTmpl]="confirm"
+                      [buttonAlign]="'left'"
+                      [toggleIcon]="icon"
+                      (timeChanged)="timeValueChanged($event, weekdayIndex)"
+                    >
+                    </ngx-timepicker-field>
+
+                    <ng-template #cancel>
+                      <button mat-flat-button class="only-icon">
+                        <mat-icon svgIcon="clear"></mat-icon>
+                      </button>
+                    </ng-template>
+
+                    <ng-template #confirm>
+                      <button mat-flat-button color="primary">
+                        <mat-icon svgIcon="check"></mat-icon>
+                        {{ "ACTION.APPLY" | translate }}
+                      </button>
+                    </ng-template>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <div
+            *ngIf="formGroup && formGroup.errors && formGroup.touched && formGroup.dirty"
+            class="error-message"
+          >
+            <ng-container *ngIf="formGroup.errors['noEventsForThisDay']">
+              {{ "ERROR.NO_EVENTS_FOR_THIS_DAY" | translate }}
+            </ng-container>
+            <ng-container *ngIf="formGroup.errors['noSuitableEventsForThisDay']">
+              {{ "ERROR.NO_SUITABLE_EVENTS_FOR_THIS_DAY" | translate }}
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<!-- Sticky Buttons unten rechts -->
+<footer class="page-footer buttons">
+  <!-- Primary Button -->
+  <button
+    *ngIf="actionPrimary as a"
+    mat-flat-button
+    [disabled]="!isAllowedSubmit"
+    [color]="a.color ?? 'primary'"
+    [matTooltip]="a.text | translate"
+    (click)="onActionPrimary(a)"
+  >
+    <mat-icon [svgIcon]="a.icon"></mat-icon>
+    {{ a.text | translate }}
+  </button>
+
+  <!-- Löschen Button -->
+  <button
+    *ngIf="!data.add"
+    mat-flat-button
+    color="warn"
+    [matTooltip]="'ACTION.DELETE' | translate"
+    (click)="onActionDelete()"
+  >
+    <mat-icon svgIcon="delete"></mat-icon>
+    {{ "ACTION.DELETE" | translate }}
+  </button>
+
+  <!-- Abbrechen Button mit Standard-Text und keinem Text bei kleinem Bildschirm -->
+  <button
+    mat-flat-button
+    onlyIconSmallScreen
+    [text]="'ACTION.CANCEL' | translate"
+    [matTooltip]="'ACTION.CANCEL' | translate"
+    (click)="onCancel()"
+  >
+    <mat-icon svgIcon="clear"></mat-icon>
+  </button>
+</footer>

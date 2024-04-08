@@ -1,0 +1,174 @@
+<mat-card
+  [ngClass]="{
+    'result-card': true,
+    blinking: recipe | recipeLastEdited,
+    'no-columns': columns.length === 0
+  }"
+  matRipple
+  (click)="onOpen($event)"
+  style="--columnsCount: {{ columns.length }}"
+>
+  <!-- Kategorie Symbol -->
+  <mat-icon
+    [svgIcon]="(recipe.category | categoryByType).icon"
+    [matTooltip]="(recipe.category | categoryByType).name | translate"
+    class="medium"
+  ></mat-icon>
+
+  <!-- Titel -->
+  <div class="title">
+    <!-- Grundrezept -->
+    <mat-icon
+      *ngIf="recipe.basic"
+      [svgIcon]="recipe.basic ? 'recipe-basic' : 'recipe'"
+      class="medium"
+    ></mat-icon>
+    <span [innerHTML]="recipe.name | extendText : searchTextHighlight ?? '' : '<mark>' : '</mark>'">
+    </span>
+  </div>
+
+  <!-- Suche: MatchScore -->
+  <app-search-result-column
+    icon="search"
+    [columns]="columns"
+    [sortKey]="SortKey.SORT_SEARCH_RESULTS"
+    [show]="!!recipe._searchMatchScore"
+    [text]="recipe._searchMatchScore | number : '1.0-0' : (localeService.locale$ | async)!"
+    [tooltip]="recipe._searchMatchScore | number : '1.0-2' : (localeService.locale$ | async)!"
+  >
+  </app-search-result-column>
+
+  <!-- Schwierigkeit -->
+  <app-search-result-column
+    [columns]="columns"
+    [sortKey]="SortKey.SORT_DIFFICULTY"
+    [show]="recipe.difficulty !== 0"
+    [icon]="(recipe.difficulty | difficultyByType).icon"
+    [text]="recipe.difficulty.toString()"
+  >
+  </app-search-result-column>
+
+  <!-- Bewertung -->
+  <app-search-result-column
+    [columns]="columns"
+    [sortKey]="SortKey.SORT_RATING"
+    [show]="recipe.rating !== 0"
+    [icon]="(recipe.rating | ratingByType).icon"
+    [text]="recipe.rating.toString()"
+  >
+  </app-search-result-column>
+
+  <!-- Menge an Zubereitungen -->
+  <app-search-result-column
+    [columns]="columns"
+    [sortKey]="SortKey.SORT_PREPARED_QUANTITY"
+    [show]="recipe.preparationHistory.length !== 0"
+    icon="preparationHistory-prepared"
+    [text]="
+      recipe.preparationHistory.length.toString() +
+      (isSmallScreen.matches
+        ? ''
+        : ' ' +
+          ('PREPARATION.S' | translate | firstCharToLowercase : (localeService.locale$ | async)!))
+    "
+    [tooltip]="recipe.preparationHistory.length.toString() + ' ' + ('PREPARATION.S' | translate)"
+  >
+  </app-search-result-column>
+
+  <!-- Zuletzt zubereitet -->
+  <app-search-result-column
+    [columns]="columns"
+    [sortKey]="SortKey.SORT_LAST_PREPARED_DATE"
+    [show]="!!lastPreparationDate"
+    icon="calendar"
+    [text]="lastPreparationDate | formatDate : (localeService.locale$ | async)!"
+    [tooltip]="lastPreparationDate | date : 'fullDate' : '' : (localeService.locale$ | async)!"
+  >
+  </app-search-result-column>
+
+  <!-- Zuletzt bearbeitet-->
+  <app-search-result-column
+    [columns]="columns"
+    [sortKey]="SortKey.SORT_LAST_EDITED_DATE"
+    [show]="!!lastEditedDate"
+    [icon]="lastEditedDate && (lastEditedDate | isSameDate : today) ? 'calendar-today' : 'calendar'"
+    [text]="lastEditedDate | formatDate : (localeService.locale$ | async)!"
+    [tooltip]="lastEditedDate | date : 'fullDate' : '' : (localeService.locale$ | async)!"
+  >
+  </app-search-result-column>
+
+  <!-- Erstellt -->
+  <app-search-result-column
+    [columns]="columns"
+    [sortKey]="SortKey.SORT_CREATED_DATE"
+    [show]="true"
+    icon="added"
+    [text]="recipe.creationDate | formatDate : (localeService.locale$ | async)!"
+    [tooltip]="recipe.creationDate | date : 'fullDate' : '' : (localeService.locale$ | async)!"
+  >
+  </app-search-result-column>
+
+  <!-- Zubereitungszeit -->
+  <app-search-result-column
+    [columns]="columns"
+    [sortKey]="SortKey.SORT_PREPARATION_TIME"
+    [show]="recipe.totalPreparationDurationInMinutes !== 0"
+    icon="time"
+    [text]="recipe | totalPreparationDurationString : (localeService.locale$ | async)!"
+  >
+  </app-search-result-column>
+
+  <!-- Zutatenanzahl -->
+  <app-search-result-column
+    [columns]="columns"
+    [sortKey]="SortKey.SORT_INGREDIENT_QUANTITY"
+    [show]="recipe.ingredientsCount !== 0"
+    icon="ingredient"
+    [text]="
+      recipe.ingredientsCount.toString() +
+      (isSmallScreen.matches
+        ? ''
+        : ' ' +
+          ('INGREDIENT.S.' | translate | firstCharToLowercase : (localeService.locale$ | async)!))
+    "
+    [tooltip]="recipe.ingredientsCount.toString() + ' ' + ('INGREDIENT.S.' | translate)"
+  >
+  </app-search-result-column>
+
+  <!-- Kosten -->
+  <app-search-result-column
+    *ngIf="ingredientsConversion && (recipe | recipeCosts : ingredientsConversion) as costs"
+    [columns]="columns"
+    [sortKey]="SortKey.SORT_COSTS"
+    [show]="true"
+    icon="money"
+    [text]="costs.normal | price : (localeService.locale$ | async)!"
+    [tooltip]="costs | recipeCostsString : (localeService.locale$ | async)!"
+  >
+  </app-search-result-column>
+
+  <!-- Übrige Portionen -->
+  <app-search-result-column
+    *ngIf="recipe.lastPreparation?.portionsAvailable"
+    [columns]="columns"
+    [sortKey]="SortKey.SORT_PORTIONS_LEFT"
+    [show]="true"
+    icon="portion-eat"
+    [text]="'PORTION.LEFT.VALUE' | translate : { value: recipe.lastPreparation?.portionsAvailable }"
+    [tooltip]="
+      'PORTION.LEFT.VALUE' | translate : { value: recipe.lastPreparation?.portionsAvailable }
+    "
+  >
+  </app-search-result-column>
+
+  <!-- Geplant -->
+  <app-search-result-column
+    [columns]="columns"
+    [sortKey]="SortKey.SORT_PLANNED"
+    [show]="!!firstPlannedDate"
+    icon="calendar"
+    [text]="firstPlannedDate | formatDate : (localeService.locale$ | async)!"
+    [tooltip]="firstPlannedDate | date : 'fullDate' : '' : (localeService.locale$ | async)!"
+  >
+  </app-search-result-column>
+</mat-card>

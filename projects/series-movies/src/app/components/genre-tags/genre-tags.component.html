@@ -1,0 +1,69 @@
+<div
+  [ngClass]="{ 'scrollbox no-scrollbar-on-mobile touch-action': true, 'no-padding': !withPadding }"
+>
+  <div [ngClass]="{ 'scrollbox-content touch-action': true, 'no-padding': !withPadding }">
+    <div [ngClass]="{ 'sticky-function-buttons touch-action': true, 'no-padding': !withPadding }">
+      <app-add
+        class="touch-action"
+        addIconWhenBigButton="tag"
+        [isNoContent]="!genreIds.length"
+        [value]="addValue"
+        [placeholder]="'GENRE.ADD' | translate"
+        [matTooltip]="'GENRE.ADD' | translate"
+        [smallerWidth]="true"
+        [completerList]="completerList"
+        [completerInitialOpen]="true"
+        [doNotCloseAfterReturn]="true"
+        [keepCompleterOpenAfterClick]="true"
+        (add)="add($event)"
+      ></app-add>
+      <button
+        *ngIf="genreIds.length"
+        class="only-icon"
+        mat-flat-button
+        [matBadge]="genreIds.length"
+        [matBadgeHidden]="genreIds.length < 1"
+        [matTooltip]="'REMOVE_ALL_VALUE' | translate : { value: genreIds.length }"
+        (click)="onRemoveAll()"
+      >
+        <mat-icon svgIcon="clear"></mat-icon>
+      </button>
+    </div>
+
+    <div
+      cdkDropList
+      cdkDropListOrientation="horizontal"
+      [style.display]="'flex'"
+      [style.gap.px]="10"
+      [cdkDropListDisabled]="isSmallScreen.matches"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <ng-container *ngFor="let genreId of genreIds; index as index">
+        <div
+          *ngIf="genreId | genre as genre"
+          cdkDrag
+          [style]="'--blinking-color: ' + genre.color"
+          [ngClass]="{ chip: true, 'blinking-custom-color': blinkingIndex > index }"
+          [style.backgroundColor]="genre.color"
+        >
+          <div *cdkDragPlaceholder class="drag-placeholder"></div>
+          <button
+            mat-flat-button
+            [matTooltip]="genre.name | translate"
+            [ngClass]="{
+              'button with-image with-text': true,
+              'only-icon': isSmallScreen.matches,
+              button: !isSmallScreen.matches
+            }"
+            (click)="remove(genreId)"
+          >
+            <mat-icon [svgIcon]="genre.icon"></mat-icon>
+            <span *ngIf="!isSmallScreen.matches" class="text">
+              {{ genre.name | translate }}
+            </span>
+          </button>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

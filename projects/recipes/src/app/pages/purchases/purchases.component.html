@@ -1,0 +1,75 @@
+<app-sidenav>
+  <div class="page-content-wrapper">
+    <div class="wrapper">
+      <mat-tab-group
+        mat-stretch-tabs="false"
+        mat-align-tabs="center"
+        class="with-background tabs-only-icons-in-mobile no-scrollbar-on-mobile page-content"
+        [selectedIndex]="selectedIndex$ | async"
+        [style.flex]="'unset'"
+        (selectedIndexChange)="tabIndexChanged($event)"
+      >
+        <mat-tab *ngFor="let tab of TABS; index as index">
+          <ng-template mat-tab-label>
+            <mat-icon class="tab-icon" [svgIcon]="tab.icon"></mat-icon>
+            <span class="tab-text">{{ tab.text | translate }}</span>
+          </ng-template>
+
+          <app-purchase-statistics
+            [purchases]="tab.purchases$ | async"
+            [stores]="storeApiService.stores$ | async"
+            [ingredientsConversion]="ingredientApiService.ingredientsConversion$ | async"
+            [itemType]="tab.type"
+          ></app-purchase-statistics>
+
+          <div class="function-buttons main-background sticky sticky-can-pin shadow-if-pinned">
+            <!-- FlexGrow ist wichtig für die Tags beim Hinzufügen -->
+            <app-add
+              buttonId="purchases-add-purchase"
+              placeholder="PURCHASE.ADD"
+              [tags]="tab.tags"
+              [completerList]="completerList$ | async"
+              [chipSeparators]="[';']"
+              [askIfCloseIfDiscard]="true"
+              [style.flexGrow]="isMobileScreen.matches ? 'unset' : 1"
+              [width]="isMobileScreen.matches ? 'calc(100vw - 40px)' : undefined"
+              [openDialogOnClick]="isSmallScreen.matches"
+              (add)="onAdd($event)"
+              (isOpen)="isInputOpen = $event"
+              (openDialog)="onOpenDialog()"
+            >
+            </app-add>
+            <div
+              class="swipe-region"
+              (swipeLeft)="onNextTab()"
+              (swipeRight)="onPreviousTab()"
+            ></div>
+          </div>
+
+          <div class="purchase-item-list">
+            <app-purchase-item
+              *ngFor="let purchase of tab.purchases$ | async"
+              [purchase]="purchase"
+              [blinking]="purchase._lastAdded | lastAdded : (tab.purchases$ | async)"
+              [itemType]="tab.type"
+              [ingredientsConversion]="ingredientApiService.ingredientsConversion$ | async"
+              [completerListStores]="storeApiService.completerListStores$ | async"
+              [completerListItems]="purchaseCompleterService.completerListItems$ | async"
+            ></app-purchase-item>
+          </div>
+
+          <!-- Swipe-Region in Liste in mobiler Ansicht -->
+          <div
+            *ngIf="isSmallScreen.matches"
+            class="swipe-region"
+            [style.minHeight.px]="70"
+            (swipeLeft)="onNextTab()"
+            (swipeRight)="onPreviousTab()"
+          ></div>
+        </mat-tab>
+      </mat-tab-group>
+
+      <div class="swipe-region" (swipeLeft)="onNextTab()" (swipeRight)="onPreviousTab()"></div>
+    </div>
+  </div>
+</app-sidenav>

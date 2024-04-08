@@ -1,0 +1,472 @@
+<div [formGroup]="parentFormGroup">
+  <!-- Text- / Zahlenfeld -->
+  <div
+    *ngIf="formfieldType === FormfieldType.TEXT || formfieldType === FormfieldType.NUMBER"
+    [ngClass]="{ 'basic-input': true, small: isSmall }"
+  >
+    <div *ngIf="_numberInputWithSlider" class="slider-container">
+      <!-- Dekorativer Button -->
+      <button
+        *ngIf="formfieldIcon"
+        mat-flat-button
+        type="button"
+        tabindex="-1"
+        [ngClass]="{ 'only-icon': true, medium: isSmall }"
+        [matTooltip]="formfieldName | translate | required : required"
+        [style.marginRight]="10"
+        (click)="onSliderDecorativeButtonClick($event)"
+      >
+        <mat-icon [svgIcon]="formfieldIcon"></mat-icon>
+      </button>
+
+      <mat-slider
+        discrete
+        showTickMarks
+        [color]="required && sliderTouched && (_value === 0 || value === 0) ? 'warn' : 'primary'"
+        [min]="_sliderMin"
+        [max]="_sliderMax"
+        [step]="_sliderStep"
+        [displayWith]="sliderLabelText"
+        [disabled]="disabled"
+        [ngClass]="{
+          slider: true,
+          with:
+            sliderWithIcons && sliderWithIcons === SliderIcons.ICON_ZERO_ONE_VALUE && _value === 1,
+          without:
+            sliderWithIcons &&
+            (sliderWithIcons === SliderIcons.ICON_ZERO_VALUE ||
+              sliderWithIcons === SliderIcons.ICON_ZERO_ONE_VALUE) &&
+            (_value || 0) === 0
+        }"
+      >
+        <input
+          matSliderThumb
+          [ngModelOptions]="{ standalone: true }"
+          [value]="control.value || 0"
+          [disabled]="disabled ?? false"
+          [(ngModel)]="_value"
+          (valueChange)="onValueChange($event)"
+        />
+      </mat-slider>
+
+      <button
+        *ngIf="control.value"
+        mat-flat-button
+        [matTooltip]="'FIELD.CLEAR' | translate"
+        [style.flexShrink]="0"
+        [disabled]="disabled"
+        (click)="onClear()"
+      >
+        {{
+          formatAsDuration
+            ? (_value | formatDuration : false : (localeService.locale$ | async)!)
+            : (sliderNoNumberFormatting
+                ? _value
+                : (_value || 0 | number : "0.0-3" : (localeService.locale$ | async)!)) +
+              " " +
+              suffixShort
+        }}
+      </button>
+    </div>
+
+    <div *ngIf="!_numberInputWithSlider">
+      <!-- Dekorativer Button -->
+      <ng-container *ngIf="formfieldIcon">
+        <button
+          *ngIf="{ url: control.value | url } as u"
+          mat-button
+          type="button"
+          tabindex="-1"
+          [ngClass]="{
+            'descriptive-button': true,
+            medium: isSmall,
+            'with-image': image || u.url,
+            'only-icon': !image && !u.url
+          }"
+          [matTooltip]="
+            u.url ? ('URL.OPEN' | translate) : (formfieldName | translate | required : required)
+          "
+          [disabled]="disabled && !(formfieldType === FormfieldType.NUMBER && showSlider)"
+          (click)="onDecorativeButtonClick($event)"
+        >
+          <mat-icon *ngIf="!image && !u.url" [svgIcon]="formfieldIcon"></mat-icon>
+          <img *ngIf="image || u.url" [src]="image || (u.url ? URL_FAVICON + u.url : '')" />
+        </button>
+      </ng-container>
+
+      <!-- Text- / Zahlenfeld -->
+      <input
+        #input
+        [matAutocomplete]="autoComplete"
+        [value]="value"
+        [ngClass]="{
+          input: true,
+          small: isSmall,
+          'show-descriptive-button': formfieldIcon,
+          invalid: control.invalid && (control.touched || hasFocus)
+        }"
+        [formControlName]="formfieldKey"
+        [placeholder]="formfieldName | translate | required : required"
+        [matTooltip]="formfieldName | translate | required : required"
+        [type]="formfieldType === FormfieldType.NUMBER ? 'number' : 'text'"
+        [required]="required"
+        [min]="min"
+        [max]="max"
+        [maxlength]="maxLength"
+        [minlength]="minLength"
+        [pattern]="dynamicPattern"
+        [step]="decimals ? 'any' : '1'"
+        [tabindex]="tabIndex"
+        [enterKeyHint]="enterKeyHint"
+        (keydown.enter)="onReturnPressed()"
+        (focus)="onFocus()"
+        (blur)="onBlur()"
+        (click)="$event.stopPropagation()"
+      />
+
+      <!-- Button: rechts -->
+      <div
+        [ngClass]="{ buttons: true, 'many-thin-buttons': formfieldType === FormfieldType.NUMBER }"
+      >
+        <!-- Feld leeren -->
+        <button
+          *ngIf="control.value"
+          mat-button
+          tabindex="-1"
+          [matTooltip]="'FIELD.CLEAR' | translate"
+          [ngClass]="{
+            'only-icon': true,
+            medium: isSmall,
+            'thin-on-big-screen': formfieldType === FormfieldType.NUMBER
+          }"
+          (click)="onClearTextNumber($event)"
+        >
+          <mat-icon svgIcon="clear"></mat-icon>
+        </button>
+
+        <!-- Runterzählen -->
+        <button
+          *ngIf="formfieldType === FormfieldType.NUMBER"
+          mat-button
+          [ngClass]="{ 'down-button only-icon thin-on-big-screen': true, medium: isSmall }"
+          [matTooltip]="'COUNT.DOWN' | translate"
+          tabindex="-1"
+          (click)="$event.stopPropagation(); onDown(); input.focus()"
+        >
+          <mat-icon svgIcon="arrow-single-down"></mat-icon>
+        </button>
+
+        <!-- Hochzählen -->
+        <button
+          *ngIf="formfieldType === FormfieldType.NUMBER"
+          mat-button
+          [ngClass]="{ 'up-button only-icon thin-on-big-screen': true, medium: isSmall }"
+          [matTooltip]="'COUNT.UP' | translate"
+          tabindex="-1"
+          (click)="$event.stopPropagation(); onUp(); input.focus()"
+        >
+          <mat-icon svgIcon="arrow-single-up"></mat-icon>
+        </button>
+      </div>
+
+      <!-- Suffix -->
+      <div
+        *ngIf="suffix && control.value"
+        #suffixRef
+        [ngClass]="{ suffix: true, small: isSmall }"
+        (click)="$event.stopPropagation(); input.focus()"
+      >
+        {{ "&nbsp;" + (suffix | translate) }}
+      </div>
+    </div>
+
+    <!-- Fehlermeldungen -->
+    <div *ngIf="!isSmall">
+      <p *ngIf="hint" class="hint" [innerHTML]="hint"></p>
+      <p *ngIf="control.hasError('required') && (control.touched || hasFocus)" class="error">
+        {{
+          "FIELD.ERROR_TEXT.MANDATORY" | translate : { formfieldName: formfieldName | translate }
+        }}
+      </p>
+      <p *ngIf="control.hasError('maxlength') && (control.touched || hasFocus)" class="error">
+        {{
+          "FIELD.ERROR_TEXT.MAX_LENGTH"
+            | translate : { formfieldName: formfieldName | translate, maxLength }
+        }}
+      </p>
+      <p *ngIf="control.hasError('minlength') && (control.touched || hasFocus)" class="error">
+        {{
+          "FIELD.ERROR_TEXT.MIN_LENGTH"
+            | translate : { formfieldName: formfieldName | translate, minLength }
+        }}
+      </p>
+      <p *ngIf="control.hasError('max') && (control.touched || hasFocus)" class="error">
+        {{
+          "FIELD.ERROR_TEXT.MAX"
+            | translate : { formfieldName: formfieldName | translate, max, suffixShort }
+        }}
+      </p>
+      <p
+        *ngIf="
+          control.hasError('min') && !required && _value !== 0 && (control.touched || hasFocus)
+        "
+        class="error"
+      >
+        {{
+          "FIELD.ERROR_TEXT.MIN"
+            | translate : { formfieldName: formfieldName | translate, min, suffixShort }
+        }}
+      </p>
+      <p
+        *ngIf="control.hasError('min') && required && _value === 0 && (control.touched || hasFocus)"
+        class="error"
+      >
+        {{
+          "FIELD.ERROR_TEXT.MANDATORY" | translate : { formfieldName: formfieldName | translate }
+        }}
+      </p>
+      <p *ngIf="control.hasError('pattern') && (control.touched || hasFocus)" class="error">
+        {{ "FIELD.ERROR_TEXT.PATTERN" | translate : { formfieldName: formfieldName | translate } }}
+      </p>
+    </div>
+  </div>
+
+  <!-- Textarea -->
+  <textarea
+    #textarea
+    *ngIf="formfieldType === FormfieldType.TEXTAREA"
+    [value]="value"
+    [formGroup]="parentFormGroup"
+    [formControlName]="formfieldKey"
+    [placeholder]="formfieldName | translate | required : required"
+    [required]="required"
+    [maxlength]="maxLength"
+    [minlength]="minLength"
+    [pattern]="dynamicPattern"
+    [tabindex]="tabIndex"
+    [ngClass]="{ invalid: control.invalid && (control.touched || hasFocus) }"
+  ></textarea>
+
+  <!-- Uhrzeitfeld -->
+  <div *ngIf="formfieldType === FormfieldType.TIME" #timeInput class="basic-input">
+    <ngx-timepicker-field
+      defaultTime="00:00"
+      [matTooltip]="formfieldName | translate | required : required"
+      [matTooltipDisabled]="hideTooltip"
+      [format]="(localeService.hourFormat$ | async)!"
+      [minutesGap]="minutesSteps ?? 1"
+      [cancelBtnTmpl]="cancel"
+      [confirmBtnTmpl]="confirm"
+      [buttonAlign]="'left'"
+      [toggleIcon]="icon"
+      [formControlName]="formfieldKey"
+      [ngClass]="{disabled, formfield: true}"
+      [disabled]="disabled ?? false"
+      (timeChanged)="timeValueChanged($event)"
+      (click)="onTimePickerClicked()"
+    >
+    </ngx-timepicker-field>
+    <div class="buttons">
+      <!-- Feld leeren -->
+      <button
+        *ngIf="control.value"
+        mat-button
+        tabindex="-1"
+        [matTooltip]="'FIELD.CLEAR' | translate"
+        [ngClass]="{
+          'only-icon': true,
+          medium: isSmall,
+        }"
+        (click)="onClearTime($event)"
+      >
+        <mat-icon svgIcon="clear"></mat-icon>
+      </button>
+
+      <!-- Aktuelle Uhrzeit -->
+      <button
+        mat-button
+        tabindex="-1"
+        [matTooltip]="'TIME.CURRENT' | translate"
+        [ngClass]="{
+          'only-icon': true,
+          medium: isSmall,
+        }"
+        (click)="setTimeNow()"
+      >
+        <mat-icon svgIcon="time"></mat-icon>
+      </button>
+    </div>
+
+    <ng-template #icon>
+      <button
+        mat-button
+        tabindex="-1"
+        class="only-icon"
+        [matTooltip]="'TIME.CHOOSE' | translate"
+        [disabled]="disabled"
+        (mouseenter)="hideTooltip = true"
+        (mouseleave)="hideTooltip = false"
+      >
+        <mat-icon svgIcon="time-choose"></mat-icon>
+      </button>
+    </ng-template>
+
+    <ng-template #cancel>
+      <button mat-flat-button class="only-icon">
+        <mat-icon svgIcon="clear"></mat-icon>
+      </button>
+    </ng-template>
+
+    <ng-template #confirm>
+      <button mat-flat-button color="primary">
+        <mat-icon svgIcon="check"></mat-icon>
+        {{ "ACTION.APPLY" | translate }}
+      </button>
+    </ng-template>
+  </div>
+
+  <!-- Datumsfeld -->
+  <div
+    *ngIf="formfieldType === FormfieldType.DATE"
+    class="basic-input"
+    [formGroup]="parentFormGroup"
+  >
+    <button
+      mat-button
+      tabindex="-1"
+      [matTooltip]="'DATE.CHOOSE' | translate"
+      [ngClass]="{ 'descriptive-button only-icon': true, medium: isSmall }"
+      [disabled]="disabled"
+      (click)="$event.stopPropagation(); picker.open()"
+    >
+      <mat-icon svgIcon="calendar-choose"></mat-icon>
+    </button>
+
+    <mat-datepicker
+      #picker
+      [touchUi]="isMobileScreen.matches"
+      [disabled]="disabled"
+      (click)="$event.stopPropagation()"
+    ></mat-datepicker>
+
+    <input
+      #dateInput
+      [disabled]="disabled ?? false"
+      [ngClass]="{
+        input: true,
+        small: isSmall,
+        'show-descriptive-button': formfieldIcon,
+        invalid: control.invalid && (control.touched || hasFocus),
+        'text-input': true
+      }"
+      [formControlName]="formfieldKey"
+      [value]="value"
+      [required]="required"
+      [placeholder]="formfieldName | translate | required : required"
+      [matTooltip]="formfieldName | translate | required : required"
+      [maxlength]="maxLength"
+      [minlength]="minLength"
+      [min]="minDate"
+      [max]="maxDate"
+      [matDatepicker]="picker"
+      [tabindex]="tabIndex"
+      (keydown.arrowup)="onAddDaysToDate(1)"
+      (keydown.arrowdown)="onAddDaysToDate(-1)"
+      (keydown.shift.arrowup)="onAddDaysToDate(7)"
+      (keydown.shift.arrowdown)="onAddDaysToDate(-7)"
+      (keydown.control.shift.arrowup)="onAddMonthsToDate(1)"
+      (keydown.control.shift.arrowdown)="onAddMonthsToDate(-1)"
+      (click)="$event.stopPropagation()"
+    />
+
+    <div [ngClass]="{ buttons: true }">
+      <!-- Feld leeren -->
+      <button
+        *ngIf="control.value"
+        mat-button
+        tabindex="-1"
+        [matTooltip]="'FIELD.CLEAR' | translate"
+        [ngClass]="{
+          'only-icon': true,
+          medium: isSmall
+        }"
+        (click)="onClearDate($event)"
+      >
+        <mat-icon svgIcon="clear"></mat-icon>
+      </button>
+
+      <!-- Aktuelles Datum -->
+      <button
+        mat-button
+        tabindex="-1"
+        [matTooltip]="'DATE.CURRENT' | translate"
+        [ngClass]="{
+          'only-icon': true,
+          medium: isSmall,
+        }"
+        (click)="setDateNow()"
+      >
+        <mat-icon svgIcon="calendar-today"></mat-icon>
+      </button>
+    </div>
+
+    <p *ngIf="this.control.value" class="hint">
+      {{
+        moment(this.control.value).toDate()
+          | formatDate : (localeService.locale$ | async)! : { onlyDate: true, onlyDateDetail: true }
+      }}
+    </p>
+    <p *ngIf="hint" class="hint" [innerHTML]="hint"></p>
+    <p *ngIf="control.hasError('required') && (control.touched || hasFocus)" class="error">
+      {{ "FIELD.ERROR_TEXT.MANDATORY" | translate : { formfieldName: formfieldName | translate } }}
+    </p>
+    <p *ngIf="control.hasError('maxlength') && (control.touched || hasFocus)" class="error">
+      {{
+        "FIELD.ERROR_TEXT.MAX_LENGTH"
+          | translate : { formfieldName: formfieldName | translate, maxLength }
+      }}
+    </p>
+    <p *ngIf="control.hasError('minlength') && (control.touched || hasFocus)" class="error">
+      {{
+        "FIELD.ERROR_TEXT.MIN_LENGTH"
+          | translate : { formfieldName: formfieldName | translate, minLength }
+      }}
+    </p>
+    <p *ngIf="control.hasError('max') && (control.touched || hasFocus)" class="error">
+      {{
+        "FIELD.ERROR_TEXT.MAX"
+          | translate : { formfieldName: formfieldName | translate, max, suffixShort }
+      }}
+    </p>
+    <p *ngIf="control.hasError('min') && (control.touched || hasFocus)" class="error">
+      {{
+        "FIELD.ERROR_TEXT.MIN"
+          | translate : { formfieldName: formfieldName | translate, min, suffixShort }
+      }}
+    </p>
+  </div>
+
+  <mat-autocomplete autoActiveFirstOption #autoComplete="matAutocomplete" class="completer">
+    <mat-option
+      *ngFor="let option of filteredOptions | async"
+      class="autocompleter-option-in-dropdown"
+      [value]="option.text | translate"
+    >
+      <img
+        *ngIf="option.image"
+        class="completer-image"
+        loading="lazy"
+        height="25"
+        [src]="option.image"
+        [alt]="option.text"
+      />
+
+      <ng-container *ngIf="!option.emoji">
+        <mat-icon *ngFor="let icon of option.icons" [svgIcon]="icon"></mat-icon>
+      </ng-container>
+
+      <span *ngIf="option.emoji" class="text-emoji"> {{ option.emoji }} </span>
+      <span> {{ option.text | translate }} </span>
+    </mat-option>
+  </mat-autocomplete>
+</div>

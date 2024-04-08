@@ -1,0 +1,69 @@
+<form *ngIf="!formGroupNameOuter" [formGroup]="formGroup">
+  <div [formGroupName]="formGroupName">
+    <div class="subsection">
+      <h3>
+        {{ title | translate : { value: (titleReplace | translate) } }}
+      </h3>
+
+      <div class="flex wrap gap-l">
+        <mat-slide-toggle formControlName="mobile" [checked]="toggle.mobile" labelPosition="before">
+          <div class="flex toggle">
+            <mat-icon svgIcon="mobile" class="medium without-button"></mat-icon>
+            <p>
+              {{ "SETTINGS.MOBILE" | translate }}
+            </p>
+          </div>
+        </mat-slide-toggle>
+
+        <mat-slide-toggle formControlName="screen" [checked]="toggle.screen" labelPosition="before">
+          <div class="flex toggle">
+            <mat-icon svgIcon="screen" class="medium without-button"></mat-icon>
+            <p>
+              {{ "SETTINGS.DESKTOP" | translate }}
+            </p>
+          </div>
+        </mat-slide-toggle>
+      </div>
+    </div>
+  </div>
+</form>
+
+<form *ngIf="formGroupNameOuter" [formGroup]="formGroup">
+  <div [formGroupName]="formGroupNameOuter">
+    <div [formGroupName]="formGroupName">
+      <div class="subsection">
+        <h3>
+          {{ title | translate : { value: (titleReplace | translate) } }}
+        </h3>
+
+        <div class="flex wrap gap-l">
+          <mat-slide-toggle
+            formControlName="mobile"
+            [checked]="toggle.mobile"
+            labelPosition="before"
+          >
+            <div class="flex toggle">
+              <mat-icon svgIcon="mobile" class="medium without-button"></mat-icon>
+              <p>
+                {{ "SETTINGS.MOBILE" | translate }}
+              </p>
+            </div>
+          </mat-slide-toggle>
+
+          <mat-slide-toggle
+            formControlName="screen"
+            [checked]="toggle.screen"
+            labelPosition="before"
+          >
+            <div class="flex toggle">
+              <mat-icon svgIcon="screen" class="medium without-button"></mat-icon>
+              <p>
+                {{ "SETTINGS.DESKTOP" | translate }}
+              </p>
+            </div>
+          </mat-slide-toggle>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

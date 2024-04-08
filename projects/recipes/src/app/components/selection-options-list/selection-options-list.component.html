@@ -1,0 +1,10 @@
+<mat-chip-listbox multiple class="option-chip-list" [selectable]="true">
+  <mat-chip-option
+    *ngFor="let item of list"
+    [color]="'primary'"
+    [selected]="item | itemInList : equalFunction : selected"
+    (click)="onOptionClick(item)"
+  >
+    {{ item | itemInListDisplayText }}
+  </mat-chip-option>
+</mat-chip-listbox>

@@ -1,0 +1,102 @@
+@use "@angular/material" as mat;
+
+@include mat.core();
+
+$md-movie: (
+  50: #e2f2f4,
+  100: #b7dee4,
+  200: #87c8d2,
+  300: #57b2c0,
+  400: #33a2b3,
+  500: #0f91a5,
+  600: #0d899d,
+  700: #0b7e93,
+  800: #08748a,
+  900: #046279,
+  A100: #a7ebff,
+  A200: #74dfff,
+  A400: #41d4ff,
+  A700: #27ceff,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+/* For use in src/lib/core/theming/_palette.scss */
+$md-series: (
+  50: #fbe5f0,
+  100: #f5bfda,
+  200: #ee94c1,
+  300: #e769a8,
+  400: #e14895,
+  500: #dc2882,
+  600: #d8247a,
+  700: #d31e6f,
+  800: #ce1865,
+  900: #c50f52,
+  A100: #fff2f6,
+  A200: #ffbfd4,
+  A400: #ff8cb2,
+  A700: #ff73a1,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$movie: mat.define-palette($md-movie, 500);
+$series: mat.define-palette($md-series, 500);
+
+$warn: mat.define-palette(mat.$red-palette);
+
+$media-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $movie,
+      accent: $series,
+      warn: $warn,
+    ),
+  )
+);
+
+@include mat.all-component-themes($media-theme);
+
+$primary: #0f91a5;
+$accent: #dc2882;
+$error: #f44336;
+$success: #5aa000;
+$info: #0f91a5;
+$warning: #e38800;
+
+$primary-white-1: #1997a9; // primary mit 10% weiß
+$primary-white-2: #33a3b3; // primary mit 20% weiß
+$primary-white-3: #4caebc; // primary mit 30% weiß
+
+$accent-white-1: #df3d8e; // accent mit 10% weiß
+$accent-white-2: #e3539b; // accent mit 20% weiß
+$accent-white-3: #e668a7; // accent mit 30% weiß

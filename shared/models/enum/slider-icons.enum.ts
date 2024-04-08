@@ -1,0 +1,4 @@
+export enum SliderIcons {
+  ICON_ZERO_ONE_VALUE = "ICON_ZERO_ONE_VALUE",
+  ICON_ZERO_VALUE = "ICON_ZERO_VALUE",
+}

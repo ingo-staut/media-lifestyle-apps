@@ -1,0 +1,140 @@
+<app-add-remove
+  *ngIf="editable"
+  addText="ACTION.ADD"
+  removeText="REMOVE_ALL_VALUE"
+  class="sticky sticky-can-pin"
+  [addIconWhenBigButton]="addIconWhenBigButton"
+  [badge]="items.length"
+  [isNoContent]="!items.length"
+  [doNotCloseAfterReturn]="true"
+  [value]="value"
+  withBackground="main-background-1"
+  [noPaddingLeftRight]="true"
+  [completerList]="completerList"
+  [firstCharToTitleCase]="firstCharToTitleCase"
+  [smallerWidth]="smallerAddInputWidth"
+  (add)="onAdd($event)"
+  (removeAll)="onRemoveAll()"
+>
+  <button
+    *ngIf="showAddFromClipboardButton"
+    quickAdd
+    class="only-icon"
+    mat-flat-button
+    [matTooltip]="'CLIPBOARD.ADD.' | translate"
+    (click)="onAddFromClipboard()"
+  >
+    <mat-icon svgIcon="clipboard"></mat-icon>
+  </button>
+  <ng-content afterAddAndRemove></ng-content>
+</app-add-remove>
+
+<div *ngIf="addValue" class="button add-value blinking-white-on-primary appear">
+  <span [style.marginTop.px]="1">{{
+    "COUNT_UP_OR_ADD_VALUE" | translate : { value: addValueString }
+  }}</span>
+
+  <div class="spacer"></div>
+
+  <button
+    mat-flat-button
+    class="only-icon medium"
+    [matTooltip]="'COUNT.UP' | translate"
+    (click)="onReplaceValue()"
+  >
+    <mat-icon svgIcon="count-up"></mat-icon>
+  </button>
+
+  <button
+    mat-flat-button
+    class="only-icon medium"
+    [matTooltip]="'ACTION.ADD' | translate"
+    (click)="onAddValue()"
+  >
+    <mat-icon svgIcon="add"></mat-icon>
+  </button>
+
+  <mat-divider class="divider-vertical-20px" [vertical]="true"></mat-divider>
+
+  <button
+    mat-flat-button
+    class="only-icon medium"
+    [matTooltip]="'ACTION.CLOSE' | translate"
+    (click)="onClearAddValue()"
+  >
+    <mat-icon svgIcon="clear"></mat-icon>
+  </button>
+</div>
+
+<div
+  cdkDropList
+  [ngClass]="{ list: true, 'not-editable': !editable }"
+  [style.maxHeight.px]="maxHeight ?? 'unset'"
+  [cdkDropListData]="items"
+  (cdkDropListDropped)="drop($event)"
+>
+  <div
+    cdkDrag
+    *ngFor="let item of items; index as index"
+    matRipple
+    class="button"
+    [style.padding.px]="10"
+    (click)="onEdit(item, index)"
+  >
+    <div *cdkDragPlaceholder class="drag-placeholder"></div>
+
+    <mat-icon cdkDragHandle svgIcon="drag" class="drag"></mat-icon>
+
+    <ng-container *ngIf="itemsType === ItemsType.STRING">
+      <img *ngIf="item + '' | isImageFile as image" loading="lazy" [src]="image" />
+    </ng-container>
+
+    <div class="button-with-no-style">
+      <div *ngIf="item | hasItemStructure" class="count-buttons">
+        <!-- Minus -->
+        <button
+          mat-flat-button
+          class="only-icon medium button-delete"
+          [matTooltip]="'COUNT.DOWN' | translate"
+          (click)="onCountDown($event, index)"
+        >
+          <mat-icon svgIcon="minus"></mat-icon>
+        </button>
+
+        <!-- Plus -->
+        <button
+          mat-flat-button
+          class="only-icon medium button-delete"
+          [matTooltip]="'COUNT.UP' | translate"
+          (click)="onCountUp($event, index)"
+        >
+          <mat-icon svgIcon="add"></mat-icon>
+        </button>
+      </div>
+
+      <span
+        *ngIf="item | listItem : ingredientsConversion as text"
+        class="text"
+        [matTooltip]="text"
+      >
+        {{ text }}
+      </span>
+
+      <app-button-contents
+        *ngIf="itemsType === ItemsType.ITEM"
+        [name]="item | listItemName"
+        [ingredientsConversion]="ingredientsConversion"
+      ></app-button-contents>
+
+      <button
+        *ngIf="showDeleteButton"
+        mat-flat-button
+        class="only-icon medium"
+        [matTooltip]="'ACTION.DELETE' | translate"
+        (click)="onRemove(index)"
+      >
+        <mat-icon svgIcon="delete"></mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

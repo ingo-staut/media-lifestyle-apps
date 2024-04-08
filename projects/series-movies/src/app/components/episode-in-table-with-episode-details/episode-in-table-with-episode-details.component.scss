@@ -1,0 +1,13 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+:host {
+  display: contents;
+}
+
+.episode-detail {
+  display: flex;
+  gap: $padding-xs;
+  padding: 0px $padding-xs;
+  overflow: hidden;
+}

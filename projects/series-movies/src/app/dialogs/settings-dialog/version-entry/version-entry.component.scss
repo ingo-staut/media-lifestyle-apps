@@ -1,0 +1,27 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../../styles.theme.scss";
+
+kbd {
+  margin-right: $padding-xs;
+
+  &.highlight {
+    border-color: $primary;
+    background-color: $primary;
+  }
+}
+
+.message {
+  margin-top: $padding-s;
+  color: $text-1;
+  line-height: normal;
+  // Emoji am Anfang der Zeile
+  margin-left: 25px;
+  text-indent: -25px;
+}
+
+h2 {
+  font-size: $text-size;
+  top: 64px;
+  background: $main-background-1;
+  padding: 10px 0px;
+}

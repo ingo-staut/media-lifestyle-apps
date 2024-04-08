@@ -1,0 +1,33 @@
+<div
+  *ngIf="{
+    lang: localeService.locale$ | async,
+    number: number.digits,
+    decimal: number.decimal
+  } as _"
+  class="counter"
+>
+  <span *ngIf="currency && _.lang === 'en'" class="text" [style.fontSize.px]="fontSize">€</span>
+
+  <div
+    class="count-up text"
+    [style]="'--value: ' + _.number.toString()"
+    [style.fontSize.px]="fontSize"
+  ></div>
+
+  <ng-container *ngIf="_.decimal > 0">
+    <span [style.fontSize.px]="fontSize">{{ _.lang === "en" ? "." : "," }}</span>
+    <div
+      class="count-up-decimal text"
+      [style]="'--value: ' + _.decimal.toString()"
+      [style.fontSize.px]="fontSize"
+    ></div>
+  </ng-container>
+
+  <span
+    *ngIf="currency && _.lang !== 'en'"
+    class="text"
+    [style.fontSize.px]="fontSize"
+    [style.paddingLeft.px]="5"
+    >€</span
+  >
+</div>

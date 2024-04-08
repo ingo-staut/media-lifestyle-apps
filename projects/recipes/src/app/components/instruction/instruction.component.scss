@@ -1,0 +1,21 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+.instructions-inputs {
+  display: flex;
+  flex-direction: column;
+  margin: $padding-xs 0 $padding-s 0;
+}
+
+.textarea {
+  margin-bottom: $padding-m;
+}
+
+.instruction-details {
+  display: flex;
+  gap: $padding-s;
+
+  &:has(.detail) {
+    margin-top: $padding-xs;
+  }
+}

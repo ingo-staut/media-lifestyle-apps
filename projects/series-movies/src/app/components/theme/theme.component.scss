@@ -1,0 +1,14 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+.theme {
+  color: rgba(white, 50%);
+  width: $padding-l;
+  height: $padding-l;
+}
+
+h3 {
+  font-size: $padding-l;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+}

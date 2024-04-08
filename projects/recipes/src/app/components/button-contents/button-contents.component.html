@@ -1,0 +1,28 @@
+<!-- Button: Inhaltsstoffe -->
+<ng-container *ngIf="show">
+  <button
+    *ngIf="
+      name | mostlyContentsTypeInIngredient : ingredientsConversion as t;
+      else addIngredientConversion
+    "
+    mat-flat-button
+    class="only-icon medium"
+    [color]="(name | ingredientIsVegan : ingredientsConversion) ? 'primary' : ''"
+    [matTooltip]="t.all | contentsTypeTooltipInIngredient"
+    (click)="openEditIngredientConversionDialog($event, name)"
+  >
+    <mat-icon [svgIcon]="t.mostly?.icon ?? ''"></mat-icon>
+  </button>
+
+  <ng-template #addIngredientConversion>
+    <button
+      *ngIf="showAddConversionButton"
+      mat-flat-button
+      class="only-icon medium"
+      [matTooltip]="'CONVERSION.ADD' | translate"
+      (click)="openEditIngredientConversionDialog($event, name)"
+    >
+      <mat-icon svgIcon="ingredient-conversion-add"></mat-icon>
+    </button>
+  </ng-template>
+</ng-container>

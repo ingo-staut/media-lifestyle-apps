@@ -1,0 +1,32 @@
+<div class="scrollbox no-scrollbar-on-mobile">
+  <div class="scrollbox-content">
+    <app-menu-sort
+      [data]="SEARCH_SORT_TYPES_DATA"
+      [defaultSortType]="SortType.SORT_SEARCH_RESULTS"
+      [sortType]="(sortingType$ | async)!"
+      [sortingDirection]="(sortingDirection$ | async)!"
+      [buttonWithText]="!isMobileScreen.matches"
+      [buttonWithTextIfDefaultSortType]="!isMobileScreen.matches"
+      (sortingDirectionChange)="onChangeSortDirection($event)"
+      (sortTypeChange)="onChangeSortType($event)"
+    ></app-menu-sort>
+
+    <!-- Anzahl Ergebnisse -->
+    <span class="result-summary">
+      <ng-container *ngIf="results?.length">
+        {{ results?.length
+        }}<ng-container *ngIf="results && totalResults && results.length < totalResults.length"
+          >/{{ totalResults.length }}</ng-container
+        >
+        {{ "RESULTS" | translate }}
+      </ng-container>
+    </span>
+
+    <app-toggle-group
+      [value]="(layout$ | async) ?? ResultListLayout.GRID"
+      [data]="LAYOUT_TOGGLE"
+      [showText]="!isSmallScreen.matches"
+      (valueChange)="onLayoutChanged($event)"
+    ></app-toggle-group>
+  </div>
+</div>

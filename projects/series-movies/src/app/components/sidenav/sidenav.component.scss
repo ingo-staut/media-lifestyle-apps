@@ -1,0 +1,72 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+// Im mobiler Ansicht gleiche Höhe der Menüleiste
+.toolbar {
+  height: $toolbar-height;
+  background-color: $primary;
+  z-index: 200;
+  position: relative;
+  box-shadow: $shadow-menubar;
+}
+
+.sidenav-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: $main-background;
+}
+
+.sidenav-content {
+  background-color: $main-background-1;
+  padding-bottom: $padding-l;
+}
+
+.sidenav-buttons {
+  padding: 1em 1em;
+  display: flex;
+  gap: $padding-s;
+  flex-direction: column;
+}
+
+.sidenav-button {
+  width: 100%;
+  justify-content: unset;
+}
+
+.navbar-spacer {
+  flex: 1 1 auto;
+}
+
+.shadow {
+  z-index: 10;
+  box-shadow: $shadow-toolbar;
+}
+
+.bottom-nav-bar {
+  display: flex;
+  padding: $padding-xs $padding-m;
+  justify-content: stretch;
+  background-color: $main-background-1;
+  overflow-x: hidden;
+
+  button {
+    background: transparent;
+    color: $text-1;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: center;
+    gap: $padding-s;
+    padding: $padding-s;
+    border-radius: $border-radius;
+    cursor: pointer;
+
+    &.active {
+      color: $primary;
+    }
+  }
+}

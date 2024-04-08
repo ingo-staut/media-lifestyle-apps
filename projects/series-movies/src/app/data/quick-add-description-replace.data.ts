@@ -1,0 +1,3 @@
+import { URL_REPLACER, URL_REPLACER_SEARCHTEXT } from "shared/utils/url";
+
+export const QUICKADD_DESCRIPTION_REPLACE = URL_REPLACER_SEARCHTEXT + " " + URL_REPLACER.join(" ");

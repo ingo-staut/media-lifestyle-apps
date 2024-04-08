@@ -1,0 +1,35 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+.error {
+  text-align: center;
+}
+
+.start-search {
+  text-align: center;
+  line-height: 250%;
+  padding: $padding-m;
+}
+
+.start-search-text {
+  color: $text-2;
+}
+
+.no-news-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  flex-direction: column;
+  gap: $padding-l;
+
+  img.no-news-drawing {
+    color: $primary;
+    max-width: 60vw;
+  }
+
+  .no-news-text {
+    font-size: clamp($text-size-m, 2vw, $text-size-xxxl);
+    color: $text-2;
+  }
+}

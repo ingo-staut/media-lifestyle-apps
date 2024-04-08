@@ -1,0 +1,1330 @@
+<app-loading />
+
+<div
+  mat-dialog-title
+  cdkDrag
+  cdkDragRootElement=".cdk-overlay-pane"
+  cdkDragBoundary=".cdk-overlay-container"
+  cdkDragHandle
+  (cdkDragStarted)="onDragStarted()"
+  [cdkDragFreeDragPosition]="dragPosition"
+  [cdkDragDisabled]="lockDragging"
+>
+  <!-- Zubereitungsschritte: Titel -->
+  <mat-toolbar class="toolbar" style="gap: 20px" *ngIf="isStepsView">
+    <div style="display: flex; gap: 10px">
+      <button
+        *ngIf="!isMobileScreen.matches"
+        mat-flat-button
+        [matTooltip]="'VIEW.RECIPE' | translate"
+        type="button"
+        (click)="onChangeRecipeMode()"
+        style="flex-shrink: 0"
+      >
+        <mat-icon svgIcon="arrow-left"></mat-icon>
+        {{ "RECIPE." | translate }}
+      </button>
+      <button
+        *ngIf="data.recipe.id && !isMobileScreen.matches"
+        class="only-icon"
+        mat-flat-button
+        [matTooltip]="'SHARE' | translate"
+        type="button"
+        (click)="onShare()"
+      >
+        <mat-icon svgIcon="share"></mat-icon>
+      </button>
+
+      <button
+        *ngIf="isMobileScreen.matches"
+        mat-flat-button
+        [matTooltip]="'VIEW.RECIPE' | translate"
+        type="button"
+        (click)="onChangeRecipeMode()"
+        class="only-icon"
+      >
+        <mat-icon svgIcon="arrow-left"></mat-icon>
+      </button>
+    </div>
+
+    <div class="steps-view-title-container">
+      <span class="steps-view-title">{{ data.recipe.name }}</span>
+      <span class="steps-view-title-note">{{ data.recipe.note }}</span>
+    </div>
+
+    <button
+      mat-flat-button
+      [matTooltip]="'ACTION.CLOSE' | translate"
+      type="button"
+      (click)="onClose()"
+      class="only-icon"
+    >
+      <mat-icon svgIcon="clear"></mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <!-- Rezept: Titel -->
+  <div
+    class="scrollbox toolbar no-scrollbar-on-mobile"
+    *ngIf="!isStepsView"
+    [style.paddingLeft.px]="0"
+    [style.paddingRight.px]="0"
+  >
+    <div class="scrollbox-content" [style.paddingRight.px]="0">
+      <!-- Menüicons, links -->
+
+      <button
+        mat-flat-button
+        onlyIconMobile
+        [text]="'VIEW.PREPARE' | translate"
+        [matTooltip]="'VIEW.STEPS' | translate"
+        type="button"
+        color="primary"
+        (click)="onChangeRecipeMode()"
+      >
+        <mat-icon svgIcon="preparation"></mat-icon>
+      </button>
+
+      <button
+        class="only-icon"
+        mat-flat-button
+        [matTooltip]="'FAVORITE.ADD' | translate"
+        (click)="onFavorite()"
+        type="button"
+      >
+        <mat-icon [svgIcon]="favorite ? 'favorite-filled' : 'favorite'"></mat-icon>
+      </button>
+
+      <button
+        class="only-icon"
+        mat-flat-button
+        [matTooltip]="'RECIPE_BASIC' | translate"
+        (click)="onBasicRecipe()"
+        type="button"
+      >
+        <mat-icon [svgIcon]="basic ? 'recipe-basic-filled' : 'recipe-basic'"></mat-icon>
+      </button>
+
+      <app-rating
+        text="RATING."
+        icon="rating"
+        noText="RATING.NO"
+        [rating]="formGroup.controls.rating.value ?? 0"
+        (ratingChange)="
+          formGroup.controls.rating.patchValue($event);
+          this.formGroup.markAsDirty();
+          checkSavingAllowed()
+        "
+      ></app-rating>
+
+      <app-rating
+        text="DIFFICULTY."
+        icon="difficulty"
+        noText="DIFFICULTY.NO"
+        [rating]="formGroup.controls.difficulty.value ?? 0"
+        (ratingChange)="
+          formGroup.controls.difficulty.patchValue($event);
+          this.formGroup.markAsDirty();
+          checkSavingAllowed()
+        "
+      ></app-rating>
+
+      <button
+        *ngIf="showDialogWindowResetButton"
+        class="only-icon"
+        mat-flat-button
+        [matTooltip]="'RESET_WINDOW' | translate"
+        (click)="onDialogWindowReset()"
+        type="button"
+      >
+        <mat-icon svgIcon="move"></mat-icon>
+      </button>
+
+      <button
+        *ngIf="data.recipe.id"
+        class="only-icon"
+        mat-flat-button
+        [matTooltip]="'SHARE' | translate"
+        type="button"
+        [cdkCopyToClipboard]="shareContent()"
+        (cdkCopyToClipboardCopied)="onShare()"
+      >
+        <mat-icon svgIcon="share"></mat-icon>
+      </button>
+
+      <app-developer-menu-buttons [recipe]="data.recipe" />
+
+      <span class="navbar-spacer"></span>
+
+      <!-- Menüicons, rechts -->
+      <button
+        class="only-icon"
+        mat-flat-button
+        [matTooltip]="'SHOPPING_LIST.ADD' | translate"
+        (click)="onAddToShoppingList()"
+      >
+        <mat-icon
+          [svgIcon]="this.isOnShoppingList ? 'shopping-cart-filled' : 'shopping-cart'"
+        ></mat-icon>
+      </button>
+      <!-- <button class="only-icon" mat-flat-button matTooltip="Suchen">
+      <mat-icon svgIcon="search"></mat-icon>
+    </button> -->
+      <button
+        *ngIf="data.recipe.id"
+        class="only-icon"
+        mat-flat-button
+        [matTooltip]="'RESET' | translate"
+        (click)="onReset()"
+      >
+        <mat-icon svgIcon="reset"></mat-icon>
+      </button>
+      <button
+        *ngIf="data.recipe.id"
+        class="only-icon"
+        mat-flat-button
+        [matTooltip]="'RECIPE.DELETE' | translate"
+        (click)="onRemoveRecipe()"
+      >
+        <mat-icon svgIcon="delete"></mat-icon>
+      </button>
+
+      <!-- Menüicons, sticky -->
+      <div class="right">
+        <button
+          *ngIf="!formGroup.valid && (formGroup.value | formErrors : formGroup) as errors"
+          onlyIconMobile
+          [text]="errors.length + ' ' + ('ERRORS' | translate)"
+          mat-flat-button
+          [matTooltip]="errors.length + ' ' + ('ERRORS' | translate)"
+          (click)="onShowErrors()"
+          color="warn"
+        >
+          <mat-icon svgIcon="error"></mat-icon>
+        </button>
+        <button
+          mat-flat-button
+          onlyIconMobile
+          [text]="'ACTION.SAVE' | translate"
+          [matTooltip]="saveButtonTooltip | translate"
+          color="primary"
+          type="submit"
+          [disabled]="!savingAllowed"
+          (click)="onSave()"
+        >
+          <mat-icon svgIcon="check"></mat-icon>
+        </button>
+        <button
+          class="only-icon"
+          mat-flat-button
+          [matTooltip]="'ACTION.CLOSE' | translate"
+          (click)="onClose()"
+        >
+          <mat-icon svgIcon="clear"></mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Rezept: Inhalt -->
+<div
+  *ngIf="!isStepsView"
+  mat-dialog-content
+  [ngClass]="{ 'no-scrollbar-on-mobile': true, 'only-mobile-device': isMobileDevice }"
+>
+  <form [formGroup]="formGroup" [style.lineHeight.px]="0">
+    <img
+      *ngIf="formGroup.controls.images.value?.length"
+      class="header-image"
+      loading="lazy"
+      [src]="formGroup.controls.images.value![0]"
+      [alt]="formGroup.controls.name.value"
+      (click)="openImagesDialog()"
+    />
+
+    <div class="details-container main-background-1">
+      <div class="details">
+        <div class="title-container">
+          <button
+            mat-button
+            [ngClass]="{
+              'button-title text-ellipsis': !!formGroup.controls.name.value,
+              'only-icon': !formGroup.controls.name.value
+            }"
+            [matTooltip]="
+              ('TITLE' | translate) +
+              (formGroup.controls.name.value ? ': ' + formGroup.controls.name.value : '')
+            "
+            (click)="openTitlesDialog()"
+          >
+            <span
+              *ngIf="formGroup.controls.name.value"
+              [innerHTML]="
+                formGroup.controls.name.value
+                  | translate
+                  | extendText : data.searchText ?? '' : '<mark>' : '</mark>'
+              "
+            >
+            </span>
+            <mat-icon *ngIf="!formGroup.controls.name.value" svgIcon="rename"></mat-icon>
+          </button>
+        </div>
+
+        <p
+          *ngIf="!formGroup.controls.name.value"
+          class="error"
+          [style.paddingLeft.px]="10"
+          [style.paddingBottom.px]="5"
+        >
+          {{
+            "FIELD.ERROR_TEXT.MANDATORY"
+              | translate
+                : {
+                    formfieldName: ("TITLE" | translate)
+                  }
+          }}
+        </p>
+
+        <div class="details-buttons">
+          <app-menu
+            *ngIf="!nutritions"
+            icon="nutrition"
+            tooltip="NUTRITION.S"
+            [menuItems]="nutritionMenuItems"
+            [noBackground]="true"
+            (onContextMenu)="openNutritionsDialog()"
+            (onItemClick)="onNutritionClicked($event)"
+          >
+          </app-menu>
+
+          <!-- Notiz -->
+          <button
+            mat-button
+            [ngClass]="{ 'text-ellipsis': true, 'only-icon': !formGroup.controls.note.value }"
+            [matTooltip]="formGroup.controls.note.value || ('NOTE.NO' | translate)"
+            (click)="openNoteDialog()"
+          >
+            <mat-icon svgIcon="note"></mat-icon>
+            <span
+              *ngIf="formGroup.controls.note.value"
+              [innerHTML]="
+                formGroup.controls.note.value
+                  | translate
+                  | extendText : data.searchText ?? '' : '<mark>' : '</mark>'
+              "
+            ></span>
+          </button>
+
+          <!-- Bilder -->
+          <button
+            *ngIf="
+              'IMAGE.' + ((formGroup.controls.images.value?.length ?? 0) > 1 ? 'S' : '')
+                | translate as text
+            "
+            [ngClass]="{ 'only-icon': !formGroup.controls.images.value?.length }"
+            mat-button
+            [matTooltip]="
+              formGroup.controls.images.value?.length
+                ? formGroup.controls.images.value!.length.toString() + ' ' + text
+                : ('IMAGE.NO' | translate)
+            "
+            (click)="openImagesDialog()"
+            type="button"
+          >
+            <mat-icon svgIcon="image"></mat-icon>
+            <span *ngIf="formGroup.controls.images.value?.length"
+              >{{ formGroup.controls.images.value?.length }} {{ text }}</span
+            >
+          </button>
+
+          <!-- Portionen -->
+          <div class="button-with-error-message">
+            <button
+              mat-button
+              [matTooltip]="
+                formGroup.controls.amountNumber.value?.toString() +
+                ' ' +
+                formGroup.controls.amountText.value +
+                ' (' +
+                formGroup.controls.portions.value +
+                ' ' +
+                ('PORTION.S' | translate) +
+                ')'
+              "
+              (click)="openPortionDialog()"
+            >
+              <mat-icon svgIcon="portion"></mat-icon>
+              <span>
+                {{ formGroup.controls.amountNumber.value }}
+                {{ formGroup.controls.amountText.value }}
+                <span class="text-color-2">
+                  ({{ formGroup.controls.portions.value + " " + ("PORTION.S" | translate) }})
+                </span>
+              </span>
+            </button>
+
+            <p
+              *ngIf="
+                !formGroup.controls.amountNumber.value ||
+                !formGroup.controls.amountText.value ||
+                !formGroup.controls.portions.value
+              "
+              class="error"
+              [style.paddingLeft.px]="10"
+              [style.paddingBottom.px]="5"
+            >
+              {{
+                "FIELD.ERROR_TEXT.MANDATORY"
+                  | translate
+                    : {
+                        formfieldName: ("PORTION." | translate)
+                      }
+              }}
+            </p>
+          </div>
+
+          <!-- Kategorie -->
+          <app-dropdown-with-groups
+            #catgorieSelect
+            [parentFormGroup]="formGroup"
+            formfieldName="CATEGORY."
+            formfieldKey="category"
+            noneText="CATEGORY.NO"
+            noneIcon="category"
+            defaultText="CATEGORY.CHOOSE"
+            iconPrefix="category"
+            [groups]="CATEGORIES"
+            [required]="true"
+            [noBackground]="true"
+            [biggerDropdout]="!isSmallScreen.matches"
+            [width]="isSmallScreen.matches ? '100%' : undefined"
+          ></app-dropdown-with-groups>
+        </div>
+
+        <!-- Nährwerte -->
+        <div *ngIf="nutritions as n" class="details-buttons">
+          <app-menu
+            icon="nutrition"
+            tooltip="NUTRITION.S"
+            [menuItems]="nutritionMenuItems"
+            [noBackground]="true"
+            (onContextMenu)="openNutritionsDialog()"
+            (onItemClick)="onNutritionClicked($event)"
+          >
+          </app-menu>
+
+          <button
+            *ngIf="n.servingSize"
+            mat-button
+            [matTooltip]="('NUTRITION.SERVING_SIZE' | translate) + ': ' + n.servingSize"
+            (click)="openNutritionsDialog()"
+          >
+            <mat-icon svgIcon="portion-eat"></mat-icon>
+            {{ n.servingSize }}
+          </button>
+
+          <button
+            *ngIf="n.calories"
+            mat-button
+            [matTooltip]="('NUTRITION.CALORIES' | translate) + ': ' + n.calories + 'kcal'"
+            (click)="openNutritionsDialog()"
+          >
+            <mat-icon svgIcon="nutrition-calories"></mat-icon>
+            {{ n.calories }}&thinsp;kcal
+          </button>
+
+          <button
+            *ngIf="n.fat"
+            mat-button
+            [matTooltip]="
+              ('NUTRITION.FAT' | translate) + ': ' + n.fat + 'g' + ' / ' + n.saturatedFat + 'g'
+            "
+            (click)="openNutritionsDialog()"
+          >
+            <mat-icon svgIcon="nutrition-fat"></mat-icon>
+            {{ n.fat }}&thinsp;g / {{ n.saturatedFat }}&thinsp;g
+          </button>
+
+          <button
+            *ngIf="n.carbohydrate"
+            mat-button
+            [matTooltip]="('NUTRITION.CARBOHYDRATE' | translate) + ': ' + n.carbohydrate + 'g'"
+            (click)="openNutritionsDialog()"
+          >
+            <mat-icon svgIcon="nutrition-carbohydrate"></mat-icon>
+            {{ n.carbohydrate }}&thinsp;g
+          </button>
+
+          <button
+            *ngIf="n.fiber"
+            mat-button
+            [matTooltip]="('NUTRITION.FIBER' | translate) + ': ' + n.fiber + 'g'"
+            (click)="openNutritionsDialog()"
+          >
+            <mat-icon svgIcon="nutrition-fiber"></mat-icon>
+            {{ n.fiber }}&thinsp;g
+          </button>
+
+          <button
+            *ngIf="n.sugar"
+            mat-button
+            [matTooltip]="('NUTRITION.SUGAR' | translate) + ': ' + n.sugar + 'g'"
+            (click)="openNutritionsDialog()"
+          >
+            <mat-icon svgIcon="nutrition-sugar"></mat-icon>
+            {{ n.sugar }}&thinsp;g
+          </button>
+
+          <button
+            *ngIf="n.protein"
+            mat-button
+            [matTooltip]="('NUTRITION.PROTEIN' | translate) + ': ' + n.protein + 'g'"
+            (click)="openNutritionsDialog()"
+          >
+            <mat-icon svgIcon="nutrition-protein"></mat-icon>
+            {{ n.protein }}&thinsp;g
+          </button>
+
+          <button
+            *ngIf="n.sodium || n.potassium || n.calcium || n.iron"
+            mat-button
+            [matTooltip]="('NUTRITION.SODIUM' | translate) + ': ' + n.sodium + 'mg'"
+            (click)="openNutritionsDialog()"
+          >
+            <mat-icon svgIcon="nutrition-sodium"></mat-icon>
+            <ng-container *ngIf="n.sodium">{{ n.sodium }}&thinsp;mg</ng-container>
+            <ng-container *ngIf="n.potassium"> / {{ n.potassium }}&thinsp;mg</ng-container>
+            <ng-container *ngIf="n.calcium"> / {{ n.calcium }}&thinsp;mg</ng-container>
+            <ng-container *ngIf="n.iron"> / {{ n.iron }}&thinsp;mg</ng-container>
+          </button>
+
+          <button
+            *ngIf="n.cholesterol"
+            mat-button
+            [matTooltip]="('NUTRITION.CHOLESTEROL' | translate) + ': ' + n.cholesterol + 'g'"
+            (click)="openNutritionsDialog()"
+          >
+            <mat-icon svgIcon="nutrition-protein"></mat-icon>
+            {{ n.cholesterol }} g
+          </button>
+        </div>
+
+        <div class="details-buttons">
+          <!-- Zubereiten bis -->
+          <button
+            *ngIf="data.recipe | showPreparationTime"
+            mat-button
+            [matTooltip]="
+              ('UNTIL' | translate) +
+              ' ' +
+              (data.recipe | totalPreparationTimeString : true : (localeService.locale$ | async)!)
+            "
+          >
+            <mat-icon svgIcon="time"></mat-icon>
+            {{
+              data.recipe | totalPreparationTimeString : false : (localeService.locale$ | async)!
+            }}
+          </button>
+
+          <!-- Portionen übrig -->
+          <ng-container *ngIf="data.recipe | recipeHasPortionsLeft">
+            <button
+              *ngIf="data.recipe.lastPreparation as details"
+              mat-button
+              [matTooltip]="'PORTION.LEFT.VALUE' | translate : { value: details.portionsAvailable }"
+              (click)="onPortionsLeftClicked()"
+            >
+              <mat-icon
+                *ngIf="details.portionsAvailable"
+                class="icon-in-text small"
+                svgIcon="portion-eat"
+              ></mat-icon>
+              {{ "PORTION.LEFT.VALUE" | translate : { value: details.portionsAvailable } }}
+            </button>
+          </ng-container>
+
+          <app-ingredients-contents-details
+            [recipe]="data.recipe"
+            [instructions]="formGroup.controls.instructions.value"
+            [ingredientsConversion]="ingredientApiService.ingredientsConversion$ | async"
+            [noBackground]="true"
+          ></app-ingredients-contents-details>
+        </div>
+      </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <app-formfield-tags
+      addIconWhenBigButton="tag"
+      [parentFormGroup]="formGroup"
+      [tags]="formGroup.controls.tags.value ?? []"
+      [searchText]="data.searchText"
+      [completerList]="completerListTags$ | async"
+      (tagsChange)="onTagsChanged($event)"
+    ></app-formfield-tags>
+
+    <div class="separator"></div>
+
+    <app-formfield-tags
+      addIconWhenBigButton="country"
+      [parentFormGroup]="formGroup"
+      [tags]="formGroup.controls.cuisines.value ?? []"
+      [searchText]="data.searchText"
+      (tagsChange)="onCuisinesChanged($event)"
+    ></app-formfield-tags>
+
+    <div class="separator"></div>
+
+    <app-urls-tags
+      icon="url"
+      text="URL.ADD"
+      [showText]="!isSmallScreen.matches"
+      [urls]="formGroup.controls.urls.value ?? []"
+      [title]="formGroup.controls.name.value ?? ''"
+      [searchEngineType]="SearchEngineType.URL_SOURCE"
+      (urlsChange)="onUrlsChanged($event)"
+      (quickAdd)="onQuickAdd($event)"
+    >
+    </app-urls-tags>
+
+    <mat-tab-group
+      mat-stretch-tabs="false"
+      mat-align-tabs="center"
+      [(selectedIndex)]="selectedIndex"
+      class="with-background sticky-header"
+    >
+      <!-- Zubereitung-Tab -->
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <app-tab-badge
+            text="PREPARATION."
+            icon="preparation"
+            [count]="instructions.length"
+            [showBadge]="selectedIndex !== 0"
+          ></app-tab-badge>
+        </ng-template>
+
+        <app-add-remove
+          addText="INSTRUCTION.ADD"
+          scrollToElementIdAfterAdd="instructions"
+          addIconWhenBigButton="preparation"
+          [smallerWidth]="isSmallScreen.matches ? 250 : 350"
+          [isNoContent]="!instructionControls.controls.length"
+          [badge]="instructionControls.controls.length"
+          [chipSeparators]="[';']"
+          [askIfCloseIfDiscard]="true"
+          [openDialogOnClick]="isSmallScreen.matches"
+          (add)="onAddInstruction($event)"
+          (removeAll)="onRemoveAllInstructions()"
+          (openDialog)="onOpenAddInstructionDialog()"
+        >
+          <button
+            quickAdd
+            class="only-icon"
+            mat-flat-button
+            (click)="onQuickAddInstructions()"
+            [matTooltip]="'QUICKADD.ADD' | translate : { value: 'INSTRUCTION.S' | translate }"
+          >
+            <mat-icon svgIcon="quick-add"></mat-icon>
+          </button>
+
+          <button
+            mat-flat-button
+            class="only-icon"
+            [matTooltip]="
+              'INGREDIENT.NOTE.S.' + (hideIngredientNotes ? 'SHOW' : 'HIDE') | translate
+            "
+            [style.marginLeft]="'auto'"
+            (click)="hideIngredientNotes = !hideIngredientNotes"
+          >
+            <mat-icon [svgIcon]="hideIngredientNotes ? 'note' : 'note-not'"></mat-icon>
+          </button>
+
+          <button
+            class="only-icon"
+            mat-flat-button
+            [matTooltip]="'INGREDIENT.S.' + (hideIngredients ? 'SHOW' : 'HIDE') | translate"
+            (click)="hideIngredients = !hideIngredients"
+          >
+            <mat-icon [svgIcon]="hideIngredients ? 'ingredient' : 'ingredient-not'"></mat-icon>
+          </button>
+
+          <button
+            class="only-icon"
+            mat-flat-button
+            [matTooltip]="'UTENSIL.S.' + (hideUtensils ? 'SHOW' : 'HIDE') | translate"
+            (click)="hideUtensils = !hideUtensils"
+          >
+            <mat-icon [svgIcon]="hideUtensils ? 'utensil' : 'utensil-not'"></mat-icon>
+          </button>
+        </app-add-remove>
+
+        <div
+          id="instructions"
+          class="instructions-content"
+          formArrayName="instructions"
+          cdkDropList
+          (cdkDropListDropped)="dropInstruction($event)"
+        >
+          <mat-accordion multi>
+            <ng-container *ngFor="let instruction of instructionControls.controls; index as index">
+              <app-accordion-panel
+                *ngIf="{
+                  ingredients: {
+                    text: instruction.value.ingredients?.length.toString(),
+                    hide: instruction.value.ingredients?.length === 0 || isSmallScreen.matches
+                  },
+                  utensils: {
+                    text: instruction.value.utensils?.length.toString(),
+                    hide: instruction.value.utensils?.length === 0 || isSmallScreen.matches
+                  },
+                  prepDetails: {
+                    text: instruction.value | preparationDetails : (localeService.locale$ | async)! : '' : isMobileScreen.matches : isMobileScreen.matches,
+                    icon: instruction.value | preparationIcon,
+                    hide:
+                      (instruction.value | preparationDetails : (localeService.locale$ | async)!: '' : isMobileScreen.matches) ===
+                        ''
+                  },
+                  optional: {
+                    text: instruction.value.optional ? 'Optional' : 'OPTIONAL_NO',
+                    icon: instruction.value.optional ? 'optional' : 'optional-not',
+                  },
+                  initiallyExpanded: instructionControls.controls.length === 1 || index === openPreparationStepIndex,
+                  blinking: 
+                  (instruction.value._lastAdded
+                    | lastAdded : formGroup.controls.instructions.value) ||
+                  index === openPreparationStepIndex
+                } as _data"
+                [initiallyExpanded]="_data.initiallyExpanded"
+                [name]="instruction.value.name"
+                [note]="instruction.value.note"
+                [optional]="instruction.value.optional"
+                (actionClicked)="onAccordionActionClicked(instruction.value, index, $event)"
+                (accordionChange)="accordionChange($event)"
+                [actions]="[
+                  {
+                    text: _data.prepDetails.text,
+                    tooltip: _data.prepDetails.text,
+                    icon: _data.prepDetails.icon,
+                    id: 'preparationDetails',
+                    hide: _data.prepDetails.hide,
+                    hideIfExpanded: isMobileScreen.matches,
+                    groupKey: 'special',
+                  },
+                  {
+                    text: _data.utensils.text,
+                    tooltip: 'UTENSIL.VALUE',
+                    tooltipReplace: _data.utensils.text,
+                    icon: 'utensil',
+                    id: 'utensils',
+                    hide: _data.utensils.hide,
+                    notStopPropagation: true,
+                    groupKey: 'special'
+                  },
+                  {
+                    text: _data.ingredients.text,
+                    tooltip: 'INGREDIENT.VALUE',
+                    tooltipReplace: _data.ingredients.text,
+                    icon: 'ingredient',
+                    id: 'ingredients',
+                    hide: _data.ingredients.hide,
+                    notStopPropagation: true,
+                    groupKey: 'special'
+                  },
+                  {
+                    text: '',
+                    tooltip: 'ACTION.EDIT',
+                    icon: 'edit',
+                    id: 'edit',
+                    hideIfCollapsed: isMobileScreen.matches,
+                    groupKey: 'standard'
+                  },
+                  {
+                    text: '',
+                    tooltip: 'ACTION.REMOVE',
+                    icon: 'clear',
+                    id: 'delete',
+                    hide: isMobileScreen.matches,
+                    groupKey: 'standard'
+                  },
+                  {
+                    text: '',
+                    tooltip: _data.optional.text,
+                    icon: _data.optional.icon,
+                    id: 'optional',
+                    hideIfCollapsed: isMobileScreen.matches,
+                    groupKey: 'standard'
+                  }
+                ]"
+                [withDragHandle]="true"
+                [blinking]="_data.blinking"
+              >
+                <app-instruction
+                  [formGroupName]="index.toString()"
+                  [instruction]="instruction.value"
+                  [utensilObjects]="utensilObjectApiService.utensilObjects$ | async"
+                  [index]="index"
+                  [(hideUtensils)]="hideUtensils"
+                  [(hideIngredients)]="hideIngredients"
+                  [(hideIngredientNotes)]="hideIngredientNotes"
+                  (instructionChange)="onInstructionChange($event, index)"
+                  (proofSavingAllowed)="checkSavingAllowed()"
+                >
+                </app-instruction>
+              </app-accordion-panel>
+            </ng-container>
+          </mat-accordion>
+        </div>
+      </mat-tab>
+
+      <!-- Zutaten-Tab -->
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <app-tab-badge
+            text="INGREDIENT.S."
+            icon="ingredient"
+            [count]="
+              (instructions | ingredientsFromInstructions : (localeService.locale$ | async)!)
+                ?.length ?? 0
+            "
+            [showBadge]="selectedIndex !== 1"
+          ></app-tab-badge>
+        </ng-template>
+
+        <!-- QuickAdd + Alle löschen + Toggle-Gruppe + Suche + Bearbeiten-Button -->
+        <div
+          *ngIf="!formGroup.controls.instructions.value.length"
+          class="filter-buttons no-scrollbar-on-mobile"
+          [style.justifyContent]="'center'"
+        >
+          <button
+            mat-flat-button
+            color="primary"
+            [matTooltip]="'PREPARATION.ADD' | translate"
+            (click)="selectedIndex = 0"
+          >
+            <mat-icon svgIcon="preparation"></mat-icon>
+            {{ "PREPARATION.ADD" | translate }}
+          </button>
+        </div>
+
+        <div
+          *ngIf="formGroup.controls.instructions.value.length"
+          class="filter-buttons no-scrollbar-on-mobile"
+        >
+          <!-- QuickAdd: Zutaten -->
+          <button
+            class="only-icon"
+            mat-flat-button
+            [matTooltip]="'QUICKADD.ADD' | translate : { value: 'INGREDIENT.S.' | translate }"
+            (click)="onQuickAddIngredients()"
+          >
+            <mat-icon svgIcon="quick-add"></mat-icon>
+          </button>
+
+          <!-- Zutaten vorhanden -->
+          <ng-container
+            *ngIf="
+              (instructions | ingredientsFromInstructions : (localeService.locale$ | async)!)
+                .length as count
+            "
+          >
+            <!-- Alle Zutaten löschen -->
+            <button
+              class="only-icon"
+              mat-flat-button
+              [matBadge]="count"
+              [matBadgeHidden]="!count"
+              [matTooltip]="'REMOVE_ALL_VALUE' | translate : { value: count }"
+              (click)="onRemoveAllIngredients()"
+            >
+              <mat-icon svgIcon="clear"></mat-icon>
+            </button>
+
+            <!-- Alle Zutaten kopieren -->
+            <button
+              mat-flat-button
+              class="only-icon"
+              [matTooltip]="
+                'CLIPBOARD.COPY.VALUE'
+                  | translate
+                    : {
+                        value:
+                          'INGREDIENT.S.'
+                          | translate
+                          | firstCharToLowercase : (localeService.locale$ | async)!
+                      }
+              "
+              (click)="onCopyIngredients()"
+            >
+              <mat-icon svgIcon="clipboard"></mat-icon>
+            </button>
+          </ng-container>
+
+          <app-ingredients-contents-details
+            [style.marginLeft]="'auto'"
+            [recipe]="data.recipe"
+            [instructions]="formGroup.controls.instructions.value"
+            [ingredientsConversion]="ingredientApiService.ingredientsConversion$ | async"
+            (buttonClick)="filterListSelectedKeys.contents = $event"
+          ></app-ingredients-contents-details>
+
+          <app-toggle-group
+            filter
+            [style.marginLeft]="'auto'"
+            [data]="AVAILABLE_DROPDOWN_DATA"
+            [showText]="false"
+            [closeIfSelected]="true"
+            [ifFirstValueSelectedThenClose]="true"
+            [showTextOnlySelected]="false"
+            [highlightIfClosedAndNotFirstValue]="true"
+            [showAnimation]="true"
+            [value]="filterListSelectedKeys.available"
+            (valueChange)="filterAvailableChanged($event)"
+          ></app-toggle-group>
+
+          <app-toggle-group
+            filter
+            [data]="INGREDIENT_CONTENTS_DROPDOWN_DATA"
+            [showText]="false"
+            [closeIfSelected]="true"
+            [ifFirstValueSelectedThenClose]="true"
+            [showTextOnlySelected]="false"
+            [highlightIfClosedAndNotFirstValue]="true"
+            [showAnimation]="true"
+            [value]="filterListSelectedKeys.contents"
+            (valueChange)="filterIngredientContentsChanged($event)"
+          ></app-toggle-group>
+
+          <mat-divider class="divider-vertical-20px" [vertical]="true"></mat-divider>
+
+          <button
+            mat-flat-button
+            class="only-icon"
+            [matTooltip]="
+              'INGREDIENT.NOTE.S.' + (hideIngredientNotes ? 'SHOW' : 'HIDE') | translate
+            "
+            (click)="hideIngredientNotes = !hideIngredientNotes"
+          >
+            <mat-icon [svgIcon]="hideIngredientNotes ? 'note' : 'note-not'"></mat-icon>
+          </button>
+
+          <button
+            mat-flat-button
+            class="only-icon"
+            [matTooltip]="
+              'INGREDIENT.S.' + (editableIngredientsInList ? 'EDITABLE_NOT' : 'EDITABLE')
+                | translate
+            "
+            (click)="editableIngredientsInList = !editableIngredientsInList"
+          >
+            <mat-icon [svgIcon]="editableIngredientsInList ? 'edit-not' : 'edit'"></mat-icon>
+          </button>
+
+          <mat-divider class="divider-vertical-20px" [vertical]="true"></mat-divider>
+
+          <app-add
+            addIcon="search"
+            [text]="'SEARCH.' | translate"
+            [placeholder]="'SEARCH.INPUT' | translate"
+            [doNotCloseAfterReturn]="true"
+            [askIfCloseIfDiscard]="true"
+            [doNotBlurIfTextInInput]="true"
+            [doNotCleanInputAfterReturn]="true"
+            [smallerWidth]="true"
+            (valueChange)="
+              searchText = $event; editableIngredientsInList = false; hideIngredientNotes = false
+            "
+            (isOpen)="editableIngredientsInList = !$event; hideIngredientNotes = !$event"
+          >
+          </app-add>
+        </div>
+
+        <!-- Zutatenliste -->
+        <div cdkDropListGroup class="ingredients-container">
+          <ng-container *ngFor="let instruction of instructions; index as index">
+            <app-ingredient-list
+              [parentFormGroup]="formGroup"
+              [ingredients]="instruction.ingredients"
+              [ingredientsConversion]="ingredientApiService.ingredientsConversion$ | async"
+              [ingredientsAvailable]="ingredientApiService.ingredientsAvailable$ | async"
+              [showInstructionTitle]="instruction.name"
+              [instructionIsOptional]="instruction.optional ?? false"
+              [instructionId]="index.toString()"
+              [showEditButton]="!isSmallScreen.matches"
+              [showAddAvailabilityButton]="!isSmallScreen.matches"
+              [showAddConversionButton]="!isSmallScreen.matches"
+              [searchText]="searchText"
+              [editable]="editableIngredientsInList"
+              [showIngredient]="showIngredientFilter"
+              [filterKey]="filterListSelectedKeys"
+              [(hideIngredientNotes)]="hideIngredientNotes"
+              (ingredientsChange)="onIngredientsChangeWithInstructionIndex(index, $event)"
+              (openById)="onOpenInstructionByIndex($event)"
+            >
+            </app-ingredient-list>
+          </ng-container>
+        </div>
+      </mat-tab>
+
+      <!-- Utensilien-Tab -->
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <app-tab-badge
+            text="UTENSIL.S."
+            icon="utensil"
+            [count]="
+              (
+                instructions
+                | utensilsFromInstructions
+                  : (utensilObjectApiService.utensilObjects$ | async)
+                  : (translateService.onLangChange | async)
+              )?.length ?? 0
+            "
+            [showBadge]="selectedIndex !== 2"
+          ></app-tab-badge>
+        </ng-template>
+
+        <div class="functions">
+          <div [style.display]="'flex'" [style.gap.px]="10">
+            <!-- QuickAdd: Utensil -->
+            <button
+              class="only-icon"
+              mat-flat-button
+              (click)="onQuickAddUtensils()"
+              [matTooltip]="'QUICKADD.ADD' | translate : { value: 'UTENSIL.S.' | translate }"
+            >
+              <mat-icon svgIcon="quick-add"></mat-icon>
+            </button>
+
+            <button
+              *ngIf="
+                (
+                  instructions
+                  | utensilsFromInstructions
+                    : (utensilObjectApiService.utensilObjects$ | async)
+                    : (translateService.onLangChange | async)
+                ).length as badge
+              "
+              class="only-icon"
+              mat-flat-button
+              [matBadge]="badge"
+              [matBadgeHidden]="!badge"
+              [matTooltip]="'REMOVE_ALL_VALUE' | translate : { value: badge }"
+              (click)="onRemoveAllUtensils()"
+            >
+              <mat-icon svgIcon="clear"></mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <!-- Utensilienliste -->
+        <div cdkDropListGroup>
+          <ng-container *ngFor="let instruction of instructions; index as index">
+            <app-utensils-list
+              [parentFormGroup]="formGroup"
+              [utensils]="instruction.utensils"
+              [utensilObjects]="utensilObjectApiService.utensilObjects$ | async"
+              [showInstructionTitle]="instruction.name"
+              [instructionIsOptional]="instruction.optional ?? false"
+              [instructionId]="index.toString()"
+              [showEditButton]="!isSmallScreen.matches"
+              (utensilsChange)="onUtensilsChangeWithInstructionIndex(index, $event)"
+              (openById)="onOpenInstructionByIndex($event)"
+            >
+            </app-utensils-list>
+          </ng-container>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+
+    <div class="separator"></div>
+
+    <!-- Historieneinträge -->
+    <app-add-remove
+      addText="HISTORY.ADD"
+      removeText="REMOVE_ALL_VALUE"
+      scrollToElementIdAfterAdd="history"
+      addIconWhenBigButton="history"
+      [isNoContent]="!formGroup.controls.preparationHistory.value?.length"
+      [badge]="formGroup.controls.preparationHistory.value?.length"
+      [chipSeparators]="[';', ',']"
+      [completerList]="completerListPreparationHistory$ | async"
+      [askIfCloseIfDiscard]="true"
+      [openDialogOnClick]="isSmallScreen.matches"
+      (add)="onAddPreparationHistoryEntry($event)"
+      (removeAll)="onRemoveAllPreparationHistory()"
+      (openDialog)="onOpenAddHistoryEntryDialog()"
+    >
+      <!-- QuickAdd: Heute zubereitet -->
+      <button
+        quickAdd
+        class="only-icon"
+        mat-flat-button
+        (click)="quickAddPreparationHistoryEntry(0, PreparationHistoryType.PREPARED)"
+        [matTooltip]="'HISTORY.PREPARED_TODAY' | translate"
+      >
+        <mat-icon svgIcon="preparationHistory-prepared"></mat-icon>
+      </button>
+
+      <!-- QuickAdd: Heute geplant -->
+      <button
+        quickAdd
+        class="only-icon"
+        mat-flat-button
+        (click)="quickAddPreparationHistoryEntry(0, PreparationHistoryType.PLANNED)"
+        [matTooltip]="'HISTORY.PLANNED_TODAY' | translate"
+      >
+        <mat-icon svgIcon="calendar-today"></mat-icon>
+      </button>
+
+      <!-- QuickAdd: Morgen geplant -->
+      <button
+        quickAdd
+        class="only-icon"
+        mat-flat-button
+        (click)="quickAddPreparationHistoryEntry(1, PreparationHistoryType.PLANNED)"
+        [matTooltip]="'HISTORY.PLANNED_TOMORROW' | translate"
+      >
+        <mat-icon svgIcon="calendar-tomorrow"></mat-icon>
+      </button>
+
+      <!-- QuickAdd: Nächste Woche geplant -->
+      <button
+        quickAdd
+        class="only-icon"
+        mat-flat-button
+        (click)="quickAddPreparationHistoryEntry(7, PreparationHistoryType.PLANNED)"
+        [matTooltip]="'HISTORY.PLANNED_NEXT_WEEK' | translate"
+      >
+        <mat-icon svgIcon="calendar-week"></mat-icon>
+      </button>
+    </app-add-remove>
+
+    <div
+      *ngIf="formGroup.controls.preparationHistory.value?.length"
+      id="history"
+      class="scrollbox no-scrollbar-on-mobile"
+    >
+      <div class="scrollbox-content" [style.paddingTop.px]="0">
+        <app-preparation-history-chip
+          *ngFor="
+            let history of this.formGroup.controls.preparationHistory.value
+              | sort : PreparationHistoryEntry.sortDescending;
+            index as index
+          "
+          [preparationHistory]="history"
+          [amountText]="formGroup.controls.amountText.value ?? ''"
+          [portions]="formGroup.controls.portions.value ?? 0"
+          [blinking]="
+            (history._lastAdded | lastAdded : formGroup.controls.preparationHistory.value) ||
+            (index === 0 && (blinkFirstHistoryEntry | lastAdded))
+          "
+          (remove)="onRemovePreparationHistoryEntry(index)"
+          (edit)="onEditPreparationHistoryEntry($event, index)"
+        ></app-preparation-history-chip>
+      </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <!-- Verlinkte Rezepte -->
+
+    <app-add-remove
+      addText="LINK.RECIPE"
+      removeText="REMOVE_ALL_VALUE"
+      removeIcon="unlink"
+      scrollToElementIdAfterAdd="linked-recipes"
+      addIconWhenBigButton="link"
+      [completerList]="completerListRecipes$ | async"
+      [isNoContent]="!linkedRecipes.length"
+      [badge]="linkedRecipes.length"
+      [askIfCloseIfDiscard]="true"
+      (add)="onAddLinkedRecipe($event)"
+      (removeAll)="onRemoveAllLinkedRecipes()"
+    >
+    </app-add-remove>
+
+    <div *ngIf="linkedRecipes.length" id="linked-recipes" class="scrollbox no-scrollbar-on-mobile">
+      <div class="scrollbox-content" [style.paddingTop.px]="0">
+        <app-recipe-chip
+          *ngFor="let recipe of linkedRecipes; index as index"
+          [recipe]="recipe"
+          [actions]="[{ text: 'LINK.REMOVE', id: 'remove', icon: 'unlink' }]"
+          (onActionClick)="onRemoveLinkedRecipe(recipe.id)"
+        >
+        </app-recipe-chip>
+      </div>
+    </div>
+
+    <!-- Ähnliche Rezepte -->
+
+    <div *ngIf="similarRecipes.length" class="separator"></div>
+
+    <div *ngIf="similarRecipes.length" class="scrollbox no-scrollbar-on-mobile">
+      <div class="scrollbox-content">
+        <app-recipe-chip
+          *ngFor="let recipe of similarRecipes; index as index"
+          [recipe]="recipe"
+          [actions]="[{ text: 'LINK.', id: 'link', icon: 'link' }]"
+          (onActionClick)="onLinkRecipe(recipe.id)"
+        >
+        </app-recipe-chip>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Zubereitungsschritte: Inhalt -->
+<div
+  *ngIf="isStepsView"
+  mat-dialog-content
+  [ngClass]="{ 'steps-view': true, 'only-mobile-device': isMobileDevice }"
+>
+  <mat-tab-group
+    mat-stretch-tabs="false"
+    mat-align-tabs="center"
+    [(selectedIndex)]="selectedStepIndex"
+    class="with-background first-only-icons sticky-header"
+  >
+    <!-- Utensilien -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="tab-icon only-icon-in-small-screen" svgIcon="utensil"></mat-icon>
+        {{ isMobileScreen.matches ? "" : "Utensilien" }}
+      </ng-template>
+
+      <app-utensils-list
+        [parentFormGroup]="formGroup"
+        [utensils]="
+          formGroup.controls.instructions.value
+            | utensilsFromInstructions
+              : (utensilObjectApiService.utensilObjects$ | async)
+              : (translateService.onLangChange | async)
+        "
+        [utensilObjects]="utensilObjectApiService.utensilObjects$ | async"
+        [editable]="false"
+        [moveable]="false"
+        [removeable]="false"
+        [instructions]="instructions"
+        [showEditButton]="!isSmallScreen.matches"
+        [showInstructionTitleInBetween]="true"
+        (openById)="onGoToInstructionByIndex($event)"
+      >
+      </app-utensils-list>
+    </mat-tab>
+
+    <!-- Zutaten -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="tab-icon only-icon-in-small-screen" svgIcon="ingredient"></mat-icon>
+        {{ isMobileScreen.matches ? "" : "Zutaten" }}
+      </ng-template>
+
+      <div class="function-buttons">
+        <app-portion-counter
+          [amount]="formGroup.controls.amountNumber.value ?? 1"
+          [(amountFactor)]="amountFactor"
+          [amountTextFromRecipe]="formGroup.controls.amountText.value ?? ''"
+          [amountNumberFromRecipe]="formGroup.controls.amountNumber.value ?? 0"
+          [portions]="formGroup.controls.portions.value ?? 0"
+        ></app-portion-counter>
+
+        <button
+          mat-flat-button
+          class="only-icon"
+          [matTooltip]="'INGREDIENT.NOTE.S.' + (hideIngredientNotes ? 'SHOW' : 'HIDE') | translate"
+          [style.marginLeft]="'auto'"
+          (click)="hideIngredientNotes = !hideIngredientNotes"
+        >
+          <mat-icon [svgIcon]="hideIngredientNotes ? 'note' : 'note-not'"></mat-icon>
+        </button>
+      </div>
+
+      <app-ingredient-list
+        [parentFormGroup]="formGroup"
+        [ingredients]="
+          formGroup.controls.instructions.value
+            | ingredientsFromInstructions : (localeService.locale$ | async)!
+        "
+        [editable]="false"
+        [moveable]="false"
+        [removeable]="false"
+        [instructions]="instructions"
+        [ingredientsConversion]="ingredientApiService.ingredientsConversion$ | async"
+        [ingredientsAvailable]="ingredientApiService.ingredientsAvailable$ | async"
+        [showInstructionTitleInBetween]="true"
+        [showAddAvailabilityButton]="!isSmallScreen.matches"
+        [showAddConversionButton]="!isSmallScreen.matches"
+        [amountFactor]="amountFactor"
+        [(hideIngredientNotes)]="hideIngredientNotes"
+        (openById)="onGoToInstructionByIndex($event)"
+      >
+      </app-ingredient-list>
+    </mat-tab>
+
+    <!-- Zubereitungsschritte -->
+    <mat-tab *ngFor="let instruction of formGroup.controls['instructions'].value; index as index">
+      <ng-template mat-tab-label>
+        <mat-icon class="tab-icon" svgIcon="recipe"></mat-icon>
+
+        <span class="steps-counter-indicator">{{ index + 1 }}</span>
+
+        <span>
+          {{ instruction?.name }}
+        </span>
+
+        <mat-icon
+          *ngIf="instruction?.optional"
+          svgIcon="optional"
+          class="step-optional small"
+          [matTooltip]="'OPTIONAL' | translate"
+        ></mat-icon>
+      </ng-template>
+
+      <div *ngIf="instruction" class="steps-container">
+        <app-utensils-tags
+          *ngIf="instruction.utensils?.length"
+          [tags]="instruction.utensils"
+          [utensilObjects]="utensilObjectApiService.utensilObjects$ | async"
+          [editable]="false"
+          [wrap]="true"
+        ></app-utensils-tags>
+
+        <mat-divider class="divider" />
+
+        <app-ingredients-tags
+          *ngIf="instruction.ingredients?.length"
+          [tags]="instruction.ingredients"
+          [editable]="false"
+          [wrap]="true"
+          [amountFactor]="amountFactor"
+          [(hideIngredientNotes)]="hideIngredientNotes"
+          (factorButtonClicked)="selectedStepIndex = 1"
+        ></app-ingredients-tags>
+
+        <mat-divider class="divider" />
+
+        <div class="steps-content">
+          <app-timer
+            *ngIf="instruction.minTime || instruction.temperature"
+            [time]="instruction.minTime ?? 0 * 60"
+            [text]="instruction | preparationDetails : (localeService.locale$ | async)!"
+          ></app-timer>
+
+          <div
+            class="steps-text"
+            style="touch-action: pan-x"
+            [innerHTML]="instruction.text"
+            (swipeLeft)="onNextStep()"
+            (swipeRight)="onPreviousStep()"
+          ></div>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+  <div class="swipe-region" (swipeLeft)="onNextStep()" (swipeRight)="onPreviousStep()"></div>
+</div>

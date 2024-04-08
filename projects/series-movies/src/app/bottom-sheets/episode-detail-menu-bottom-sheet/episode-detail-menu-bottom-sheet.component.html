@@ -1,0 +1,149 @@
+<div style="padding: 20px 0px">
+  <button
+    *ngIf="!data.media.automatic"
+    mat-menu-item
+    class="menu-custom-button"
+    (click)="onEpisodeClick(data.season, data.episode)"
+  >
+    <mat-icon svgIcon="check" class="medium without-button" [style.paddingLeft.px]="5"> </mat-icon>
+    <span [style.paddingRight.px]="20">{{ "EPISODE.SET_AS_CURRENT" | translate }}</span>
+  </button>
+
+  <button
+    *ngIf="data.episode === 0"
+    mat-menu-item
+    class="menu-custom-button"
+    (click)="onEditSeasonClick(data.season)"
+  >
+    <mat-icon svgIcon="edit" class="medium without-button" [style.paddingLeft.px]="5"> </mat-icon>
+    <span [style.paddingRight.px]="20">{{ "SEASON.EDIT" | translate }}</span>
+  </button>
+
+  <!-- Alle Details entfernen -->
+  <button
+    *ngIf="data.episodeDetails?.length"
+    mat-menu-item
+    class="menu-custom-button"
+    (click)="onDeleteAllEpisodeDetails()"
+  >
+    <mat-icon svgIcon="delete" class="medium without-button" [style.paddingLeft.px]="5"> </mat-icon>
+    <span [style.paddingRight.px]="20">{{ "DETAIL.S.REMOVE_ALL" | translate }}</span>
+  </button>
+
+  <!-- Episode im Fernsehen -->
+  <button
+    *ngIf="
+      data.media | episodeInTelevision : data.season : data.episode as episodeInTelevision;
+      else separatorIfNoTelevision
+    "
+    mat-menu-item
+    style="background-color: #0f91a5"
+  >
+    <mat-icon svgIcon="television" class="medium without-button" [style.paddingLeft.px]="5">
+    </mat-icon>
+    <span [style.paddingRight.px]="20">{{
+      episodeInTelevision.date | date : "short" : "" : (localeService.locale$ | async)!
+    }}</span>
+    <button mat-button class="medium only-icon" [style.marginLeft]="'auto'">
+      <mat-icon svgIcon="check"></mat-icon>
+    </button>
+    <button mat-button class="medium only-icon">
+      <mat-icon svgIcon="clear"> </mat-icon>
+    </button>
+    <button mat-button class="medium only-icon">
+      <mat-icon svgIcon="arrow-right"> </mat-icon>
+    </button>
+  </button>
+
+  <ng-template #separatorIfNoTelevision>
+    <div *ngIf="data.episodeDetails" class="separator"></div>
+  </ng-template>
+
+  <!-- Alle Notizen -->
+  <ng-container *ngFor="let item of data.episodeDetails; index as index">
+    <ng-container *ngIf="item | episodeDetail as type">
+      <button mat-menu-item class="menu-custom-button" (click)="openEditEpisodeDetail(item.id)">
+        <img
+          *ngIf="item.url"
+          height="16"
+          width="16"
+          loading="lazy"
+          style="margin-left: 6px; margin-right: 18px"
+          [src]="URL_FAVICON + item.url"
+          [alt]="item.url | urlTitle : item.note"
+          [matTooltip]="item.url | urlTitle : item.note"
+        />
+        <mat-icon
+          *ngIf="!item.url"
+          class="medium without-button"
+          [svgIcon]="type.icon"
+          [style.paddingLeft.px]="5"
+        >
+        </mat-icon>
+
+        <span *ngIf="item.url" [style.paddingRight.px]="20">{{
+          item.url | urlTitle : item.note
+        }}</span>
+
+        <span *ngIf="item.date" [style.paddingRight.px]="20">{{
+          item.date | date : "EE, dd.MM.yyyy" : "" : (localeService.locale$ | async)!
+        }}</span>
+
+        <span *ngIf="!item.url" [style.paddingRight.px]="20">{{
+          item.note ||
+            (item.type === EpisodeDetailType.NOT_WATCHED ? ("NOT_WATCHED" | translate) : "")
+        }}</span>
+
+        <button
+          *ngIf="item.url"
+          mat-button
+          class="medium only-icon"
+          [style.marginLeft]="'auto'"
+          [matTooltip]="'URL.OPEN' | translate"
+          (click)="openUrl($event, item.url)"
+        >
+          <mat-icon svgIcon="open"></mat-icon>
+        </button>
+
+        <button
+          *ngIf="item.date"
+          mat-button
+          class="medium only-icon"
+          [style.marginLeft]="'auto'"
+          (click)="$event.stopPropagation(); onCheckTelevision(data.season, data.episode)"
+        >
+          <mat-icon svgIcon="check"></mat-icon>
+        </button>
+
+        <button
+          mat-button
+          class="medium only-icon"
+          [style.marginLeft]="!item.url && !item.date ? 'auto' : 'unset'"
+          [matTooltip]="'ACTION.DELETE' | translate"
+          (click)="$event.stopPropagation(); onDeleteEpisodeDetail(item.id)"
+        >
+          <mat-icon svgIcon="delete"></mat-icon>
+        </button>
+      </button>
+    </ng-container>
+  </ng-container>
+
+  <div style="position: sticky; bottom: 10px; background-color: #25282f">
+    <div class="separator"></div>
+
+    <!-- Hinzufügen -->
+    <div
+      style="display: flex; gap: 5px; justify-content: space-between; padding: 10px 10px 0px 10px"
+    >
+      <button
+        *ngFor="let item of EPISODE_DETAIL_TYPES"
+        mat-button
+        class="large only-icon"
+        [matTooltip]="item.tooltip ?? item.name | translate"
+        (click)="openAddEpisodeDetail(data.season, data.episode, item.key)"
+      >
+        <mat-icon [svgIcon]="item.icon"></mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

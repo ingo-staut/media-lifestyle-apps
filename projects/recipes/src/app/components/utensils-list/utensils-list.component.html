@@ -1,0 +1,67 @@
+<div [ngClass]="{ container: true, optional: instructionIsOptional }">
+  <app-add-remove
+    *ngIf="editable"
+    addText="UTENSIL.ADD"
+    removeText="REMOVE_ALL_VALUE"
+    class="sticky sticky-can-pin"
+    addIconWhenBigButton="utensil"
+    [badge]="utensils.length"
+    [isNoContent]="!utensils.length"
+    [doNotCloseAfterReturn]="true"
+    [completerList]="utensilObjectService.completerUtensilObjects$ | async"
+    (add)="onAdd($event)"
+    (removeAll)="onRemoveAll()"
+    (openDialog)="onOpenAddUtensilDialog()"
+  >
+    <app-list-header
+      [title]="showInstructionTitle"
+      [optional]="instructionIsOptional"
+      (click)="openById.emit(instructionId)"
+    />
+
+    <ng-content afterAddAndRemove></ng-content>
+  </app-add-remove>
+
+  <div
+    cdkDropList
+    [ngClass]="{ list: true, 'not-editable': !editable }"
+    [cdkDropListData]="utensils"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <ng-container *ngFor="let utensil of utensils; index as index">
+      <!-- Abschnittsüberschrift mit Zubereitungsschritt -->
+      <ng-container
+        *ngIf="
+          showInstructionTitleInBetween &&
+          utensil.fromWithInstruction?.length &&
+          getNextIntructionTitle(
+            (utensil.fromWithInstruction[0].id ?? '' | instructionById : instructions)?.name ?? ''
+          ) as title
+        "
+      >
+        <app-list-header
+          [title]="title"
+          [marginLeft]="0"
+          (click)="openById.emit(utensil.fromWithInstruction[0].id)"
+        />
+      </ng-container>
+
+      <!-- Zutat -->
+      <app-utensil-list-item
+        [parentFormGroup]="parentFormGroup"
+        [utensil]="utensil"
+        [instructions]="instructions"
+        [utensilObjects]="utensilObjects"
+        [editable]="editable"
+        [moveable]="moveable"
+        [blinking]="utensil._lastAdded | lastAdded : utensils"
+        [removeable]="removeable"
+        [showUtensilButton]="showUtensilButton"
+        [showEditButton]="showEditButton"
+        (utensilChange)="utensilChanged($event, index)"
+        (openById)="openById.emit($event)"
+      >
+      </app-utensil-list-item>
+    </ng-container>
+  </div>
+</div>

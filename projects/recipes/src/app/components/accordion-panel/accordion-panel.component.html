@@ -1,0 +1,164 @@
+<ng-template #buttons>
+  <ng-container
+    *ngFor="
+      let action of actions | filter : filterActionFunction : panel.expanded && afterViewInit;
+      index as index;
+      first as first
+    "
+  >
+    <mat-divider
+      *ngIf="
+        !first &&
+        action.groupKey !==
+          (actions | filter : filterActionFunction : panel.expanded && afterViewInit)[index - 1]
+            .groupKey
+      "
+      [vertical]="true"
+      class="divider-vertical-half"
+    ></mat-divider>
+    <button
+      *ngIf="
+        !action.hide &&
+        (!(action.hideIfCollapsed && !panel.expanded) || !action.hideIfCollapsed) &&
+        (!(action.hideIfExpanded && panel.expanded) || !action.hideIfExpanded)
+      "
+      mat-button
+      [ngClass]="{ 'only-icon': !action.text, medium: true }"
+      [matTooltip]="
+        action.tooltip ?? action.text | translate : { value: action.tooltipReplace || '' }
+      "
+      (click)="onButtonClick($event, action.id, !action.notStopPropagation)"
+    >
+      <mat-icon [svgIcon]="action.icon"></mat-icon>
+      {{ action.text | translate : { value: action.textReplace || "" } }}
+    </button>
+  </ng-container>
+</ng-template>
+
+<mat-expansion-panel
+  [ngClass]="{ 'expansion-panel': true, 'with-background': withBackground, blinking, optional }"
+  [expanded]="initiallyExpanded"
+  #panel
+  cdkDrag
+  [cdkDragDisabled]="!withDragHandle"
+  (click)="$event.stopPropagation()"
+  (cdkDragStarted)="onDragStarted()"
+>
+  <div class="drag-placeholder" *cdkDragPlaceholder></div>
+
+  <div *cdkDragPreview>
+    <mat-panel-title
+      *ngIf="!panel.expanded || tabs.length === 0"
+      [ngClass]="{ 'tab-group': tabs.length > 0, 'drag-preview': true }"
+      [style.lineHeight]="'normal'"
+    >
+      <mat-icon
+        *ngIf="withDragHandle"
+        svgIcon="drag"
+        [matTooltip]="'MOVE' | translate"
+        class="grab medium"
+        cdkDragHandle
+      ></mat-icon>
+      <mat-icon *ngIf="icon" [svgIcon]="icon" class="medium extra-icon"></mat-icon>
+
+      <span>{{ name }}</span>
+      <span class="note">{{ note }}</span>
+    </mat-panel-title>
+  </div>
+
+  <mat-expansion-panel-header
+    [ngClass]="{
+      'expansion-panel-header': true,
+      'with-background': withBackground,
+      'tab-group center': tabs.length > 0,
+      'with-drag-handle': withDragHandle
+    }"
+    matRipple
+    [matRippleDisabled]="tabs.length > 0 && panel.expanded"
+    (contextmenu)="onContextMenu($event)"
+  >
+    <mat-panel-title
+      *ngIf="!panel.expanded || tabs.length === 0"
+      [ngClass]="{ 'tab-group': tabs.length > 0 }"
+      [style.lineHeight]="'normal'"
+    >
+      <mat-icon
+        *ngIf="withDragHandle"
+        svgIcon="drag"
+        [matTooltip]="'MOVE' | translate"
+        class="grab medium"
+        cdkDragHandle
+      ></mat-icon>
+      <mat-icon *ngIf="icon" [svgIcon]="icon" class="medium extra-icon"></mat-icon>
+
+      <span
+        [ngClass]="{ name: true, 'not-expanded': !panel.expanded }"
+        [matBadge]="amount"
+        [matBadgeHidden]="panel.expanded || amount === 0"
+        >{{ name }}</span
+      >
+      <span *ngIf="!panel.expanded" class="note">{{ note }}</span>
+      <div
+        *ngIf="(actions | filter : filterActionFunction : panel.expanded && afterViewInit)?.length"
+        class="spacer"
+      ></div>
+
+      <!-- Buttons -->
+      <ng-container [ngTemplateOutlet]="buttons"></ng-container>
+    </mat-panel-title>
+
+    <mat-tab-group
+      *ngIf="panel.expanded && tabs"
+      mat-stretch-tabs="false"
+      (click)="stopPropagation($event)"
+      [selectedIndex]="selectedTabIndex"
+      class="tabs-only-icons-in-mobile"
+      (selectedTabChange)="onTabChange($event)"
+    >
+      <mat-tab *ngFor="let tab of tabs">
+        <ng-template mat-tab-label>
+          <mat-icon class="tab-icon" [svgIcon]="tab.icon"></mat-icon>
+          <span class="tab-text">{{ tab.name | translate }}</span>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+
+    <!-- Buttons, wenn mit Tabs und geöffnet -->
+    <ng-container
+      *ngIf="
+        panel.expanded &&
+        tabs.length &&
+        (actions | filter : filterActionFunction : panel.expanded && afterViewInit)?.length
+      "
+    >
+      <div class="spacer"></div>
+
+      <div class="buttons">
+        <ng-container [ngTemplateOutlet]="buttons"></ng-container>
+      </div>
+    </ng-container>
+
+    <!-- Kontextmenu -->
+    <div
+      style="visibility: hidden; position: fixed"
+      [style.left]="contextMenuPosition.x"
+      [style.top]="contextMenuPosition.y"
+      [matMenuTriggerFor]="contextmenu"
+    ></div>
+    <mat-menu #contextmenu="matMenu">
+      <ng-template matMenuContent>
+        <button
+          *ngFor="let item of MENU_ACCORDION.actions"
+          mat-menu-item
+          (click)="accordionChange.emit(item.value)"
+        >
+          <mat-icon class="medium without-button" [svgIcon]="item.icon ?? ''"></mat-icon>
+          <span>{{ item.text | translate }}</span>
+        </button>
+      </ng-template>
+    </mat-menu>
+  </mat-expansion-panel-header>
+
+  <!-- Inhalt -->
+  <ng-content></ng-content>
+</mat-expansion-panel>

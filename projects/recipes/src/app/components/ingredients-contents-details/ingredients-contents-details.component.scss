@@ -1,0 +1,29 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+.button {
+  background: $background-1;
+  color: white;
+  height: 40px;
+  padding: 0 $padding-xs;
+  border: none;
+  outline: none;
+  display: flex;
+  //   gap: $padding-s;
+  align-items: center;
+  border-radius: $border-radius;
+
+  background: linear-gradient(
+    90deg,
+    $primary var(--progress, 100%),
+    $background-1 var(--progress, 100%)
+  );
+
+  .text {
+    margin: 0 $padding-s;
+  }
+
+  .button-content {
+    margin: 0 (-$padding-xs);
+  }
+}

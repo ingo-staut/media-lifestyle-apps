@@ -1,0 +1,127 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+// ! Unterschied zum Dialog
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+// ----------------------------------------------------------------
+// Text
+// ----------------------------------------------------------------
+header {
+  color: $text-1;
+  display: flex;
+  gap: $padding-s;
+  align-items: center;
+  padding: $padding-m;
+
+  h1 {
+    margin-block: 0 0;
+    margin-top: 2px;
+    font-size: $text-size-m;
+    width: 100%;
+  }
+}
+
+p {
+  color: $text-2;
+  line-height: normal;
+  margin-bottom: $padding-m;
+}
+
+.title {
+  color: $text-1;
+  display: flex;
+  gap: $padding-s;
+  align-items: center;
+  margin-right: $padding-m;
+  padding-bottom: $padding-xs;
+  line-height: normal;
+
+  &.disabled {
+    color: $text-2;
+  }
+
+  &.special {
+    margin-bottom: -20px;
+  }
+
+  &.sticky {
+    position: sticky;
+    z-index: 5;
+    top: 0px;
+  }
+}
+
+// ----------------------------------------------------------------
+// Inhalt
+// ----------------------------------------------------------------
+.content {
+  padding: 0px $padding-m;
+}
+
+.list {
+  gap: $padding-m;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: $padding-xs;
+}
+
+// Wenn ButtonInput disabled ist,
+// den beschreibenden Text ändern
+.buttonInput {
+  span:has(+ button:disabled) {
+    color: $text-2;
+  }
+}
+
+// Bildvorschau wenn Bild in Textfeld
+img.preview {
+  object-fit: contain;
+  object-position: 50% 0;
+  margin-top: $padding-s;
+  width: 100%;
+  max-height: 80px;
+  padding: $padding-s 0px;
+  background-color: $background-1;
+  border-radius: $border-radius;
+}
+
+// Gruppenelement
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: $padding-s;
+}
+
+.hint {
+  margin-top: $padding-s;
+  font-size: $text-size-xs;
+  color: $text-2;
+}
+
+// ----------------------------------------------------------------
+// Footer
+// ----------------------------------------------------------------
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: $padding-s;
+  // ! Unterschied zum Dialog
+  margin: $padding-l $padding-m;
+}
+
+.checkboxes {
+  display: flex;
+  flex-direction: column;
+  // ! Unterschied zum Dialog
+  margin: $padding-m $padding-m 0px $padding-s;
+  margin-bottom: -20px;
+}
+
+.divider {
+  margin-bottom: $padding-m;
+}

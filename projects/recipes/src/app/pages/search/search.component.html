@@ -1,0 +1,98 @@
+<div class="page-container">
+  <header class="page-header">
+    <div class="searchbar" cdkTrapFocus [cdkTrapFocusAutoCapture]="true">
+      <!-- Suchfeld -->
+      <app-search-bar
+        #searchBar
+        [searchValue]="(searchValue$ | async) || ''"
+        [quickAddFilterFromSearch]="(quickAddFilterFromSearch$ | async) ?? []"
+        (searchValueChange)="onChange($event)"
+        (searchValueEnter)="onEnter()"
+        (closeSearch)="onClose()"
+      >
+      </app-search-bar>
+
+      <!-- Filterleiste -->
+      <app-search-filters></app-search-filters>
+    </div>
+
+    <!-- Funktionsleiste: Sortierung -->
+    <app-search-sorting [results]="results$ | async"></app-search-sorting>
+
+    <!-- Keine Ergebnisse -->
+    <app-search-no-results
+      [results]="results$ | async"
+      [filtersSet]="(filtersSet$ | async) ?? 0"
+      [setSearchText]="!!(searchValue$ | async)"
+      (removeSearchText)="searchInputFocus(); onChange('')"
+      (removeAllFilters)="removeAllFilters()"
+    >
+    </app-search-no-results>
+
+    <!-- Vorschläge -->
+    <app-search-suggestions
+      [results]="results$ | async"
+      [suggestions]="searchSuggestionService.randomSuggestions$ | async"
+      [filtersSetOrSearchText]="!!(filtersSet$ | async) || !!(searchValue$ | async)"
+    >
+    </app-search-suggestions>
+  </header>
+
+  <!-- Ergebnisse -->
+  <div class="page-content" *ngIf="layout$ | async as layout">
+    <div
+      [ngClass]="{
+        results: true,
+        list: layout === ResultListLayout.LIST,
+        'only-mobile-device': isMobileDevice
+      }"
+    >
+      <ng-container *ngIf="layout === ResultListLayout.LIST">
+        <app-search-result-item
+          *ngFor="let recipe of results$ | async"
+          [recipe]="recipe"
+          [searchTextHighlight]="searchValue$ | async | forSearch"
+          [columns]="[
+            ((sortingType$ | async)! | getSortItemBySortType : SEARCH_SORT_TYPES_DATA)?.key ??
+              SortKey.SORT_NONE
+          ]"
+          [ingredientsConversion]="ingredientApiService.ingredientsConversion$ | async"
+        ></app-search-result-item>
+      </ng-container>
+
+      <ng-container *ngIf="layout === ResultListLayout.GRID">
+        <app-recipe-chip
+          *ngFor="let recipe of results$ | async"
+          [recipe]="recipe"
+          [searchTextHighlight]="searchValue$ | async | forSearch"
+          [showSearchResultMatchScore]="true"
+          [showCosts]="
+            ((sortingType$ | async)! | getSortItemBySortType : SEARCH_SORT_TYPES_DATA)?.key ===
+            SortKey.SORT_COSTS
+          "
+        >
+        </app-recipe-chip>
+      </ng-container>
+    </div>
+
+    <!-- Mehr Ergebnisse laden -->
+    <div class="load-more">
+      <button
+        *ngIf="((filteredRecipes$ | async)?.length ?? 0) > ((results$ | async)?.length ?? 0)"
+        mat-flat-button
+        (click)="onLoadMoreResults()"
+        [text]="'LOAD_MORE' | translate"
+        onlyIconSmallScreen
+      >
+        <mat-icon svgIcon="reload"></mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <app-fab-menu
+    *ngIf="isSmallScreen.matches"
+    [menuItems]="0 | sidenavMenuItems"
+    [styleBottomPosition]="20"
+    (actionClicked)="onOpenCreateDialogByKey($event)"
+  ></app-fab-menu>
+</div>

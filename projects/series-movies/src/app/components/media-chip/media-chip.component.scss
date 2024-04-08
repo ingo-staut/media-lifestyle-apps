@@ -1,0 +1,317 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+$image-height: 200px;
+
+.card {
+  width: 140px;
+  height: 100%;
+  background-color: $main-background-1;
+  transition: all 250ms ease-in-out;
+  z-index: 30;
+
+  &.outline {
+    outline: 1px solid $main-background;
+  }
+
+  &.shadow {
+    box-shadow: 0px 0px 20px $main-background;
+  }
+
+  &.light-background {
+    &.outline {
+      outline: 1px solid $main-background-1;
+    }
+    background-color: $main-background-2;
+  }
+
+  &.selected {
+    background-color: $primary;
+
+    &.movie {
+      background-color: $accent;
+    }
+  }
+
+  &.movie {
+    border-bottom: 3px solid $accent;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: $main-background-2;
+
+    &.light-background {
+      background-color: $main-background-3;
+    }
+
+    .image > img {
+      transform: scale(1.1, 1.1);
+    }
+
+    &.selected {
+      background-color: $primary-white-1;
+
+      &.movie {
+        background-color: $accent-white-1;
+      }
+    }
+  }
+}
+
+.card .content {
+  display: flex;
+  flex-direction: column;
+  gap: $padding-s;
+  height: 100%;
+}
+
+.title {
+  margin: 0 $padding-s 3px $padding-s;
+  color: white;
+  line-height: normal;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  .title-text {
+    @include ellipsis-lines(2);
+  }
+
+  .name-original {
+    @include ellipsis-lines(1);
+  }
+
+  .year {
+    font-size: $text-size-xs;
+  }
+}
+
+.image {
+  height: $image-height;
+  overflow: hidden;
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: all 250ms ease-in-out;
+  }
+}
+
+img.channel {
+  max-height: 20px;
+  min-height: 20px;
+  max-width: 20px;
+  min-width: 20px;
+  object-fit: contain;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: $padding-s $padding-xs;
+  flex-wrap: wrap;
+  padding: 0 $padding-s;
+  margin-top: auto;
+}
+
+.genre-list {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-bottom: 3px;
+}
+
+.genre {
+  border-radius: $border-radius;
+  padding: 2px;
+
+  &.single {
+    margin-right: $padding-xs;
+    margin-bottom: -$padding-xs;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.genre-container {
+  display: flex;
+}
+
+// Alle Genres, wenn "clickable" und wenn nicht gehovert
+.genre-clickable .title-text:hover .genre:not(:hover),
+.genre-clickable .genre-list:hover .genre:not(:hover) {
+  opacity: 0.5;
+}
+
+// Hover über Genre-Leiste, aber nicht ein bestimmtes Genre
+// Wichtig wenn "clickable"
+.genre-container:hover .genre-list:not(:hover) .genre,
+.genre:hover {
+  opacity: 1;
+}
+
+.button-chip {
+  // float: right;
+  // min-width: 0px;
+  padding: 0px $padding-s;
+  height: 20px !important;
+
+  span.details {
+    display: flex;
+    gap: $padding-xs;
+    align-items: center;
+  }
+}
+
+.header-icons {
+  display: flex;
+  justify-content: space-between;
+  z-index: 2;
+  position: absolute;
+  left: 0;
+  right: 0;
+
+  button {
+    visibility: hidden;
+
+    &.visible {
+      visibility: visible;
+      animation: opacity 250ms ease-in-out 1;
+    }
+  }
+}
+
+.gradient {
+  z-index: 1;
+  position: absolute;
+  height: 0px;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba($main-background, 0.75) 10%,
+    rgba($main-background, 0.5) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+
+  animation: height 250ms ease-in-out 1;
+  -webkit-animation: height 250ms ease-in-out 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes height {
+  0% {
+    height: 0px;
+  }
+  100% {
+    height: 60px;
+  }
+}
+
+@keyframes bigger {
+  0% {
+    height: 0px;
+  }
+  100% {
+    height: 60px;
+  }
+}
+
+.banner {
+  $banner-height: 26px;
+
+  z-index: 1;
+  position: absolute;
+  height: $banner-height;
+  top: calc($image-height - $banner-height);
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 14px;
+
+  color: white;
+  line-height: normal;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: $shadow-banner;
+}
+
+.icon-in-text {
+  margin-right: $padding-xs;
+}
+
+.divider-vertical-chip-icons {
+  height: 20px;
+  margin: 0 5px !important;
+}
+
+.more-item {
+  color: $text-2;
+}
+
+.button {
+  height: 30px;
+  min-height: 30px;
+  background-color: $background-1;
+  border-radius: $border-radius;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  padding: 0px;
+  outline: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: $text-size-s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $background-2;
+  }
+
+  &:focus {
+    background-color: $background-3;
+  }
+
+  > span {
+    line-height: normal;
+    padding: $padding-xs $padding-s;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  mat-progress-bar {
+    text-align: left;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+}
+
+.button-with-content {
+  display: flex;
+  gap: $padding-xs;
+  padding: 0px 8px;
+}
+
+.play-menu {
+  display: none;
+
+  @media (max-width: $media-query-breakpoint-small-screen) {
+    display: flex;
+  }
+}
+
+.card:hover .play-menu {
+  display: flex;
+}

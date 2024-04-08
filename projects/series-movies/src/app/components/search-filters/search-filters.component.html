@@ -1,0 +1,171 @@
+<div class="scrollbox no-scrollbar-on-mobile">
+  <div
+    class="scrollbox-content pan-allowed"
+    [style.flexWrap]="extendFilters ? 'wrap' : 'nowrap'"
+    (pandown)="extendFilters = true"
+    (panup)="extendFilters = false"
+  >
+    <!-- Filter erweitern -->
+    <button
+      *ngIf="filtersVisible$ | async"
+      [style.order]="-10"
+      class="only-icon"
+      mat-flat-button
+      (click)="expandFilters()"
+      [matTooltip]="(extendFilters ? 'FILTER.COLLAPSE' : 'FILTER.EXPAND') | translate"
+      (pandown)="extendFilters = true"
+      (panup)="extendFilters = false"
+    >
+      <mat-icon [svgIcon]="extendFilters ? 'arrow-single-up' : 'arrow-single-down'"></mat-icon>
+    </button>
+
+    <!-- Filter hinzufügen -->
+    <app-menu
+      icon="add"
+      iconBigButton="filter"
+      text="FILTER.ADD"
+      [showFilterInput]="true"
+      [style.order]="-10"
+      [menuItems]="(filtersMenu$ | async) ?? []"
+      [showBigButton]="!(filtersVisible$ | async)"
+      [groupNames]="FILTER_GROUP_NAMES_MAP"
+      [showFirstGroupName]="true"
+      [groupHighlightOnHover]="true"
+      [openMenuByRightClick]="false"
+      (onItemClick)="onAddOrRemoveFilter($event.value)"
+    ></app-menu>
+
+    <!-- Alle Filter entfernen -->
+    <button
+      [style.order]="-10"
+      *ngIf="filtersVisible$ | async"
+      class="only-icon"
+      mat-flat-button
+      (click)="removeAllFilters()"
+      [matBadge]="filtersVisible$ | async"
+      [matBadgeHidden]="((filtersVisible$ | async) ?? 0) < 1"
+      [matTooltip]="'FILTER.REMOVE_ALL_VALUE' | translate : { value: filtersVisible$ | async }"
+    >
+      <mat-icon svgIcon="clear"></mat-icon>
+    </button>
+
+    <ng-container *ngFor="let filter of filters$ | async; index as index">
+      <app-dropdown
+        *ngIf="filter.show && getFilterSelect(filter) as dropdown"
+        [data]="dropdown.data"
+        [selectedKey]="dropdown.value"
+        [blinkWhenValueSet]="true"
+        [withRemoveButton]="true"
+        (selectedKeyChange)="dropdown.value = $event; onFilterChange(dropdown, index)"
+        (onRemove)="resetFilter(dropdown); onRemoveFilter(dropdown)"
+      ></app-dropdown>
+
+      <app-dropdown-with-input
+        *ngIf="filter.show && getFilterDates(filter) as dates"
+        [style.order]="extendFilters ? 0 : -1"
+        [selectedKey]="dates.value"
+        [data]="dates.data"
+        [extraIcon]="dates.extraIcon"
+        [tooltip]="dates.texts[0]"
+        (selectedChange)="onSelectChanged($event, dates)"
+        (onRemove)="resetFilter(dates); onRemoveFilter(dates)"
+      ></app-dropdown-with-input>
+
+      <app-dropdown-with-number-range
+        *ngIf="filter.show && getFilterNumbers(filter) as numbers"
+        [style.order]="extendFilters ? 0 : -1"
+        [selectedKey]="numbers.value"
+        [data]="numbers.data"
+        [extraIcon]="numbers.extraIcon"
+        [tooltip]="numbers.texts[0]"
+        (selectedChange)="onNumbersFilterSelectChanged($event, numbers)"
+        (onRemove)="resetFilter(numbers); onRemoveFilter(numbers)"
+      ></app-dropdown-with-number-range>
+
+      <app-button-value-filter
+        *ngIf="filter.show && getFilterButtonValue(filter) as value"
+        [style.order]="value.value | orderWithValue : extendFilters"
+        [filterButton]="value"
+        (change)="onFilterChange($event, index)"
+      ></app-button-value-filter>
+
+      <app-button-tristate-filter
+        *ngIf="filter.show && getFilterButtonTristate(filter) as tristate"
+        [style.order]="tristate.value | orderWithValue : extendFilters"
+        [filterButton]="tristate"
+        (change)="tristate.value = $event; onFilterChange(tristate, index)"
+      >
+      </app-button-tristate-filter>
+
+      <app-dropdown-multiple-with-groups
+        *ngIf="filter.show && getFilterMultiSelectDynamicData(filter) as select"
+        [extraIcons]="select.extraIcons"
+        [withRemoveButton]="true"
+        [style.order]="select.value | orderWithValues : extendFilters"
+        [value]="select.value"
+        [formfieldKey]="select.key"
+        [formfieldName]="select.texts[0]"
+        [noText]="select.noAvailable ? select.texts[1] : undefined"
+        [noIcon]="select.noAvailable ? select.icons[1] : undefined"
+        noValue="no"
+        [noneText]="select.texts[2]"
+        [noneIcon]="select.icons[2]"
+        noneValue="none"
+        [chooseText]="select.texts[3]"
+        [chooseIcon]="select.icons[3]"
+        minWidth="220px"
+        [maxWidth]="isSmallScreen.matches ? '90vw' : '50vw'"
+        [groups]="(dynamicFiltersData$[select.dynamicDataIndex] | async) ?? []"
+        (onChange)="select.value = $event; onFilterChange(select, index)"
+        (onRemove)="resetFilter(select); onFilterChange(select, index)"
+      ></app-dropdown-multiple-with-groups>
+
+      <app-dropdown-multiple-with-groups
+        *ngIf="filter.show && getFilterMultiSelectSpecific(filter) as select"
+        [extraIcons]="select.extraIcons"
+        [withRemoveButton]="true"
+        [style.order]="select.value | orderWithValues : extendFilters"
+        [value]="select.value"
+        [formfieldKey]="select.key"
+        [formfieldName]="select.texts[0]"
+        [noneText]="select.texts[2]"
+        [noneIcon]="select.icons[2]"
+        noneValue="none"
+        [chooseText]="select.texts[3]"
+        [chooseIcon]="select.icons[3]"
+        minWidth="220px"
+        [maxWidth]="isSmallScreen.matches ? '90vw' : '50vw'"
+        [groups]="select.groups"
+        [cutLongOptionNames]="false"
+        [hideTextCompletlyAfterTotalCount]="3"
+        [specialOppositeValues]="select.specialOppositeValues"
+        (onChange)="select.value = $event; onFilterChange(select, index)"
+        (onRemove)="resetFilter(select); onFilterChange(select, index)"
+      ></app-dropdown-multiple-with-groups>
+
+      <app-dropdown-multiple-with-groups
+        *ngIf="filter.show && getFilterMultiSelect(filter) as select"
+        [extraIcons]="select.extraIcons"
+        [withRemoveButton]="true"
+        [style.order]="select.value | orderWithValues : extendFilters"
+        [value]="select.value"
+        [formfieldKey]="select.key"
+        [formfieldName]="select.texts[0]"
+        [noText]="select.noAvailable ? select.texts[1] : undefined"
+        [noIcon]="select.noAvailable ? select.icons[1] : undefined"
+        [noValue]="select.isString ? 'no' : -1"
+        [noneText]="select.texts[2]"
+        [noneIcon]="select.icons[2]"
+        [noneValue]="select.isString ? 'none' : 0"
+        [chooseText]="select.texts[3]"
+        [chooseIcon]="select.icons[3]"
+        minWidth="220px"
+        [maxWidth]="isSmallScreen.matches ? '90vw' : '50vw'"
+        [groups]="select.groups"
+        [hideTextCompletlyAfterTotalCount]="3"
+        (onChange)="select.value = $event; onFilterChange(select, index)"
+        (onRemove)="resetFilter(select); onFilterChange(select, index)"
+      ></app-dropdown-multiple-with-groups>
+    </ng-container>
+  </div>
+</div>

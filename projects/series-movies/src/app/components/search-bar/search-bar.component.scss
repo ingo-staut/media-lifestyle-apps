@@ -1,0 +1,62 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.fixes.scss";
+
+.search {
+  width: auto;
+  display: flex;
+  align-items: center;
+  padding: $padding-s $padding-m;
+  gap: $padding-s;
+  background-color: $primary;
+
+  // Für das Input-Element in der Suche
+  @include selection-inverted;
+}
+
+.search-input {
+  min-width: 0;
+  background: $background-1;
+  height: 40px;
+  outline: none;
+  border: none;
+  color: $text-1;
+  font-size: $text-size;
+  flex-grow: 1;
+  border-radius: 4px;
+  padding: 0 $padding-s;
+  margin-right: -50px;
+  padding-right: 40px;
+
+  &:focus {
+    color: white;
+    background: $background-2;
+  }
+
+  &:hover {
+    color: white;
+    background: $background-2;
+  }
+}
+
+.button-normal {
+  color: white;
+  background-color: $background-1;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  height: 40px;
+  padding: 0 14px; // Ca. angepasst an Angular Material
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $padding-s;
+
+  &:hover {
+    background-color: $background-2;
+  }
+}
+
+img {
+  border-radius: $border-radius;
+}

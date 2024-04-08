@@ -1,0 +1,74 @@
+$error-white-1: #f5554a; // accent mit 10% weiß
+$error-white-2: #f6695e; // accent mit 20% weiß
+$error-white-3: #f77b72; // accent mit 30% weiß
+
+$main-background: #0d1118;
+$main-background-1-disabled: #191d24; // 5%
+$main-background-1: #25282f; // 10%
+// $main-background-2: #3d4146; // Rechnerische Werte
+$main-background-2-disabled: #31343a; // 15%
+$main-background-2: #3b3e44; // 20%
+// $main-background-3: #55585d; // Rechnerische Werte
+$main-background-3-disabled: #4a4d52; // 25%
+$main-background-3: #515459; // 30%
+
+$basic-background-object: white;
+
+$background-disabled: rgba($basic-background-object, 0.05);
+$background-1: rgba($basic-background-object, 0.1);
+$background-2: rgba($basic-background-object, 0.2);
+$background-3: rgba($basic-background-object, 0.3);
+
+$text-1: rgba($basic-background-object, 0.75);
+$text-2: rgba($basic-background-object, 0.5);
+$text-3: rgba($basic-background-object, 0.25);
+
+$border-color: rgba(255, 255, 255, 0.12);
+$border-divider: 1px solid $border-color;
+
+$text-size-xxxl: 40px;
+$text-size-xxl: 36px;
+$text-size-xl: 32px;
+$text-size-l: 28px;
+$text-size-m: 22px;
+$text-size: 16px;
+$text-size-s: 14px;
+$text-size-xs: 12px;
+
+$media-query-breakpoint-big-screen: 1800px;
+$media-query-breakpoint-normal-screen: 1200px;
+$media-query-breakpoint-mobile-screen: 900px;
+$media-query-breakpoint-small-screen: 600px;
+
+$padding-l: 40px;
+$padding-m: 20px;
+$padding-s: 10px;
+$padding-xs: 5px;
+$padding-xxs: 2.5px;
+
+$scrollbar-height: 16px;
+$toolbar-height: 50px;
+$border-radius: 4px;
+
+$jump-animation: cubic-bezier(0.91, 0.8, 0.41, 1.73);
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+$shadow-material: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%),
+  0px 1px 3px 0px rgb(0 0 0 / 12%);
+$shadow-toolbar: 0px 0px 20px 0px $main-background;
+$shadow-menubar: 0px 0px 20px 0px rgba($main-background, 0.5);
+$shadow-dialog: 0px 11px 15px -7px rgba(0, 0, 0, 0.3), 0px 24px 38px 3px rgba(0, 0, 0, 0.25),
+  0px 9px 46px 8px rgb(0 0 0 / 50%);
+$shadow-small-image: 0 0 5px rgba($main-background, 0.35);
+$shadow-banner: 0px -2px 20px 0px rgba($main-background, 0.5);
+$shadow-divider: 0px 0px 5px 0px $main-background;
+
+@mixin ellipsis-lines($lines) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

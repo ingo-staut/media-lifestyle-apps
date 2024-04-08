@@ -1,0 +1,81 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+.tab-text {
+  @media (max-width: $media-query-breakpoint-mobile-screen) {
+    display: none;
+  }
+}
+
+.function-buttons {
+  padding: $padding-m $padding-m 0 $padding-m;
+  display: flex;
+  gap: $padding-s;
+}
+
+.one-column-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  height: 100%;
+}
+
+.column {
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+
+  &:hover .header .text {
+    color: $primary;
+    border-bottom: 2px solid $primary;
+  }
+
+  .header {
+    background-color: $main-background-1;
+
+    .text {
+      display: flex;
+      align-items: center;
+      min-height: 48px;
+      max-height: 48px;
+      gap: $padding-s;
+      padding: 0 $padding-m;
+      width: min-content;
+      // Platz für Border bei Hover
+      border-bottom: 2px solid transparent;
+
+      transition: all 250ms ease-in-out;
+    }
+  }
+
+  .content {
+    overflow: auto;
+  }
+}
+
+form {
+  height: 100%;
+}
+
+.swipe-region {
+  flex: 1 1 auto;
+}
+
+.spacer-padding-m {
+  height: $padding-m;
+}
+
+.quick-buy-items {
+  flex-wrap: wrap;
+  padding-top: 0px;
+}
+
+.sticky-is-pinned .quick-buy-items {
+  flex-wrap: nowrap;
+}

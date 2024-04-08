@@ -1,0 +1,34 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+:host {
+  overflow: hidden;
+  border-radius: $border-radius;
+}
+
+.bigger-dropout {
+  padding-right: 150px;
+  margin-right: -150px;
+}
+
+.select.mat-mdc-select-invalid {
+  margin-bottom: -2px;
+  border-bottom: 2px solid $error;
+}
+
+.error {
+  color: $error;
+  line-height: 110%;
+  margin-block-start: 4px;
+  margin-block-end: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-size: $text-size;
+}
+
+img {
+  border-radius: $border-radius;
+
+  margin-left: 1px;
+  margin-right: 17px;
+}

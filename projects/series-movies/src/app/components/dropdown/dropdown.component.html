@@ -1,0 +1,61 @@
+<div
+  [style.lineHeight]="0"
+  tabindex="0"
+  [ngClass]="{
+    background: withRemoveButton,
+    blinking: blinkWhenValueSet && selectedValue && withRemoveButton,
+    'with-value': blinkWhenValueSet && selectedValue && withRemoveButton && !selected.color
+  }"
+  [style.backgroundColor]="withRemoveButton ? selected.color : undefined"
+>
+  <mat-select
+    matRipple
+    [disabled]="disabled"
+    [matRippleDisabled]="disabled ?? false"
+    [value]="selectedKey"
+    [matTooltip]="tooltip || selected.tooltip || selected.name | translate"
+    [ngClass]="{
+      normal: !isSmall,
+      small: isSmall,
+      'without-background': !withBackground || withRemoveButton,
+      'with-clear-button': withRemoveButton,
+      'no-background-color': withRemoveButton,
+    }"
+    [style.backgroundColor]="withRemoveButton ? undefined : selected.color"
+    [tabIndex]="tabIndex"
+    (valueChange)="onSelectChanged($event)"
+  >
+    <mat-select-trigger [ngClass]="{ small: isSmall }">
+      <mat-icon
+        *ngIf="selected.icon"
+        [svgIcon]="selected.icon"
+        class="medium without-button"
+      ></mat-icon>
+      <img *ngIf="selected.image" height="16" width="16" loading="lazy" [src]="selected.image" />
+      <span>
+        {{ selected.name | translate }}
+      </span>
+    </mat-select-trigger>
+
+    <mat-option *ngFor="let menuEntry of data" [value]="menuEntry.key" color="primary">
+      <mat-icon
+        *ngIf="menuEntry.icon"
+        [svgIcon]="menuEntry.icon"
+        class="medium without-button"
+      ></mat-icon>
+      <img *ngIf="menuEntry.image" height="16" width="16" loading="lazy" [src]="menuEntry.image" />
+      {{ menuEntry.name | translate }}
+    </mat-option>
+  </mat-select>
+
+  <button
+    *ngIf="withRemoveButton"
+    mat-button
+    class="only-icon"
+    tabindex="-1"
+    [matTooltip]="'ACTION.REMOVE' | translate"
+    (click)="onRemoveClick($event)"
+  >
+    <mat-icon svgIcon="clear"></mat-icon>
+  </button>
+</div>

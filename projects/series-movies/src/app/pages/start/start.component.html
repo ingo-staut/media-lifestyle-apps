@@ -1,0 +1,172 @@
+<app-sidenav class="container">
+  <app-carousel
+    [items]="(mediaSuggestionService.mediaSuggestionsForCarousel$ | async)!"
+    height="40vh"
+    minHeight="200px"
+    (actionClick)="onActionClickInCarousel($event)"
+    (actionSearchClick)="onActionSearchClickInCarousel($event)"
+  ></app-carousel>
+
+  <section *ngIf="!(noTabData$ | async)">
+    <div class="title with-buttons">
+      <div class="buttons" [style.width.px]="30">
+        <show-television-program-button
+          *ngIf="tabDates[(selectedTabIndex$ | async)!]"
+          [date]="tabDates[(selectedTabIndex$ | async)!]"
+          [locale]="localeService.locale$ | async"
+        ></show-television-program-button>
+
+        <show-television-program-button
+          *ngIf="!tabDates[(selectedTabIndex$ | async)!]"
+          [multipleDays]="14"
+          [locale]="localeService.locale$ | async"
+        ></show-television-program-button>
+      </div>
+
+      <mat-tab-group
+        class="tabs-only-icons-in-mobile main-background-1 sticky"
+        mat-stretch-tabs="false"
+        mat-align-tabs="center"
+        [style.zIndex]="50"
+        [selectedIndex]="selectedTabIndex$ | async"
+        (selectedTabChange)="onTabChange($event.index)"
+      >
+        <mat-tab *ngFor="let tab of tabs" [disabled]="!(tab.data | async)!.length">
+          <ng-template mat-tab-label>
+            <mat-icon class="tab-icon" [svgIcon]="tab.icon"></mat-icon>
+            <span class="tab-text">{{ tab.name | translate }}</span>
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+
+      <div class="buttons" [style.width.px]="30">
+        <app-button-show-in-search [key]="showInSearchOptions[(selectedTabIndex$ | async)!]" />
+      </div>
+    </div>
+
+    <div class="scrollbox">
+      <section
+        class="scrollbox-content"
+        [style.paddingLeft.px]="(selectedTabIndex$ | async) === 2 ? 0 : 20"
+      >
+        <ng-container *ngFor="let media of mediaInTelevision$ | async; index as index">
+          <mat-divider
+            *ngIf="media.showDivider && index !== 0"
+            class="divider-vertical-20px"
+            [vertical]="true"
+          ></mat-divider>
+
+          <div *ngIf="media.showDivider && media.date" class="details-container">
+            <div class="details">
+              <span
+                class="day"
+                [matTooltip]="
+                  (media.date | date : 'shortDate' : '' : (localeService.locale$ | async)!) ?? ''
+                "
+                [style.marginLeft.px]="5"
+              >
+                {{
+                  media.date!
+                    | date
+                      : (isSmallScreen.matches ? "EEEEEE" : "EEEE")
+                      : ""
+                      : (localeService.locale$ | async)!
+                }}
+              </span>
+
+              <span
+                class="in-x-days"
+                [matTooltip]="
+                  (media.date | date : 'shortDate' : '' : (localeService.locale$ | async)!) ?? ''
+                "
+                [style.marginLeft.px]="4"
+              >
+                {{
+                  media.date | formatDate : (localeService.locale$ | async)! : { onlyDate: true }
+                }}
+              </span>
+
+              <show-television-program-button
+                [date]="media.date"
+                [locale]="localeService.locale$ | async"
+              ></show-television-program-button>
+            </div>
+          </div>
+
+          <app-media-chip
+            [media]="media.media"
+            [episodeInTV]="media.media._episodeInTelevision"
+            [timeInsteadOfDateOnEpisodeInTV]="true"
+            [mediaToExplore]="media.media.isExplore"
+          ></app-media-chip>
+        </ng-container>
+      </section>
+    </div>
+  </section>
+
+  <section *ngIf="(media$ | async)?.length && !isProduction">
+    <div class="title only-text">
+      <mat-icon svgIcon="series" class="medium"></mat-icon>
+      {{ "ALL" | translate }}
+    </div>
+
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <app-media-chip *ngFor="let media of media$ | async" [media]="media"></app-media-chip>
+      </section>
+    </div>
+  </section>
+
+  <section *ngIf="(favoriteMedia$ | async)?.length">
+    <div class="title only-text">
+      <mat-icon svgIcon="favorite" class="medium"></mat-icon>
+      {{ "FAVORITE.S" | translate }}
+
+      <div class="buttons right">
+        <app-button-show-in-search key="FAVORITE" />
+      </div>
+    </div>
+
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <!-- Film und Serien mit Status "Explore" mit IMDb-Bewertung, Sprache, ... -->
+        <app-media-chip
+          *ngFor="let media of favoriteMedia$ | async"
+          [mediaToExplore]="media.isExplore || media.isMovie"
+          [media]="media"
+        ></app-media-chip>
+      </section>
+    </div>
+  </section>
+
+  <section *ngIf="(lastEditedMedia$ | async)?.length">
+    <div class="title only-text">
+      <mat-icon svgIcon="last-edited" class="medium"></mat-icon>
+      {{ "LAST_EDITED" | translate
+      }}{{
+        ((lastEditedMedia$ | async)![0].lastEditedDate | isToday)
+          ? ""
+          : ": " +
+            ((lastEditedMedia$ | async)![0].lastEditedDate
+              | formatDate : (localeService.locale$ | async)! : { onlyDate: true })
+      }}
+
+      <div class="buttons right">
+        <app-button-show-in-search
+          *ngIf="(lastEditedMedia$ | async)![0].lastEditedDate as date"
+          key="LAST_EDITED_VALUE"
+          [valueReplace]="(date | daysBetweenDates : today).toString()"
+        />
+      </div>
+    </div>
+
+    <div class="scrollbox">
+      <section class="scrollbox-content">
+        <app-media-chip
+          *ngFor="let media of lastEditedMedia$ | async"
+          [media]="media"
+        ></app-media-chip>
+      </section>
+    </div>
+  </section>
+</app-sidenav>

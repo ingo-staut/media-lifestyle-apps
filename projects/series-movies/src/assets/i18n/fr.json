@@ -1,0 +1,915 @@
+{
+  "LANGUAGE": {
+    "": "Langue",
+    "S": "Langues",
+    "NOT": "Pas de langue",
+    "CHOOSE": "Choisir la langue ...",
+    "EN": "Anglais",
+    "DE": "Allemand",
+    "FR": "Français",
+    "ES": "Espagnol",
+    "IT": "Italie",
+    "KO": "Coréen",
+    "SV": "Suédois",
+    "JA": "Japonais"
+  },
+  "COUNTRY": {
+    "": "Pay",
+    "S": "Pays",
+    "NOT": "Pas de pays",
+    "CHOOSE": "Choisir un pays ..."
+  },
+
+  "Ernährung": "Alimentation",
+  "Start": "Start",
+  "Statistiken": "Statistiques",
+  "Anschauen": "Regarder",
+  "Entdecken": "Découvrir",
+  "Nachrichten": "Nouvelles",
+  "Suche": "Recherche",
+  "Import": "Import",
+
+  "MEDIA": {
+    "": "Entertainment",
+    "SIMILAR": "Séries et films similaires",
+    "OPEN": "Ouvrir la série / le film",
+    "TOP": "Top séries / films",
+    "TOP_CURRENT": "Top séries / films actuels",
+    "OLD_BUT_GOLD": "Séries / films anciens mais de qualité",
+    "EAGERLY_AWAITED": "Séries / films attendus avec impatience",
+    "TYPE": "Type de média"
+  },
+  "WATCH": "Regarder",
+  "WATCH_VALUE": "Regarder {{ value }}",
+  "CONTINUE_WATCHING": "Continuer à regarder",
+  "NEW_EPISODES": "Nouveaux épisodes",
+  "START_OF_SERIES_AND_SEASONS": "Lancement de séries et de saisons",
+  "START_OF_SERIES": "Début de la série",
+  "START_OF_SEASON": "Début de la saison",
+  "SEASON_FINALE": "Finale de la saison",
+  "NEW_IN_STREAM": "Nouveau en streaming",
+  "NEXT_IN_TELEVISION": "Prochainement à la télévision",
+  "SERIES_AND_MOVIES": "Séries et films",
+  "SERIES": {
+    "": "Séries",
+    "S": "Séries",
+    "NEW": "Nouvelle série",
+    "ADD": "Ajouter une série",
+    "CREATE": "créer une série",
+    "OPEN": "Ouvrir la série",
+    "REMOVE_ALL": "Supprimer toutes les séries",
+    "REMOVE_ALL_VALUE": "Supprimer toutes les séries ({{ value }})",
+    "FILTER": "Filtrer les séries",
+    "DELETE": "supprimer des séries",
+    "TOP": "Top séries",
+    "TOP_CURRENT": "Top séries actuels",
+    "OLD_BUT_GOLD": "Séries anciens mais de qualité",
+    "FROM_SEARCH": "Série de recherche",
+    "FROM_URL": "Série de URL",
+    "FROM_TEXT": "Série de texte",
+    "DELETE_ACTION": {
+      "TITLE": "Supprimer la série ?",
+      "TEXT": "Faut-il vraiment supprimer la série «{{ name }}» ?"
+    }
+  },
+  "MOVIE": {
+    "": "Film",
+    "S": "Films",
+    "NEW": "Nouveau film",
+    "ADD": "Ajouter un film",
+    "CREATE": "créer un film",
+    "OPEN": "Ouvrir le film",
+    "REMOVE_ALL": "Supprimer tous les films",
+    "REMOVE_ALL_VALUE": "Supprimer tous les films ({{ value }})",
+    "FILTER": "Filtrer les films",
+    "DELETE": "Supprimer un film",
+    "TOP": "Top films",
+    "TOP_CURRENT": "Top films actuels",
+    "OLD_BUT_GOLD": "Films anciens mais de qualité",
+    "FROM_SEARCH": "Film de recherche",
+    "FROM_URL": "Film de URL",
+    "FROM_TEXT": "Film de texte",
+    "DELETE_ACTION": {
+      "TITLE": "Supprimer le film ?",
+      "TEXT": "Faut-il vraiment supprimer le FIlm «{{ name }}» ?"
+    }
+  },
+  "LIVESTREAM": "Livestream",
+  "STREAM": {
+    "": "Stream",
+    "S": "Streams",
+    "SERVICE": {
+      "": "Fournisseur de streaming",
+      "S": "Fournisseurs de streaming"
+    }
+  },
+  "MEDIA_LIBRARY": {
+    "": "Médiathèque",
+    "S": "Médiathèques"
+  },
+  "CHANNEL": {
+    "": "Chaîne",
+    "S": "Chaînes",
+    "ONLY": "Chaînes uniquement",
+    "CHOOSE": "Choisir une chaîne ...",
+    "NONE": "Aucune chaîne",
+    "TYPE": {
+      "": "Type de chaîne",
+      "NONE": "Pas de type de chaîne",
+      "CHOOSE": "Choisir le type de chaîne ..."
+    },
+    "EDIT": "Modifier la chaîne",
+    "ADD": "Ajouter une chaîne",
+    "TELEVISION": {
+      "": "Chaîne de télévision",
+      "S": "Chaînes de télévision",
+      "ONLY": "Chaînes de télévision uniquement",
+      "CHOOSE": "Choisir une chaîne de télévision ...",
+      "NONE": "Aucune chaîne de télévision"
+    }
+  },
+  "CINEMA": {
+    "": "Cinéma",
+    "S": "Cinémas",
+    "IN": "Au cinéma",
+    "CURRENTLY_IN": "Actuellement au cinéma",
+    "NEXT_IN": "Prochainement au cinéma",
+    "ADD": "Ajouter un cinéma",
+    "EDIT": "Modifier le cinéma",
+    "VISIT": "Visite au cinéma",
+    "VISIT_NOT": "Pas de sortie au cinéma"
+  },
+  "TELEVISION": {
+    "": "Télévision",
+    "IN": "À la télévisionn",
+    "WITH": "Avec la télévision",
+    "WITHOUT": "Sans télévision",
+    "NOT": "Pas de télévision",
+    "ADD": "Ajouter une télévision",
+    "EDIT": "Modifier la télévision",
+    "EPISODES": "Épisodes à la télévision",
+    "NO_EPISODES": "Pas d'épisodes à la télévision",
+    "PROGRAM": "Programme de télévision"
+  },
+  "AUTOMATIC": {
+    "": "Automatique",
+    "NOT": "Non automatique"
+  },
+  "READ": {
+    "": "Lu",
+    "NOT": "Pas lu",
+    "MARK": "Marquer comme lu",
+    "MARK_ALL": "Marquer tout comme lu",
+    "MARKED": "Marqué comme lu"
+  },
+  "NEWS": {
+    "": "Nouvelles",
+    "S": "Nouvelles",
+    "NO": "Pas de nouvelles",
+    "MARKED_READ": "Nouvelles marquées comme lues !",
+    "MEDIA": "Actualités avec séries / films",
+    "HIDE": "Masquer les nouvelles",
+    "HIDE_TERMS_VALUE": "Les nouvelles avec {{ value }} sont cachées !",
+    "HIDE_FROM": "Cacher des nouvelles",
+    "SHOW_IN": "Afficher dans les actualités"
+  },
+  "REPORTAGE_MAGAZINE": "Reportage / Magazine",
+  "INTERNATIONAL": { "": "International", "NOT": "Pas international" },
+  "INTERNATIONAL_DETAILS": "Pas DE, USA ou UK",
+  "EAGERLY_AWAITED": "Attendu avec impatience",
+  "NEW_THIS_WEEK": "Nouveau cette semaine",
+  "FUTURE": {
+    "": "Futur",
+    "IN": "Dans le futur"
+  },
+  "WATCHED": "Regardé",
+  "NOT_WATCHED": "Pas regardé",
+  "DID_NOT_TAKE_PLACE": "N'a pas eu lieu",
+  "EPISODE": {
+    "": "Épisode",
+    "SHORT": "Ep.",
+    "S": {
+      "": "Épisodes",
+      "SPECIAL": "Épisodes spéciaux",
+      "SPECIAL_WITH": "Avec épisodes spéciaux",
+      "SPECIAL_WITHOUT": "Sans épisodes spéciaux",
+      "DETAILS": "Détails des épisodes",
+      "DETAILS_WITH": "Avec les détails des épisodes",
+      "DETAILS_WITHOUT": "Sans les détails des épisodes",
+      "WRAP": "Sauter des épisodes",
+      "NOWRAP": "Ne pas sauter les épisodes",
+      "PER_TIME": "Épisodes par temps"
+    },
+    "CURRENT": "Épisode actuel",
+    "SET_AS_CURRENT": "Définir comme épisode actuel",
+    "SPECIAL": "Épisode spécial",
+    "DETAILS": "Détails de l'épisode",
+    "RESET": "Réinitialiser l'épisode",
+    "NEXT": "Prochain épisode",
+    "NEXT_MULTIPLE": "Plusieurs épisodes plus loin",
+    "NEXT_EPISODE_IN_TELEVISION_VALUE": "Prochain épisode {{ episode }} de la série «{{ name }}» mis à la télévision !",
+    "PREVIOUS": "Épisode précédent",
+    "PREVIOUS_EPISODE_IN_TELEVISION_VALUE": "Épisode précédent {{ episode }} de la série «{{ name }}» mis à la télévision !",
+    "NUMBERING": "Numérotation des épisodes",
+    "CONSECUTIVE_NUMBERING": "Numérotation continue des épisodes",
+    "NUMBERING_PER_SEASON": "Numérotation des épisodes par saison",
+    "TO_CURRENT": "Vers l'épisode actuel",
+    "ADD": "Ajouter un épisode"
+  },
+  "CONSECUTIVE_NUMBERING": "Numérotation continue",
+  "NUMBERING_PER_SEASON": "Numérotation par saison",
+  "SEASON": {
+    "": "Saison",
+    "S": "Saisons",
+    "SPECIAL": "Saison spécial",
+    "SPECIALS": "Saison spéciaux",
+    "TYPE": "Type de saison",
+    "ADD": "Ajouter une saison",
+    "EDIT": "Modifier la saison",
+    "SHORT": "S.",
+    "CONTAINS_EPISODE_DETAILS_VALUE": "La saison contient {{ value }} épisodes avec détails !",
+    "CONTAINS_EPISODE_DETAILS": "La saison contient des épisodes avec des détails !",
+    "DO_NOT_DELETE": "Ne pas supprimer la saison"
+  },
+  "SEASON_AND_EPISODE": "Saison et épisode",
+  "SEASONS_AND_EPISODES": "Saisons et épisodes",
+  "SEASON_AND_EPISODE_PLACEHOLDER": "Espace réservé aux saisons et aux épisodes",
+  "RUNTIME": {
+    "": "Durée",
+    "NOT": "Pas de durée",
+    "WITH": "Avec durée",
+    "WITHOUT": "Sans durée"
+  },
+  "YEAR": {
+    "": "Année",
+    "S": "Années",
+    "S_NOT": "Pas d'années",
+    "PUBLICATION": "Année de publication",
+    "START": {
+      "": "Année de début",
+      "WITH": "Avec année de début",
+      "WITHOUT": "Sans année de début"
+    },
+    "END": {
+      "": "Année de fin",
+      "WITH": "Avec année de fin",
+      "WITHOUT": "Sans année de fin"
+    },
+    "PER_SEASON": "Année par saison",
+    "NOT_PER_SEASON": "Pas d'année par saison",
+    "PLACEHOLDER": "Espace réservé à l'année"
+  },
+  "TAGLINE": {
+    "": "Slogan",
+    "WITH": "Avec slogan",
+    "WITHOUT": "Sans slogan"
+  },
+  "STATUS": {
+    "": "Statut",
+    "CHOOSE": "Choisir le statut ...",
+    "CURRENT": "En cours",
+    "STARTED": "Commencé",
+    "EXPLORE": "Découvrir",
+    "SEASON_END": "Fin de saison",
+    "SERIES_END": "Fin de série",
+    "WATCHED": "Regardé"
+  },
+  "REWATCH": "Regarder à nouveau",
+  "WATCH_UNTIL": "Regarder jusqu'à",
+  "AVAILABLE_UNTIL": "Disponible jusqu'au",
+  "AVAILABLE_UNTIL_NOT": "Non disponible jusqu'à la date",
+  "SOON_NO_LONGER_AVAILABLE": "Bientôt plus disponible",
+  "ALL": "Tous",
+  "LIVE": {
+    "": "Live",
+    "NOT": "Pas live"
+  },
+  "GENRE": {
+    "": "Genre",
+    "S": "Genres",
+    "ADD": "Ajouter genre",
+    "NO": "Pas de genres",
+    "CHOOSE": "Choisir le genre ...",
+    "ADVENTURE": "Aventure",
+    "ACTION": "Action",
+    "ANIMATION": "Animation",
+    "ANIME": "Anime",
+    "COMEDY": "Comédie",
+    "CRIME": "Policier",
+    "DOCUMENTARY": "Documentation",
+    "DRAMA": "Drame",
+    "FANTASY": "Fantasy",
+    "HORROR": "Horreur",
+    "COOKING_SHOW": "Émission de cuisine",
+    "LGBTQ": "LGBTQ+",
+    "MYSTERY": "Mystère",
+    "PODCAST": "Podcast",
+    "QUIZ": "Quiz",
+    "ROMANCE": "Romance",
+    "SCIENCE_FICTION": "Sci-Fi",
+    "SPORT": "Sport",
+    "THRILLER": "Thriller",
+    "TV_SHOW": "Émission de télévision",
+    "TALKSHOW": "Talk-show",
+    "GAMING": "Jeu",
+    "TEENIE": "Adolescent",
+    "POLITICS": "Politique",
+    "NEWS": "Actualités",
+    "SPY": "Espionnage"
+  },
+  "EVENT": {
+    "": "Événement",
+    "S": "Événements",
+    "ONLY_ONE": "Un seul événement"
+  },
+
+  "MENU": {
+    "": "Menu",
+    "START": "Start",
+    "STATISTICS": "Statistiques",
+    "SEARCH": "Recherche"
+  },
+  "SEARCH": {
+    "": "Rechercher",
+    "INPUT": "Rechercher ...",
+    "FOR": "Rechercher {{ value }}",
+    "FOR_WITH_QUOTATION_MARK": "Rechercher «{{ value }}»",
+    "CLOSE": "Fermer la recherche",
+    "CLEAR_INPUT": "Vider le champ de recherche",
+    "SHOW_IN": "Afficher dans la recherche"
+  },
+  "FILTER": {
+    "ADD": "Ajouter un filtre",
+    "CHOOSE": "Choisir un filtre ...",
+    "COLLAPSE": "Replier le filtre",
+    "EXPAND": "Déplier le filtre",
+    "REMOVE": "Supprimer le filtre",
+    "REMOVE_ALL": "Supprimer tous les filtres",
+    "REMOVE_ALL_VALUE": "Supprimer tous les filtres ({{ value }})",
+    "SUGGESTION_SENTENCE": {
+      "SET_FILTER_AS": "Définir le filtre comme",
+      "OR": "ou",
+      "TO_FIND_MEDIA": "pour trouver des séries ou des films !"
+    },
+    "REMOVE_SEARCH_TEXT": "Supprimer le texte de recherche"
+  },
+  "FAVORITE": {
+    "": "Favori",
+    "S": "Favoris",
+    "NO": "Pas de favori",
+    "ADD": "Marquer comme favori",
+    "REMOVED": "Le favori a été supprimé !"
+  },
+  "LINK": {
+    "": "Liens",
+    "NO": "Pas de liens",
+    "MEDIA": "Lier une série / un film",
+    "LINKED_MEDIA": "Séries / films liés",
+    "NO_LINKED_MEDIA": "Aucune série / aucun film lié(e)",
+    "REMOVE": "Supprimer le lien",
+    "ADD": "Ajouter un lien"
+  },
+  "NOTE": {
+    "": "Note",
+    "S": "Notes",
+    "NO": "Pas de note",
+    "REMOVE": "Supprimer la note",
+    "ADD": "Ajouter une note",
+    "EDIT": "Modifier la note",
+    "EDIT_TEXT": "Modifier la note ou laisser la zone de texte vide pour la supprimer",
+    "TYPE": "Type de note"
+  },
+  "RATING": {
+    "": "Évaluation",
+    "NO": "Pas de notation",
+    "NOT": "Pas évalué",
+    "CHOOSE": "Choisir la notation ...",
+    "GOOD": "Bon",
+    "GOOD_MIDDLE": "Moyennement bon",
+    "GOOD_NOT": "Mauvais",
+    "ADD": "Ajouter une évaluation",
+    "EDIT": "Modifier l'évaluation",
+    "IMDB": {
+      "": "Évaluation IMDb",
+      "NO": "Pas d'évaluation IMDb",
+      "WITH": "Avec évaluation IMDb",
+      "WITHOUT": "Sans évaluation IMDb"
+    },
+    "METASCORE": {
+      "": "Évaluation Metascore",
+      "NO": "Pas d'évaluation Metascore",
+      "WITH": "Avec évaluation Metascore",
+      "WITHOUT": "Sans évaluation Metascore"
+    },
+    "WATCHABILITY": {
+      "": "Évaluation de l'intérêt",
+      "NO": "Pas d'évaluation de l'intérêt",
+      "WITH": "Avec évaluation de l'intérêt",
+      "WITHOUT": "Sans évaluation de l'intérêt"
+    }
+  },
+  "FIELD": {
+    "MANDATORY": "Champ obligatoire",
+    "CLEAR": "Vider le champ",
+    "NOT_SET": "Champ non défini",
+    "ERROR_TEXT": {
+      "MANDATORY": "{{ formfieldName }} est un champ obligatoire",
+      "MAX_LENGTH": "{{ formfieldName }} ne doit pas dépasser {{ maxLength }}. caractères de longueur",
+      "MIN_LENGTH": "{{ formfieldName }} doit contenir au moins {{ minLength }}. caractères de long",
+      "MAX": "{{ formfieldName }} ne doit pas dépasser {{ max }}. {{ suffixShort }}",
+      "MIN": "{{ formfieldName }} doit être au moins {{ min }} {{ suffixShort }}",
+      "PATTERN": "{{ formfieldName }} possède une structure incorrecte"
+    }
+  },
+  "COUNT": {
+    "UP": "Incrémenter",
+    "DOWN": "Compter vers le bas"
+  },
+  "TIME": {
+    "": "Heure",
+    "CLOCK": "Heure",
+    "MIN": "Temps minimum",
+    "MAX": "Temps maximum",
+    "MINUTES": "Minutes",
+    "MINUTES_SHORT": "min.",
+    "CURRENT": "Heure actuelle",
+    "CHOOSE": "Choisir l'heure ...",
+    "START": "Heure de début",
+    "END": "Heure de fin",
+    "END_DELETE": "Supprimer l'heure de fin",
+    "S_EDIT": "Éditer les temps",
+    "EDIT": "Modifier l'heure"
+  },
+  "DETAIL": {
+    "": "Détail",
+    "S": {
+      "": "Détails",
+      "EDIT": "Modifier les détails",
+      "HIDE": "Masquer les détails",
+      "REMOVE_ALL": "Supprimer tous les détails"
+    }
+  },
+  "ERROR": {
+    "NO_RESULTS": "Aucun résultat trouvé !",
+    "ALL_DATA_WILL_BE_LOADED": "Toutes les données de la base seront chargées !",
+    "NO_EVENTS_FOR_THIS_DAY": "Il n'y a pas d'heures pour ce jour.",
+    "NO_SUITABLE_EVENTS_FOR_THIS_DAY": "Il n'y a pas d'heures appropriées pour ce jour."
+  },
+  "SUGGESTION": {
+    "": "Suggestion",
+    "MOVIE": "Suggestion de film",
+    "SERIES": "Suggestion de série",
+    "S": "Suggestions",
+    "S_MOVIE": "Suggestions de films",
+    "S_SERIES": "Suggestions de séries",
+    "RANDOM": {
+      "": "Suggestion aléatoire",
+      "MOVIE": "Suggestion de film aléatoire",
+      "SERIES": "Suggestion de série au hasard"
+    },
+    "BEST_RANKED_MEDIA": "Séries et films bien notés",
+    "WORST_RANKED_MEDIA": "Séries et films mal notés",
+    "GOOD_MOVIES_GENRE_VALUE": "Regarder de bonnes films {{ value }}",
+    "GOOD_MOVIES_WATCH_UNTIL_VALUE": "Regarder de bonnes films jusqu'à {{ value }}",
+    "MOVIES_DISCOVERY_SOURCE_VALUE": "Voir les films découverts chez {{ value }}"
+  },
+  "EXPLORE": {
+    "": "Découvrir",
+    "MOVIE": "Découvrir un film",
+    "SERIES": "Découvrir une série"
+  },
+  "NOTIFICATION": {
+    "SAVED_TO_CLIPBOARD": "Copié avec succès dans le presse-papier !",
+    "URL_SAVED_TO_CLIPBOARD_VALUE": "{{ value }} URL copiée avec succès dans le presse-papier !",
+    "SAVING_SUCCESS": "Sauvé avec succès !",
+    "SAVING_SUCCESS_VALUE": "{{ value }} a été sauvegardé avec succès !",
+    "DELETE_SUCCESS": "Supprimé avec succès !",
+    "DELETE_SUCCESS_VALUE": "{{ value }} a été supprimé avec succès !",
+    "SAVING_ERROR": "Il y a eu une erreur lors de l'enregistrement !",
+    "DELETE_ERROR": "Il y a eu une erreur lors de la suppression !",
+    "DELETE_ALL_ENTRIES": "Toutes les entrées ont été supprimées !",
+    "MEDIA_WAS_CHANGED": "Les données ont été modifiées !",
+    "MEDIA_NOT_FOUND": "La média n'a pas été trouvée !",
+    "MEDIA_ALREADY_LINKED": "La média est déjà liée !",
+    "MEDIA_ALREADY_MEDIA": "La série / le film existe déjà !",
+    "MEDIA_ALREADY_EXISTS_VALUE": "La série / le film existe déjà en tant que «{{ value }}» !",
+    "DATA_WAS_CHANGED": "Les données ont été modifiées !",
+    "NO_BACK_LOCATION_FOUND": "Il n'a pas été possible de naviguer en arrière. Au lieu de cela, on a été redirigé vers la page d'accueil",
+    "VERSION_READY": "Une nouvelle version est disponible !",
+    "DETAILS": "Détails : {{ details }}",
+    "QUICKADD_NOTHING_FOUND": "Rien n'a pu être interprété ou trouvé !",
+    "NO_URL_FOUND": "Aucune URL trouvée !",
+    "SAVING_NOT_ALLOWED_WITH_VALUE": "{{ value }} n'a pas pu être sauvegardé !",
+    "SAVING_NOT_NEEDED_WITH_VALUE": "Inutile de sauvegarder {{ value }} !",
+    "CAN_NOT_EDIT_VALUE": "{{ value }} ne peut pas être traité !",
+    "TIME_EXISTS_ALREADY": "Le temps existe déjà !",
+    "TIME_END_IS_BEFORE_START": "L'heure de fin est antérieure à l'heure de début !",
+    "TIME_DELETED_FROM_DAYS": "L'heure a été supprimée de {{ value }} !",
+    "TIME_ADDED_TO_DAYS": "L'heure a été ajouté à {{ value }} !",
+    "WATCHED_VALUE_DELETE_TELEVISION": "{{ value }} et la télévision a été supprimée !",
+    "WATCHED_VALUE_RESTORED_TELEVISION": "{{ value }} et la télévision a été restaurée !",
+    "NO_EVENTS_SEASON_END": "Aucun nouvel événement. La saison est terminée !",
+    "MEDIA_TYPE_NOT_SAME": "Le type de média ne correspond pas !",
+    "ACTION": {
+      "UNDO": "Annuler",
+      "RELOAD": "Recharger",
+      "LOAD_NEW_DATA": "Charger de nouvelles données"
+    }
+  },
+  "ACTION": {
+    "KEEP": "Conserver",
+    "DISCARD": "Rejeter",
+    "ADD": "Ajouter",
+    "CLOSE": "Fermer",
+    "SAVE": "Sauver",
+    "REMOVE": "Retirer",
+    "DELETE": "Supprimer",
+    "DELETE_ALL": "Supprimer tout",
+    "EDIT": "Modifier",
+    "CANCEL": "Annuler",
+    "APPLY": "Appliquer"
+  },
+  "DELETE": {
+    " ?": "Doit être supprimé ?",
+    " !": "Sera supprimé !"
+  },
+  "DIALOG": {
+    "PENDING_CHANGES": {
+      "TITLE": "Conserver les modifications ?",
+      "TEXT": "Il y a des modifications non enregistrées qui seraient perdues. Faut-il les conserver ?"
+    }
+  },
+  "DATE": {
+    "": "Date",
+    "WITH": "Avec date",
+    "MISSED": "Manqué",
+    "BEFORE_YESTERDAY": "Avant-hier",
+    "YESTERDAY": "Hier",
+    "TODAY": "Aujourd'hui",
+    "TOMORROW": "Demain",
+    "AFTER_TOMORROW": "Après-demain",
+    "MULTIPLE": "Plusieurs fois",
+    "NEXT_X_DAYS": "Prochains {{ days }} jours",
+    "PREVIOUS_X_DAYS": "Précédents {{ days }} jours",
+    "NEXT_3_DAYS": "Prochains 3 jours",
+    "NEXT_7_DAYS": "Prochains 7 jours",
+    "NEXT_31_DAYS": "Prochains 31 jours",
+    "FAR_FUTURE": "Futur lointain",
+    "THIS_WEEK": "Cette semaine",
+    "THIS_MONTH": "Ce mois",
+    "LAST_MONTH": "Dernier mois",
+    "PREVIOUS_MONTH": "Mois précédent",
+    "COMPLETE_MONTH": "Mois complet",
+    "THIS_YEAR": "Cette année",
+    "NEXT_YEAR": "L'année prochaine",
+    "PREVIOUS_YEAR": "Année précédente",
+    "NEXT_X_YEARS": "Prochains {{ value }} années",
+    "PREVIOUS_X_YEARS": "Précédentes {{ value }} ans",
+    "DATE_RANGE": "Période ...",
+    "CHOOSE_RANGE": "Choisir la période...",
+    "WITH_RANGE": "Avec période",
+    "CHOOSE": "Choisir la date ...",
+    "START": "Date de début",
+    "END": "Date de fin",
+    "CURRENT": "Date actuelle",
+    "WITH_TODAY": "Avec la date d'aujourd'hui",
+    "USE_UNTIL": "Utiliser jusqu'à",
+    "WEEK_RHYTHM": "Rythme hebdomadaire",
+    "WEEKLY": "Hebdomadaire",
+    "WEEKLY_VALUE": "Toutes les {{ value }} semaines",
+    "WEEKS": "Semaines",
+    "WEEKS_SHORT": "Sem."
+  },
+  "SETTINGS": {
+    "": "Paramètres",
+    "APPLICATION": {
+      "": "Application",
+      "ACCORDIONS": {
+        "": "Groupes de contenu",
+        "INITIALLY_OPEN": "Tous les {{ value }}-accordéons initialement ouverts"
+      },
+      "TABS": {
+        "": "Menus",
+        "INITIALLY_OPEN": "Onglet initialement ouvert à {{ value }}"
+      },
+      "DIALOGS": {
+        "": "Dialogues",
+        "EDIT_INGREDIENT_IN_LIST": "Modifier l'ingrédient dans la liste en ligne",
+        "EDIT_INGREDIENT_IN_TAGS": "Éditer l'ingrédient dans les tags en dialogue",
+        "EDIT_UTENSIL_IN_TAGS": "Modifier l'ustensile dans les tags en dialogue"
+      }
+    },
+    "LANGUAGE_AND_REGION": "Langue & région",
+    "ABOUT": "A propos de",
+    "HELP": "Aide",
+    "KEYMAP": "Raccourcis clavier",
+    "VERSION": "Version",
+    "VERSION_CURRENT": "Version actuelle",
+    "VERSION_HISTORY": "Historique de la version",
+    "COPYRIGHT": "Copyright",
+    "RAW_DATA": "Données brutes",
+    "MOBILE": "Mobile",
+    "DESKTOP": "Bureau",
+    "DB": "Base de données",
+    "DB_LOADED_DATA": "Données chargées",
+    "DB_CHANGES": "Modifications de la base de données",
+    "DB_CHANGES_APPLY": "Appliquer les modifications de la base de données",
+    "DB_OPEN_IN": "Ouvrir dans la base de données",
+    "DB_COPY_TO_PROD": "Copier vers la base de données de production",
+    "DB_COPY_TO_DEV": "Copier vers la base de données de développement",
+    "DATA_CURRENT": "Données actuelles",
+    "DATA_IN_DB": "Données dans la base de données",
+    "DOWNLOAD": "Télécharger",
+    "DOWNLOAD_DATA": "Télécharger les données",
+    "DOWNLOAD_ALL": "Télécharger toutes les données",
+    "DOWNLOAD_ALL_VALUE": "Télécharger toutes les {{ value }}",
+    "REQUESTS": "Requêtes API",
+    "REQUEST_DATA": "Interroger les données",
+    "REQUEST_VALUE": "{{ value }} requête",
+    "TESTING": "Tester",
+    "IMPORT": "Importer",
+    "IMPORT_ACTION": "Importer",
+    "IMPORT_ACTION_AND_SAVE": "Importer et sauvegarder",
+    "TEST_MESSAGE": "Message de test",
+    "TEST_MESSAGE_WITH_DURATION": "Message de test avec durée"
+  },
+  "ALPHABET": "Alphabet",
+  "SORT": {
+    "SEARCH_RESULTS": "Résultats de recherche par pertinence",
+    "CUSTOM": "Tri personnalisé",
+    "DESC_VALUE": "{{ value }} décroissant",
+    "ASC_VALUE": "{{ value }} croissant"
+  },
+  "INSTRUCTION": {
+    "": "Étape de préparation",
+    "S": "Étapes de la préparation",
+    "ADD": "Ajouter une étape de préparation",
+    "EDIT": "Modifier l'étape de préparation"
+  },
+  "QUICKADD": {
+    "": "Ajout rapide",
+    "WITH": "Avec ajout rapide",
+    "WITHOUT": "Sans ajout rapide",
+    "ADD": "Ajouter {{ value }}",
+    "REPLACE_OR_ADD": {
+      "TITLE": "Remplacer ce qui existe ?",
+      "TEXT": "Il existe déjà {{ amount }}. {{ value }}. Faut-il les remplacer ou ajouter les nouveaux {{ value }} ?"
+    }
+  },
+  "LAYOUT": {
+    "": "Mise en page",
+    "GRID": "Grille",
+    "GRID_DESCRIPTION": "Grille avec détails",
+    "LIST": "Liste",
+    "LIST_DESCRIPTION": "Liste avec colonnes"
+  },
+  "CONVERSION": {
+    "": "Conversion d'ingrédient",
+    "S": "Conversions d'ingrédients",
+    "VALUES": "Valeurs de conversion",
+    "SHORT": "Conversion",
+    "ADD": "Ajouter une conversion d'ingrédients",
+    "ADD_SHORT": "Ajouter une conversion",
+    "ADD_WITH_VALUE": "Ajouter une conversion d'ingrédients pour «{{ value }}»",
+    "EDIT": "Modifier la conversion d'ingrédients"
+  },
+  "STORE": {
+    "": "Magasin",
+    "S": "Magasins",
+    "ADD": "Ajouter un magasin",
+    "ADD_WITH_VALUE": "Ajouter un magasin «{{ value }}»",
+    "EDIT": "Modifier el magasin",
+    "EDIT_WITH_VALUE": "Modifier el magasin «{{ value }}»",
+    "DELETE_ACTION": {
+      "TITLE": "Supprimer le magasin ?",
+      "TEXT": "Voulez-vous vraiment supprimer le magasin ?"
+    }
+  },
+  "UNTIL": "Jusqu'à",
+  "REPLACE_OR_ADD": "Remplacer l'existant ou en ajouter un ?",
+  "REPLACE_OR_ADD_VALUE": "Remplacer l'existant ({{ value }}) ou ajouter ?",
+  "REPLACE": {
+    "": "Remplacer",
+    "ALL": "Remplacer tout",
+    "TITLE_FOR_URL": "Remplacer le titre pour l'URL",
+    "SPACES": "Remplacer les espaces",
+    "SPACES_IN_TITLE": "Remplacer les espaces dans le titre",
+    "SPACES_ONLY": "Remplacer uniquement les espaces",
+    "SPACES_AND_LOWERCASE": "Remplacer les espaces et les petits caractères"
+  },
+  "ADD": {
+    "": "Ajouter",
+    "ALL": "Ajouter tout",
+    "ALL_OR_REPLACE": "Ajouter ou remplacer tout",
+    "OR_REPLACE": "Ajouter ou remplacer"
+  },
+  "COUNT_UP_OR_ADD": "Incrémenter l'existant ou en ajouter un ?",
+  "COUNT_UP_OR_ADD_VALUE": "Incrémenter l'existant ({{ value }}) ou ajouter ?",
+  "RESULTS": "Résultats",
+  "SHARE": "Partager",
+  "NOTHING": "Rien",
+  "BACK": "Retour",
+  "RESET": "Réinitialiser",
+  "LAST_EDITED": "Dernièrement édité",
+  "CREATED": "Créé",
+  "CREATE": "Créer",
+  "COLLAPSE_ALL": "Réduire tout",
+  "EXPAND_ALL": "Développer tout",
+  "SHOW_ERRORS": "Afficher les erreurs",
+  "ERRORS": "Erreurs",
+  "TITLE": "Titre",
+  "TITLE_ORIGINAL": "Titre original",
+  "IMAGE": {
+    "": "Image",
+    "S": "Images",
+    "NO": "Pas d'image",
+    "PREVIEW": "Image d'aperçu",
+    "HEADER": "Image d'en-tête"
+  },
+  "ALTERNATIVE_NAMES": "Noms alternatifs",
+  "SEARCH_TERMS": "Termes de recherche",
+  "SEARCH_RESULTS": "Résultats de recherche",
+  "EFFORT": "Effort",
+  "REMOVE_ALL": "Enlever tout",
+  "REMOVE_ALL_VALUE": "Enlever tout ({{ value }})",
+  "OPTIONAL": "Facultatif",
+  "OPTIONAL_NO": "Non facultatif",
+  "MOVE": "Déplacer",
+  "AMOUNT": "Quantité",
+  "AMOUNT_ADD": "Ajouter une quantité",
+  "AMOUNT_EDIT": "Modifier la quantité",
+  "UNIT": "Unité",
+  "FACTOR": "Facteur",
+  "HIDE": "Masquer",
+  "SHOW": "Afficher",
+  "CHOOSE": "Choisir ...",
+  "BUY": "Acheter",
+  "LIST": {
+    "": "Liste",
+    "S": "Liste"
+  },
+  "TAGS": "Mots-clés",
+  "TAGS_NO": "Aucun mot-clé",
+  "ADD_TAG": "Ajouter un mot-clé",
+  "URL": {
+    "": "URL",
+    "S": {
+      "": "URLs",
+      "INFO": "URLs d'information",
+      "WATCH": "URLs de visionnage",
+      "VIDEO": "URLs de vidéo",
+      "NOT": {
+        "INFO": "Pas d'URL d'information",
+        "WATCH": "Pas d'URL de visionnage",
+        "VIDEO": "Pas d'URL de vidéo"
+      },
+      "CHOOSE": {
+        "INFO": "Choisir des URLs d'information ...",
+        "WATCH": "Choisir des URLs de visionnage ...",
+        "VIDEO": "Choisir des URLs de vidéo..."
+      }
+    },
+    "NOT": "Pas d'URL",
+    "CHOOSE": "Choisir des URLs ...",
+    "INFO": "URL d'information",
+    "WATCH": "URL de visionnage",
+    "VIDEO": "URL de la vidéo",
+    "LIVE": "URL en direct",
+    "SOURCE": "URL de la source",
+    "EDIT": "Modifier l'URL",
+    "OPEN": "Ouvrir l'URL",
+    "OPEN_ON_DEVICE": "Ouvrir l'URL sur l'appareil",
+    "OPEN_ON_OTHER_DEVICE": "Ouvrir l'URL sur un autre appareil",
+    "ADD": {
+      "": "Ajouter une URL",
+      "INFO": "Ajouter une URL d'information",
+      "WATCH": "Ajouter une URL de visualisation",
+      "VIDEO": "Ajouter une URL vidéo"
+    },
+    "TYPE": {
+      "": "Type d'URL",
+      "NONE": "Aucun type d'URL",
+      "TRAILER": "Trailer",
+      "INTRO": "Intro",
+      "CRITIC_REVIEW": "Critique / Revue",
+      "NEWS": "Nouvelles"
+    },
+    "ADD_AS_INFO_URL": "Ajouter comme info-url",
+    "ADD_AS_INFO_URL_AND_MARK_AS_READ": "Ajouter comme info-url et marquer comme lu"
+  },
+  "CLIPBOARD": {
+    "ADD": {
+      "": "Insérer depuis le presse-papiers",
+      "URL": "Insérer URL depuis presse-papier"
+    },
+    "COPY": {
+      "": "Copier dans le presse-papiers",
+      "ID": "Copier l'ID dans le presse-papier",
+      "VALUE": "Copier {{ value }} dans le presse-papiers"
+    }
+  },
+  "DO_NOT_FILTER": "Ne pas filtrer",
+  "THEME": {
+    "VALENTINE": "Jour de la Saint-Valentin",
+    "NEW_YEAR": "Nouvel an",
+    "BIRTHDAY": "Anniversaire",
+    "CHRISTMAS": "Noël",
+    "HALLOWEEN": "Halloween",
+    "EASTER": "Pâques",
+    "PRIDE": "Fierté"
+  },
+  "RESET_TIMER": "Réinitialiser la minuterie",
+  "RESET_WINDOW": "Réinitialiser la fenêtre",
+  "CLICK_TO_SEARCH": "Cliquer pour rechercher",
+  "MIN_OR_MAX_VALUE": "Valeur minimale ou maximale",
+  "HIDE_OR_SHOW_NULL_VALUE": "Afficher/masquer les valeurs nulles",
+  "HIDE_OR_SHOW_NULL_VALUE_HINT": "La valeur 0 correspond à «aucune valeur», la valeur 1 correspond à «une valeur». Tout ce qui est supérieur à la valeur 1 peut être réglé avec un minimum et un maximum",
+  "MIN_SHORT": "Min.",
+  "MAX_SHORT": "Max.",
+  "LOAD_MORE": "Charger plus",
+  "LOAD_ALL": "Charger tout",
+  "CHANGED_DATA": "Données modifiées",
+  "ADD_TO": "Ajouter {{ value }} ?",
+  "SEARCHENGINE": {
+    "": "Moteur de recherche",
+    "S": "Moteurs de recherche",
+    "ADD": "Ajouter un moteur de recherche",
+    "EDIT": "Modifier le moteur de recherche"
+  },
+  "QUICK_ACCESS": {
+    "": "Accès rapide",
+    "WITH": "Avec accès rapide",
+    "WITHOUT": "Sans accès rapide"
+  },
+  "EMOJI": "Emoji",
+  "PAUSE": "Pause",
+  "PAUSED": "Fait une pause",
+  "PREVIOUS": "Précédent",
+  "NEXT": "Suivant",
+  "SELECT": {
+    "": "Sélectionner",
+    "SELECTION": "Sélectionner",
+    "ALL": "Sélectionner tout",
+    "DESELECT": "Désélectionner",
+    "DESELECT_ALL": "Désélectionner tout",
+    "INVERT": "Inverser la sélection",
+    "NO": "Pas de sélection"
+  },
+  "MORE": "Plus",
+  "SHOW_MORE": "Afficher plus",
+  "SHOW_LESS": "Afficher moins",
+  "DESCRIPTION": {
+    "": "Description",
+    "SHOW": "Afficher la description",
+    "HIDE": "Masquer la description"
+  },
+  "ZIP_FOLDER": "Dossier ZIP",
+  "WITH_ZIP_FOLDER": "Avec le dossier ZIP",
+  "MULTISELECT": {
+    "": "Sélection multiple",
+    "S": "Sélections multiples"
+  },
+  "WITH_SPECIFIC_VALUE": "Avec une valeur spécifiée",
+  "CONTAIN": "Contient",
+  "AND": "et",
+  "AT": "sur",
+  "ADD_VALUE": "Ajouter {{ value }}",
+  "EDIT_VALUE": "Modifier {{ value }}",
+  "DVD": {
+    "": "DVD",
+    "AVAILABLE": "DVD disponible",
+    "NOT_AVAILABLE": "DVD non disponible"
+  },
+  "PRICE": "Prix",
+  "AD": {
+    "": "Publicité",
+    "WITH": "Avec publicité",
+    "WITHOUT": "Sans publicité"
+  },
+  "KEEP_FIRST_ENTRY": "Conserver la première entrée",
+  "KEEP_FIRST_TWO_ENTRIES": "Conserver les deux premières entrées",
+  "IS_SET_AUTOMATICALLY": "Est défini automatiquement",
+  "INFORMATION": {
+    "": "Information",
+    "S": "Informations"
+  },
+  "CATEGORY": {
+    "": "Catégorie",
+    "NO": "Pas de catégorie",
+    "CHOOSE": "Choisir la catégorie ..."
+  },
+  "SPLIT_MULTIPLE_WITH_SEMICOLON": "Séparer plusieurs par un point-virgule («;»)",
+  "TERM": {
+    "": "Terme",
+    "S": "Termes"
+  },
+  "PLAYLIST": "liste de lecture",
+  "DISCOVERY_SOURCE": {
+    "": "Source de découverte",
+    "S": "Sources de découverte",
+    "NOT": "Pas de source de découverte",
+    "CHOOSE": "Choisir une source de découverte ...",
+    "FROM": "A partir de sources de découverte",
+    "FURTHER": "Autres sources de découverte"
+  }
+}

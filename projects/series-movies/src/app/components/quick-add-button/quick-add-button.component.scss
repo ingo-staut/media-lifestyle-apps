@@ -1,0 +1,62 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+:host {
+  display: flex;
+}
+
+.icon-at-end {
+  /* right: 0; */
+  order: 10;
+  margin-left: 8px;
+  margin-right: -4px;
+}
+
+button {
+  &.no-padding-right {
+    padding-right: 0px !important;
+  }
+
+  &.small-padding {
+    padding-left: $padding-xs !important;
+    padding-right: $padding-xs !important;
+  }
+
+  &.equal {
+    border-left: 2px solid $primary;
+  }
+}
+
+$wpie-animation-duration: 2s;
+
+.wipe-animation {
+  background: linear-gradient(135deg, $primary 40%, $primary-white-3 50%, $primary 60%);
+  background-size: 600% 600%;
+
+  -webkit-animation: wipe-background-animation $wpie-animation-duration ease infinite;
+  -moz-animation: wipe-background-animation $wpie-animation-duration ease infinite;
+  animation: wipe-background-animation $wpie-animation-duration ease infinite;
+}
+
+.wipe-animation-error {
+  background: linear-gradient(135deg, $error 40%, $error-white-3 50%, $error 60%);
+  background-size: 600% 600%;
+
+  -webkit-animation: wipe-background-animation $wpie-animation-duration ease infinite;
+  -moz-animation: wipe-background-animation $wpie-animation-duration ease infinite;
+  animation: wipe-background-animation $wpie-animation-duration ease infinite;
+}
+
+img {
+  object-fit: contain;
+}
+
+.sticky-buttons {
+  position: sticky;
+  left: 0;
+  background-color: $main-background;
+  box-shadow: 0px 0px 5px 5px $main-background;
+  z-index: 10;
+  display: flex;
+  gap: $padding-s;
+}

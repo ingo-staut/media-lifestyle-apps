@@ -1,0 +1,120 @@
+<div *ngIf="ingredient.useUntil && show" [formGroup]="formGroup">
+  <input
+    *ngIf="!showDatePickerPopoutOnRightSide"
+    class="date-input"
+    [formControlName]="'date'"
+    [matDatepicker]="picker"
+    [disabled]="true"
+    readonly
+  />
+
+  <button
+    *ngIf="ingredient.useUntil | predefinedDateRangeItem as item"
+    mat-flat-button
+    class="only-icon medium"
+    [color]="item.color"
+    [matTooltip]="
+      (item.name | translate) +
+      ' (' +
+      (ingredient.useUntil
+        | formatDate
+          : (localeService.locale$ | async)!
+          : { onlyDate: true, onlyDateDetail: true }) +
+      ')'
+    "
+    (click)="$event.stopPropagation(); picker.open()"
+  >
+    <mat-icon *ngIf="item.icon" [svgIcon]="item.icon"></mat-icon>
+  </button>
+
+  <!-- Datumsfeld -->
+  <mat-datepicker
+    #picker
+    [style.display]="'none'"
+    [panelClass]="'margin-top-right-10'"
+    [dateClass]="dateClass"
+    [touchUi]="isMobileScreen.matches"
+  >
+    <mat-datepicker-actions>
+      <!-- Button: Übernehmen -->
+      <button
+        mat-flat-button
+        matDatepickerApply
+        color="primary"
+        class="only-icon"
+        [matTooltip]="'ACTION.APPLY' | translate"
+      >
+        <mat-icon svgIcon="check"></mat-icon>
+      </button>
+
+      <!-- Button: Löschen -->
+      <button
+        mat-flat-button
+        color="warn"
+        class="only-icon"
+        [matTooltip]="'ACTION.REMOVE' | translate"
+        (click)="onRemoveDate()"
+      >
+        <mat-icon svgIcon="delete"></mat-icon>
+      </button>
+
+      <!-- Button: In drei Tagen -->
+      <button
+        mat-flat-button
+        class="only-icon"
+        [matTooltip]="
+          inThreeDays
+            | formatDate : (localeService.locale$ | async)! : { onlyDate: true, strict: true }
+        "
+        (click)="onInThreeDays()"
+      >
+        <mat-icon svgIcon="calendar-3-days"></mat-icon>
+      </button>
+
+      <!-- Button: In einer Woche -->
+      <button
+        mat-flat-button
+        class="only-icon"
+        [matTooltip]="
+          inOneWeek
+            | formatDate : (localeService.locale$ | async)! : { onlyDate: true, strict: true }
+        "
+        (click)="onInOneWeek()"
+      >
+        <mat-icon svgIcon="calendar-week"></mat-icon>
+      </button>
+
+      <!-- Button: In einem Monat -->
+      <button
+        mat-flat-button
+        class="only-icon"
+        [matTooltip]="
+          inOneMonth
+            | formatDate : (localeService.locale$ | async)! : { onlyDate: true, strict: true }
+        "
+        (click)="onInOneMonth()"
+      >
+        <mat-icon svgIcon="calendar-month"></mat-icon>
+      </button>
+
+      <!-- Abbrechen -->
+      <button
+        mat-flat-button
+        matDatepickerCancel
+        class="only-icon"
+        [matTooltip]="'ACTION.CANCEL' | translate"
+      >
+        <mat-icon svgIcon="clear"></mat-icon>
+      </button>
+    </mat-datepicker-actions>
+  </mat-datepicker>
+
+  <input
+    *ngIf="showDatePickerPopoutOnRightSide"
+    class="date-input"
+    [formControlName]="'date'"
+    [matDatepicker]="picker"
+    [disabled]="true"
+    readonly
+  />
+</div>

@@ -1,0 +1,75 @@
+<div
+  *ngIf="utensil | utensilText : utensilObjects as utensilText"
+  cdkDrag
+  [ngClass]="{
+    'list-item': true,
+    'not-editable': !editable,
+    blinking
+  }"
+  [cdkDragDisabled]="isMobileScreen.matches || !editable"
+>
+  <ng-container *ngIf="editable">
+    <div class="drag-placeholder" *cdkDragPlaceholder></div>
+  </ng-container>
+
+  <!-- Verschieben: Nur am Symbol -->
+  <mat-icon
+    *ngIf="isMobileScreen.matches && editable && moveable"
+    svgIcon="drag"
+    [matTooltip]="'MOVE' | translate"
+    class="grab medium"
+    cdkDragHandle
+  ></mat-icon>
+
+  <!-- Verschieben: Überall -->
+  <mat-icon
+    *ngIf="!isMobileScreen.matches && editable && moveable"
+    svgIcon="drag"
+    [matTooltip]="'MOVE' | translate"
+    class="grab medium"
+  ></mat-icon>
+
+  <!-- Titel -->
+  <button class="button-with-no-style" [matTooltip]="utensilText" (click)="onEdit()">
+    <mat-icon *ngIf="utensil | utensilIcon : utensilObjects as icon" [svgIcon]="icon"></mat-icon>
+    <span>
+      {{ utensilText }}
+    </span>
+  </button>
+
+  <!-- Funktionsbuttons rechts -->
+  <div class="buttons">
+    <!-- Button: Utensil -->
+    <button
+      *ngIf="showUtensilButton && (utensil | utensil : utensilObjects) as object"
+      mat-flat-button
+      class="only-icon medium"
+      [matTooltip]="'UTENSIL_OBJECT.EDIT' | translate"
+      (click)="onEditUtensilObject(object)"
+    >
+      <mat-icon svgIcon="utensil"> </mat-icon>
+    </button>
+
+    <!-- Button: Entfernen -->
+    <button
+      *ngIf="editable || removeable"
+      mat-flat-button
+      class="only-icon medium"
+      [matTooltip]="'ACTION.REMOVE' | translate"
+      (click)="onDelete()"
+    >
+      <mat-icon svgIcon="delete"></mat-icon>
+    </button>
+
+    <!-- Button: Bearbeiten -->
+    <button
+      *ngIf="editable && showEditButton"
+      mat-flat-button
+      class="only-icon medium"
+      [matTooltip]="'ACTION.EDIT' | translate"
+      (click)="onEdit()"
+    >
+      <mat-icon svgIcon="edit"></mat-icon>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,103 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: $padding-s;
+  overflow: auto;
+  padding-bottom: $padding-xs;
+}
+
+.drag-placeholder {
+  border-radius: $border-radius;
+  border: 2px dotted $background-2;
+  width: calc(100% - 16px);
+  min-height: 36px;
+}
+
+.button-with-no-style {
+  font-size: $text-size;
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  overflow: hidden;
+  gap: $padding-s;
+}
+
+.button {
+  display: flex;
+  background-color: $main-background-2;
+  align-items: center;
+  border-radius: $border-radius;
+  gap: $padding-s;
+  padding: $padding-s;
+  cursor: pointer;
+
+  flex-shrink: 0;
+
+  &:hover {
+    background-color: $main-background-3;
+    color: white;
+
+    button {
+      color: white;
+    }
+  }
+
+  &.add-value {
+    color: white;
+    padding: $padding-s;
+    margin-bottom: $padding-s;
+    background: $primary;
+    font-size: 16px;
+    letter-spacing: normal;
+
+    animation: appear 0.35s ease-in-out, appear-grow 0.25s ease-in-out,
+      blinking-white-on-primary 1s ease-in-out 0.5s 4;
+  }
+}
+
+@keyframes appear-grow {
+  0% {
+    height: 0px;
+  }
+  100% {
+    height: 30px;
+  }
+}
+
+.drag {
+  color: $text-1;
+  flex-shrink: 0;
+  height: 30px;
+  cursor: grab;
+
+  &:hover {
+    color: white;
+  }
+}
+
+.text {
+  flex-grow: 1;
+  letter-spacing: normal;
+  font-weight: normal;
+
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  word-wrap: break-word;
+  line-height: normal;
+}
+
+.count-buttons {
+  display: flex;
+  gap: $padding-xs;
+  margin-right: $padding-s;
+}
+
+img {
+  height: 100px;
+  width: 100px;
+  object-fit: contain;
+}

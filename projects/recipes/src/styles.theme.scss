@@ -1,0 +1,67 @@
+@use "@angular/material" as mat;
+
+@include mat.core();
+
+$md-recipe: (
+  50: #ebf4e0,
+  100: #cee3b3,
+  200: #add080,
+  300: #8cbd4d,
+  400: #73ae26,
+  500: #5aa000,
+  600: #529800,
+  700: #488e00,
+  800: #3f8400,
+  900: #2e7300,
+  A100: #beffa1,
+  A200: #9bff6e,
+  A400: #78ff3b,
+  A700: #66ff22,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$recipes-primary: mat.define-palette($md-recipe, 500);
+$recipes-accent: mat.define-palette($md-recipe, 500);
+$recipes-warn: mat.define-palette(mat.$red-palette);
+
+$recipes-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $recipes-primary,
+      accent: $recipes-accent,
+      warn: $recipes-warn,
+    ),
+  )
+);
+
+@include mat.all-component-themes($recipes-theme);
+
+$primary: #5aa000;
+$accent: #5aa000;
+$error: #f44336;
+$success: #5aa000;
+$info: #0f91a5;
+$warning: #e38800;
+
+$primary-white-1: #66b219; // primary mit 10% weiß
+$primary-white-2: #77bb33; // primary mit 20% weiß
+$primary-white-3: #88c34c; // primary mit 30% weiß
+
+$accent-white-1: #66b219; // accent mit 10% weiß
+$accent-white-2: #77bb33; // accent mit 20% weiß
+$accent-white-3: #88c34c; // accent mit 30% weiß

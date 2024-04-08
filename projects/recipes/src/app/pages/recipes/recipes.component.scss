@@ -1,0 +1,35 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+section {
+  .title {
+    background-color: $main-background-1;
+    height: 50px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: $shadow-toolbar;
+
+    &.only-text {
+      display: flex;
+      align-items: center;
+      gap: $padding-s;
+      padding: 0px $padding-m;
+    }
+
+    > mat-tab-group {
+      margin-left: auto;
+    }
+
+    > button {
+      margin-left: auto;
+    }
+  }
+
+  div.buttons {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: $padding-s;
+  }
+}

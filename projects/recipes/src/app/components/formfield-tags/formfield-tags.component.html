@@ -1,0 +1,50 @@
+<div
+  [formGroup]="parentFormGroup"
+  [ngClass]="{ 'scrollbox no-scrollbar-on-mobile touch-action': true, 'no-padding': !withPadding }"
+>
+  <div [ngClass]="{ 'scrollbox-content touch-action': true, 'no-padding': !withPadding }">
+    <div [ngClass]="{ 'sticky-function-buttons touch-action': true, 'no-padding': !withPadding }">
+      <app-add
+        class="touch-action"
+        [addIconWhenBigButton]="addIconWhenBigButton"
+        [isNoContent]="!tags.length"
+        [value]="addValue"
+        [placeholder]="'ADD_TAG' | translate"
+        [smallerWidth]="true"
+        [completerList]="completerList"
+        (add)="add($event)"
+      ></app-add>
+      <button
+        *ngIf="tags.length"
+        class="only-icon"
+        mat-flat-button
+        [matBadge]="tags.length"
+        [matBadgeHidden]="tags.length < 1"
+        [matTooltip]="'REMOVE_ALL_VALUE' | translate : { value: tags.length }"
+        (click)="onRemoveAll()"
+      >
+        <mat-icon svgIcon="clear"></mat-icon>
+      </button>
+    </div>
+    <div
+      [ngClass]="{ chip: true, blinking: blinkingIndex > index }"
+      *ngFor="let tag of tags; index as index"
+    >
+      <button
+        mat-button
+        class="text"
+        [matTooltip]="tag"
+        [innerHTML]="tag | translate | extendText : searchText ?? '' : '<mark>' : '</mark>'"
+        (click)="edit(tag)"
+      ></button>
+      <button
+        mat-button
+        class="only-icon clear-button"
+        (click)="remove(tag)"
+        [matTooltip]="'ACTION.REMOVE' | translate"
+      >
+        <mat-icon svgIcon="clear"></mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

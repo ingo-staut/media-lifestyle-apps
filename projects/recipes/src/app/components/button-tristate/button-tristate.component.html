@@ -1,0 +1,12 @@
+<button
+  mat-flat-button
+  [ngClass]="{ 'only-icon': onlyIcon }"
+  [color]="color"
+  [matTooltip]="tooltip | translate"
+  [tabindex]="tabIndex"
+  (click)="onClick()"
+  (contextmenu)="onRightClick($event)"
+>
+  <mat-icon [svgIcon]="icons[index]"></mat-icon>
+  {{ text | translate }}
+</button>

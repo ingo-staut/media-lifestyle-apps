@@ -1,0 +1,19 @@
+<app-menu
+  icon="television-program"
+  header="text"
+  headerIcon="television-program"
+  [classList]="['medium']"
+  [noBackground]="true"
+  [tooltip]="
+    multipleDays
+      ? ('TELEVISION.PROGRAM' | translate) +
+        ': ' +
+        ('DATE.NEXT_X_DAYS' | translate : { days: multipleDays })
+      : ('TELEVISION.PROGRAM' | translate) +
+        ': ' +
+        (date | formatDate : (localeService.locale$ | async)! : { onlyDate: true })
+  "
+  [menuItems]="menuItems"
+  [openMenuByRightClick]="false"
+  (onItemClick)="click($event)"
+></app-menu>

@@ -1,0 +1,7 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+// Grünes Häckchen am Ende der Option
+.checkmark {
+  margin-left: $padding-m;
+}

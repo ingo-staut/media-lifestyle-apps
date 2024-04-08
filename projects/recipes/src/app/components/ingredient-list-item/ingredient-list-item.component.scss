@@ -1,0 +1,154 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+.list-item {
+  background-color: $main-background-1;
+  border-radius: $border-radius;
+
+  display: flex;
+  flex-direction: column;
+  box-shadow: $shadow-material;
+
+  touch-action: auto !important;
+
+  .button-with-no-style {
+    color: $text-1;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    text-align: left;
+    flex: 1 1;
+    font-size: 16px;
+    height: 100%;
+    cursor: pointer;
+  }
+
+  &.not-editable {
+    background-color: $main-background-1-disabled;
+
+    .button-with-no-style {
+      cursor: default;
+    }
+  }
+
+  &.checkable {
+    .button-with-no-style {
+      cursor: pointer;
+    }
+  }
+
+  &:hover:not(.not-editable):not(.checked) {
+    background-color: $main-background-2-disabled;
+
+    span {
+      color: white;
+    }
+
+    .item-type {
+      color: white;
+    }
+  }
+
+  &.checked {
+    background-color: $main-background-1-disabled;
+
+    &:hover {
+      background-color: $main-background-1;
+
+      span {
+        color: $text-2;
+      }
+    }
+
+    span {
+      text-decoration: line-through;
+      text-decoration-color: currentColor;
+      color: $text-3;
+    }
+  }
+}
+
+.list-item-line {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0px $padding-s;
+  gap: $padding-s;
+  height: 50px;
+}
+
+.scrollbox-content {
+  padding: 0 $padding-s;
+}
+
+.grab {
+  cursor: grab;
+  flex-shrink: 0;
+  color: $text-1;
+
+  &:hover {
+    color: white;
+  }
+}
+
+.item-type {
+  flex-shrink: 0;
+  color: $text-1;
+}
+
+.edit {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+  gap: $padding-s;
+
+  @media (max-width: $media-query-breakpoint-small-screen) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.buttons {
+  // width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: $padding-s;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 1;
+
+  @media (max-width: $media-query-breakpoint-small-screen) {
+    flex-wrap: wrap;
+  }
+}
+
+.date-input {
+  max-width: 0;
+  padding: 0px;
+  margin: 0px;
+  background: transparent;
+  border: none;
+  outline: none;
+  border-left: $border-divider; // Von Mat-Divider
+  cursor: default;
+}
+
+.drag-placeholder {
+  background: transparent;
+  border: dotted 1px $background-3;
+  border-radius: $border-radius;
+  min-height: 50px;
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+img.store {
+  object-fit: contain;
+  max-width: 40px;
+}
+
+button.store {
+  padding-left: $padding-xs;
+  padding-right: $padding-xs;
+}

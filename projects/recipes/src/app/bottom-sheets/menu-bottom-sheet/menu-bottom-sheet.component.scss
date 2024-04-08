@@ -1,0 +1,92 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+// WORKAROUND: Globaler Style fuktioniert nicht
+.highlight {
+  color: $primary !important;
+}
+
+button {
+  border-radius: $border-radius;
+}
+
+input {
+  outline: none;
+  border: none;
+  color: white;
+  background-color: $main-background-2;
+  padding: 0 $padding-s;
+  height: 40px;
+  width: 100%;
+  border-radius: $border-radius;
+  font-size: $text-size;
+  cursor: text;
+
+  &:hover,
+  &:focus {
+    background-color: $main-background-2;
+  }
+}
+
+img {
+  margin-right: 16px;
+  min-height: 18px;
+  max-height: 18px;
+  min-width: 18px;
+  max-width: 18px;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: $padding-xs;
+  align-items: flex-start;
+
+  padding: $padding-s 0;
+
+  flex-grow: 1;
+
+  .descriptive-text {
+    color: $text-2;
+    font-size: $text-size-xs;
+    word-break: break-all;
+
+    strong {
+      color: white;
+      font-weight: bold;
+    }
+  }
+}
+
+.search-container {
+  padding-top: $padding-m;
+  padding-bottom: $padding-s;
+  background-color: $main-background-1;
+  position: sticky;
+  top: 0px;
+  z-index: 5;
+  display: flex;
+  gap: $padding-s;
+}
+
+.menu-section-title {
+  display: flex;
+  align-items: center;
+
+  color: $text-1;
+  background: $main-background-1;
+}
+
+.menu-button {
+  .text {
+    color: $text-1;
+  }
+
+  mat-icon {
+    color: $text-1;
+  }
+}
+
+.extra-icon {
+  margin-right: 0px !important;
+}

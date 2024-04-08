@@ -1,0 +1,6 @@
+<div *ngIf="sortKey | showColumn : columns" class="column-content">
+  <div *ngIf="show" class="value" [matTooltip]="tooltip ?? text ?? ''">
+    <mat-icon [svgIcon]="icon" class="medium without-button"></mat-icon>
+    <span>{{ text ?? "" }}</span>
+  </div>
+</div>

@@ -1,0 +1,161 @@
+<div [ngClass]="{ container: true, optional: instructionIsOptional }">
+  <app-add-remove
+    *ngIf="editable"
+    addText="INGREDIENT.ADD"
+    removeText="REMOVE_ALL_VALUE"
+    class="sticky sticky-can-pin"
+    addIconWhenBigButton="ingredient"
+    [badge]="ingredients.length"
+    [isNoContent]="!ingredients.length"
+    [addButtonId]="addButtonId"
+    [doNotCloseAfterReturn]="true"
+    [completerList]="
+      ingredientConversionCompleterService.completerListIngredientsConversionNames$ | async
+    "
+    [inputInfoText]="inputInfoText"
+    (add)="onAdd($event)"
+    (removeAll)="onRemoveAll()"
+    (openDialog)="onOpenAddIngredientDialog()"
+    (valueChange)="onAddValueChanged($event)"
+  >
+    <app-list-header
+      [title]="showInstructionTitle"
+      [optional]="instructionIsOptional"
+      (click)="openById.emit(instructionId)"
+    />
+
+    <ng-content select="[afterAddAndRemove]"></ng-content>
+
+    <app-selection-buttons
+      *ngIf="showSearchSelectionOption"
+      [list]="ingredients"
+      [equalFunction]="equalFunction"
+      buttonText="SEARCH.SHOW_IN"
+      buttonIcon="search-show-in"
+      buttonApplyText="SEARCH.FOR"
+      buttonApplyIcon="search-show-in"
+      [buttonApplyTextReplace]="'INGREDIENT.S.' | translate"
+      [(isSelectionMode)]="isSelectionMode"
+      [(selected)]="selectedIngredients"
+      (apply)="searchApply.emit(selectedIngredients)"
+    >
+    </app-selection-buttons>
+
+    <mat-divider
+      *ngIf="showSearchSelectionOption"
+      class="divider-vertical-20px"
+      [vertical]="true"
+    ></mat-divider>
+
+    <ng-content select="[filter]"></ng-content>
+
+    <app-menu-sort
+      *ngIf="sortData && sortData.length"
+      [data]="sortData"
+      [defaultSortType]="SortType.SORT_CUSTOM"
+      [sortType]="sortType"
+      [sortingDirection]="sortingDirection"
+      [buttonWithText]="!isMobileScreen.matches"
+      [buttonWithTextIfDefaultSortType]="false"
+      (sortingDirectionChange)="onChangeSortDirection($event)"
+      (sortTypeChange)="onChangeSortType($event)"
+    ></app-menu-sort>
+
+    <app-add
+      *ngIf="showSearch"
+      addIcon="search"
+      [text]="'SEARCH.' | translate"
+      [placeholder]="'SEARCH.INPUT' | translate"
+      [doNotCloseAfterReturn]="true"
+      [askIfCloseIfDiscard]="true"
+      [doNotBlurIfTextInInput]="true"
+      [doNotCleanInputAfterReturn]="true"
+      [smallerWidth]="true"
+      (valueChange)="searchText = $event"
+    >
+    </app-add>
+  </app-add-remove>
+
+  <app-selection-options-list
+    *ngIf="showSearchSelectionOption && isSelectionMode"
+    [list]="ingredients"
+    [equalFunction]="equalFunction"
+    [(selected)]="selectedIngredients"
+  >
+  </app-selection-options-list>
+
+  <div
+    *ngIf="!showSearchSelectionOption || !isSelectionMode"
+    cdkDropList
+    [ngClass]="{ list: true, 'not-editable': !editable }"
+    [style.marginTop.px]="marginTop ?? 'unset'"
+    [cdkDropListData]="ingredients"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <ng-container *ngFor="let ingredient of ingredients; index as index">
+      <!-- Abschnittsüberschrift mit Zubereitungsschritt -->
+      <ng-container
+        *ngIf="
+          showInstructionTitleInBetween &&
+          ingredient.fromWithInstruction?.length &&
+          getNextIntructionTitle(
+            (ingredient.fromWithInstruction[0].id ?? '' | instructionById : instructions)?.name ??
+              ''
+          ) as title
+        "
+      >
+        <app-list-header
+          [title]="title"
+          [marginLeft]="0"
+          (click)="openById.emit(ingredient.fromWithInstruction[0].id)"
+        />
+      </ng-container>
+
+      <!-- Zutat -->
+      <app-ingredient-list-item
+        *ngIf="
+          ((searchText &&
+            (ingredient | ingredient : (localeService.locale$ | async)! : ingredientsConversion)
+              .toLowerCase()
+              .includes(searchText.trim().toLowerCase())) ||
+            !searchText) &&
+          ((showIngredient &&
+            (ingredient
+              | showIngredient
+                : { ingredientsConversion, ingredientsAvailable, filterKey }
+                : showIngredient)) ||
+            !showIngredient)
+        "
+        [parentFormGroup]="parentFormGroup"
+        [ingredient]="ingredient"
+        [blinking]="ingredient._lastAdded | lastAdded : ingredients"
+        [instructions]="instructions"
+        [ingredientsConversion]="ingredientsConversion"
+        [ingredientsAvailable]="ingredientsAvailable"
+        [editable]="editable"
+        [moveable]="moveable && sortType === SortType.SORT_CUSTOM"
+        [removeable]="removeable"
+        [checkable]="checkable"
+        [additional]="additional"
+        [checkableIfNotEditable]="checkableIfNotEditable"
+        [showAvailability]="showAvailability"
+        [showAddAvailabilityButton]="showAddAvailabilityButton"
+        [showCheckBoxButton]="showCheckBoxButton"
+        [showAddConversionButton]="showAddConversionButton"
+        [showEditButton]="showEditButton"
+        [withRecipes]="withRecipes"
+        [isIngredientAvailable]="isIngredientAvailable"
+        [showUseUntilButton]="showUseUntilButton"
+        [searchTextHighlight]="searchText"
+        [amountFactor]="amountFactor"
+        [hideIngredientNotes]="hideIngredientNotes"
+        [showIngredientNoteDialogOnClick]="showIngredientNoteDialogOnClick"
+        [style.order]="sortData ? (ingredient | indexInList : ingredientsSorted) + 1 : 'unset'"
+        (ingredientChange)="ingredientChanged($event, index)"
+        (openById)="openById.emit($event)"
+        (hideIngredientNotesChange)="hideIngredientNotesChange.emit($event)"
+      >
+      </app-ingredient-list-item>
+    </ng-container>
+  </div>
+</div>

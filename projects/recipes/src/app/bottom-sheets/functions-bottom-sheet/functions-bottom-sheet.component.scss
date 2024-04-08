@@ -1,0 +1,90 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+p {
+  color: $text-2;
+  margin-bottom: $padding-s;
+}
+
+.spacer {
+  height: $padding-s;
+}
+
+.title {
+  color: $text-1;
+  margin-bottom: $padding-s;
+  display: flex;
+  gap: $padding-s;
+  align-items: center;
+}
+
+.buttons {
+  display: flex;
+  margin: 0px;
+  gap: $padding-s;
+
+  flex-wrap: wrap;
+}
+
+.icon {
+  margin-bottom: -3px;
+  margin-right: 3px;
+}
+
+.text-in-list {
+  margin-left: 25px;
+  font-size: 14px;
+}
+
+.buttons {
+  display: flex;
+  gap: $padding-s;
+  margin-bottom: $padding-m;
+  justify-content: space-between;
+}
+
+.quickAction {
+  background-color: $background-1;
+  color: $text-1;
+  border-radius: $border-radius;
+  padding: $padding-m;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  cursor: pointer;
+
+  flex-grow: 1;
+  width: 0px;
+  min-width: 120px;
+  height: 0px;
+  min-height: 100px;
+
+  mat-icon {
+    margin-bottom: $padding-s;
+  }
+
+  .label {
+    font-size: $text-size;
+  }
+
+  .text {
+    display: flex;
+    align-items: center;
+    gap: $padding-xs;
+    color: $text-2;
+    margin-top: $padding-xs;
+  }
+}
+
+.quickAction:hover {
+  color: white;
+  background-color: $background-2;
+}
+
+.quickAction:focus {
+  color: white;
+  outline: none;
+  background-color: $background-3;
+}

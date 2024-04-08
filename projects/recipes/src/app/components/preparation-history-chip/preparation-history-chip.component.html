@@ -1,0 +1,176 @@
+<mat-card [ngClass]="{ card: true, blinking }">
+  <div *ngIf="!editMode" class="content">
+    <!-- Portionen -->
+    <div class="item" [matTooltip]="preparationHistory.amount.toString() + ' ' + amountText">
+      <mat-icon svgIcon="portion"></mat-icon>
+      <span>
+        {{ preparationHistory.amount.toString() + " " + amountText }}
+      </span>
+    </div>
+
+    <!-- Übrige Portionen -->
+    <div
+      *ngIf="preparationHistory.portionsAvailable"
+      class="item highlight"
+      [matTooltip]="
+        preparationHistory.portionsAvailable.toString() + ' ' + ('PORTION.LEFT.' | translate)
+      "
+    >
+      <mat-icon svgIcon="portion-eat"></mat-icon>
+      <span>
+        {{ preparationHistory.portionsAvailable.toString() + " " + ("PORTION.LEFT." | translate) }}
+      </span>
+    </div>
+
+    <!-- Datum -->
+    <div
+      class="item"
+      [matTooltip]="
+        (preparationHistory.date
+          | date : 'EE, dd.MM.yyyy' : '' : (localeService.locale$ | async)!) ?? ''
+      "
+    >
+      <mat-icon svgIcon="calendar"></mat-icon>
+      <span>
+        {{ preparationHistory.date | formatDate : (localeService.locale$ | async)! }}
+      </span>
+    </div>
+
+    <!-- Uhrzeit -->
+    <div
+      class="item"
+      [matTooltip]="(preparationHistory.date | time : (localeService.locale$ | async)!) ?? ''"
+    >
+      <mat-icon svgIcon="time"></mat-icon>
+      <span>
+        {{ preparationHistory.date | formatTimeOfDay : (localeService.locale$ | async)! }}
+      </span>
+    </div>
+
+    <!-- Typ -->
+    <div
+      [ngClass]="{
+        item: true,
+        highlight: preparationHistory.type !== PreparationHistoryType.PREPARED
+      }"
+      [matTooltip]="PREPARATION_HISTORY_TYPES[this.preparationHistory.type].name | translate"
+    >
+      <mat-icon
+        [svgIcon]="
+          'preparationHistory-' + PREPARATION_HISTORY_TYPES[this.preparationHistory.type].icon
+        "
+      ></mat-icon>
+      <span>
+        {{ PREPARATION_HISTORY_TYPES[this.preparationHistory.type].name | translate }}
+      </span>
+    </div>
+
+    <!-- Notiz -->
+    <div *ngIf="preparationHistory.note" class="item" [matTooltip]="preparationHistory.note">
+      <mat-icon svgIcon="note"></mat-icon>
+      <span class="note">
+        {{ preparationHistory.note }}
+      </span>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+
+  <div *ngIf="editMode" class="content">
+    <app-formfield
+      [isSmall]="true"
+      [parentFormGroup]="formGroup"
+      [formfieldType]="FormfieldType.NUMBER"
+      formfieldKey="amount"
+      formfieldName="AMOUNT"
+      formfieldIcon="portion"
+      [value]="preparationHistory.amount"
+      [suffixLong]="amountText"
+      [suffixShort]="amountText"
+    >
+    </app-formfield>
+    <app-formfield
+      [isSmall]="true"
+      [parentFormGroup]="formGroup"
+      [formfieldType]="FormfieldType.NUMBER"
+      formfieldKey="portionsAvailable"
+      formfieldName="PORTION.LEFT"
+      formfieldIcon="portion-eat"
+      [value]="preparationHistory.portionsAvailable"
+      [suffixLong]="'PORTION.LEFT' | translate"
+      [suffixShort]="'PORTION.LEFT.SHORT' | translate"
+    >
+    </app-formfield>
+    <app-formfield
+      [isSmall]="true"
+      [parentFormGroup]="formGroup"
+      [formfieldType]="FormfieldType.DATE"
+      formfieldKey="date"
+      formfieldName="DATE."
+      formfieldIcon="calendar"
+      [value]="preparationHistory.date"
+    >
+    </app-formfield>
+    <app-dropdown
+      [isSmall]="true"
+      [data]="PREPARATION_HISTORY_DATA"
+      [selectedKey]="preparationHistory.type"
+      width="100%"
+      (selectedChange)="onSelectedChange($event)"
+    ></app-dropdown>
+    <app-formfield
+      [isSmall]="true"
+      [parentFormGroup]="formGroup"
+      [formfieldType]="FormfieldType.TEXT"
+      formfieldKey="note"
+      formfieldName="NOTE."
+      formfieldIcon="note"
+      [value]="preparationHistory.note"
+    >
+    </app-formfield>
+  </div>
+
+  <div class="footer">
+    <!-- Bearbeiten / Speichern -->
+    <button
+      [disabled]="formGroup.invalid && editMode"
+      mat-flat-button
+      class="only-icon medium"
+      [matTooltip]="(editMode ? 'ACTION.APPLY' : 'ACTION.EDIT') | translate"
+      (click)="onToggleEditMode()"
+      [color]="editMode ? 'primary' : ''"
+    >
+      <mat-icon [svgIcon]="editMode ? 'check' : 'edit'"></mat-icon>
+    </button>
+
+    <!-- Abbrechen -->
+    <button
+      *ngIf="editMode"
+      mat-flat-button
+      class="only-icon medium"
+      [matTooltip]="'ACTION.CANCEL' | translate"
+      (click)="editMode = false"
+    >
+      <mat-icon svgIcon="clear"></mat-icon>
+    </button>
+
+    <!-- Löschen -->
+    <button
+      mat-flat-button
+      class="only-icon medium"
+      [matTooltip]="'HISTORY.REMOVE' | translate"
+      (click)="onRemove()"
+    >
+      <mat-icon svgIcon="delete"></mat-icon>
+    </button>
+    <button
+      *ngIf="showPreparedButton"
+      mat-flat-button
+      class="only-icon medium"
+      [matTooltip]="'HISTORY.MARK_AS_PREPARED' | translate"
+      (click)="onMarkAsPrepared()"
+    >
+      <mat-icon svgIcon="preparationHistory-prepared"></mat-icon>
+    </button>
+  </div>
+</mat-card>

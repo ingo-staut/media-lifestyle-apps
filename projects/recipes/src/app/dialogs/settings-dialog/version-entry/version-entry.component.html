@@ -1,0 +1,24 @@
+<h2 class="sticky" [style.userSelect]="'none'">
+  <kbd [ngClass]="{ highlight: version | isMajorOrMinorVersion }">
+    {{ (version | isMajorVersion) ? ("SETTINGS.VERSION" | translate) : "" }}
+    {{ version | version }}
+  </kbd>
+  <span
+    [matTooltip]="
+      details
+        ? (version.date | formatDate : (localeService.locale$ | async)!)
+        : (version.date | date : 'medium' : '' : (localeService.locale$ | async)!) ?? ''
+    "
+    [style.cursor]="'pointer'"
+    (click)="details = !details"
+  >
+    {{
+      details
+        ? (version.date | date : "medium" : "" : (localeService.locale$ | async)!) ?? ""
+        : (version.date | formatDate : (localeService.locale$ | async)!)
+    }}
+  </span>
+</h2>
+<p *ngFor="let message of version.messages" class="message">
+  {{ message }}
+</p>

@@ -1,0 +1,30 @@
+<span
+  *ngIf="
+    details?.length ||
+    !!(media | episodeInTelevision : season : episode) ||
+    seasons[seasonIndex].special
+  "
+  class="episode-detail"
+>
+  <mat-icon
+    *ngIf="seasons[seasonIndex].special && episode === 0"
+    class="small"
+    svgIcon="special"
+    [matTooltip]="'SEASON.SPECIAL' | translate"
+  ></mat-icon>
+  <mat-icon
+    *ngFor="let detail of details"
+    class="small"
+    [svgIcon]="(detail | episodeDetail).icon"
+    [matTooltip]="detail.note ?? ''"
+  ></mat-icon>
+  <mat-icon
+    *ngIf="media | episodeInTelevision : season : episode as episodeInTV"
+    class="small"
+    color="primary"
+    [matTooltip]="(episodeInTV.date | date : 'short' : '' : (localeService.locale$ | async)!) ?? ''"
+    [svgIcon]="
+      (episodeInTV.date | isAfterDate : current) ? 'television-filled' : 'television-missed'
+    "
+  ></mat-icon>
+</span>

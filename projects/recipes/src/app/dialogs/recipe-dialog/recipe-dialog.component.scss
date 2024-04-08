@@ -1,0 +1,237 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+.toolbar {
+  background-color: $main-background-1;
+  height: calc(40px + ($padding-m * 2));
+  padding: 0 $padding-m;
+  position: relative;
+  z-index: 110;
+}
+
+.right {
+  z-index: 10;
+  position: sticky;
+  right: 0;
+  padding-right: $padding-m;
+  background-color: $main-background-1;
+  display: flex;
+  gap: $padding-s;
+  box-shadow: 0px 0px 5px 5px $main-background-1;
+}
+
+.navbar-spacer {
+  flex: 1 1 auto;
+  height: inherit;
+  @media (min-width: $media-query-breakpoint-mobile-screen) {
+    cursor: move;
+  }
+}
+
+.separator {
+  background-color: $background-1;
+  width: 100%;
+  height: 2px;
+}
+
+.static-content {
+  display: flex;
+  padding: $padding-m;
+  flex-direction: column;
+  gap: $padding-s;
+  width: auto;
+}
+
+img.header-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  max-height: 40vh;
+  cursor: pointer;
+}
+
+.mat-mdc-dialog-title,
+.mat-mdc-dialog-content {
+  padding: 0px;
+  margin-bottom: 0px;
+}
+
+.mat-mdc-dialog-content,
+.tabgroup {
+  // Breite und Höhe von Rezepte-Dialog ändern: RECIPE_DIALOG_SIZE
+  @media (max-width: $media-query-breakpoint-normal-screen) {
+    max-height: calc(100dvh - $padding-m - $padding-m - 40px - 1px);
+  }
+  // Breite und Höhe von Rezepte-Dialog ändern: RECIPE_DIALOG_SIZE
+  @media (min-width: $media-query-breakpoint-normal-screen) {
+    max-height: calc(80vh - $padding-m - $padding-m - 40px - 1px);
+  }
+}
+
+.mdc-dialog__title::before {
+  display: none;
+}
+
+.mat-mdc-tab-header {
+  background-color: $main-background-1 !important;
+}
+
+.instructions-content {
+  margin: 0 $padding-m $padding-m $padding-m;
+}
+
+.instructions-content-functions {
+  display: flex;
+  gap: $padding-s;
+  margin: $padding-m;
+}
+
+.function-buttons {
+  display: flex;
+  gap: $padding-s;
+  margin: $padding-m $padding-m 0 $padding-m;
+}
+
+.steps-container {
+  display: flex;
+  flex-direction: column;
+  margin: $padding-s 0 $padding-m 0;
+}
+
+.steps-content {
+  display: flex;
+  margin: $padding-m;
+  gap: $padding-s;
+  flex-direction: column;
+}
+
+.steps-text {
+  font-size: 22px;
+  white-space: pre-wrap;
+  line-height: normal;
+}
+
+.step-optional {
+  padding-left: $padding-xs;
+}
+
+.steps-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.swipe-region {
+  flex: 1 1 auto;
+}
+
+.steps-view-title-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.steps-view-title-container,
+.steps-view-title-note,
+.steps-view-title {
+  font-size: 16px;
+  line-height: normal;
+
+  @include ellipsis-lines(1);
+}
+
+.steps-view-title {
+  margin-top: 1px;
+}
+
+.steps-view-title-note {
+  font-size: 14px;
+  color: $text-2;
+}
+
+.steps-counter-indicator {
+  position: absolute;
+  top: 16px;
+  left: 6.25px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: -2px;
+  width: 10px;
+  user-select: none;
+}
+
+.functions {
+  display: flex;
+  gap: $padding-s;
+  margin: $padding-m;
+
+  @media (max-width: $media-query-breakpoint-mobile-screen) {
+    flex-direction: column;
+  }
+}
+
+.filter-buttons {
+  display: flex;
+  gap: $padding-s;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  padding-top: $padding-m;
+  margin: 0 $padding-m $padding-m $padding-m;
+}
+
+.divider {
+  margin-top: $padding-s;
+}
+
+.text-ellipsis {
+  max-width: calc(100vw - $padding-m - $padding-m);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  @include ellipsis-lines(1);
+}
+
+.button-title {
+  font-size: $text-size-xl !important;
+}
+
+.button-with-error-message-container {
+  display: flex;
+  flex-direction: column;
+
+  button {
+    border-bottom: 1px solid $error;
+  }
+}
+
+.details-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: $padding-m;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  line-height: normal;
+  padding: $padding-m;
+  align-items: flex-start;
+  overflow: auto;
+}
+
+.details-buttons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.title-container {
+  display: flex;
+  gap: 0 $padding-s;
+  flex-wrap: wrap;
+}
+
+.error {
+  color: $error;
+}

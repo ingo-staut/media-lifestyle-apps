@@ -1,0 +1,95 @@
+<button
+  *ngIf="recipe | veganPercentage : ingredientsConversion : true : instructions as veganPercentage"
+  class="button"
+  [style]="'--progress: ' + (veganPercentage * 100).toString() + '%'"
+  [style.background]="noBackground ? 'transparent' : undefined"
+>
+  <!-- Vegetarisch -->
+  <button
+    *ngIf="
+      recipe | isVegetarian : ingredientsConversion : true : instructions as vegetarian;
+      else notVegetarian
+    "
+    mat-button
+    class="button-content only-icon"
+    [matTooltip]="vegetarian.name | translate"
+    (click)="onButtonClicked(IngredientConversionContentType.VEGETARIAN_NOT)"
+  >
+    <mat-icon [svgIcon]="vegetarian.icon"></mat-icon>
+  </button>
+
+  <ng-template #notVegetarian>
+    <button
+      mat-button
+      class="button-content only-icon"
+      [matTooltip]="'CONTENT.VEGETARIAN_NOT' | translate"
+      (click)="onButtonClicked(IngredientConversionContentType.VEGETARIAN_NOT)"
+    >
+      <mat-icon svgIcon="contents-vegetarian-not"></mat-icon>
+    </button>
+  </ng-template>
+
+  <!-- Vegan -->
+  <button
+    *ngIf="recipe | isVegan : ingredientsConversion : true : instructions as vegan; else notVegan"
+    mat-button
+    class="button-content"
+    [matTooltip]="vegan.name | translate"
+    (click)="onButtonClicked(IngredientConversionContentType.VEGAN_NOT)"
+  >
+    <mat-icon [svgIcon]="vegan.icon"></mat-icon>
+    100% {{ "CONTENT.VEGAN" | translate }}
+  </button>
+
+  <ng-template #notVegan>
+    <button
+      mat-button
+      class="button-content"
+      [matTooltip]="'CONTENT.VEGAN_NOT' | translate"
+      (click)="onButtonClicked(IngredientConversionContentType.VEGAN_NOT)"
+    >
+      <mat-icon svgIcon="contents-vegan-not"></mat-icon>
+      {{ veganPercentage * 100 | number : "1.0-0" : (localeService.locale$ | async)! }}%
+      {{ "CONTENT.VEGAN" | translate }}
+    </button>
+  </ng-template>
+
+  <!-- Weitere Inhaltsstoffe -->
+  <ng-container
+    *ngIf="{
+      sugar: recipe | containsSugarOrNoSugar : ingredientsConversion,
+      alcohol: recipe | containsAlcohol : ingredientsConversion
+    } as content"
+  >
+    <ng-container *ngIf="content.sugar || content.alcohol">
+      <mat-divider
+        [vertical]="true"
+        [style.height.px]="20"
+        [style.marginLeft.px]="5"
+        [style.marginRight.px]="5"
+      ></mat-divider>
+
+      <!-- Zucker -->
+      <button
+        *ngIf="recipe | containsSugarOrNoSugar : ingredientsConversion as sugar"
+        mat-button
+        class="button-content only-icon"
+        [matTooltip]="sugar.name | translate"
+        (click)="onButtonClicked(IngredientConversionContentType.SUGAR)"
+      >
+        <mat-icon [svgIcon]="sugar.icon"></mat-icon>
+      </button>
+
+      <!-- Alkohol -->
+      <button
+        *ngIf="recipe | containsAlcohol : ingredientsConversion as alcohol"
+        mat-button
+        class="button-content only-icon"
+        [matTooltip]="alcohol.name | translate"
+        (click)="onButtonClicked(IngredientConversionContentType.ALCOHOL)"
+      >
+        <mat-icon [svgIcon]="alcohol.icon"></mat-icon>
+      </button>
+    </ng-container>
+  </ng-container>
+</button>

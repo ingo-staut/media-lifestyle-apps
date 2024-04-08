@@ -1,0 +1,45 @@
+<div class="title">
+  <h2>{{ data.title | translate : data.titleReplace }}</h2>
+  <div *ngIf="data.actionClose" class="spacer"></div>
+  <button
+    *ngIf="data.actionClose"
+    mat-flat-button
+    (click)="onClose()"
+    class="only-icon"
+    [matTooltip]="'ACTION.CLOSE' | translate"
+  >
+    <mat-icon svgIcon="clear"></mat-icon>
+  </button>
+</div>
+
+<p *ngIf="data.text" [innerHTML]="data.text | translate : data.textReplace"></p>
+
+<div class="spacer"></div>
+
+<mat-nav-list *ngIf="data.showAsList">
+  <a mat-list-item *ngFor="let action of data.actions" (click)="onActionClick(action)">
+    <span matListItemTitle>
+      <mat-icon [svgIcon]="action.icon" class="medium without-button icon"></mat-icon>
+      {{ action.text | translate }}
+    </span>
+    <span matLine *ngIf="action.subText as subText" class="text-in-list">{{
+      subText | translate
+    }}</span>
+  </a>
+</mat-nav-list>
+
+<div *ngIf="!data.showAsList" class="buttons">
+  <button
+    class="quickAction"
+    *ngFor="let action of data.actions"
+    [autofocus]="action.autoFocus"
+    (click)="onActionClick(action)"
+  >
+    <mat-icon [svgIcon]="action.icon"></mat-icon>
+    <span class="label">{{ action.text | translate }}</span>
+    <span class="text" *ngIf="action.subText as subText">
+      <img *ngIf="action.subImage" height="12" width="12" loading="lazy" [src]="action.subImage" />
+      {{ subText | translate }}
+    </span>
+  </button>
+</div>

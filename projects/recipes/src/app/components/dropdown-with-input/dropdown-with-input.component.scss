@@ -1,0 +1,114 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+input.dropdown-input {
+  text-align: center;
+  background-color: $background-1;
+  color: white;
+  border: none;
+  font-size: $text-size-s;
+  outline: none;
+  margin: 0 $padding-s;
+  padding: 2px 0;
+  border-radius: $border-radius;
+
+  &:hover,
+  &:focus {
+    background-color: $background-2;
+  }
+
+  &.date {
+    margin: 0;
+  }
+}
+
+.date-range-inputs-container {
+  display: flex;
+  align-items: center;
+}
+
+.date-range-input {
+  flex-shrink: 0;
+}
+
+button.date-range-picker-button {
+  margin: 0 5px;
+}
+
+.select {
+  display: flex;
+  align-items: center;
+  height: 40px;
+
+  &.mat-mdc-select-invalid {
+    margin-bottom: -2px;
+    border-bottom: 2px solid $error;
+  }
+
+  &.with-date-picker {
+    padding-left: 0px;
+  }
+}
+
+.error {
+  color: $error;
+  line-height: 110%;
+  margin-block-start: 4px;
+  margin-block-end: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-size: $text-size;
+}
+
+.dropdown-multiple-chip {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+}
+
+.background {
+  outline: none;
+  display: flex;
+  background-color: $background-1;
+  border-radius: $border-radius;
+
+  &:hover {
+    background-color: $background-2;
+  }
+
+  &:focus {
+    background-color: $background-3;
+  }
+
+  &.with-value {
+    background-color: $primary;
+
+    &:hover {
+      filter: brightness(110%);
+    }
+  }
+}
+
+.no-background-color {
+  background-color: transparent !important;
+
+  &:hover {
+    background-color: transparent !important;
+  }
+
+  &:focus {
+    background-color: transparent !important;
+  }
+}
+
+img {
+  border-radius: $border-radius;
+
+  margin-left: 1px;
+  margin-right: 17px;
+}
+
+.with-clear-button {
+  margin-right: -40px;
+  padding-right: 40px;
+}

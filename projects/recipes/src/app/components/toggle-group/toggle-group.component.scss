@@ -1,0 +1,34 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+.text {
+  display: inline-block;
+  padding-top: 2px;
+  font-size: $text-size-s;
+}
+
+.toggle-group.animation {
+  animation: grow 500ms ease-in-out;
+}
+
+@keyframes grow {
+  0% {
+    width: 40px;
+  }
+  100% {
+    width: var(--width, 170px);
+  }
+}
+
+.toggle-button.animation {
+  animation: shrink 500ms ease-in-out;
+}
+
+@keyframes shrink {
+  0% {
+    width: var(--width, 40px);
+  }
+  100% {
+    width: 40px;
+  }
+}

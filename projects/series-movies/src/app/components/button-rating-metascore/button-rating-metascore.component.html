@@ -1,0 +1,34 @@
+<button
+  *ngIf="rating; else metascore"
+  mat-button
+  [class]="rating | ratingSection : RatingIndex.METASCORE"
+  [ngClass]="{
+    small,
+    medium,
+    disabled,
+    'only-icon': small
+  }"
+  [disabled]="disabled"
+  [style.margin.px]="medium ? 5 : 0"
+  [matTooltip]="
+    ('RATING.METASCORE.' | translate) +
+    ': ' +
+    (rating | number : '1.0-1' : (localeService.locale$ | async)!)! +
+    '/100'
+  "
+  (click)="onOpen($event, false)"
+>
+  <span *ngIf="rating">{{ rating }}</span>
+</button>
+
+<ng-template #metascore>
+  <button
+    *ngIf="showAddButton"
+    mat-button
+    class="only-icon"
+    [matTooltip]="'RATING.METASCORE.NO' | translate"
+    (click)="onOpen($event, true)"
+  >
+    <mat-icon svgIcon="metascore"></mat-icon>
+  </button>
+</ng-template>

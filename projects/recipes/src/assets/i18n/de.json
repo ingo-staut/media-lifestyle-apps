@@ -1,0 +1,816 @@
+{
+  "LANGUAGE": {
+    "": "Sprache",
+    "S": "Sprachen",
+    "EN": "Englisch",
+    "DE": "Deutsch",
+    "FR": "Französisch",
+    "ES": "Spanisch"
+  },
+  "COUNTRY": {
+    "": "Land",
+    "S": "Länder"
+  },
+
+  "Ernährung": "Ernährung",
+  "Rezepte": "Rezepte",
+  "Entdecken": "Entdecken",
+  "Einkäufe": "Einkäufe",
+  "Einkaufsliste": "Einkaufsliste",
+  "Statistiken": "Statistiken",
+  "Suche": "Suche",
+  "Import": "Import",
+
+  "MEDIA": "Entertainment",
+
+  "MENU": {
+    "": "Menü",
+    "RECIPES": "Rezepte",
+    "EXPLORE": "Entdecken",
+    "PURCHASES": "Einkäufe",
+    "SHOPPING_LIST": "Einkaufsliste",
+    "STATISTICS": "Statistiken",
+    "SEARCH": "Suche"
+  },
+  "SEARCH": {
+    "": "Suchen",
+    "INPUT": "Suchen ...",
+    "FOR": "Nach {{ value }} suchen",
+    "FOR_WITH_QUOTATION_MARK": "Nach „{{ value }}“ suchen",
+    "CLOSE": "Suche schließen",
+    "CLEAR_INPUT": "Suchfeld leeren",
+    "SHOW_IN": "In der Suche anzeigen"
+  },
+  "FILTER": {
+    "ADD": "Filter hinzufügen",
+    "CHOOSE": "Filter wählen ...",
+    "COLLAPSE": "Filter einklappen",
+    "EXPAND": "Filter ausklappen",
+    "REMOVE": "Filter entfernen",
+    "REMOVE_ALL": "Alle Filter entfernen",
+    "REMOVE_ALL_VALUE": "Alle Filter entfernen ({{ value }})",
+    "SUGGESTION_SENTENCE": {
+      "SET_FILTER_AS": "Filter setzen wie",
+      "OR": "oder",
+      "TO_FIND_RECIPES": "um Rezepte zu finden!"
+    },
+    "REMOVE_SEARCH_TEXT": "Suchtext entfernen"
+  },
+  "FAVORITE": {
+    "": "Favorit",
+    "S": "Favoriten",
+    "NO": "Kein Favorit",
+    "ADD": "Als Favorit markieren"
+  },
+  "VEGAN": {
+    "": "Vegan",
+    "NO": "Kein vegan"
+  },
+  "VEGETARIAN": {
+    "": "Vegetarisch",
+    "NO": "Nicht vegetarisch"
+  },
+  "LINK": {
+    "": "Verlinkungen",
+    "NO": "Keine Verlinkungen",
+    "RECIPE": "Rezept verlinken",
+    "LINKED_RECIPES": "Verlinkte Rezepte",
+    "NO_LINKED_RECIPES": "Keine verlinkten Rezepte",
+    "REMOVE": "Verlinkung aufheben",
+    "ADD": "Verlinkung hinzufügen"
+  },
+  "SHOPPING_LIST": {
+    "": "Einkaufsliste",
+    "INGREDIENTS": "Zutaten auf Einkaufsliste",
+    "ON": "Auf Einkaufsliste",
+    "ON_NO": "Nicht auf Einkaufsliste",
+    "REMOVE": "Aus Einkaufsliste entfernen",
+    "ADD": "Zur Einkaufsliste hinzufügen",
+    "EDIT": "Auf Einkaufsliste bearbeiten"
+  },
+  "NOTE": {
+    "": "Notiz",
+    "S": "Notizen",
+    "NO": "Keine Notiz",
+    "REMOVE": "Notiz entfernen",
+    "ADD": "Notiz hinzufügen",
+    "EDIT": "Notiz bearbeiten",
+    "EDIT_TEXT": "Notiz bearbeiten oder zum Löschen Textfeld freilassen."
+  },
+  "STEPS": {
+    "": "Schritte",
+    "WITH_OPTIONALS": "Mit optionalen Zubereitungsschritten",
+    "WITHOUT_OPTIONALS": "Ohne optionale Zubereitungsschritte",
+    "OPTIONALS": "Optionale Zubereitungsschritte"
+  },
+  "RATING": {
+    "": "Bewertung",
+    "NO": "Keine Bewertung",
+    "NOT": "Nicht bewertet",
+    "CHOOSE": "Bewertung wählen ...",
+    "GOOD": "Gut",
+    "GOOD_MIDDLE": "Mittelgut",
+    "GOOD_NOT": "Schlecht"
+  },
+  "DIFFICULTY": {
+    "": "Schwierigkeit",
+    "NO": "Keine Schwierigkeit",
+    "NOT": "Nicht gesetzt",
+    "CHOOSE": "Schwierigkeit wählen ...",
+    "EASY": "Einfach",
+    "MIDDLE": "Mittelschwer",
+    "DIFFICULT": "Schwierig"
+  },
+  "CATEGORY": {
+    "": "Kategorie",
+    "NO": "Keine Kategorie",
+    "CHOOSE": "Kategorie wählen ...",
+    "APPETIZERS": "Vorspeisen / Beilagen / Snacks",
+    "MAIN": "Hauptspeisen",
+    "DESSERT": "Nachspeisen",
+    "DRINKS": "Getränke",
+    "SALAD": "Salat",
+    "SOUP": "Suppe / Eintopf",
+    "SANDWICH": "Sandwich / Schnitten",
+    "SAUCE": "Soße",
+    "CASSEROLE": "Auflauf",
+    "PASTA": "Nudelgericht",
+    "PAN_DISH": "Pfannengericht",
+    "BURGER": "Burger / Frikadelle",
+    "PIZZA": "Pizza",
+    "OVEN_DISH": "Ofengericht",
+    "CAKE": "Kuchen",
+    "CUPCAKE": "Muffin",
+    "ICE_CREAM": "Eis / Crème",
+    "COOKIE": "Plätzchen",
+    "JUICE": "Saft",
+    "COCKTAIL": "Cocktail",
+    "SMOOTHIE": "Smoothie",
+    "WAFFLES": "Waffeln / Pfannkuchen",
+    "CUTLETS": "Brownies / Schnitten",
+    "BREAD": "Brot"
+  },
+  "FIELD": {
+    "MANDATORY": "Pflichtfeld",
+    "CLEAR": "Feld leeren",
+    "NOT_SET": "Feld nicht gesetzt",
+    "ERROR_TEXT": {
+      "MANDATORY": "{{ formfieldName }} ist ein Pflichtfeld.",
+      "MAX_LENGTH": "{{ formfieldName }} darf maximal {{ maxLength }} Zeichen lang sein.",
+      "MIN_LENGTH": "{{ formfieldName }} muss mindestens {{ minLength }} Zeichen lang sein.",
+      "MAX": "{{ formfieldName }} darf maximal {{ max }} {{ suffixShort }} sein.",
+      "MIN": "{{ formfieldName }} muss mindestens {{ min }} {{ suffixShort }} sein.",
+      "PATTERN": "{{ formfieldName }} besitzt eine falsche Struktur."
+    }
+  },
+  "VIEW": {
+    "RECIPE": "Rezeptansicht",
+    "STEPS": "Zubereitungsansicht",
+    "PREPARE": "Zubereiten"
+  },
+  "COUNT": {
+    "UP": "Hochzählen",
+    "DOWN": "Runterzählen"
+  },
+  "PREPARATION": {
+    "": "Zubereitung",
+    "S": "Zubereitungen",
+    "ADD": "Zubereitung hinzufügen",
+    "TYPE": "Zubereitungstyp",
+    "NO": "Kein Zubereitungstyp",
+    "CHOOSE": "Typ wählen ...",
+    "OVEN": "Ofen",
+    "TOP_UNDER_HEAT": "Ober-/Unterhitze",
+    "FAN": "Umluft",
+    "TOP_HEAT": "Oberhitze",
+    "UNDER_HEAT": "Unterhitze",
+    "GRILL": "Grill",
+    "POT": "Topf",
+    "POT_COOK": "Kochen",
+    "POT_BLANCH": "Blanchieren",
+    "POT_COOKING": "Köcheln",
+    "PAN": "Pfanne",
+    "PAN_STEAM": "Andünsten",
+    "PAN_COOK": "Anbraten",
+    "KITCHENMACHINE": "Küchenmaschine",
+    "KITCHENMACHINE_ATTACHMENT": "Küchenmaschine mit Aufsatz",
+    "REST": "Ruhezeit",
+    "REST_ROOMTEMPERATURE": "Raumtemperatur",
+    "REST_REFRIGERATOR": "Kühlschrank",
+    "REST_FREEZER": "Gefrierfach"
+  },
+  "TIME": {
+    "": "Zeit",
+    "CLOCK": "Uhrzeit",
+    "MIN": "Mindestzeit",
+    "MAX": "Maximalzeit",
+    "MINUTES": "Minuten",
+    "MINUTES_SHORT": "Min.",
+    "CURRENT": "Aktuelle Uhrzeit",
+    "CHOOSE": "Uhrzeit wählen ..."
+  },
+  "AVAILABLE": {
+    "": "Vorhanden",
+    "NO": "Nicht vorhanden",
+    "WITH": "Mit Vorhanden",
+    "INGREDIENTS": "Vorhandene Zutaten",
+    "NOT": "Nicht vorhanden",
+    "HALF": "Teilweise vorhanden",
+    "UNDEFINED": "Einheit der Zutat passt nicht",
+    "FRACTION_TEXT": "Zu {{ value }} vorhanden",
+    "INGREDIENTS_ADD": "Zu vorhandenen Zutaten hinzufügen",
+    "INGREDIENT_EDIT": "Vorhandene Zutat bearbeiten",
+    "INGREDIENT_DELETE": "Vorhandene Zutat löschen"
+  },
+  "DETAILS": {
+    "DETAILS": "Details",
+    "EDIT": "Details bearbeiten",
+    "HIDE": "Details ausblenden"
+  },
+  "HISTORY": {
+    "": "Historie",
+    "NO": "Kein Historien-Eintrag",
+    "REMOVE": "Historien-Eintrag entfernen",
+    "ADD": "Historien-Eintrag hinzufügen",
+    "EDIT": "Historien-Eintrag bearbeiten",
+    "PLAN": "Einplanen",
+    "PLAN_RECIPE": "Rezept einplanen",
+    "PLAN_RECIPE_TOMORROW": "Rezept morgen einplanen",
+    "RESCHEDULE_RECIPE": "Rezept umplanen",
+    "PLANNED": "Geplant",
+    "PLANNED_TODAY": "Heute geplant",
+    "PLANNED_TOMORROW": "Morgen geplant",
+    "PLANNED_YESTERDAY": "Gestern geplant",
+    "PLANNED_NEXT_WEEK": "Nächste Woche geplant",
+    "PLANNED_MULTIPLE": "Mehrmals geplant",
+    "PLANNED_NOT": "Nicht geplant",
+    "PREPARED": "Zubereitet",
+    "PREPARED_NOT": "Nicht zubereitet",
+    "PREPARED_TODAY": "Heute zubereitet",
+    "PREPARED_RECIPE": "Rezept zubereitet",
+    "PREPARE_UNTIL": "Zubereiten bis",
+    "MARK_AS_PREPARED": "Als zubereitet markieren"
+  },
+  "ERROR": {
+    "NO_RESULTS": "Keine Ergebnisse gefunden!",
+    "ALL_DATA_WILL_BE_LOADED": "Es werden alle Daten aus der Datenbank geladen!"
+  },
+  "SUGGESTION": {
+    "": "Rezeptvorschlag",
+    "S": "Rezeptvorschläge",
+    "RANDOM": "Zufälliger Rezeptvorschlag",
+    "BEST_RANKED_RECIPES": "Gut bewertete Rezepte",
+    "WORST_RANKED_RECIPES": "Schlecht bewertete Rezepte",
+    "NOT_RANKED_RECIPES": "Nicht bewertete Rezepte",
+    "EASY_RECIPES": "Einfache Rezepte",
+    "HARD_RECIPES": "Schwere Rezepte",
+    "CHEAP_VALUE": "Günstige {{ value }}",
+    "QUICK_VALUE": "Schnelle {{ value }}",
+    "SHOW_VEGAN_CATEGORY_VALUE": "Vegane {{ value }} anzeigen",
+    "SHOW_VEGAN_CATEGORY_WITHOUT_SUGAR": "Vegane {{ value }} ohne Zucker anzeigen"
+  },
+  "NAVIGATE": {
+    "TO_VALUE": "Zu {{ value }}",
+    "TO_LONG_VALUE": "Zu {{ value }} navigieren"
+  },
+  "NOTIFICATION": {
+    "SAVED_TO_CLIPBOARD": "Erfolgreich in die Zwischenablage kopiert!",
+    "URL_SAVED_TO_CLIPBOARD_VALUE": "{{ value }}-URL erfolgreich in die Zwischenablage kopiert!",
+    "SAVING_SUCCESS": "Erfolgreich gespeichert!",
+    "SAVING_SUCCESS_VALUE": "{{ value }} wurde(n) erfolgreich gespeichert!",
+    "DELETE_SUCCESS": "Erfolgreich gelöscht!",
+    "DELETE_SUCCESS_VALUE": "{{ value }} wurde(n) erfolgreich gelöscht!",
+    "SAVING_ERROR": "Es gab einen Fehler beim Speichern!",
+    "DELETE_ERROR": "Es gab einen Fehler beim Löschen!",
+    "DELETE_ALL_ENTRIES": "Alle Einträge wurden gelöscht!",
+    "RECIPE_WAS_CHANGED": "Daten haben sich geändert!",
+    "RECIPE_NOT_FOUND": "Rezept wurde nicht gefunden!",
+    "RECIPE_ALREADY_LINKED": "Rezept ist bereits verlinkt!",
+    "NO_BACK_LOCATION_FOUND": "Es konnte nicht zurück navigiert werden. Stattdessen wurde auf die Startseite weitergeleitet.",
+    "VERSION_READY": "Eine neue Version ist verfügbar!",
+    "DETAILS": "Details: {{ details }}",
+    "QUICKADD_NOTHING_FOUND": "Es konnte nichts interpretiert oder gefunden werden!",
+    "NO_URL_FOUND": "Keine URL gefunden!",
+    "INGREDIENTS_OF_RECIPES_NOT_REMOVED": "Zutaten, die zu Rezepten gehören, wurden nicht gelöscht!",
+    "INGREDIENT_IS_ALREADY_AVAILABLE": "Zutat {{ name }} ist bereits vorhanden ({{ available }}) und wird somit nicht in der Einkaufsliste angezeigt!",
+    "INGREDIENT_IS_ALREADY_AVAILABLE_EXACT_WAS_REPLACED": "Zutat {{ name }} ist bereits exakt vorhanden und wurde ersetzt!",
+    "INGREDIENT_IS_ALREADY_AVAILABLE_ADD_ANYWAYS": "Zutat {{ name }} ist bereits vorhanden ({{ available }}). Soll sie trotzdem hinzugefügt werden?",
+    "SAVING_NOT_ALLOWED_WITH_VALUE": "{{ value }} konnte nicht gespeichert werden!",
+    "SAVING_NOT_NEEDED_WITH_VALUE": "Speichern von {{ value }} nicht notwendig!",
+    "CAN_NOT_EDIT_VALUE": "{{ value }} kann nicht bearbeitet werden!",
+    "ACTION": {
+      "UNDO": "Rückgängig",
+      "RELOAD": "Neu laden",
+      "LOAD_NEW_DATA": "Neue Daten laden"
+    }
+  },
+  "ACTION": {
+    "KEEP": "Behalten",
+    "DISCARD": "Verwerfen",
+    "ADD": "Hinzufügen",
+    "CLOSE": "Schließen",
+    "SAVE": "Speichern",
+    "REMOVE": "Entfernen",
+    "DELETE": "Löschen",
+    "EDIT": "Bearbeiten",
+    "CANCEL": "Abbrechen",
+    "APPLY": "Übernehmen",
+    "NOT_APPLY": "Nicht übernehmen"
+  },
+  "DELETE": {
+    "?": "Soll gelöscht werden?",
+    "!": "Wird gelöscht!"
+  },
+  "DIALOG": {
+    "PENDING_CHANGES": {
+      "TITLE": "Änderungen behalten?",
+      "TEXT": "Es gibt ungespeicherte Änderungen die verloren gehen würden. Sollen diese behalten werden?"
+    }
+  },
+  "RECIPE": {
+    "": "Rezept",
+    "S": "Rezepte",
+    "NEW": "Neues Rezept",
+    "ADD": "Rezept hinzufügen",
+    "OPEN": "Rezept öffnen",
+    "ADD_MORE_DETAILS": "Rezept noch um Details ergänzen",
+    "REMOVE_ALL": "Alle Rezepte entfernen",
+    "REMOVE_ALL_VALUE": "Alle Rezepte entfernen ({{ value }})",
+    "SIMILAR": "Ähnliche Rezepte",
+    "FILTER": "Rezepte filtern",
+    "DELETE": "Rezept löschen",
+    "DELETE_ACTION": {
+      "TITLE": "Rezept löschen?",
+      "TEXT": "Soll das Rezept „{{ name }}“ wirklich gelöscht werden?"
+    }
+  },
+  "DATE": {
+    "": "Datum",
+    "WITH": "Mit Datum",
+    "MISSED": "Verpasst",
+    "BEFORE_YESTERDAY": "Vorgestern",
+    "YESTERDAY": "Gestern",
+    "TODAY": "Heute",
+    "TOMORROW": "Morgen",
+    "AFTER_TOMORROW": "Übermorgen",
+    "MULTIPLE": "Mehrmals",
+    "NEXT_X_DAYS": "Nächsten {{ days }} Tage",
+    "PREVIOUS_X_DAYS": "Vorherige {{ days }} Tage",
+    "NEXT_3_DAYS": "Nächsten 3 Tage",
+    "NEXT_7_DAYS": "Nächsten 7 Tage",
+    "NEXT_31_DAYS": "Nächsten 31 Tage",
+    "FAR_FUTURE": "Weite Zukunft",
+    "THIS_WEEK": "Diese Woche",
+    "THIS_MONTH": "Dieser Monat",
+    "LAST_MONTH": "Letzter Monat",
+    "PREVIOUS_MONTH": "Vorheriger Monat",
+    "COMPLETE_MONTH": "Kompletter Monat",
+    "PREVIOUS_MONTH_UNTIL_SAME_DAY": "Vorheriger Monat bis zum selben Tag",
+    "DATE_RANGE": "Zeitraum ...",
+    "CHOOSE_RANGE": "Zeitraum wählen ...",
+    "WITH_RANGE": "Mit Zeitraum",
+    "CHOOSE": "Datum wählen ...",
+    "START": "Startdatum",
+    "END": "Enddatum",
+    "CURRENT": "Aktuelles Datum",
+    "WITH_TODAY": "Mit heutigem Datum",
+    "USE_UNTIL": {
+      "": "Verwenden bis",
+      "NO": "Keine verwenden bis Datumsangaben",
+      "WITH": "Mit verwenden bis Datumsangabe"
+    }
+  },
+  "SETTINGS": {
+    "": "Einstellungen",
+    "APPLICATION": {
+      "": "Anwendung",
+      "ACCORDIONS": {
+        "": "Inhaltsgruppen",
+        "INITIALLY_OPEN": "Alle {{ value }}-Akkordeons initial geöffnet"
+      },
+      "TABS": {
+        "": "Menüs",
+        "INITIALLY_OPEN": "Initial geöffneter Tab bei {{ value }}",
+        "PLANNED_RECIPE": "geplanten Rezepten"
+      },
+      "DIALOGS": {
+        "": "Dialoge",
+        "EDIT_INGREDIENT_IN_LIST": "Zutat in Liste im Dialog bearbeiten",
+        "EDIT_INGREDIENT_IN_TAGS": "Zutat in Tags im Dialog bearbeiten",
+        "EDIT_UTENSIL_IN_TAGS": "Utensil in Tags im Dialog bearbeiten"
+      }
+    },
+    "LANGUAGE_AND_REGION": "Sprache & Region",
+    "ABOUT": "Über",
+    "HELP": "Hilfe",
+    "KEYMAP": "Tastenkürzel",
+    "VERSION": "Version",
+    "VERSION_CURRENT": "Aktuelle Version",
+    "VERSION_HISTORY": "Versionshistorie",
+    "COPYRIGHT": "Copyright",
+    "RAW_DATA": "Rohdaten",
+    "MOBILE": "Mobile",
+    "DESKTOP": "Desktop",
+    "DB": "Datenbank",
+    "DB_LOADED_DATA": "Geladene Daten",
+    "DB_CHANGES": "Datenbankänderungen",
+    "DB_CHANGES_APPLY": "Datenbankänderung übernehmen",
+    "DB_OPEN_IN": "In Datenbank öffnen",
+    "DATA_CURRENT": "Aktuelle Daten",
+    "DATA_IN_DB": "Daten in der Datenbank",
+    "DOWNLOAD": "Herunterladen",
+    "DOWNLOAD_DATA": "Daten herunterladen",
+    "DOWNLOAD_ALL": "Alle Daten herunterladen",
+    "DOWNLOAD_ALL_VALUE": "Alle {{ value }} herunterladen",
+    "REQUESTS": "API-Abfragen",
+    "REQUEST_DATA": "Daten abfragen",
+    "REQUEST_VALUE": "{{ value }}-Abfrage",
+    "TESTING": "Testen",
+    "IMPORT": "Import",
+    "IMPORT_ACTION": "Importieren",
+    "IMPORT_ACTION_AND_SAVE": "Importieren und Speichern",
+    "TEST_MESSAGE": "Testnachricht",
+    "TEST_MESSAGE_WITH_DURATION": "Testnachricht mit Dauer"
+  },
+  "ALPHABET": "Alphabet",
+  "PREPARED_QUANTITY": "Menge an Zubereitungen",
+  "LAST_PREPARED": "Zuletzt zubereitet",
+  "PREPARATION_TIME": {
+    "": "Zubereitungszeit",
+    "NO": "Keine Zubereitungszeit",
+    "WITH": "Mit Zubereitungszeit"
+  },
+  "INGREDIENTS_QUANTITY": {
+    "": "Menge an Zutaten",
+    "NO": "Keine Zutaten",
+    "WITH": "Mit Zutaten"
+  },
+  "SORT": {
+    "SEARCH_RESULTS": "Suchergebnisse nach Relevanz",
+    "CUSTOM": "Eigene Sortierung",
+    "DESC_VALUE": "{{ value }} absteigend",
+    "ASC_VALUE": "{{ value }} aufsteigend"
+  },
+  "INSTRUCTION": {
+    "": "Zubereitungsschritt",
+    "S": "Zubereitungsschritte",
+    "ADD": "Zubereitungsschritt hinzufügen",
+    "EDIT": "Zubereitungsschritt bearbeiten"
+  },
+  "QUICKADD": {
+    "": "Schnellhinzufügen",
+    "WITH": "Mit Schnellhinzufügen",
+    "WITHOUT": "Ohne Schnellhinzufügen",
+    "ADD": "{{ value }} hinzufügen",
+    "REPLACE_OR_ADD": {
+      "TITLE": "Vorhande ersetzen?",
+      "TEXT": "Es existieren bereits {{ amount }} {{ value }}. Sollen diese ersetzt oder die neuen {{ value }} hinzugefügt werden?"
+    }
+  },
+  "LAYOUT": {
+    "": "Layout",
+    "GRID": "Raster",
+    "GRID_DESCRIPTION": "Raster mit Details",
+    "LIST": "Liste",
+    "LIST_DESCRIPTION": "Liste mit Spalten"
+  },
+  "CONVERSION": {
+    "": "Zutatenumrechnung",
+    "S": "Zutatenumrechnungen",
+    "VALUES": "Umrechnungswerte",
+    "SHORT": "Umrechnung",
+    "ADD": "Zutatenumrechnung hinzufügen",
+    "ADD_SHORT": "Umrechnung hinzufügen",
+    "ADD_WITH_VALUE": "Zutatenumrechnung für „{{ value }}“ hinzufügen",
+    "EDIT": "Zutatenumrechnung bearbeiten"
+  },
+  "STORE": {
+    "": "Laden",
+    "S": "Läden",
+    "ADD": "Laden hinzufügen",
+    "ADD_WITH_VALUE": "Laden „{{ value }}“ hinzufügen",
+    "EDIT": "Laden bearbeiten",
+    "EDIT_WITH_VALUE": "Laden „{{ value }}“ bearbeiten",
+    "DELETE_ACTION": {
+      "TITLE": "Laden löschen?",
+      "TEXT": "Soll der Laden wirklich gelöscht werden?"
+    }
+  },
+  "UNTIL": "Bis",
+  "PURCHASED": "Eingekauft",
+  "REPLACE_OR_ADD": "Vorhandene ersetzen oder hinzufügen?",
+  "REPLACE_OR_ADD_VALUE": "Vorhandene ersetzen ({{ value }}) oder hinzufügen?",
+  "REPLACE": {
+    "": "Ersetzen",
+    "ALL": "Alles ersetzen",
+    "TITLE_FOR_URL": "Titel für URL ersetzen",
+    "SPACES": "Leerzeichen ersetzen",
+    "SPACES_IN_TITLE": "Leerzeichen im Titel ersetzen",
+    "SPACES_ONLY": "Nur Leerzeichen ersetzen",
+    "SPACES_AND_LOWERCASE": "Leerzeichen ersetzen und kleine Buchstaben"
+  },
+  "COUNT_UP_OR_ADD": "Vorhandene hochzählen oder hinzufügen?",
+  "COUNT_UP_OR_ADD_VALUE": "Vorhandene hochzählen ({{ value }}) oder hinzufügen?",
+  "RESULTS": "Ergebnisse",
+  "LEVEL": "Stufe",
+  "LEVEL_NONE": "Keine Stufe",
+  "PLANNED": "geplant",
+  "TEMPERATURE": "Temperatur",
+  "SHARE": "Teilen",
+  "WITH_RECIPES": "Mit Rezepten",
+  "WITHOUT_RECIPES": "Ohne Rezepte",
+  "WITH_SHORT_RECIPE_INFOS": "Mit kurzer Rezeptinfo",
+  "RECIPE_BASIC": "Grundrezept",
+  "RECIPE_BASIC_NO": "Kein Grundrezept",
+  "NOTHING": "Nichts",
+  "BACK": "Zurück",
+  "RESET": "Zurücksetzen",
+  "LAST_EDITED": "Zuletzt bearbeitet",
+  "CREATED": "Erstellt",
+  "CREATE": "Erstellen",
+  "COLLAPSE_ALL": "Alle einklappen",
+  "EXPAND_ALL": "Alle ausklappen",
+  "SHOW_ERRORS": "Fehler anzeigen",
+  "ERRORS": "Fehler",
+  "TITLE": "Titel",
+  "IMAGE": { "": "Bild", "S": "Bilder", "NO": "Kein Bild" },
+  "PURCHASE": {
+    "": "Einkauf",
+    "S": "Einkäufe",
+    "ADD": "Einkauf hinzufügen",
+    "EDIT": "Einkauf bearbeiten",
+    "ITEM": "Einkaufsartikel",
+    "ITEM_SHORT": "Artikel",
+    "ITEM_SHORT_ADD": "Artikel hinzufügen",
+    "ITEMS": "Einkaufsartikel",
+    "ITEMS_SHORT": "Artikel",
+    "DELETE_ACTION": {
+      "TITLE": "Einkauf löschen?",
+      "TEXT": "Soll der Einkauf wirklich gelöscht werden?"
+    },
+    "WITHOUT_SUGAR": "Einkäufe ohne Zucker",
+    "NOT_VEGAN": "Nicht vegane Einkäufe"
+  },
+  "INGREDIENT": {
+    "": "Zutat",
+    "S": {
+      "": "Zutaten",
+      "EDITABLE": "Zutaten bearbeitbar",
+      "EDITABLE_NOT": "Zutaten nicht bearbeitbar",
+      "HIDE": "Zutaten ausblenden",
+      "SHOW": "Zutaten einblenden"
+    },
+    "VALUE": "{{ value }} Zutaten",
+    "RECIPE": "Rezeptzutaten",
+    "ALL": "Alle Zutaten",
+    "NAME": "Zutatenname",
+    "EDIT": "Zutat bearbeiten",
+    "ADD": "Zutat hinzufügen",
+    "ADDITIONAL": "Zusätzliche Zutat",
+    "NOTE": {
+      "": "Zutatennotiz",
+      "S": {
+        "": "Zutatennotizen",
+        "HIDE": "Zutatennotizen ausblenden",
+        "SHOW": "Zutatennotizen einblenden"
+      }
+    }
+  },
+  "UTENSIL": {
+    "": "Utensil",
+    "S": {
+      "": "Utensilien",
+      "HIDE": "Utensilien ausblenden",
+      "SHOW": "Utensilien einblenden"
+    },
+    "ADD": "Utensil hinzufügen",
+    "EDIT": "Utensil bearbeiten",
+    "VALUE": "{{ value }} Utensilien"
+  },
+  "UTENSIL_OBJECT": {
+    "": "Utensilienobjekt",
+    "S": "Utensilienobjekte",
+    "ADD": "Utensilienobjekt hinzufügen",
+    "EDIT": "Utensilienobjekt bearbeiten",
+    "VALUE": "{{ value }} Utensilienobjekte"
+  },
+  "ALTERNATIVE_NAMES": "Alternative Namen",
+  "SEARCH_TERMS": "Suchterme",
+  "EFFORT": "Aufwand",
+  "REMOVE_ALL": "Alle löschen",
+  "REMOVE_ALL_VALUE": "Alle löschen ({{ value }})",
+  "OPTIONAL": "Optional",
+  "OPTIONAL_NO": "Nicht optional",
+  "MOVE": "Verschieben",
+  "AMOUNT": "Menge",
+  "AMOUNT_ADD": "Menge hinzufügen",
+  "AMOUNT_EDIT": "Menge bearbeiten",
+  "PORTION": {
+    "": "Portion",
+    "S": "Portionen",
+    "PER": "Pro Portion",
+    "PER_SHORT": "p.P.",
+    "SHORT": "Port.",
+    "UNIT": "Portioneneinheit",
+    "LEFT": {
+      "": "Übrige Portionen",
+      "NO": "Keine Portionen übrig",
+      "NO_MORE": "Keine Portionen mehr übrig",
+      "SHORT": "übrig",
+      "VALUE": "{{ value }} Portionen übrig",
+      "ONE_LESS": "Eine Portion weniger übrig",
+      "WITH": "Mit übrigen Portionen"
+    }
+  },
+  "UNIT": "Einheit",
+  "FACTOR": "Faktor",
+  "HIDE": "Ausblenden",
+  "SHOW": "Anzeigen",
+  "CHOOSE": "Wählen ...",
+  "BUY": "Einkaufen",
+  "LIST": "Liste",
+  "TAGS": "Stichworte",
+  "TAGS_NO": "Keine Stichworte",
+  "ADD_TAG": "Stichwort hinzufügen",
+  "URL": {
+    "": "URL",
+    "S": "URLs",
+    "NOT": "Keine URLs",
+    "CHOOSE": "URLs wählen ...",
+    "ADD": "URL hinzufügen",
+    "EDIT": "URL bearbeiten"
+  },
+  "CLIPBOARD": {
+    "ADD": {
+      "": "Aus Zwischenablage einfügen",
+      "URL": "URL aus Zwischenablage einfügen"
+    },
+    "COPY": {
+      "": "In Zwischenablage kopieren",
+      "ID": "ID in Zwischenablage kopieren",
+      "VALUE": "{{ value }} in Zwischenablage kopieren"
+    }
+  },
+  "DO_NOT_FILTER": "Nicht filtern",
+  "THEME": {
+    "VALENTINE": "Valentingstag",
+    "NEW_YEAR": "Neujahr",
+    "BIRTHDAY": "Geburtstag",
+    "CHRISTMAS": "Weihnachten",
+    "HALLOWEEN": "Halloween",
+    "EASTER": "Ostern",
+    "PRIDE": "Pride"
+  },
+  "RESET_TIMER": "Timer zurücksetzen",
+  "RESET_WINDOW": "Fenster zurücksetzen",
+  "CLICK_TO_SEARCH": "Klicken zum Suchen",
+  "MIN_OR_MAX_VALUE": "Minimaler oder maximaler Wert",
+  "HIDE_OR_SHOW_NULL_VALUE": "Null-Werte anzeigen/ausblenden",
+  "HIDE_OR_SHOW_NULL_VALUE_HINT": "Wert 0 steht für „keinen Wert“, Wert 1 steht für „einen Wert“. Alles über Wert 1 kann mit Minimum und Maximum eingestellt werden.",
+  "MIN_SHORT": "Min.",
+  "MAX_SHORT": "Max.",
+  "LOAD_MORE": "Mehr laden",
+  "LOAD_ALL": "Alle laden",
+  "CHANGED_DATA": "Geänderte Daten",
+  "ADD_TO": "{{ value }} hinzufügen?",
+  "SEARCHENGINE": {
+    "": "Suchmaschine",
+    "S": "Suchmaschinen",
+    "ADD": "Suchmaschine hinzufügen",
+    "EDIT": "Suchmaschine bearbeiten"
+  },
+  "CHECK": {
+    "": "Abhaken",
+    "ALL": "Alle abhaken",
+    "NONE": "Keine abhaken",
+    "INVERT": "Abgehakt invertieren",
+    "DELETE_ALL": "Alle abgehakten löschen",
+    "DELETE_ALL_INGREDIENTS": "Alle abgehakten Zutaten löschen",
+    "INGREDIENTS": "Mehrere Zutaten abhaken",
+    "INGREDIENT": "Zutat abgehakt",
+    "NOT": {
+      "": "Nicht abhaken",
+      "INGREDIENT": "Zutat nicht abgehakt"
+    }
+  },
+  "REMOVE_FOLLOWING_RECIPES_FROM_SHOPPINGLIST": "Folgende Rezezpte von der Einkaufsliste entfernen",
+  "DELETE_MULTIPLE_INGREDIENTS": "Mehrere Zutaten löschen",
+  "DELETE_ALL_ADDITIONAL_INGREDIENTS": "Alle zusätzlichen Zutaten löschen",
+  "THING": "Gegenstand",
+  "THINGS": "Gegenstände",
+  "FOOD": "Lebensmittel",
+  "TYPE": "Typ",
+  "COST": {
+    "": "Kosten",
+    "NO": "Keine Kosten",
+    "WITH": "Mit Kosten",
+    "ENTRY": "Kosteneintrag",
+    "NEW_ADDED_TO_THESE": "Kosteneintrag wird zu diesen Kosten hinzugefügt: {{ value }}",
+    "NO_COSTS_AVAILABLE": "Noch keine Kosten verfügbar."
+  },
+  "QUICK_ADD": {
+    "": "Schnellhinzufügen",
+    "WITH": "Mit Schnellhinzufügen",
+    "WITHOUT": "Ohne Schnellhinzufügen"
+  },
+  "QUICK_ACCESS": {
+    "": "Schnellzugriff",
+    "WITH": "Mit Schnellzugriff",
+    "WITHOUT": "Ohne Schnellzugriff"
+  },
+  "CONTENT": {
+    "": "Inhaltsstoff",
+    "S": "Inhaltsstoffe",
+    "NO": "Keine Inhaltsstoffe",
+    "CHOOSE": "Inhaltsstoffe wählen ...",
+    "EGG": "Ei",
+    "EGG_NOT": "Kein Ei",
+    "ALCOHOL": "Alkohol",
+    "ALCOHOL_NOT": "Kein Alkohol",
+    "SUGAR": "Zucker",
+    "SUGAR_NOT": "Kein Zucker",
+    "LACTOSE": "Laktose",
+    "LACTOSE_NOT": "Keine Laktose",
+    "FRUCTOSE": "Fruktose",
+    "FRUCTOSE_NOT": "Keine Fruktose",
+    "GLUTEN": "Gluten",
+    "GLUTEN_NOT": "Keine Gluten",
+    "MEAT": "Fleisch",
+    "MEAT_NOT": "Kein Fleisch",
+    "FISH": "Fisch",
+    "FISH_NOT": "Kein Fisch",
+    "VEGAN": "Vegan",
+    "VEGAN_NOT": "Nicht vegan",
+    "VEGETARIAN": "Vegetarisch",
+    "VEGETARIAN_NOT": "Nicht vegetarisch"
+  },
+  "NUTRITION": {
+    "": "Nährwert",
+    "S": "Nährwerte",
+    "SERVING_SIZE": "Portionsgröße",
+    "CALORIES": "Kalorien",
+    "FAT": "Fett",
+    "SATURATED_FAT": "Gesättigte Fettsäuren",
+    "CARBOHYDRATE": "Kohlenhydrate",
+    "FIBER": "Ballaststoffe",
+    "SUGAR": "Zucker",
+    "PROTEIN": "Eiweiß",
+    "SODIUM": "Natrium",
+    "POTASSIUM": "Kalium",
+    "CALCIUM": "Kalzium",
+    "IRON": "Eisen",
+    "CHOLESTEROL": "Cholesterin"
+  },
+  "EMOJI": "Emoji",
+  "SIZE": {
+    "": "Größe",
+    "NONE": "Keine Größe",
+    "BIG": "Groß",
+    "MEDIUM": "Mittelgroß",
+    "SMALL": "Klein"
+  },
+  "MATERIAL": {
+    "": "Material",
+    "NONE": "Kein Material",
+    "GLASS": "Glas",
+    "SILICONE": "Silikon",
+    "PLASTIC": "Kunststoff",
+    "PORCELAIN": "Porzellan",
+    "STEEL": "Edelstahl",
+    "TEFLON": "Teflon",
+    "METAL": "Metall"
+  },
+  "PAUSE": "Pause",
+  "PAUSED": "Pausiert",
+  "PREVIOUS": "Vorherige",
+  "NEXT": "Nächste",
+  "SELECT": {
+    "": "Auswählen",
+    "SELECTION": "Auswahl",
+    "ALL": "Alle auswählen",
+    "DESELECT": "Abwählen",
+    "DESELECT_ALL": "Alle abwählen",
+    "INVERT": "Auswahl invertieren"
+  },
+  "MORE": "Mehr",
+  "LESS": "Weniger",
+  "SHOW_MORE": "Mehr anzeigen",
+  "SHOW_LESS": "Weniger anzeigen",
+  "DESCRIPTION": {
+    "": "Beschreibung",
+    "SHOW": "Beschreibung einblenden",
+    "HIDE": "Bschreibung ausblenden"
+  },
+  "ZIP_FOLDER": "ZIP-Ordner",
+  "WITH_ZIP_FOLDER": "Mit ZIP-Ordner",
+  "MULTISELECT": {
+    "": "Mehrfachauswahl",
+    "S": "Mehrfachauswahlen"
+  },
+  "WITH_SPECIFIC_VALUE": "Mit bestimmtem Wert",
+  "CONTAIN": "Enthält",
+  "INFORMATION": {
+    "": "Information",
+    "S": "Informationen"
+  }
+}

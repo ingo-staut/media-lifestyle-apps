@@ -1,0 +1,54 @@
+@import "shared/styles/styles.theme.scss";
+@import "../../../styles.theme.scss";
+
+.button {
+  height: 40px;
+  background-color: $background-1;
+  border-radius: $border-radius;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  padding-left: $padding-s;
+  outline: none;
+  display: flex;
+  align-items: stretch;
+  color: white;
+  font-size: $text-size-s;
+  cursor: pointer;
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: $padding-s;
+  }
+
+  span {
+    white-space: nowrap;
+  }
+
+  .text {
+    border: none;
+    outline: none;
+    padding: 0 $padding-s;
+    white-space: nowrap;
+
+    @media (hover: none) {
+      padding-right: 0px;
+    }
+  }
+
+  &:hover {
+    background-color: $background-2;
+  }
+
+  &:focus {
+    background-color: $background-3;
+  }
+
+  &.with-value {
+    background-color: $primary;
+
+    &:hover {
+      filter: brightness(110%);
+    }
+  }
+}

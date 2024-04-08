@@ -1,0 +1,815 @@
+{
+  "LANGUAGE": {
+    "": "Language",
+    "S": "Languages",
+    "EN": "English",
+    "DE": "German",
+    "FR": "French",
+    "ES": "Spanish"
+  },
+  "COUNTRY": {
+    "": "Country",
+    "S": "Countries"
+  },
+
+  "Ernährung": "Food",
+  "Rezepte": "Recipes",
+  "Entdecken": "Explore",
+  "Einkäufe": "Purchases",
+  "Einkaufsliste": "Shopping list",
+  "Statistiken": "Statistics",
+  "Suche": "Search",
+  "Import": "Import",
+
+  "MEDIA": "Entertainment",
+
+  "MENU": {
+    "": "Menu",
+    "RECIPES": "Recipes",
+    "EXPLORE": "Explore",
+    "PURCHASES": "Purchases",
+    "SHOPPING_LIST": "Shopping list",
+    "STATISTICS": "Statistics",
+    "SEARCH": "Search"
+  },
+  "SEARCH": {
+    "": "Search",
+    "INPUT": "Search ...",
+    "FOR": "Search for {{ value }}",
+    "FOR_WITH_QUOTATION_MARK": "Search for \"{{ value }}\"",
+    "CLOSE": "Close search",
+    "CLEAR_INPUT": "Clear input",
+    "SHOW_IN": "Show in search"
+  },
+  "FILTER": {
+    "ADD": "Add filter",
+    "CHOOSE": "Choose filter ...",
+    "COLLAPSE": "Collapse filters",
+    "EXPAND": "Expand filters",
+    "REMOVE": "Remove filter",
+    "REMOVE_ALL": "Remove all filters",
+    "REMOVE_ALL_VALUE": "Remove all filters ({{ value }})",
+    "SUGGESTION_SENTENCE": {
+      "SET_FILTER_AS": "Set filter as",
+      "OR": "or",
+      "TO_FIND_RECIPES": "to find recipes!"
+    },
+    "REMOVE_SEARCH_TEXT": "Remove search text"
+  },
+  "FAVORITE": {
+    "": "Favorite",
+    "S": "Favorites",
+    "NO": "No favorite",
+    "ADD": "Mark as favorite"
+  },
+  "VEGAN": {
+    "": "Vegan",
+    "NO": "Not vegan"
+  },
+  "VEGETARIAN": {
+    "": "Vegetarian",
+    "NO": "Not vegetarian"
+  },
+  "LINK": {
+    "": "Links",
+    "NO": "No links",
+    "RECIPE": "Link recipe",
+    "LINKED_RECIPES": "Linked recipes",
+    "NO_LINKED_RECIPES": "No linked recipes",
+    "REMOVE": "Unlink",
+    "ADD": "Link"
+  },
+  "SHOPPING_LIST": {
+    "": "Shopping list",
+    "INGREDIENTS": "Ingredients on shopping list",
+    "ON": "On shopping list",
+    "ON_NO": "Not on shopping list",
+    "REMOVE": "Remove from shopping list",
+    "ADD": "Add to shopping list",
+    "EDIT": "Edit on shopping list"
+  },
+  "NOTE": {
+    "": "Note",
+    "S": "Notes",
+    "NO": "No note",
+    "REMOVE": "Remove note",
+    "ADD": "Add note",
+    "EDIT": "Edit note",
+    "EDIT_TEXT": "Edit note or leave text field blank to delete."
+  },
+  "STEPS": {
+    "": "Step(s)",
+    "WITH_OPTIONALS": "With optional preparation steps",
+    "WITHOUT_OPTIONALS": "Without optional preparation steps",
+    "OPTIONALS": "Optional preparation steps"
+  },
+  "RATING": {
+    "": "Rating",
+    "NO": "No rating",
+    "NOT": "Not rated",
+    "CHOOSE": "Choose rating ...",
+    "GOOD": "Good",
+    "GOOD_MIDDLE": "Average",
+    "GOOD_NOT": "Bad"
+  },
+  "DIFFICULTY": {
+    "": "Difficulty",
+    "NO": "No difficulty",
+    "NOT": "Not set",
+    "CHOOSE": "Choose difficulty ...",
+    "EASY": "Easy",
+    "MIDDLE": "Medium",
+    "DIFFICULT": "Difficult"
+  },
+  "CATEGORY": {
+    "": "Category",
+    "NO": "No category",
+    "CHOOSE": "Choose category ...",
+    "APPETIZERS": "Appetizers / Sides / Snacks",
+    "MAIN": "Main courses",
+    "DESSERT": "Desserts",
+    "DRINKS": "Drinks",
+    "SALAD": "Salad",
+    "SOUP": "Soup / Stew",
+    "SANDWICH": "Sandwich / Cutlets",
+    "SAUCE": "Sauce",
+    "CASSEROLE": "Casserole",
+    "PASTA": "Pasta",
+    "PAN_DISH": "Pan dish",
+    "BURGER": "Burger / Meatball",
+    "PIZZA": "Pizza",
+    "OVEN_DISH": "Oven dish",
+    "CAKE": "Cake",
+    "CUPCAKE": "Cupcake",
+    "ICE_CREAM": "Ice / Cream",
+    "COOKIE": "Cookie",
+    "JUICE": "Juice",
+    "COCKTAIL": "Cocktail",
+    "SMOOTHIE": "Smoothie",
+    "WAFFLES": "Waffles / Pancakes",
+    "CUTLETS": "Cutlets / Brownies",
+    "BREAD": "Bread"
+  },
+  "FIELD": {
+    "MANDATORY": "Mandatory field",
+    "CLEAR": "Clear field",
+    "NOT_SET": "Field not set",
+    "ERROR_TEXT": {
+      "MANDATORY": "{{ formfieldName }} is a mandatory field.",
+      "MAX_LENGTH": "{{ formfieldName }} must not be longer than {{ maxLength }} characters.",
+      "MIN_LENGTH": "{{ formfieldName }} must be at least {{ minLength }} characters long.",
+      "MAX": "{{ formfieldName }} must not be more than {{ max }} {{ suffixShort }}.",
+      "MIN": "{{ formfieldName }} must be at least {{ min }} {{ suffixShort }}.",
+      "PATTERN": "{{ formfieldName }} has an incorrect structure."
+    }
+  },
+  "VIEW": {
+    "RECIPE": "Recipe view",
+    "STEPS": "Steps view",
+    "PREPARE": "Prepare"
+  },
+  "COUNT": {
+    "UP": "Count up",
+    "DOWN": "Count down"
+  },
+  "PREPARATION": {
+    "": "Preparation",
+    "S": "Preparations",
+    "ADD": "Add preparation",
+    "TYPE": "Preparation type",
+    "NO": "No preparation type",
+    "CHOOSE": "Choose type ...",
+    "OVEN": "Oven",
+    "TOP_UNDER_HEAT": "Top and bottom heat",
+    "FAN": "Fan",
+    "TOP_HEAT": "Top heat",
+    "UNDER_HEAT": "Bottom heat",
+    "GRILL": "Grill",
+    "POT": "Pot",
+    "POT_COOK": "Cooking",
+    "POT_BLANCH": "Blanching",
+    "POT_COOKING": "Simmering",
+    "PAN": "Pan",
+    "PAN_STEAM": "Steaming",
+    "PAN_COOK": "Frying",
+    "KITCHENMACHINE": "Kitchen machine",
+    "KITCHENMACHINE_ATTACHMENT": "Kitchen machine with attachment",
+    "REST": "Resting",
+    "REST_ROOMTEMPERATURE": "Room temperature",
+    "REST_REFRIGERATOR": "Refrigerator",
+    "REST_FREEZER": "Freezer"
+  },
+  "TIME": {
+    "": "Time",
+    "CLOCK": "Time",
+    "MIN": "Minimum time",
+    "MAX": "Maximum time",
+    "MINUTES": "Minutes",
+    "MINUTES_SHORT": "Min.",
+    "CURRENT": "Current time",
+    "CHOOSE": "Choose time ..."
+  },
+  "AVAILABLE": {
+    "": "Available",
+    "NO": "Not available",
+    "WITH": "With available",
+    "INGREDIENTS": "Available ingredients",
+    "NOT": "Not available",
+    "HALF": "Partially available",
+    "UNDEFINED": "Ingredient unit doesn't match",
+    "FRACTION_TEXT": "{{ value }} available",
+    "INGREDIENTS_ADD": "Add to available ingredients",
+    "INGREDIENT_EDIT": "Edit available ingredient",
+    "INGREDIENT_DELETE": "Delete available ingredient"
+  },
+  "DETAILS": {
+    "DETAILS": "Details",
+    "EDIT": "Edit details",
+    "HIDE": "Hide details"
+  },
+  "HISTORY": {
+    "": "History",
+    "NO": "No history entry",
+    "REMOVE": "Remove history entry",
+    "ADD": "Add history entry",
+    "EDIT": "Edit history entry",
+    "PLAN": "Schedule",
+    "PLAN_RECIPE": "Schedule recipe",
+    "PLAN_RECIPE_TOMORROW": "Schedule recipe tomorrow",
+    "RESCHEDULE_RECIPE": "Reschedule recipe",
+    "PLANNED": "Planned",
+    "PLANNED_TODAY": "Planned for today",
+    "PLANNED_TOMORROW": "Planned for tomorrow",
+    "PLANNED_YESTERDAY": "Planned yesterday",
+    "PLANNED_NEXT_WEEK": "Planned next week",
+    "PLANNED_MULTIPLE": "Planned several times",
+    "PLANNED_NOT": "Not planned",
+    "PREPARED": "Prepared",
+    "PREPARED_NOT": "Not prepared",
+    "PREPARED_TODAY": "Prepared today",
+    "PREPARED_RECIPE": "Recipe prepared",
+    "PREPARE_UNTIL": "Prepare until",
+    "MARK_AS_PREPARED": "Mark as prepared"
+  },
+  "ERROR": {
+    "NO_RESULTS": "No results found!",
+    "ALL_DATA_WILL_BE_LOADED": "All data will be loaded from the database!"
+  },
+  "SUGGESTION": {
+    "": "Recipe suggestion",
+    "S": "Recipe suggestions",
+    "RANDOM": "Random recipe suggestion",
+    "BEST_RANKED_RECIPES": "Highly rated recipes",
+    "WORST_RANKED_RECIPES": "Poorly rated recipes",
+    "NOT_RANKED_RECIPES": "Not rated recipes",
+    "EASY_RECIPES": "Easy recipes",
+    "HARD_RECIPES": "Difficult recipes",
+    "CHEAP_VALUE": "Cheap {{ value }}",
+    "QUICK_VALUE": "Quick {{ value }}",
+    "SHOW_VEGAN_CATEGORY_VALUE": "Show vegan {{ value }}",
+    "SHOW_VEGAN_CATEGORY_WITHOUT_SUGAR": "Show vegan {{ value }} without sugar"
+  },
+  "NAVIGATE": {
+    "TO_VALUE": "To {{ value }}",
+    "TO_LONG_VALUE": "Navigate to {{ value }}"
+  },
+  "NOTIFICATION": {
+    "SAVED_TO_CLIPBOARD": "Successfully copied to the clipboard!",
+    "URL_SAVED_TO_CLIPBOARD_VALUE": "{{ value }} URL successfully copied to the clipboard!",
+    "SAVING_SUCCESS": "Successfully saved!",
+    "SAVING_SUCCESS_VALUE": "{{ value }} was saved successfully!",
+    "DELETE_SUCCESS": "Successfully deleted!",
+    "DELETE_SUCCESS_VALUE": "{{ value }} was deleted successfully!",
+    "SAVING_ERROR": "There was an error while saving!",
+    "DELETE_ERROR": "There was an error while deleting!",
+    "DELETE_ALL_ENTRIES": "All entries have been deleted!",
+    "RECIPE_WAS_CHANGED": "Data has been changed!",
+    "RECIPE_NOT_FOUND": "Recipe not found!",
+    "RECIPE_ALREADY_LINKED": "Recipe is already linked!",
+    "NO_BACK_LOCATION_FOUND": "Could not navigate back, redirected to home page instead.",
+    "VERSION_READY": "A new version is available!",
+    "DETAILS": "Details: {{ details }}",
+    "QUICKADD_NOTHING_FOUND": "Nothing could be interpreted or found!",
+    "NO_URL_FOUND": "No URL found!",
+    "INGREDIENTS_OF_RECIPES_NOT_REMOVED": "Ingredients belonging to recipes were not deleted!",
+    "INGREDIENT_IS_ALREADY_AVAILABLE": "Ingredient {{ name }} is already available ({{ available }}) and therefore will not be displayed in the buy list!",
+    "INGREDIENT_IS_ALREADY_AVAILABLE_EXACT_WAS_REPLACED": "Ingredient {{ name }} already exists exactly and has been replaced!",
+    "INGREDIENT_IS_ALREADY_AVAILABLE_ADD_ANYWAYS": "Ingredient {{ name }} already exists ({{ available }}). Should it be added anyway?",
+    "SAVING_NOT_ALLOWED_WITH_VALUE": "{{ value }} could not be saved!",
+    "SAVING_NOT_NEEDED_WITH_VALUE": "Saving {{ value }} not necessary!",
+    "CAN_NOT_EDIT_VALUE": "{{ value }} cannot be edited!",
+    "ACTION": {
+      "UNDO": "Undo",
+      "RELOAD": "Reload",
+      "LOAD_NEW_DATA": "Load new data"
+    }
+  },
+  "ACTION": {
+    "KEEP": "Keep",
+    "DISCARD": "Discard",
+    "ADD": "Add",
+    "CLOSE": "Close",
+    "SAVE": "Save",
+    "REMOVE": "Remove",
+    "DELETE": "Delete",
+    "EDIT": "Edit",
+    "CANCEL": "Cancel",
+    "APPLY": "Apply"
+  },
+  "DELETE": {
+    "?": "Shall be deleted?",
+    "!": "Will be deleted!"
+  },
+  "DIALOG": {
+    "PENDING_CHANGES": {
+      "TITLE": "Keep Changes?",
+      "TEXT": "There are pending changes that would be lost. Should these be kept?"
+    }
+  },
+  "RECIPE": {
+    "": "Recipe",
+    "S": "Recipes",
+    "NEW": "New recipe",
+    "ADD": "Add recipe",
+    "OPEN": "Open recipe",
+    "ADD_MORE_DETAILS": "Add more details to the recipe",
+    "REMOVE_ALL": "Remove all recipes",
+    "REMOVE_ALL_VALUE": "Remove all recipes ({{ value }})",
+    "SIMILAR": "Similar recipes",
+    "FILTER": "Filter recipes",
+    "DELETE": "Delete recipe",
+    "DELETE_ACTION": {
+      "TITLE": "Delete recipe?",
+      "TEXT": "Do you really want to delete the recipe \"{{ name }}\"?"
+    }
+  },
+  "DATE": {
+    "": "Date",
+    "WITH": "With date",
+    "MISSED": "Missed",
+    "BEFORE_YESTERDAY": "The day before yesterday",
+    "YESTERDAY": "Yesterday",
+    "TODAY": "Today",
+    "TOMORROW": "Tomorrow",
+    "AFTER_TOMORROW": "The day after tomorrow",
+    "MULTIPLE": "Multiple times",
+    "NEXT_X_DAYS": "Next {{ days }} days",
+    "PREVIOUS_X_DAYS": "Previous {{ days }} days",
+    "NEXT_3_DAYS": "Next 3 days",
+    "NEXT_7_DAYS": "Next 7 days",
+    "NEXT_31_DAYS": "Next 31 days",
+    "FAR_FUTURE": "Far future",
+    "THIS_WEEK": "This week",
+    "THIS_MONTH": "This month",
+    "LAST_MONTH": "Last month",
+    "PREVIOUS_MONTH": "Previous month",
+    "COMPLETE_MONTH": "Complete month",
+    "PREVIOUS_MONTH_UNTIL_SAME_DAY": "Previous month to the same day",
+    "DATE_RANGE": "Date range ...",
+    "CHOOSE_RANGE": "Choose date range...",
+    "WITH_RANGE": "With date range",
+    "CHOOSE": "Choose date ...",
+    "START": "Start date",
+    "END": "End date",
+    "CURRENT": "Current date",
+    "WITH_TODAY": "With today's date",
+    "USE_UNTIL": {
+      "": "Use until",
+      "NO": "None use until dates",
+      "WITH": "With use until dates"
+    }
+  },
+  "SETTINGS": {
+    "": "Settings",
+    "APPLICATION": {
+      "": "Application",
+      "ACCORDIONS": {
+        "": "Content groups",
+        "INITIALLY_OPEN": "Initially open all {{ value }} accordions"
+      },
+      "TABS": {
+        "": "Menus",
+        "INITIALLY_OPEN": "Initially open tab for {{ value }}",
+        "PLANNED_RECIPE": "planned recipes"
+      },
+      "DIALOGS": {
+        "": "Dialogs",
+        "EDIT_INGREDIENT_IN_LIST": "Edit ingredient in list in dialog",
+        "EDIT_INGREDIENT_IN_TAGS": "Edit ingredient in tags in dialog",
+        "EDIT_UTENSIL_IN_TAGS": "Edit utensil in tags in dialog"
+      }
+    },
+    "LANGUAGE_AND_REGION": "Language & Region",
+    "ABOUT": "About",
+    "HELP": "Help",
+    "KEYMAP": "Keymap",
+    "VERSION": "Version",
+    "VERSION_CURRENT": "Current version",
+    "VERSION_HISTORY": "Version history",
+    "COPYRIGHT": "Copyright",
+    "RAW_DATA": "Raw Data",
+    "MOBILE": "Mobile",
+    "DESKTOP": "Desktop",
+    "DB": "Database",
+    "DB_LOADED_DATA": "Loaded data",
+    "DB_CHANGES": "Database changes",
+    "DB_CHANGES_APPLY": "Apply database changes",
+    "DB_OPEN_IN": "Open in database",
+    "DATA_CURRENT": "Current data",
+    "DATA_IN_DB": "Data in database",
+    "DOWNLOAD": "Download",
+    "DOWNLOAD_DATA": "Download data",
+    "DOWNLOAD_ALL": "Download all data",
+    "DOWNLOAD_ALL_VALUE": "Download all {{ value }}",
+    "REQUESTS": "API queries",
+    "REQUEST_DATA": "Query data",
+    "REQUEST_VALUE": "{{ value }} query",
+    "TESTING": "Testing",
+    "IMPORT": "Import",
+    "IMPORT_ACTION": "Import",
+    "IMPORT_ACTION_AND_SAVE": "Import and save",
+    "TEST_MESSAGE": "Test message",
+    "TEST_MESSAGE_WITH_DURATION": "Test message with duration"
+  },
+  "ALPHABET": "Alphabet",
+  "PREPARED_QUANTITY": "Quantity of preparations",
+  "LAST_PREPARED": "Last prepared",
+  "PREPARATION_TIME": {
+    "": "Preparation time",
+    "NO": "No preparation time",
+    "WITH": "With preparation time"
+  },
+  "INGREDIENTS_QUANTITY": {
+    "": "Quantity of ingredients",
+    "NO": "No ingredients",
+    "WITH": "With ingredients"
+  },
+  "SORT": {
+    "SEARCH_RESULTS": "Search result relevance",
+    "CUSTOM": "Custom sorting",
+    "DESC_VALUE": "{{ value }} descending",
+    "ASC_VALUE": "{{ value }} ascending"
+  },
+  "INSTRUCTION": {
+    "": "Instruction",
+    "S": "Instructions",
+    "ADD": "Add instruction",
+    "EDIT": "Edit instruction"
+  },
+  "QUICKADD": {
+    "": "QuickAdd",
+    "WITH": "With QuickAdd",
+    "WITHOUT": "Without QuickAdd",
+    "ADD": "Add {{ value }}",
+    "REPLACE_OR_ADD": {
+      "TITLE": "Replace existing?",
+      "TEXT": "There already exist {{ amount }} {{ value }}. Should these be replaced or the new {{ value }} added?"
+    }
+  },
+  "LAYOUT": {
+    "": "Layout",
+    "GRID": "Grid",
+    "GRID_DESCRIPTION": "Grid with details",
+    "LIST": "List",
+    "LIST_DESCRIPTION": "List with columns"
+  },
+  "CONVERSION": {
+    "": "Ingredient conversion",
+    "S": "Ingredient conversions",
+    "VALUES": "Conversion values",
+    "SHORT": "Conversion",
+    "ADD": "Add ingredient conversion",
+    "ADD_SHORT": "Add conversion",
+    "ADD_WITH_VALUE": "Add ingredient conversion for \"{{ value }}\"",
+    "EDIT": "Edit ingredient conversion"
+  },
+  "STORE": {
+    "": "Store",
+    "S": "Stores",
+    "ADD": "Add store",
+    "ADD_WITH_VALUE": "Add \"{{ value }}\" store",
+    "EDIT": "Edit store",
+    "EDIT_WITH_VALUE": "Edit store \"{{ value }}\"",
+    "DELETE_ACTION": {
+      "TITLE": "Delete store?",
+      "TEXT": "Do you really want to delete the store?"
+    }
+  },
+  "UNTIL": "Until",
+  "PURCHASED": "Purchased",
+  "REPLACE_OR_ADD": "Replace existing or add?",
+  "REPLACE_OR_ADD_VALUE": "Replace existing ({{ value }}) or add?",
+  "REPLACE": {
+    "": "Replace",
+    "ALL": "Replace all",
+    "TITLE_FOR_URL": "Replace title for URL",
+    "SPACES": "Replace spaces",
+    "SPACES_IN_TITLE": "Replace spaces in title",
+    "SPACES_ONLY": "Replace only spaces",
+    "SPACES_AND_LOWERCASE": "Replace spaces and lowercase"
+  },
+  "COUNT_UP_OR_ADD": "Count up existing or add?",
+  "COUNT_UP_OR_ADD_VALUE": "Count up existing ({{ value }}) or add?",
+  "RESULTS": "Results",
+  "LEVEL": "Level",
+  "LEVEL_NONE": "No level",
+  "PLANNED": "Planned",
+  "TEMPERATURE": "Temperature",
+  "SHARE": "Share",
+  "WITH_RECIPES": "With recipes",
+  "WITHOUT_RECIPES": "Without recipes",
+  "WITH_SHORT_RECIPE_INFOS": "With short recipe infos",
+  "RECIPE_BASIC": "Basic recipe",
+  "RECIPE_BASIC_NO": "No basic recipe",
+  "NOTHING": "Nothing",
+  "BACK": "Back",
+  "RESET": "Reset",
+  "LAST_EDITED": "Last edited",
+  "CREATED": "Created",
+  "CREATE": "Create",
+  "COLLAPSE_ALL": "Collapse all",
+  "EXPAND_ALL": "Expand all",
+  "SHOW_ERRORS": "Show errors",
+  "ERRORS": "Errors",
+  "TITLE": "Title",
+  "IMAGE": { "": "Image", "S": "Images", "NO": "No image" },
+  "PURCHASE": {
+    "": "Purchase",
+    "S": "Purchases",
+    "ADD": "Add purchase",
+    "EDIT": "Edit purchase",
+    "ITEM": "Purchase item",
+    "ITEM_SHORT": "Item",
+    "ITEM_SHORT_ADD": "Add item",
+    "ITEMS": "Purchase items",
+    "ITEMS_SHORT": "Items",
+    "DELETE_ACTION": {
+      "TITLE": "Delete purchase?",
+      "TEXT": "Do you really want to delete the purchase?"
+    },
+    "WITHOUT_SUGAR": "Purchases without sugar",
+    "NOT_VEGAN": "Not vegan purchases"
+  },
+  "INGREDIENT": {
+    "": "Ingredient",
+    "S": {
+      "": "Ingredients",
+      "EDITABLE": "Ingredients editable",
+      "EDITABLE_NOT": "Ingredients not editable",
+      "HIDE": "Hide ingredients",
+      "SHOW": "Show ingredients"
+    },
+    "VALUE": "{{ value }} ingredients",
+    "RECIPE": "Recipe ingredients",
+    "ALL": "All ingredients",
+    "NAME": "Ingredient name",
+    "EDIT": "Edit ingredient",
+    "ADD": "Add ingredient",
+    "ADDITIONAL": "Additional Ingredient",
+    "NOTE": {
+      "": "Ingredient note",
+      "S": {
+        "": "Ingredients notes",
+        "HIDE": "Hide ingredients notes",
+        "SHOW": "Show ingredients notes"
+      }
+    }
+  },
+  "UTENSIL": {
+    "": "Utensil",
+    "S": {
+      "": "Utensils",
+      "HIDE": "Hide utensils",
+      "SHOW": "Show utensils"
+    },
+    "ADD": "Add utensil",
+    "EDIT": "Edit utensil",
+    "VALUE": "{{ value }} utensils"
+  },
+  "UTENSIL_OBJECT": {
+    "": "Utensil object",
+    "S": "Utensil objects",
+    "ADD": "Add utensil object",
+    "EDIT": "Edit utensil object",
+    "VALUE": "{{ value }} utensil objects"
+  },
+  "ALTERNATIVE_NAMES": "Alternative names",
+  "SEARCH_TERMS": "Search terms",
+  "EFFORT": "Effort",
+  "REMOVE_ALL": "Remove all",
+  "REMOVE_ALL_VALUE": "Remove all ({{ value }})",
+  "OPTIONAL": "Optional",
+  "OPTIONAL_NO": "Not optional",
+  "MOVE": "Move",
+  "AMOUNT": "Amount",
+  "AMOUNT_ADD": "Add amount",
+  "AMOUNT_EDIT": "Edit amount",
+  "PORTION": {
+    "": "Portion",
+    "S": "Portions",
+    "PER": "Per portion",
+    "PER_SHORT": "p.P.",
+    "SHORT": "Port.",
+    "UNIT": "Portion unit",
+    "LEFT": {
+      "": "Portions left",
+      "NO": "No portions left",
+      "NO_MORE": "No more portions available",
+      "SHORT": "left",
+      "VALUE": "{{ value }} portions left",
+      "ONE_LESS": "One portion less left",
+      "WITH": "With portions left"
+    }
+  },
+  "UNIT": "Unit",
+  "FACTOR": "Factor",
+  "HIDE": "Hide",
+  "SHOW": "Show",
+  "CHOOSE": "Choose ...",
+  "BUY": "Buy",
+  "LIST": "List",
+  "TAGS": "Keywords",
+  "TAGS_NO": "No keywords",
+  "ADD_TAG": "Add keyword",
+  "URL": {
+    "": "URL",
+    "S": "URLs",
+    "NOT": "No URLs",
+    "CHOOSE": "Choose URLs ...",
+    "ADD": "Add URL",
+    "EDIT": "Edit URL"
+  },
+  "CLIPBOARD": {
+    "ADD": {
+      "": "Paste from clipboard",
+      "URL": "Paste URL from clipboard"
+    },
+    "COPY": {
+      "": "Copy to clipboard",
+      "ID": "Copy ID to clipboard",
+      "VALUE": "Copy {{ value }} to clipboard"
+    }
+  },
+  "DO_NOT_FILTER": "Do not filter",
+  "THEME": {
+    "VALENTINE": "Valentine's Day",
+    "NEW_YEAR": "New year",
+    "BIRTHDAY": "Birthday",
+    "CHRISTMAS": "Christmas",
+    "HALLOWEEN": "Halloween",
+    "EASTER": "Easter",
+    "PRIDE": "Pride"
+  },
+  "RESET_TIMER": "Reset timer",
+  "RESET_WINDOW": "Reset window",
+  "CLICK_TO_SEARCH": "Click to search",
+  "MIN_OR_MAX_VALUE": "Minimum or maximum value",
+  "HIDE_OR_SHOW_NULL_VALUE": "Show/hide zero values",
+  "HIDE_OR_SHOW_NULL_VALUE_HINT": "Value 0 represents \"no value\", value 1 represents \"a value\". Everything above value 1 can be set with minimum and maximum.",
+  "MIN_SHORT": "Min.",
+  "MAX_SHORT": "Max.",
+  "LOAD_MORE": "Load more",
+  "LOAD_ALL": "Load all",
+  "CHANGED_DATA": "Changed data",
+  "ADD_TO": "Add {{ value }}?",
+  "SEARCHENGINE": {
+    "": "Search engine",
+    "S": "Search engines",
+    "ADD": "Add search engine",
+    "EDIT": "Edit search engine"
+  },
+  "CHECK": {
+    "": "Check off",
+    "ALL": "Check off all",
+    "NONE": "Check off none",
+    "INVERT": "Invert checked",
+    "DELETE_ALL": "Delete all checked off",
+    "DELETE_ALL_INGREDIENTS": "Delete all checked ingredients",
+    "INGREDIENTS": "Check off multiple ingredients",
+    "INGREDIENT": "Checked ingredient",
+    "NOT": {
+      "": "Uncheck",
+      "INGREDIENT": "Unchecked ingredient"
+    }
+  },
+  "REMOVE_FOLLOWING_RECIPES_FROM_SHOPPINGLIST": "Remove the following recipes from the shopping list",
+  "DELETE_MULTIPLE_INGREDIENTS": "Delete multiple ingredients",
+  "DELETE_ALL_ADDITIONAL_INGREDIENTS": "Delete all additional ingredients",
+  "THING": "Thing",
+  "THINGS": "Things",
+  "FOOD": "Food",
+  "TYPE": "Type",
+  "COST": {
+    "": "Cost",
+    "NO": "No cost",
+    "WITH": "With cost",
+    "ENTRY": "Cost entry",
+    "NEW_ADDED_TO_THESE": "Cost entry will be added to these costs: {{ value }}",
+    "NO_COSTS_AVAILABLE": "No costs available yet."
+  },
+  "QUICK_ADD": {
+    "": "QuickAdd",
+    "WITH": "With QuickAdd",
+    "WITHOUT": "Without QuickAdd"
+  },
+  "QUICK_ACCESS": {
+    "": "Quick access",
+    "WITH": "With quick access",
+    "WITHOUT": "Without quick access"
+  },
+  "CONTENT": {
+    "": "Specific ingredient",
+    "S": "Specific ingredients",
+    "NO": "No specific ingredients",
+    "CHOOSE": "Choose specific ingredients ...",
+    "EGG": "Egg",
+    "EGG_NOT": "No egg",
+    "ALCOHOL": "Alcohol",
+    "ALCOHOL_NOT": "No alcohol",
+    "SUGAR": "Sugar",
+    "SUGAR_NOT": "No sugar",
+    "LACTOSE": "Lactose",
+    "LACTOSE_NOT": "No lactose",
+    "FRUCTOSE": "Fructose",
+    "FRUCTOSE_NOT": "No fructose",
+    "GLUTEN": "Gluten",
+    "GLUTEN_NOT": "No Gluten",
+    "MEAT": "Meat",
+    "MEAT_NOT": "No meat",
+    "FISH": "Fish",
+    "FISH_NOT": "No fish",
+    "VEGAN": "Vegan",
+    "VEGAN_NOT": "Not vegan",
+    "VEGETARIAN": "Vegetarian",
+    "VEGETARIAN_NOT": "Not vegetarian"
+  },
+  "NUTRITION": {
+    "": "Nutritional value",
+    "S": "Nutritional values",
+    "SERVING_SIZE": "Portion size",
+    "CALORIES": "Calories",
+    "FAT": "Fat",
+    "SATURATED_FAT": "Saturated fat",
+    "CARBOHYDRATE": "Carbohydrates",
+    "FIBER": "Fiber",
+    "SUGAR": "Sugar",
+    "PROTEIN": "Protein",
+    "SODIUM": "Sodium",
+    "POTASSIUM": "Potassium",
+    "CALCIUM": "Calcium",
+    "IRON": "Iron",
+    "CHOLESTEROL": "Cholesterol"
+  },
+  "EMOJI": "Emoji",
+  "SIZE": {
+    "": "Size",
+    "NONE": "No size",
+    "BIG": "Big",
+    "MEDIUM": "Medium",
+    "SMALL": "Small"
+  },
+  "MATERIAL": {
+    "": "Material",
+    "NONE": "No material",
+    "GLASS": "Glass",
+    "SILICONE": "Silicone",
+    "PLASTIC": "Plastic",
+    "PORCELAIN": "Porcelain",
+    "STEEL": "Stainless steel",
+    "TEFLON": "Teflon",
+    "METAL": "Metal"
+  },
+  "PAUSE": "Pause",
+  "PAUSED": "Paused",
+  "PREVIOUS": "Previous",
+  "NEXT": "Next",
+  "SELECT": {
+    "": "Select",
+    "SELECTION": "Selection",
+    "ALL": "Select All",
+    "DESELECT": "Deselect",
+    "DESELECT_ALL": "Deselect all",
+    "INVERT": "Invert selection"
+  },
+  "MORE": "More",
+  "LESS": "Less",
+  "SHOW_MORE": "Show more",
+  "SHOW_LESS": "Show less",
+  "DESCRIPTION": {
+    "": "Description",
+    "SHOW": "Show description",
+    "HIDE": "Hide description"
+  },
+  "ZIP_FOLDER": "ZIP folder",
+  "WITH_ZIP_FOLDER": "With ZIP folder",
+  "MULTISELECT": {
+    "": "Multiselect",
+    "S": "Multiselects"
+  },
+  "WITH_SPECIFIC_VALUE": "With specific value",
+  "CONTAIN": "Contains",
+  "INFORMATION": {
+    "": "Information",
+    "S": "Informations"
+  }
+}

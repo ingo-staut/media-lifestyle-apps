@@ -1,0 +1,29 @@
+<div
+  *ngIf="filterButton.show"
+  [ngClass]="{ 'button blinking': true, 'with-value': filterButton.value !== ButtonTristate.NONE }"
+  [matTooltip]="filterButton.texts[index] | translate"
+  [matTooltipDisabled]="hideTooltip"
+  tabindex="0"
+  matRipple
+  (click)="onClick()"
+  (contextmenu)="onRightClick($event)"
+>
+  <div>
+    <mat-icon [svgIcon]="filterButton.icons[index]" class="medium without-button icon"></mat-icon>
+    <span>
+      {{ filterButton.texts[index] | translate }}
+    </span>
+  </div>
+
+  <button
+    mat-button
+    class="only-icon clear-button"
+    [matTooltip]="'ACTION.REMOVE' | translate"
+    tabindex="-1"
+    (mouseenter)="hideTooltip = true"
+    (mouseleave)="hideTooltip = false"
+    (click)="onRemove($event)"
+  >
+    <mat-icon svgIcon="clear"></mat-icon>
+  </button>
+</div>

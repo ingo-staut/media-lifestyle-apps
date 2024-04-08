@@ -1,0 +1,232 @@
+<mat-card
+  [ngClass]="{ 'recipe-card': true, blinking: recipe | recipeLastEdited }"
+  matRipple
+  (click)="onOpen($event)"
+>
+  <div>
+    <!-- Funktionsicons oben -->
+    <div [ngClass]="{ 'header-icons': true, 'with-gradient': !!recipe.images.length }">
+      <button
+        class="only-icon"
+        mat-button
+        (click)="onFavorite($event)"
+        [matTooltip]="'FAVORITE.' | translate"
+      >
+        <mat-icon [svgIcon]="recipe.favorite ? 'favorite-filled' : 'favorite'"></mat-icon>
+      </button>
+      <button
+        *ngFor="let action of actions"
+        mat-button
+        class="only-icon"
+        [matTooltip]="action.text | translate"
+        (click)="onAction($event, action)"
+      >
+        <mat-icon *ngIf="action.icon" [svgIcon]="action.icon"></mat-icon>
+      </button>
+      <button
+        class="only-icon"
+        mat-button
+        (click)="onNote($event)"
+        [matTooltip]="recipe.note ? recipe.note : ('NOTE.ADD' | translate)"
+      >
+        <mat-icon [svgIcon]="recipe.note ? 'note-filled' : 'note'"></mat-icon>
+      </button>
+    </div>
+
+    <div
+      *ngIf="(recipe | recipeIsPlanned) || (recipe | recipeHasPortionsLeft)"
+      class="banner shadow"
+    ></div>
+
+    <!-- Infobanner -->
+    <!-- Geplant -->
+    <ng-container *ngIf="recipe | recipeIsPlanned">
+      <div
+        *ngIf="recipe | recipePlannedDetails : (localeService.locale$ | async)! as details"
+        class="banner"
+        [matTooltip]="details.text | translate"
+        (click)="onBannerPlanned($event)"
+      >
+        <mat-icon
+          *ngIf="details.icon"
+          class="icon-in-text small"
+          [svgIcon]="details.icon"
+        ></mat-icon>
+        {{ details.text | translate }}
+      </div>
+    </ng-container>
+
+    <!-- Portionen übrig -->
+    <ng-container *ngIf="recipe | recipeHasPortionsLeft">
+      <div
+        *ngIf="recipe.lastPreparation as details"
+        class="banner"
+        [matTooltip]="'PORTION.LEFT.VALUE' | translate : { value: details.portionsAvailable }"
+        (click)="onBannerOnePortionLessLeft($event)"
+      >
+        <mat-icon
+          *ngIf="details.portionsAvailable"
+          class="icon-in-text small"
+          svgIcon="portion-eat"
+        ></mat-icon>
+        {{ "PORTION.LEFT.VALUE" | translate : { value: details.portionsAvailable } }}
+      </div>
+    </ng-container>
+
+    <!-- Bild -->
+    <div mat-card-image class="recipe-image">
+      <img
+        *ngIf="recipe.images.length"
+        loading="lazy"
+        [src]="recipe.images[0]"
+        [alt]="recipe.name"
+      />
+      <div *ngIf="!recipe.images.length"></div>
+    </div>
+  </div>
+
+  <!-- Titel -->
+  <span
+    class="title"
+    [innerHTML]="recipe.name | extendText : searchTextHighlight ?? '' : '<mark>' : '</mark>'"
+  >
+  </span>
+  <!-- <div class="title"> -->
+  <!-- Grundrezept -->
+
+  <!-- </div> -->
+
+  <div class="footer">
+    <mat-icon
+      *ngIf="recipe.basic"
+      class="medium"
+      [svgIcon]="recipe.basic ? 'recipe-basic' : 'recipe'"
+      [matTooltip]="'RECIPE_BASIC' | translate"
+    ></mat-icon>
+
+    <!-- Kategorie Symbol -->
+    <mat-icon
+      class="medium"
+      [svgIcon]="(recipe.category | categoryByType).icon"
+      [matTooltip]="(recipe.category | categoryByType).name | translate"
+    ></mat-icon>
+
+    <!-- Vegan Symbol -->
+    <mat-icon
+      *ngIf="
+        recipe
+          | mostlyContentsTypeInRecipe
+            : (ingredientApiService.ingredientsConversion$ | async) as type
+      "
+      class="medium"
+      color="primary"
+      [svgIcon]="type.icon"
+      [matTooltip]="type.name | translate"
+    ></mat-icon>
+
+    <ng-container
+      *ngIf="{
+        alcohol: (recipe | containsAlcohol : (ingredientApiService.ingredientsConversion$ | async)),
+        sugar:
+          (recipe | containsSugarOrNoSugar : (ingredientApiService.ingredientsConversion$ | async))
+      } as type"
+    >
+      <ng-container *ngIf="type.alcohol || type.sugar">
+        <mat-divider [vertical]="true" class="divider-vertical-chip-icons"></mat-divider>
+
+        <!-- Alkohol Symbol -->
+        <mat-icon
+          *ngIf="type.alcohol as alcohol"
+          class="medium more-item"
+          [svgIcon]="alcohol.icon"
+          [matTooltip]="alcohol.name | translate"
+        ></mat-icon>
+
+        <!-- Zucker Symbol -->
+        <mat-icon
+          class="medium more-item"
+          *ngIf="type.sugar as sugar"
+          [svgIcon]="sugar.icon"
+          [matTooltip]="sugar.name | translate"
+        ></mat-icon>
+      </ng-container>
+    </ng-container>
+
+    <div class="spacer"></div>
+
+    <div *ngIf="shoppingList && recipe.isOnShoppingList as onShoppingList" class="flex-gap-5">
+      <button
+        mat-flat-button
+        class="button-chip medium"
+        [matTooltip]="onShoppingList.amountNumber + ' ' + recipe.amountText"
+        (click)="onChangeShoppingListAmountValue($event)"
+      >
+        <mat-icon svgIcon="portion"></mat-icon
+        >{{ onShoppingList.amountNumber + " " + recipe.amountText }}
+      </button>
+
+      <button
+        mat-flat-button
+        class="button-chip medium only-icon"
+        [matTooltip]="
+          (onShoppingList.withOptionals ? 'STEPS.WITH_OPTIONALS' : 'STEPS.WITHOUT_OPTIONALS')
+            | translate
+        "
+        (click)="onOptionalClick($event)"
+      >
+        <mat-icon
+          [svgIcon]="onShoppingList.withOptionals ? 'optional' : 'optional-not'"
+          class="medium"
+        ></mat-icon>
+      </button>
+    </div>
+
+    <div *ngIf="!shoppingList" class="flex-gap-5">
+      <!-- Zubereiten bis -->
+      <button
+        *ngIf="recipe | showPreparationTime"
+        mat-flat-button
+        class="button-chip medium"
+        [matTooltip]="
+          ('UNTIL' | translate) +
+          ' ' +
+          (recipe | totalPreparationTimeString : true : (localeService.locale$ | async)!)
+        "
+      >
+        <mat-icon svgIcon="time"></mat-icon>
+        {{ recipe | totalPreparationTimeString : false : (localeService.locale$ | async)! }}
+      </button>
+
+      <!-- Preis -->
+      <ng-container
+        *ngIf="ingredientApiService.ingredientsConversion$ | async as ingredientsConversion"
+      >
+        <button
+          *ngIf="
+            ingredientsConversion &&
+            ingredientsConversion.length &&
+            (recipe | recipeCosts : ingredientsConversion) as costs
+          "
+          mat-flat-button
+          class="button-chip medium"
+          [matTooltip]="costs | recipeCostsString : (localeService.locale$ | async)!"
+        >
+          {{ costs.normal | price : (localeService.locale$ | async)! }}
+        </button>
+      </ng-container>
+
+      <!-- Search -->
+      <button
+        *ngIf="showSearchResultMatchScore && recipe._searchMatchScore > 0"
+        mat-flat-button
+        class="button-chip medium"
+        [matTooltip]="
+          (recipe._searchMatchScore | number : '1.0-2' : (localeService.locale$ | async)!) ?? ''
+        "
+      >
+        <mat-icon svgIcon="search"></mat-icon>
+        {{ recipe._searchMatchScore | number : "1.0-0" : (localeService.locale$ | async)! }}
+      </button>
+    </div>
+  </div>
+</mat-card>

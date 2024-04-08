@@ -1,0 +1,102 @@
+<div class="page-container">
+  <header class="page-header">
+    <div class="searchbar" cdkTrapFocus [cdkTrapFocusAutoCapture]="true">
+      <!-- Suchfeld -->
+      <app-search-bar
+        #searchBar
+        [searchValue]="(searchValue$ | async) || ''"
+        [quickAddFilterFromSearch]="(quickAddFilterFromSearch$ | async) ?? []"
+        (searchValueChange)="onChange($event)"
+        (searchValueEnter)="onEnter()"
+        (closeSearch)="onClose()"
+      >
+      </app-search-bar>
+
+      <!-- Filterleiste -->
+      <app-search-filters></app-search-filters>
+    </div>
+
+    <!-- Funktionsleiste: Sortierung -->
+    <app-search-sorting
+      [results]="results$ | async"
+      [totalResults]="filteredMedia$ | async"
+    ></app-search-sorting>
+
+    <!-- Vorschläge -->
+    <app-search-suggestions
+      [results]="results$ | async"
+      [suggestions]="searchSuggestionService.randomSuggestions$ | async"
+      [filtersSetOrSearchText]="!!(filtersSet$ | async) || !!(searchValue$ | async)"
+    >
+    </app-search-suggestions>
+
+    <!-- Keine Ergebnisse -->
+    <app-search-no-results
+      [results]="results$ | async"
+      [filtersSet]="(filtersSet$ | async) ?? 0"
+      [setSearchText]="!!(searchValue$ | async)"
+      (removeSearchText)="searchInputFocus(); onChange('')"
+      (removeAllFilters)="removeAllFilters()"
+    >
+    </app-search-no-results>
+  </header>
+
+  <!-- Ergebnisse -->
+  <div class="page-content" *ngIf="layout$ | async as layout">
+    <div
+      [ngClass]="{
+        results: true,
+        list: layout === ResultListLayout.LIST,
+        'only-mobile-device': isMobileDevice
+      }"
+    >
+      <ng-container *ngIf="layout === ResultListLayout.LIST">
+        <app-search-result-item
+          *ngFor="let media of results$ | async"
+          [media]="media"
+          [searchTextHighlight]="searchValue$ | async | forSearch"
+          [columns]="[
+            ((sortingType$ | async)! | getSortItemBySortType : SEARCH_SORT_TYPES_DATA)?.key ??
+              SortKey.SORT_NONE
+          ]"
+        ></app-search-result-item>
+      </ng-container>
+
+      <ng-container *ngIf="layout === ResultListLayout.GRID">
+        <app-media-chip
+          *ngFor="let media of results$ | async"
+          [media]="media"
+          [mediaToExplore]="media.isExplore || media.isMovie"
+          [searchTextHighlight]="searchValue$ | async | forSearch"
+          [showSearchResultMatchScore]="true"
+          [showWatchability]="(sortingType$ | async)! === SortType.SORT_RATING_WATCHABILITY"
+          [showYear]="(sortingType$ | async)! === SortType.SORT_YEAR"
+          [genreClickable]="true"
+          (onGenreClick)="onAddGenre($event)"
+        >
+        </app-media-chip>
+      </ng-container>
+    </div>
+
+    <!-- Mehr Ergebnisse laden -->
+    <div class="load-more">
+      <button
+        *ngIf="((filteredMedia$ | async)?.length ?? 0) > ((results$ | async)?.length ?? 0)"
+        mat-flat-button
+        [matTooltip]="'LOAD_MORE' | translate"
+        [style.marginBottom.px]="20"
+        (click)="onLoadMoreResults()"
+      >
+        <mat-icon svgIcon="more"></mat-icon>
+        {{ "LOAD_MORE" | translate }}
+      </button>
+    </div>
+  </div>
+
+  <app-fab-menu
+    *ngIf="isSmallScreen.matches"
+    [menuItems]="0 | sidenavMenuItems"
+    [styleBottomPosition]="20"
+    (actionClicked)="onOpenCreateDialogByKey($event)"
+  ></app-fab-menu>
+</div>
